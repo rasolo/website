@@ -8,6 +8,6 @@ ___
 
 ### TODO:
 
-- [] Get Pokémon from my Pokémon API.
+- [ ] Get Pokémon from my Pokémon API.
 
 
