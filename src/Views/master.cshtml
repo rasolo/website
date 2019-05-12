@@ -3,7 +3,7 @@
 @{
     Layout = null;
     // Get basic design settings from the homepage
-    var home = (Home)Model.Root();
+    var home = (Website.Models.Generated.Home)Model.Root();
     var font = home.Font;
     var colorTheme = home.ColorTheme;
 }
@@ -18,7 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="@Url.Content("~/css/umbraco-starterkit-style.css")" />
+    <link rel="stylesheet" href="@Url.Content(" ~/css/umbraco-starterkit-style.css")" />
     @RenderSection("Header", required: false)
 </head>
 
@@ -34,13 +34,13 @@
         <div class="logo">
             @if (home.SiteLogo != null && !string.IsNullOrEmpty(home.SiteLogo.Url))
             {
-                <div class="nav-link--home">
-                    <img class="logo-image" src="@home.SiteLogo.Url" alt="@home.Sitename">
-                </div>
+            <div class="nav-link--home">
+                <img class="logo-image" src="@home.SiteLogo.Url" alt="@home.Sitename">
+            </div>
             }
             else
             {
-                <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename</a>
+            <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename</a>
             }
         </div>
 
@@ -73,7 +73,7 @@
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
-    <script src="@Url.Content("~/scripts/umbraco-starterkit-app.js")"></script>
+    <script src="@Url.Content(" ~/scripts/umbraco-starterkit-app.js")"></script>
 
 </body>
 
