@@ -1,5 +1,7 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.StartPage>
-@using ContentModels = Website.Web.Models;
+@using ContentModels = Website.Models.Generated;
 @{
 	Layout = null;
 }
+
+@Model.Title
