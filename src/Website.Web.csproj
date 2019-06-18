@@ -447,6 +447,27 @@
   <ItemGroup>
     <Compile Include="Models\Generated\Builder.cs">
       <Generator>UmbracoModelsBuilder</Generator>
+      <LastGenOutput>Builder.generated.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Models\Generated\Builder.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Generated\File.generated.cs">
+      <DependentUpon>Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Generated\Folder.generated.cs">
+      <DependentUpon>Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Generated\Image.generated.cs">
+      <DependentUpon>Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Generated\Member.generated.cs">
+      <DependentUpon>Builder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Generated\StartPage.generated.cs">
+      <DependentUpon>Builder.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -482,6 +503,7 @@
     <Content Include="Views\Partials\SectionHeader.cshtml" />
     <Content Include="Views\MacroPartials\FeaturedProducts.cshtml" />
     <Content Include="Views\MacroPartials\LatestBlogposts.cshtml" />
+    <Content Include="Views\StartPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
