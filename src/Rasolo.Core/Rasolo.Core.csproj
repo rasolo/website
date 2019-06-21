@@ -261,7 +261,6 @@
     <Compile Include="Features\Shared\Mappings\UmbracoMapperComposer.cs" />
     <Compile Include="Features\StartPage\StartPage.cs" />
     <Compile Include="Features\StartPage\StartPageController.cs" />
-    <Compile Include="Features\StartPage\StartPageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

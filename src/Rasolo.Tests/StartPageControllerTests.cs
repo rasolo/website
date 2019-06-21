@@ -1,8 +1,8 @@
-﻿using System.Web.Mvc;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Mappings;
 using Rasolo.Core.Features.StartPage;
+using System.Web.Mvc;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
@@ -11,16 +11,16 @@ namespace Rasolo.Tests
 {
 	public class StartPageControllerTests
 	{
-		private Mock<IPublishedContent> content;
-		private StartPageController sut;
+		private Mock<IPublishedContent> _content;
+		private StartPageController _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
 			Current.Factory = Mock.Of<IFactory>();
-			content = new Mock<IPublishedContent>();
+			_content = new Mock<IPublishedContent>();
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			this.sut = new StartPageController(umbracoMapper);
+			this._sut = new StartPageController(umbracoMapper);
 		}
 
 		[TearDown]
@@ -30,16 +30,16 @@ namespace Rasolo.Tests
 		}
 
 		[Test]
-		[TestCase("", null)]
-		[TestCase(null, null)]
-		[TestCase("Page title", "Page title")]
-		[TestCase("Another Page title", "Another Page title")]
-		public void GivenPageHasPageTitle_WhenIndexAction_ThenReturnViewModelWithPageTitle(string heading, string expected)
+		[TestCase("Page name", "Page name")]
+		[TestCase("Another Page name", "Another Page name")]
+		public void GivenPageHasName_WhenIndexAction_ThenReturnViewModelWithPageName(string name, string expected)
 		{
-			//TODO: Mock content.object, it is null.
-			var viewModel = (StartPageViewModel)((ViewResult)this.sut.Index(new ContentModel(content.Object))).Model;
+			_content.SetupGet(x => x.Name).Returns(name);
+			var publishedContentMock = new ContentModel(this._content.Object);
 
-			Assert.AreEqual(expected, viewModel.Heading);
+			var viewModel = (StartPage)((ViewResult)this._sut.Index(publishedContentMock)).Model;
+
+			Assert.AreEqual(expected, viewModel.Name);
 		}
 	}
 }
