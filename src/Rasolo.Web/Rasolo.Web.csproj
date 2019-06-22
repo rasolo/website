@@ -472,12 +472,6 @@
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
-    <Content Include="Views\Partials\CategoryLinks.cshtml" />
-    <Content Include="Views\Partials\Navigation\SubNavigation.cshtml" />
-    <Content Include="Views\Partials\Navigation\TopNavigation.cshtml" />
-    <Content Include="Views\Partials\SectionHeader.cshtml" />
-    <Content Include="Views\MacroPartials\FeaturedProducts.cshtml" />
-    <Content Include="Views\MacroPartials\LatestBlogposts.cshtml" />
     <Content Include="Views\StartPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
