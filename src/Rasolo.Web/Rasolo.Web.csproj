@@ -478,6 +478,7 @@
     <None Include="Web.Debug.config">
     </None>
     <Content Include="Web.Release.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
