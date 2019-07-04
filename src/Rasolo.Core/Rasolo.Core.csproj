@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
+    <Compile Include="Features\Shared\Extensions\StringExtensions.cs" />
     <Compile Include="Features\Shared\Mappings\UmbracoMapperComposer.cs" />
     <Compile Include="Features\StartPage\StartPage.cs" />
     <Compile Include="Features\StartPage\StartPageController.cs" />
