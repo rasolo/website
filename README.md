@@ -1,13 +1,21 @@
-# Website #
+# Rasolo #
 
 ## About ##
-A default Umbraco installation website for experimenting.
-
-A folder at root level containing a certain amount of JSON files where each file represents a Pokémon. Each file is loaded into an SQL-Lite In-memory database at startup, to which the requests are made.
+A website made in Umbraco
 ___
 
-### TODO:
+## Getting Started
+How to setup project on your own machine.
+### Prerequisites
+```
+NPM: https://www.npmjs.com/get-npm
+Visual Studio 2017+: https://visualstudio.microsoft.com/
+```
 
-- [ ] Get Pokémon from my Pokémon API.
-
-
+### Installing
+#### Front end
+* Cd to Project root/Frontend
+* Run "npm install"
+* Run "npm run scss-watch"
+* Run (in a separate window) "npm run browserify-watch"
+___

@@ -1,3 +1,46 @@
+.pokemon {
+  align-items: center;
+  justify-content: center;
+  margin: 5%;
+  text-align-last: center; }
+  .pokemon form {
+    width: 40%;
+    border: 1px solid #8080804f;
+    display: inline-block;
+    padding: 3%; }
+  .pokemon input[type="submit"] {
+    margin: auto;
+    height: 50px;
+    width: 15%;
+    margin-top: 5%;
+    background-color: #ffffff;
+    border: 2px solid #616161; }
+  .pokemon input[type="submit"]:hover {
+    border: 2px solid #080808;
+    color: #080808;
+    font-weight: bold; }
+  .pokemon input[type="number"] {
+    height: 2vw;
+    width: 50%;
+    margin-left: 20px; }
+  .pokemon input[type="number"]:hover {
+    border: 1px solid #9c9292; }
+  .pokemon input[type="text"] {
+    width: 100%;
+    height: 2vw;
+    margin-top: 10%; }
+  .pokemon select {
+    height: 2vw;
+    width: 10vw; }
+  .pokemon .pokemonSubmitContainer {
+    display: flex;
+    flex-wrap: wrap; }
+
+#freepik {
+  text-align: center;
+  padding-bottom: 5px;
+  font-style: italic; }
+
 html *,
 html *::before,
 html *::after {

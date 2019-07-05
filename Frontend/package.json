@@ -5,18 +5,20 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"scss": "node-sass --watch scss -o ../src/Rasolo.Web/assets/css",
-	"browserify": "browserify src/components/app.js > ../src/Rasolo.Web/assets/js/bundle.js",
-	"browser": "watchify src/components/app.js -o ../src/Rasolo.Web/assets/js/bundle.js"
+    "scss-watch": "node-sass --watch src/scss -o ../src/Rasolo.Web/assets/css",
+    "browserify-build": "browserify src/components/app.js > ../src/Rasolo.Web/assets/js/bundle.js",
+    "browserify-watch": "watchify src/components/app.js -o ../src/Rasolo.Web/assets/js/bundle.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rasolo/website.git"
   },
   "author": "Rasmus Olofsson",
-   "dependencies": {
-   "node-sass": "*"
-   },
+  "dependencies": {
+    "node-sass": "*",
+    "browserify": "*",
+    "watchify": "*"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rasolo/website/issues"
