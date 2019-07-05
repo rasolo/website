@@ -1,5 +1,50 @@
 ﻿@inherits UmbracoViewPage<Rasolo.Core.Features.StartPage.StartPage>
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-Page name: @(Model.Name)
-<br/>
-Page title: @Model.Title)
+<div class="home">
+	<section class="hero">
+		<div id="hero_background-container">
+			<div class="hero-header">
+				<h1>@Model.Title</h1>
+			</div>
+			<img src="@Model.HeroImage.DomainWithUrl" id="hero-img" data-hero-type="start-page" alt="@Model.HeroImage.AltText"/>
+			<noscript><img src="@Model.HeroImage.DomainWithUrl"></noscript>
+		</div>
+	</section>
+	
+	<div class="posts">
+		<h2>Latest posts</h2>
+		<div class="counters">
+        
+			<div class="section">
+				<span class="post-meta">May 17, 2019</span>
+				<h3>CSS grid3</h3>
+				<a class="post-link" href="#">Open</a>
+			</div>
+        
+			<div class="section">
+				<span class="post-meta">May 17, 2019</span>
+				<h3>CSS grid2</h3>
+				<a class="post-link" href="#">Open</a>
+			</div>
+        
+			<div class="section">
+				<span class="post-meta">May 17, 2019</span>
+				<h3>CSS grid</h3>
+				<a class="post-link" href="#">Open</a>
+			</div>
+        
+			<div class="section">
+				<span class="post-meta">May 17, 2019</span>
+				<h3>Hello world</h3>
+				<a class="post-link" href="#">Open</a>
+			</div>
+        
+      
+		</div>
+		<div class="spacer"></div>
+
+	</div>
+</div>

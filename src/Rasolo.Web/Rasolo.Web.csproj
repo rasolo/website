@@ -475,6 +475,7 @@
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\StartPage.cshtml" />
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_layout.cshtml" />
     <None Include="Web.Debug.config">
     </None>
     <Content Include="Web.Release.config">

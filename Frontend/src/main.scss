@@ -1,0 +1,150 @@
+---
+# this ensures Jekyll reads the file to be transformed into CSS later
+# only Main files contain this front matter, not partials.
+---
+
+@import "pokemon";
+@import "footer";
+
+html {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "roboto", cursive;
+  }
+}
+body {
+
+  h1 {
+    font-family: "lobster", cursive;
+    font-size: 8vw;
+  }
+  #hero_background-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    noscript {
+      width: -webkit-fill-available;
+    }
+
+    img {
+      width: 100%;
+      height: 50vw;
+      border-radius: 2%;
+    }
+
+    .hero-header {
+      position: absolute;
+      left: 0;
+      right: 0;
+      color: white;
+      text-align: center;
+    }
+  }
+
+  .posts {
+    margin-top: 5%;
+    h2 {
+      text-align: center;
+      margin-bottom: 0.5em;
+      font-size: 70px;
+      padding: 0.5em;
+      font-weight: 500;
+      line-height: 1.23;
+      color: #2a2c4cfa;
+    }
+
+    .counters {
+      text-align: left;
+      padding: 1vw;
+      counter-reset: counter-name;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      justify-items: center;
+      grid-gap: 50px;
+
+      div {
+        display: inline-block;
+      }
+    }
+
+    .section {
+      position: relative;
+      text-align: center;
+      margin-bottom: 10%;
+      white-space: nowrap;
+      .post-meta {
+        display: block;
+        margin: 5%;
+        font-style: italic;
+      }
+
+      h3 {
+        margin-bottom: 50%;
+      }
+      .post-link {
+        color: #ffffff;
+        text-decoration: none;
+        z-index: 1;
+        font-weight: bold;
+        padding: 20% 28% 20% 28%; /* Cover pseudo element */
+      }
+
+      .post-link::before {
+        z-index: -1;
+        content: "";
+
+        border: 5px solid #232020;
+        background-color: #4c9200;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 30px;
+        border-radius: 10%;
+        position: absolute;
+        width: 100%;
+        height: 28%;
+        left: 0;
+        bottom: -10%;
+      }
+
+      .post-link:hover::before {
+        background-color: darkgreen;
+      }
+    }
+
+    .post-meta::before {
+      counter-increment: counter-name;
+      content: counter(counter-name);
+      background: #ffcbcb;
+      width: 6em;
+      font-weight: bold;
+      height: 6em;
+      border-radius: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 3px solid #383434;
+      color: rgba(0, 0, 0, 0.7);
+      box-sizing: border-box;
+      margin-right: 10px;
+      margin-bottom: 10%;
+    }
+  }
+  .spacer {
+    height: 50px;
+  }
+}
+
+  @media screen and (max-width: 600px) {
+  body {
+    .spacer {
+      height: 15vw;
+    }
+    #hero_background-container img {
+      height: 140vw;
+    }
+  }
+}
