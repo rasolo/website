@@ -256,9 +256,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Shared\BlogPage\BlogPage.cs" />
+    <Compile Include="Features\Shared\BlogPage\BlogPageController.cs" />
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
     <Compile Include="Features\Shared\Extensions\StringExtensions.cs" />
     <Compile Include="Features\Shared\Mappings\UmbracoMapperComposer.cs" />
+    <Compile Include="Features\Shared\UI\BaseContentPage.cs" />
+    <Compile Include="Features\Shared\UI\IContentPage.cs" />
     <Compile Include="Features\StartPage\StartPage.cs" />
     <Compile Include="Features\StartPage\StartPageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -267,6 +271,7 @@
     <None Include="packages.config" />
     <Content Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

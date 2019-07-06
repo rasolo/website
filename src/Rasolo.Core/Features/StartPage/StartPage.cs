@@ -1,11 +1,10 @@
-﻿using Zone.UmbracoMapper.Common.BaseDestinationTypes;
+﻿using Rasolo.Core.Features.Shared.UI;
+using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Core.Features.StartPage
 {
-	public class StartPage
+	public class StartPage : BaseContentPage
 	{
-		public virtual string Name { get; set; }
-		public virtual string Title { get; set; }
 		public MediaFile HeroImage { get; set; }
 	}
 }
