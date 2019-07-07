@@ -1,10 +1,10 @@
 ﻿using Rasolo.Core.Features.BlogPage;
 using Rasolo.Core.Features.Shared.Mappings;
-using Rasolo.Tests.Shared;
+using Rasolo.Tests.Unit.Shared;
 
-namespace Rasolo.Tests
+namespace Rasolo.Tests.Unit.Features.BlogPage
 {
-	public class BlogPageControllerTests : BaseContentPageControllerTests<BlogPage>
+	public class BlogPageControllerTests : BaseContentPageControllerTests<Core.Features.BlogPage.BlogPage>
 	{
 		public override void SetUp()
 		{

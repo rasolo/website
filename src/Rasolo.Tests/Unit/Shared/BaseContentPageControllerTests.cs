@@ -1,15 +1,15 @@
-﻿using Moq;
+﻿using System.Linq;
+using System.Web.Mvc;
+using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Controllers;
 using Rasolo.Core.Features.Shared.UI;
-using System.Linq;
-using System.Web.Mvc;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 
-namespace Rasolo.Tests.Shared
+namespace Rasolo.Tests.Unit.Shared
 {
 	public class BaseContentPageControllerTests<TContentPage> where TContentPage: BaseContentPage, new()
 	{
