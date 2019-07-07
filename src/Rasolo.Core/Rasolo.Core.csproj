@@ -256,8 +256,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\Shared\BlogPage\BlogPage.cs" />
-    <Compile Include="Features\Shared\BlogPage\BlogPageController.cs" />
+    <Compile Include="Features\BlogPage\BlogPage.cs" />
+    <Compile Include="Features\BlogPage\BlogPageController.cs" />
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
     <Compile Include="Features\Shared\Extensions\StringExtensions.cs" />
     <Compile Include="Features\Shared\Mappings\UmbracoMapperComposer.cs" />

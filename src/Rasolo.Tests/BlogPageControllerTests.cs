@@ -1,4 +1,4 @@
-﻿using Rasolo.Core.Features.Shared.BlogPage;
+﻿using Rasolo.Core.Features.BlogPage;
 using Rasolo.Core.Features.Shared.Mappings;
 using Rasolo.Tests.Shared;
 
