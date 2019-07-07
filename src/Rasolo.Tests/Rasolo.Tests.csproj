@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Unit\Features\BlogPage\BlogPageControllerTests.cs" />
+    <Compile Include="Unit\Features\BlogPostPage\BlogPostPageControllerTests.cs" />
     <Compile Include="Unit\Shared\BaseContentPageControllerTests.cs" />
     <Compile Include="Unit\Features\StartPage\StartPageControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -518,6 +518,7 @@
     <Content Include="uSync\v8\MemberTypes\member.config" />
     <Content Include="uSync\v8\Templates\startpage.config" />
     <Content Include="Views\BlogPage.cshtml" />
+    <Content Include="Views\BlogPostPage.cshtml" />
     <None Include="Web.Debug.config">
     </None>
     <Content Include="Web.Release.config">
