@@ -10,7 +10,7 @@ namespace Rasolo.Tests.Unit.Features.StartPage
 		{
 			base.SetUp();
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			this._sut = new StartPageController(umbracoMapper);
+			this.Sut = new StartPageController(umbracoMapper);
 		}
 	}
 }

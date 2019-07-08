@@ -10,7 +10,7 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 		{
 			base.SetUp();
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			this._sut = new BlogPageController(umbracoMapper);
+			this.Sut = new BlogPageController(umbracoMapper);
 		}
 	}
 }
