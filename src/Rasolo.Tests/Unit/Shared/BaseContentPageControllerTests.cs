@@ -54,6 +54,18 @@ namespace Rasolo.Tests.Unit.Shared
 			Assert.AreEqual(expected, viewModel.Title);
 		}
 
+		[Test]
+		[TestCase("Main body", "Main body")]
+		[TestCase("Another Main body", "Another Main body")]
+		public void GivenPageHasMainBody_WhenIndexAction_ThenReturnViewModelWithMainBody(string mainBody, string expected)
+		{
+			var property = SetupPropertyValue("mainBody", mainBody);
+			var contentModel = SetupContent(nameof(BaseContentPage), property);
+			var viewModel = (TContentPage)((ViewResult)Sut.Index(contentModel)).Model;
+
+			Assert.AreEqual(expected, viewModel.MainBody.ToString());
+		}
+
 		public Mock<IPublishedProperty> SetupPropertyValue(string propertyAlias, string propertyValue)
 		{
 			var property = new Mock<IPublishedProperty>();
