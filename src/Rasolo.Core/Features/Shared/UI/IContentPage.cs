@@ -7,5 +7,6 @@ namespace Rasolo.Core.Features.Shared.UI
 		string Name { get; }
 		string Title { get; }
 		IHtmlString MainBody { get; }
+		string TeaserHeading { get; }
 	}
 }
