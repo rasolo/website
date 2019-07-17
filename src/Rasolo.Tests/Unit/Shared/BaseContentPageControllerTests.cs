@@ -78,6 +78,18 @@ namespace Rasolo.Tests.Unit.Shared
 			Assert.AreEqual(expected, viewModel.TeaserHeading);
 		}
 
+		[Test]
+		[TestCase("My preamble text", "My preamble text")]
+		[TestCase("Another preamble text", "Another preamble text")]
+		public void GivenPageHasTeaserPreamble_WhenIndexAction_ThenReturnViewModelWithTeaserPreamble(string teaserPreamble, string expected)
+		{
+			var property = SetupPropertyValue("teaserPreamble", teaserPreamble);
+			var contentModel = SetupContent((nameof(BaseContentPage)), property);
+			var viewModel = (TContentPage)((ViewResult)this.Sut.Index(contentModel)).Model;
+
+			Assert.AreEqual(expected, viewModel.TeaserPreamble.ToString());
+		}
+
 		public Mock<IPublishedProperty> SetupPropertyValue(string propertyAlias, string propertyValue)
 		{
 			var property = new Mock<IPublishedProperty>();

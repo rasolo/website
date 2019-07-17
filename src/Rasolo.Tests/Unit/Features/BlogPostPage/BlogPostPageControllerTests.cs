@@ -20,16 +20,6 @@ namespace Rasolo.Tests.Unit.Features.BlogPostPage
 			this.Sut = new BlogPostPageController(umbracoMapper);
 		}
 
-		[Test]
-		[TestCase("My preamble text", "My preamble text")]
-		[TestCase("Another preamble text", "Another preamble text")]
-		public void GivenPageHasPreamble_WhenIndexAction_ThenReturnViewModelWithPreamble(string preamble, string expected)
-		{
-			var property = base.SetupPropertyValue("preamble", preamble);
-			var contentModel = base.SetupContent((nameof(Core.Features.BlogPostPage.BlogPostPage)), property);
-			var viewModel = (Core.Features.BlogPostPage.BlogPostPage)((ViewResult)this.Sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.Preamble);
-		}
 	}
 }
