@@ -518,7 +518,6 @@
     <Content Include="uSync\v8\DataTypes\RichtextEditor.config" />
     <Content Include="uSync\v8\DataTypes\StartPageHeroImageMediaPicker.config" />
     <Content Include="uSync\v8\DataTypes\StartPageTextbox.config" />
-    <Content Include="uSync\v8\DataTypes\StartPageTitleTextbox.config" />
     <Content Include="uSync\v8\DataTypes\Tags.config" />
     <Content Include="uSync\v8\DataTypes\Textarea.config" />
     <Content Include="uSync\v8\DataTypes\Textstring.config" />
