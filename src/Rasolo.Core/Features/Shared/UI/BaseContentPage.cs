@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Core.Features.Shared.UI
 {
@@ -11,5 +12,7 @@ namespace Rasolo.Core.Features.Shared.UI
 		public virtual string TeaserHeading { get; set; }
 
 		public virtual IHtmlString TeaserPreamble { get; set; }
+
+		public MediaFile TeaserMedia { get; set; }
 	}
 }
