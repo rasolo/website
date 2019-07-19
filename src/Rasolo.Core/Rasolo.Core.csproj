@@ -267,8 +267,16 @@
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPageController.cs" />
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
+    <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeController.cs" />
+    <Compile Include="Features\Shared\CookiesNotice\ICookiesNoticeViewModelFactory.cs" />
+    <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeViewModelFactory.cs" />
+    <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeViewModel.cs" />
+    <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeMapperComposer.cs" />
     <Compile Include="Features\Shared\Extensions\StringExtensions.cs" />
+    <Compile Include="Features\Shared\Mappings\GlobalSettingsModelComposer.cs" />
     <Compile Include="Features\Shared\Mappings\UmbracoMapperComposer.cs" />
+    <Compile Include="Features\Shared\Settings\IGlobalSettings.cs" />
+    <Compile Include="Features\Shared\Settings\GlobalSettingsModel.cs" />
     <Compile Include="Features\Shared\UI\BaseContentPage.cs" />
     <Compile Include="Features\Shared\UI\IContentPage.cs" />
     <Compile Include="Features\StartPage\StartPage.cs" />
