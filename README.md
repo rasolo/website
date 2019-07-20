@@ -1,4 +1,4 @@
-# Rasolo #
+# rasolo.azurewebsites.net [![Build Status](https://dev.azure.com/rasmusolofssons/rasolo/_apis/build/status/rasolo%20-%201%20-%20CI?branchName=master)](https://dev.azure.com/rasmusolofssons/rasolo/_build/latest?definitionId=2&branchName=master)
 
 ## About ##
 A website made in Umbraco
