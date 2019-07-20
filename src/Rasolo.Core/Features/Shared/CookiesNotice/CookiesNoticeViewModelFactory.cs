@@ -1,6 +1,8 @@
 ﻿
 using System.Linq;
 using System.Web.Mvc;
+using Rasolo.Core.Features.Shared.Constants;
+using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Core.Features.Shared.Settings;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
@@ -13,33 +15,32 @@ namespace Rasolo.Core.Features.Shared.CookiesNotice
 	public class CookiesNoticeViewModelFactory : ICookiesNoticeViewModelFactory
 	{
 		public readonly IUmbracoMapper _mapper;
-		public readonly IUmbracoContextFactory _umbracoContextFactory;
-		public CookiesNoticeViewModelFactory(IUmbracoMapper mapper, IUmbracoContextFactory context)
+		public readonly IUmbracoService _umbracoService;
+
+		public CookiesNoticeViewModelFactory(IUmbracoMapper mapper, IUmbracoService umbracoService)
 		{
 			this._mapper = mapper;
-			this._umbracoContextFactory = context;
+			_umbracoService = umbracoService;
 		}
+
 		public CookiesNoticeViewModel CreateModel()
 		{
-			using (var umbracoContextReference = this._umbracoContextFactory.EnsureUmbracoContext())
+			var globalSettingsPage = _umbracoService.GetFirstContentTypeAtRoot(DocumentTypeAlias.GlobalSettingsPage);
+			if(globalSettingsPage == null)
 			{
-				var cache = umbracoContextReference.UmbracoContext.Content;
-				var globalSettingsContentType = cache.GetContentType("globalSettings");
-				var globalSettingsPage = cache.GetByContentType(globalSettingsContentType).FirstOrDefault();
-				//var globalSettingsPage = Umbraco.ContentAtRoot().FirstOrDefault(x => x.IsDocumentType("globalSettings"));
-				var globalSettingsModel = new GlobalSettingsModel();
-				this._mapper.Map(globalSettingsPage, globalSettingsModel);
-
-				var viewModel = new CookiesNoticeViewModel()
-				{
-					CookieNoticeText = globalSettingsModel.CookieNoticeText,
-					CookieLink = globalSettingsModel.CookieLink
-				};
-
-				return viewModel;
+				return new CookiesNoticeViewModel();
 			}
-	
 
+			var globalSettingsModel = new GlobalSettingsModel();
+			this._mapper.Map(globalSettingsPage, globalSettingsModel);
+
+			var viewModel = new CookiesNoticeViewModel()
+			{
+				CookieNoticeText = globalSettingsModel.CookieNoticeText,
+				CookieLink = globalSettingsModel.CookieLink
+			};
+
+			return viewModel;
 		}
 	}
 }

@@ -2,27 +2,24 @@
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.CookiesNotice;
 using Rasolo.Tests.Unit.Base;
-using Rasolo.Core.Features.Shared.Settings;
 using System.Web.Mvc;
 using Rasolo.Core.Features.Shared.Mappings;
+using Rasolo.Core.Features.Shared.Services;
+using Rasolo.Core.Features.Shared.Constants;
+using System;
+using System.Reflection;
+using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 
 namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 {
 	public class CookiesNoticeControllerTests : UmbracoBaseTests
 	{
 		private CookiesNoticeController _sut;
-		//private Mock<Rasolo.Core.Features.Shared.Settings.IGlobalSettings> _globalSettings;
 
 		public override void SetUp()
 		{
-			//TODO: Create sitesetting in admin with cookie in it and render cookiebar
 			base.SetUp();
-			//this._globalSettings = new Mock<IGlobalSettings>();
-			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			//var cookiesNoticeViewModelFactory = new CookiesNoticeMapperComposer().Compose();
-			var cookiesNoticeViewModelFactory = new Mock<CookiesNoticeViewModelFactory>();
-
-			this._sut = new CookiesNoticeController(umbracoMapper, cookiesNoticeViewModelFactory.Object);
+	
 		}
 
 		[Test]
@@ -30,7 +27,14 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		[TestCase("Another cookies notice text", "Another cookies notice text")]
 		public void GivenViewModelHasCookiesNoticeText_WhenIndexAction_ThenReturnViewodelWithCookiesNoticeText(string cookiesNoticeText, string expected)
 		{
-			//this._globalSettings.Setup(settings => settings.CookieNoticeText).Returns(cookiesNoticeText);
+			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
+			var umbracoServiceMock = new Mock<IUmbracoService>();
+			var property = SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieNoticeText, cookiesNoticeText);
+			var content = base.SetupContent(DocumentTypeAlias.GlobalSettingsPage, property);
+			umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(content.Content);
+			var cookiesNoticeViewModelFactory = new Mock<CookiesNoticeViewModelFactory>(umbracoMapper, umbracoServiceMock.Object);
+
+			this._sut = new CookiesNoticeController(umbracoMapper, cookiesNoticeViewModelFactory.Object);
 			var viewModel = ((CookiesNoticeViewModel)((PartialViewResult)this._sut.Index()).Model);
 
 			Assert.AreEqual(expected, viewModel.CookieNoticeText.ToString());

@@ -6,12 +6,6 @@ namespace Rasolo.Core.Features.Shared.Mappings
 {
 	public class CookiesNoticeMapperComposer : IUserComposer
 	{
-		//public CookiesNoticeViewModelFactory SetupCookiesNoticeViewModelFactory()
-		//{
-		//	var cookiesNoticeViewModelFactory = new CookiesNoticeViewModelFactory();
-		//	return cookiesNoticeViewModelFactory;
-		//}
-
 		public void Compose(Composition composition)
 		{
 			composition.Register<ICookiesNoticeViewModelFactory, CookiesNoticeViewModelFactory>();
