@@ -1,13 +1,8 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Controllers;
 using Rasolo.Core.Features.Shared.UI;
 using Rasolo.Tests.Unit.Base;
-using Umbraco.Core.Composing;
-using Umbraco.Core.Models;
-using Umbraco.Core.Models.PublishedContent;
+using System.Web.Mvc;
 using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Shared
@@ -24,7 +19,7 @@ namespace Rasolo.Tests.Unit.Shared
 			Content.SetupGet(x => x.Name).Returns(name);
 			var publishedContentMock = new ContentModel(Content.Object);
 
-			var viewModel = (TContentPage) ((ViewResult) Sut.Index(publishedContentMock)).Model;
+			var viewModel = (TContentPage)((ViewResult)Sut.Index(publishedContentMock)).Model;
 
 			Assert.AreEqual(expected, viewModel.Name);
 		}
@@ -36,7 +31,7 @@ namespace Rasolo.Tests.Unit.Shared
 		{
 			var property = SetupPropertyValue("title", title);
 			var contentModel = SetupContent(nameof(BaseContentPage), property);
-			var viewModel = (TContentPage) ((ViewResult) Sut.Index(contentModel)).Model;
+			var viewModel = (TContentPage)((ViewResult)Sut.Index(contentModel)).Model;
 
 			Assert.AreEqual(expected, viewModel.Title);
 		}

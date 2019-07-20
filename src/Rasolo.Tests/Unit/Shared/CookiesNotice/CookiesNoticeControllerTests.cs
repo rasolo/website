@@ -1,14 +1,12 @@
 ﻿using Moq;
 using NUnit.Framework;
+using Rasolo.Core.Features.Shared.Constants;
+using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.CookiesNotice;
-using Rasolo.Tests.Unit.Base;
-using System.Web.Mvc;
 using Rasolo.Core.Features.Shared.Mappings;
 using Rasolo.Core.Features.Shared.Services;
-using Rasolo.Core.Features.Shared.Constants;
-using System;
-using System.Reflection;
-using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
+using Rasolo.Tests.Unit.Base;
+using System.Web.Mvc;
 
 namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 {
@@ -19,7 +17,6 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		public override void SetUp()
 		{
 			base.SetUp();
-	
 		}
 
 		[Test]

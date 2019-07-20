@@ -1,14 +1,7 @@
-﻿
-using System.Linq;
-using System.Web.Mvc;
-using Rasolo.Core.Features.Shared.Constants;
+﻿using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Core.Features.Shared.Settings;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Web;
-using Umbraco.Web.Mvc;
 using Zone.UmbracoMapper.V8;
-
 
 namespace Rasolo.Core.Features.Shared.CookiesNotice
 {
@@ -26,7 +19,7 @@ namespace Rasolo.Core.Features.Shared.CookiesNotice
 		public CookiesNoticeViewModel CreateModel()
 		{
 			var globalSettingsPage = _umbracoService.GetFirstContentTypeAtRoot(DocumentTypeAlias.GlobalSettingsPage);
-			if(globalSettingsPage == null)
+			if (globalSettingsPage == null)
 			{
 				return new CookiesNoticeViewModel();
 			}

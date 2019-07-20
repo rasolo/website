@@ -3,6 +3,5 @@
 	public class GlobalSettingsPagePropertyAlias
 	{
 		public const string CookieNoticeText = "cookieNoticeText";
-
 	}
 }

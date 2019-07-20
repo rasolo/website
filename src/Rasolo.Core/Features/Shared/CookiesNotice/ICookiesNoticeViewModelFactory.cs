@@ -1,6 +1,4 @@
-﻿
-
-namespace Rasolo.Core.Features.Shared.CookiesNotice
+﻿namespace Rasolo.Core.Features.Shared.CookiesNotice
 {
 	public interface ICookiesNoticeViewModelFactory
 	{

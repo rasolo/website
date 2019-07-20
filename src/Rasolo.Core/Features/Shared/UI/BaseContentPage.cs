@@ -7,12 +7,9 @@ namespace Rasolo.Core.Features.Shared.UI
 	{
 		public virtual string Name { get; set; }
 		public virtual string Title { get; set; }
-
 		public virtual IHtmlString MainBody { get; set; }
 		public virtual string TeaserHeading { get; set; }
-
 		public virtual IHtmlString TeaserPreamble { get; set; }
-
 		public MediaFile TeaserMedia { get; set; }
 	}
 }

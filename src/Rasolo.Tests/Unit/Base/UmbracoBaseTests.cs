@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using System.Linq;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
@@ -37,8 +37,9 @@ namespace Rasolo.Tests.Unit.Base
 		public ContentModel SetupContent(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty)
 		{
 			var content = new Mock<IPublishedContent>();
-			content.Setup(x => x.ContentType).Returns(new PublishedContentType(1234, contentTypeAlias,
-				PublishedItemType.Content,
+			content
+				.Setup(x => x.ContentType)
+				.Returns(new PublishedContentType(1234, contentTypeAlias, PublishedItemType.Content,
 				Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing));
 			content.Setup(c => c.GetProperty(It.Is<string>(x => x == publishedProperty.Object.Alias)))
 				.Returns(publishedProperty.Object);
