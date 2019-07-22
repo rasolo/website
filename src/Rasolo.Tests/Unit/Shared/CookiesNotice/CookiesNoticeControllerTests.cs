@@ -1,40 +1,30 @@
-﻿using Moq;
+﻿using System.Web;
+using Moq;
 using NUnit.Framework;
-using Rasolo.Core.Features.Shared.Constants;
-using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.CookiesNotice;
 using Rasolo.Core.Features.Shared.Mappings;
-using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
-using System.Web.Mvc;
 
 namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 {
 	public class CookiesNoticeControllerTests : UmbracoBaseTests
 	{
+		private Mock<ICookiesNoticeViewModelFactory> _cookiesNoticeViewModelFactory;
 		private CookiesNoticeController _sut;
 
 		public override void SetUp()
 		{
 			base.SetUp();
+			this._cookiesNoticeViewModelFactory = new Mock<ICookiesNoticeViewModelFactory>();
+			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
+			this._sut = new CookiesNoticeController(umbracoMapper, this._cookiesNoticeViewModelFactory.Object);
 		}
 
 		[Test]
-		[TestCase("My cookies notice text", "My cookies notice text")]
-		[TestCase("Another cookies notice text", "Another cookies notice text")]
-		public void GivenViewModelHasCookiesNoticeText_WhenIndexAction_ThenReturnViewodelWithCookiesNoticeText(string cookiesNoticeText, string expected)
+		public void Index_OnRun_CookiesNoticeViewModelFactoryIsCalled()
 		{
-			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			var umbracoServiceMock = new Mock<IUmbracoService>();
-			var property = SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieNoticeText, cookiesNoticeText);
-			var content = base.SetupContent(DocumentTypeAlias.GlobalSettingsPage, property);
-			umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(content.Content);
-			var cookiesNoticeViewModelFactory = new Mock<CookiesNoticeViewModelFactory>(umbracoMapper, umbracoServiceMock.Object);
-
-			this._sut = new CookiesNoticeController(umbracoMapper, cookiesNoticeViewModelFactory.Object);
-			var viewModel = ((CookiesNoticeViewModel)((PartialViewResult)this._sut.Index()).Model);
-
-			Assert.AreEqual(expected, viewModel.CookieNoticeText.ToString());
+			this._sut.Index();
+			this._cookiesNoticeViewModelFactory.Verify(x => x.CreateModel(It.IsAny<HttpCookieCollection>()), Times.Exactly(1));
 		}
 	}
 }

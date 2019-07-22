@@ -41,6 +41,38 @@
   padding-bottom: 5px;
   font-style: italic; }
 
+/* This is only used for the component */
+html,
+*,
+*::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "roboto", cursive; }
+
+/* END This is only used for the component */
+.footer {
+  display: flex;
+  justify-content: center; }
+
+.cookies-notice {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-color: lightskyblue;
+  padding: 6%; }
+
+.cookies-notice a {
+  border: 2px solid;
+  display: inline-block;
+  padding: 2%;
+  text-decoration: none;
+  margin: 2%;
+  color: white;
+  background-color: #131415;
+  font-weight: bold; }
+
 html *,
 html *::before,
 html *::after {

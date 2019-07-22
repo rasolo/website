@@ -6,5 +6,6 @@ namespace Rasolo.Core.Features.Shared.CookiesNotice
 	{
 		public string CookieNoticeText { get; set; }
 		public Link CookieLink { get; set; }
+		public bool ShowCookiesNotice { get; set; }
 	}
 }

@@ -1,7 +1,9 @@
-﻿namespace Rasolo.Core.Features.Shared.CookiesNotice
+﻿using System.Web;
+
+namespace Rasolo.Core.Features.Shared.CookiesNotice
 {
 	public interface ICookiesNoticeViewModelFactory
 	{
-		CookiesNoticeViewModel CreateModel();
+		CookiesNoticeViewModel CreateModel(HttpCookieCollection httpCookieCollection);
 	}
 }

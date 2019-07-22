@@ -18,7 +18,7 @@ namespace Rasolo.Core.Features.Shared.CookiesNotice
 		[ChildActionOnly]
 		public ActionResult Index()
 		{
-			var viewModel = _cookiesNoticeViewModelFactory.CreateModel();
+			var viewModel = _cookiesNoticeViewModelFactory.CreateModel(Request?.Cookies);
 
 			return PartialView("CookieNotice", viewModel);
 		}

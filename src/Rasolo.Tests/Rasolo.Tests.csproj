@@ -267,6 +267,7 @@
     <Compile Include="Unit\Features\StartPage\StartPageControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Shared\CookiesNotice\CookiesNoticeControllerTests.cs" />
+    <Compile Include="Unit\Shared\CookiesNotice\CookiesNoticeViewModelFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
