@@ -17,7 +17,7 @@ namespace Rasolo.Core.Features.Shared.Services
 			{
 				var cache = umbracoContextReference.UmbracoContext.Content;
 				var globalSettingsContentType = cache.GetContentType(alias);
-				return cache.GetByContentType(globalSettingsContentType).FirstOrDefault();
+				return globalSettingsContentType == null ? null : cache.GetByContentType(globalSettingsContentType).FirstOrDefault();
 			}
 		}
 	}
