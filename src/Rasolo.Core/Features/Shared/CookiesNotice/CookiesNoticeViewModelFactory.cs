@@ -31,7 +31,7 @@ namespace Rasolo.Core.Features.Shared.CookiesNotice
 
 			var viewModel = new CookiesNoticeViewModel()
 			{
-				CookieNoticeText = globalSettingsModel.CookieNoticeText,
+				CookieNoticeText = !string.IsNullOrEmpty(globalSettingsModel.CookieNoticeText) ? globalSettingsModel.CookieNoticeText : string.Empty,
 				CookieLink = globalSettingsModel.CookieLink
 			};
 			
