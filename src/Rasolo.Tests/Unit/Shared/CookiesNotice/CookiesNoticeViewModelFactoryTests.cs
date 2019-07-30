@@ -7,6 +7,7 @@ using Rasolo.Core.Features.Shared.CookiesNotice;
 using Rasolo.Core.Features.Shared.Mappings;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
+using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 {
@@ -22,7 +23,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 			SetUp(this._cookiesNoticeText);
 		}
 		
-		private CookiesNoticeViewModel SetUp(string cookiesNoticeText)
+		private CookiesNoticeViewModel SetUp(string cookiesNoticeText = "", Link cookiesLink = default)
 		{
 			var httpCookieCollection = new HttpCookieCollection();
 			httpCookieCollection.Add(
@@ -86,6 +87,15 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 			var viewModel = SetUp(cookiesNoticeText);
 
 			Assert.AreEqual(expected, viewModel.CookiesNoticeText);
+		}
+
+		[Test]
+		public void CreateModel_OnCookiesLinkNull_ThenReturnViewModelWithCookiesLinkPointingToHome()
+		{
+			Link cookiesLink = null;
+			var viewModel = SetUp(cookiesLink: cookiesLink);
+
+			Assert.AreEqual("/", viewModel.CookiesLink.Url);
 		}
 	}
 }
