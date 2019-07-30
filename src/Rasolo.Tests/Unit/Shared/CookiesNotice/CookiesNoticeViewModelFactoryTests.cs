@@ -90,12 +90,12 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		}
 
 		[Test]
-		public void CreateModel_OnCookiesLinkNull_ThenReturnViewModelWithCookiesLinkPointingToHome()
+		[TestCase(null, "/")]
+		public void CreateModel_OnCookiesLinkNull_ThenReturnViewModelWithCookiesLinkPointingToHome(Link cookiesLink, string expected)
 		{
-			Link cookiesLink = null;
 			var viewModel = SetUp(cookiesLink: cookiesLink);
 
-			Assert.AreEqual("/", viewModel.CookiesLink.Url);
+			Assert.AreEqual(expected, viewModel.CookiesLink.Url);
 		}
 	}
 }
