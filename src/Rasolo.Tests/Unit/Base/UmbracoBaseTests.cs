@@ -25,7 +25,7 @@ namespace Rasolo.Tests.Unit.Base
 			Current.Reset();
 		}
 
-		public Mock<IPublishedProperty> SetupPropertyValue(string propertyAlias, string propertyValue)
+		public Mock<IPublishedProperty> SetupPropertyValue<T>(string propertyAlias, T propertyValue)
 		{
 			var property = new Mock<IPublishedProperty>();
 			property.Setup(x => x.Alias).Returns(propertyAlias);

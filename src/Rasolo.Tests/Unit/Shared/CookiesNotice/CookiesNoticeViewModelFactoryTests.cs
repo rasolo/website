@@ -31,8 +31,9 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 			
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			var umbracoServiceMock = new Mock<IUmbracoService>();
-			var property = this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieNoticeText, cookiesNoticeText);
-			var content = this.SetupContent(DocumentTypeAlias.GlobalSettingsPage, property);
+			var cookiesNoticeTextProp = this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieNoticeText, cookiesNoticeText);
+			var cookiesLinkProp = this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieLink, cookiesLink);
+			var content = this.SetupContent(DocumentTypeAlias.GlobalSettingsPage, cookiesNoticeTextProp);
 			umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(content.Content);
 			this._sut = new CookiesNoticeViewModelFactory(umbracoMapper, umbracoServiceMock.Object);
 			return this._sut.CreateModel(httpCookieCollection);
