@@ -2,9 +2,8 @@
 
 namespace Rasolo.Core.Features.Shared.Settings
 {
-	public interface IGlobalSettings
+	public interface IGlobalSettings : ICookiesNotice
 	{
-		string CookieNoticeText { get; }
-		Link CookieLink { get; }
+	
 	}
 }

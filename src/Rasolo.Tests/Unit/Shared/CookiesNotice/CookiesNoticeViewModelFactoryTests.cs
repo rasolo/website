@@ -41,7 +41,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		public void CreateModel_OnGlobalSettingsPageCookiesNoticeTextGiven_ThenReturnViewmodelWithCookiesNoticeText()
 		{
 			var viewModel = _sut.CreateModel(new HttpCookieCollection());
-			Assert.AreEqual(this._cookiesNoticeText, viewModel.CookieNoticeText);
+			Assert.AreEqual(this._cookiesNoticeText, viewModel.CookiesNoticeText);
 		}
 
 
@@ -74,7 +74,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		{
 			var viewModel = SetUp(cookiesNoticeText);
 
-			Assert.AreEqual(expected, viewModel.CookieNoticeText);
+			Assert.AreEqual(expected, viewModel.CookiesNoticeText);
 		}
 		
 		[Test]
@@ -85,7 +85,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 
 			var viewModel = SetUp(cookiesNoticeText);
 
-			Assert.AreEqual(expected, viewModel.CookieNoticeText);
+			Assert.AreEqual(expected, viewModel.CookiesNoticeText);
 		}
 	}
 }

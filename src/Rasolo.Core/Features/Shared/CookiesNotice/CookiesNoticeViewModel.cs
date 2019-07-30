@@ -1,11 +1,12 @@
-﻿using Umbraco.Web.Models;
+﻿using Rasolo.Core.Features.Shared.Settings;
+using Umbraco.Web.Models;
 
 namespace Rasolo.Core.Features.Shared.CookiesNotice
 {
-	public class CookiesNoticeViewModel
+	public class CookiesNoticeViewModel : ICookiesNotice
 	{
-		public string CookieNoticeText { get; set; }
-		public Link CookieLink { get; set; }
+		public string CookiesNoticeText { get; set; }
+		public Link CookiesLink { get; set; }
 		public bool ShowCookiesNotice { get; set; }
 	}
 }

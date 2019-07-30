@@ -20,7 +20,7 @@ namespace Rasolo.Core.Features.Shared.CookiesNotice
 		{
 			var viewModel = _cookiesNoticeViewModelFactory.CreateModel(Request?.Cookies);
 
-			return PartialView("CookieNotice", viewModel);
+			return PartialView("CookiesNotice", viewModel);
 		}
 	}
 }

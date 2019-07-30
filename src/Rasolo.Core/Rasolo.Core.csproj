@@ -281,6 +281,7 @@
     <Compile Include="Features\Shared\Mappings\UmbracoServiceComposer.cs" />
     <Compile Include="Features\Shared\Services\IUmbracoService.cs" />
     <Compile Include="Features\Shared\Services\UmbracoService.cs" />
+    <Compile Include="Features\Shared\Settings\ICookiesNotice.cs" />
     <Compile Include="Features\Shared\Settings\IGlobalSettings.cs" />
     <Compile Include="Features\Shared\Settings\GlobalSettingsModel.cs" />
     <Compile Include="Features\Shared\UI\BaseContentPage.cs" />
