@@ -8,16 +8,18 @@ footer();
 
 },{"./footer/footer":2,"./massEvolve":3}],2:[function(require,module,exports){
 module.exports = function () {
-    const cookiesNotice = document.querySelectorAll(".cookies-notice a")[0];
-    if (!cookiesNotice) {
+    const cookiesAcceptButton = document.querySelectorAll(".cookies_accept")[0];
+    if (!cookiesAcceptButton) {
         return;
     }
     const numberOfDaysBeforeExpire = 999;
     const cookieName = "cookiesNotice";
     const cookieValue = "false";
 
-    cookiesNotice.onclick = () => {
+    cookiesAcceptButton.onclick = () => {
         const expireDate = new Date(Date.now() + 3600000 * 24 * numberOfDaysBeforeExpire);
+        const cookiesAcceptButton = document.querySelectorAll(".cookies-notice")[0];
+        cookiesAcceptButton.style.display ="none";
         document.cookie = `${cookieName}=${cookieValue};expires=${expireDate.toUTCString()};path=/`;
     };
 }

@@ -62,6 +62,15 @@ html,
   width: 100%;
   background-color: lightskyblue;
   padding: 6%; }
+  .cookies-notice .cookies_accept {
+    background-color: green;
+    cursor: pointer; }
+    .cookies-notice .cookies_accept:hover {
+      background-color: darkgreen; }
+  .cookies-notice .cookies_read-more {
+    background-color: #7d7b7b; }
+    .cookies-notice .cookies_read-more:hover {
+      background-color: darkgray; }
 
 .cookies-notice a {
   border: 2px solid;

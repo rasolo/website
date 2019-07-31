@@ -8,7 +8,6 @@ html,
   font-family: "roboto", cursive;
 }
 /* END This is only used for the component */
-
 .footer {
   display: flex;
   justify-content: center;
@@ -21,8 +20,24 @@ html,
   width: 100%;
   background-color: lightskyblue;
   padding: 6%;
-}
 
+  .cookies_accept {
+    background-color: green;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darkgreen;
+    }
+  }
+  
+  .cookies_read-more {
+    background-color: #7d7b7b;
+
+    &:hover {
+      background-color: darkgray;
+    }
+  }
+}
 .cookies-notice a {
   border: 2px solid;
   display: inline-block;
@@ -32,4 +47,5 @@ html,
   color: white;
   background-color: #131415;
   font-weight: bold;
+
 }

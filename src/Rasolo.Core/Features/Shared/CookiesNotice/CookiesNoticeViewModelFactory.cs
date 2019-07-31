@@ -32,14 +32,11 @@ namespace Rasolo.Core.Features.Shared.CookiesNotice
 			var viewModel = new CookiesNoticeViewModel()
 			{
 				CookiesNoticeText = !string.IsNullOrEmpty(globalSettingsModel.CookiesNoticeText) ? globalSettingsModel.CookiesNoticeText : string.Empty,
-				CookiesLink = globalSettingsModel.CookiesLink != null ? globalSettingsModel.CookiesLink : new Umbraco.Web.Models.Link() { Url = "/" }
+				CookiesAcceptText = !string.IsNullOrEmpty(globalSettingsModel.CookiesAcceptText) ? globalSettingsModel.CookiesAcceptText : string.Empty,
+				CookiesLink = globalSettingsModel.CookiesLink != null ? globalSettingsModel.CookiesLink : new Umbraco.Web.Models.Link() { Url = "/" },
+				ShowCookiesNotice = httpCookieCollection?[Constants.CookiesNotice.CookiesNoticeCookieName] == null
 			};
 			
-			if (httpCookieCollection?[Constants.CookiesNotice.CookiesNoticeCookieName] == null)
-			{
-				viewModel.ShowCookiesNotice = true;
-			}
-
 			return viewModel;
 		}
 	}
