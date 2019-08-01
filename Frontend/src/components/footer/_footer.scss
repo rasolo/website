@@ -19,7 +19,9 @@ html,
   text-align: center;
   width: 100%;
   background-color: lightskyblue;
-  padding: 6%;
+  padding: 2%;
+  max-height: 20%;
+  height: 15%;  
 
   .cookies_accept {
     background-color: green;
@@ -39,13 +41,33 @@ html,
   }
 }
 .cookies-notice a {
-  border: 2px solid;
-  display: inline-block;
-  padding: 2%;
-  text-decoration: none;
-  margin: 2%;
-  color: white;
-  background-color: #131415;
-  font-weight: bold;
-
+    border: 2px solid;
+    display: inline-block;
+    padding: 1%;
+    text-decoration: none;
+    margin: 2%;
+    color: white;
+    background-color: #131415;
+    font-weight: bold;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: 1%;
 }
+
+@media screen and (max-width: 600px) {
+  .cookies-notice{
+    height: initial;
+  }
+  .cookies-notice p {
+    margin-bottom: 3%;
+  }
+  .cookies-notice a {
+    width: 50%;
+    padding: 2%;
+    margin-bottom: 2%;
+  }
+}
+
