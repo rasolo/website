@@ -1,0 +1,10 @@
+﻿@model Rasolo.Core.Features.Shared.CookiesNotice.CookiesNoticeViewModel
+
+@if (Model.ShowCookiesNotice)
+{
+	<div class="cookies-notice">
+		<p>@Model.CookiesNoticeText</p>
+		<a class="cookies_accept">@Model.CookiesAcceptText</a>
+		<a href="@Model.CookiesLink.Url" class="cookies_read-more">@Model.CookiesLink.Name</a>
+	</div>
+}

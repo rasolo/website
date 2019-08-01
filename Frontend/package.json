@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss-watch": "node-sass --watch src/scss -o ../src/Rasolo.Web/assets/css",
+    "scss-watch-footer": "node-sass --watch src -o src/components/footer.css",
     "browserify-build": "browserify src/components/app.js > ../src/Rasolo.Web/assets/js/bundle.js",
     "browserify-watch": "watchify src/components/app.js -o ../src/Rasolo.Web/assets/js/bundle.js"
   },
@@ -15,8 +16,9 @@
   },
   "author": "Rasmus Olofsson",
   "dependencies": {
-    "node-sass": "*",
     "browserify": "*",
+    "jslint": "^0.12.1",
+    "node-sass": "^4.12.0",
     "watchify": "*"
   },
   "license": "ISC",
