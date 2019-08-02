@@ -1,13 +1,12 @@
 ﻿using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Controllers;
-using Rasolo.Core.Features.Shared.UI;
 using Rasolo.Tests.Unit.Base;
 using System.Web.Mvc;
 using Umbraco.Web.Models;
 
-namespace Rasolo.Tests.Unit.Shared
+namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
-	public class BaseContentPageControllerTests<TContentPage> : UmbracoBaseTests where TContentPage : BaseContentPage, new()
+	public class BaseContentPageControllerTests<TContentPage> : UmbracoBaseTests where TContentPage : Core.Features.Shared.UI.BaseContentPage, new()
 	{
 		protected BasePageController<TContentPage> Sut;
 

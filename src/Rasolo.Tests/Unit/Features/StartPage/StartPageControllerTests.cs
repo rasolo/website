@@ -1,6 +1,6 @@
 ﻿using Rasolo.Core.Features.Shared.Mappings;
 using Rasolo.Core.Features.StartPage;
-using Rasolo.Tests.Unit.Shared;
+using Rasolo.Tests.Unit.Shared.BaseContentPage;
 
 namespace Rasolo.Tests.Unit.Features.StartPage
 {
