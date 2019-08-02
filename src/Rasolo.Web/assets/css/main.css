@@ -100,6 +100,37 @@ html,
     padding: 2%;
     margin-bottom: 2%; } }
 
+.site__header {
+  position: absolute;
+  z-index: 999;
+  margin: 1%;
+  color: #2b1e1f;
+  font-weight: bold;
+  font-size: 2vw; }
+
+.site__header:hover {
+  cursor: pointer;
+  color: lightgray; }
+
+@media screen and (max-width: 900px) {
+  .site__header {
+    margin: 2%;
+    font-size: 5vw; } }
+
+.article h1 {
+  font-family: "roboto", cursive;
+  text-align: center; }
+
+.article__content__main__body {
+  margin: 5%;
+  margin-top: 2%; }
+
+.article h2 {
+  font-size: 30px; }
+
+.article__content__main__body p {
+  margin: 0.8%; }
+
 html *,
 html *::before,
 html *::after {

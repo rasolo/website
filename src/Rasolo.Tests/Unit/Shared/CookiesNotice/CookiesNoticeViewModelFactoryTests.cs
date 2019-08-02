@@ -86,7 +86,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		[Test]
 		[TestCase("The cookies notice text", "The cookies notice text")]
 		[TestCase("Another cookies notice text", "Another cookies notice text")]
-		public void CreateModel_OnCookiesNoticeTextSet_ThenReturnViewModelWithCookiesNoticeText(string cookiesNoticeText, string expected)
+		public void CreateModel_OnCookiesNoticeTextGiven_ThenReturnViewModelWithCookiesNoticeText(string cookiesNoticeText, string expected)
 		{
 			var viewModel = SetUpCookiesNoticeText(cookiesNoticeText);
 
@@ -96,7 +96,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		[Test]
 		[TestCase("The cookies accept text", "The cookies accept text")]
 		[TestCase("Another cookies accept text", "Another cookies accept text")]
-		public void CreateModel_OnCookiesAcceptTextSet_ThenReturnViewModelWithCookiesAcceptText(string cookiesAcceptText, string expected)
+		public void CreateModel_OnCookiesAcceptTextGiven_ThenReturnViewModelWithCookiesAcceptText(string cookiesAcceptText, string expected)
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieAcceptText, cookiesAcceptText));
 

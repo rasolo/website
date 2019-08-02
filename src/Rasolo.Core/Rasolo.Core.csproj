@@ -262,6 +262,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\ArticlePage\ArticlePage.cs" />
+    <Compile Include="Features\ArticlePage\ArticlePageController.cs" />
+    <Compile Include="Features\ArticlePage\ArticlePageViewModelFactory.cs" />
     <Compile Include="Features\BlogPage\BlogPage.cs" />
     <Compile Include="Features\BlogPage\BlogPageController.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
@@ -277,6 +280,11 @@
     <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeViewModel.cs" />
     <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeMapperComposer.cs" />
     <Compile Include="Features\Shared\Extensions\StringExtensions.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsComposer.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsController.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsViewModel.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsViewModelFactory.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsViewModelFactory.cs" />
     <Compile Include="Features\Shared\Mappings\UmbracoMapperComposer.cs" />
     <Compile Include="Features\Shared\Mappings\UmbracoServiceComposer.cs" />
     <Compile Include="Features\Shared\Services\IUmbracoService.cs" />
