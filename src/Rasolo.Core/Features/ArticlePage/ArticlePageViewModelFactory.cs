@@ -1,14 +1,9 @@
-﻿using System.Web;
+﻿using Rasolo.Core.Features.Shared.UI;
+using System.Web;
 
 namespace Rasolo.Core.Features.ArticlePage
 {
-	public class ArticlePageViewModelFactory
+	public class ArticlePageViewModelFactory : BaseContentPageViewModelFactory<ArticlePage>
 	{
-		public ArticlePage CreateModel(ArticlePage articlePage)
-		{
-			articlePage.Title = articlePage.Title ?? string.Empty;
-			articlePage.MainBody = articlePage.MainBody ?? new HtmlString(string.Empty);
-			return articlePage;
-		}
 	}
 }

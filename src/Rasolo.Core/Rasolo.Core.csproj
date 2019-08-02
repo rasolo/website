@@ -293,6 +293,7 @@
     <Compile Include="Features\Shared\Settings\IGlobalSettings.cs" />
     <Compile Include="Features\Shared\Settings\GlobalSettingsModel.cs" />
     <Compile Include="Features\Shared\UI\BaseContentPage.cs" />
+    <Compile Include="Features\Shared\UI\BaseContentPageViewModelFactory.cs" />
     <Compile Include="Features\Shared\UI\IContentPage.cs" />
     <Compile Include="Features\StartPage\StartPage.cs" />
     <Compile Include="Features\StartPage\StartPageController.cs" />
