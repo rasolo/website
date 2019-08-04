@@ -1,0 +1,13 @@
+﻿using Rasolo.Core.Features.Shared.UI;
+using Zone.UmbracoMapper.V8;
+
+namespace Rasolo.Core.Features.ArticlePage
+{
+	public class ArticlePageController: BaseContentPageController<ArticlePage>
+	{
+		public ArticlePageController(IUmbracoMapper umbracoMapper, IArticlePageViewModelFactory viewModelFactory) : base(umbracoMapper, viewModelFactory)
+		{
+
+		}
+	}
+}

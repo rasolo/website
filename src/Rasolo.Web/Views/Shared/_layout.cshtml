@@ -12,9 +12,16 @@
 </head>
 
 <body>
-
-	@RenderBody()
-	<script src="/assets/js/bundle.js"></script>
+	<nav>
+		<div class="site__header">
+			@Html.Action("Index", "GlobalSettings")
+		</div>
+	</nav>
+	<main class="page__main">
+		@RenderBody()
+	</main>
+@Html.Action("Index", "CookiesNotice")
+<script src="/assets/js/bundle.js"></script>
 </body>
 
 </html>
