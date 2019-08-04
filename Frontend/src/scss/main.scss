@@ -1,6 +1,9 @@
 
 @import "pokemon";
 @import "footer";
+@import "../components/footer/_footer.scss";
+@import "../components/navigation/navigation";
+@import "../views/article-page/article-page";
 
 html {
   *,
@@ -11,6 +14,7 @@ html {
     font-family: "roboto", cursive;
   }
 }
+
 body {
 
   h1 {

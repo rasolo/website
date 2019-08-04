@@ -541,6 +541,9 @@
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\GoogleTagManager.cshtml" />
+    <Content Include="Views\Shared\CookiesNotice.cshtml" />
+    <Content Include="Views\ArticlePage.cshtml" />
+    <Content Include="Views\Shared\GlobalSettings.cshtml" />
     <None Include="Web.Debug.config">
     </None>
     <Content Include="Web.Release.config">

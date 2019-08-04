@@ -3,14 +3,13 @@ using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Core.Features.Shared.UI
 {
-	interface IContentPage
+	public interface IContentPage
 	{
 		string Name { get; }
-		string Title { get; }
-		IHtmlString MainBody { get; }
+		string Title { get; set; }
+		IHtmlString MainBody { get; set; }
 		string TeaserHeading { get; }
 		IHtmlString TeaserPreamble { get; }
 		MediaFile TeaserMedia { get; }
-
 	}
 }

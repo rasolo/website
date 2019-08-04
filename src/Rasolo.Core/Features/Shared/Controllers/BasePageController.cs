@@ -6,7 +6,7 @@ using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.Shared.Controllers
 {
-	public abstract class BasePageController<TModel> : RenderMvcController where TModel : class, new()
+	public abstract class BasePageController<TModel> : RenderMvcController, IBasePageController<TModel> where TModel : class, new()
 	{
 		private readonly IUmbracoMapper _umbracoMapper;
 

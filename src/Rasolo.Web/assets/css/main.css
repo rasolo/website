@@ -41,6 +41,97 @@
   padding-bottom: 5px;
   font-style: italic; }
 
+/* This is only used for the component */
+html,
+*,
+*::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "roboto", cursive; }
+
+/* END This is only used for the component */
+.footer {
+  display: flex;
+  justify-content: center; }
+
+.cookies-notice {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-color: lightskyblue;
+  padding: 2%;
+  max-height: 20%;
+  height: 15%; }
+  .cookies-notice .cookies_accept {
+    background-color: green;
+    cursor: pointer; }
+    .cookies-notice .cookies_accept:hover {
+      background-color: darkgreen; }
+  .cookies-notice .cookies_read-more {
+    background-color: #7d7b7b; }
+    .cookies-notice .cookies_read-more:hover {
+      background-color: darkgray; }
+
+.cookies-notice a {
+  border: 2px solid;
+  display: inline-block;
+  padding: 1%;
+  text-decoration: none;
+  margin: 2%;
+  color: white;
+  background-color: #131415;
+  font-weight: bold;
+  text-align: center;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin: 1%; }
+
+@media screen and (max-width: 600px) {
+  .cookies-notice {
+    height: initial; }
+  .cookies-notice p {
+    margin-bottom: 3%; }
+  .cookies-notice a {
+    width: 50%;
+    padding: 2%;
+    margin-bottom: 2%; } }
+
+.site__header {
+  position: absolute;
+  z-index: 999;
+  margin: 1%; }
+  .site__header a {
+    color: #2b1e1f;
+    font-weight: bold;
+    font-size: 2vw;
+    text-decoration: none; }
+    .site__header a:hover {
+      cursor: pointer;
+      color: #ceafb1; }
+
+@media screen and (max-width: 900px) {
+  .site__header {
+    margin: 2%;
+    font-size: 5vw; } }
+
+.article h1 {
+  font-family: "roboto", cursive;
+  text-align: center; }
+
+.article__content__main__body {
+  margin: 5%;
+  margin-top: 2%; }
+
+.article h2 {
+  font-size: 30px; }
+
+.article__content__main__body p {
+  margin: 0.8%; }
+
 html *,
 html *::before,
 html *::after {
