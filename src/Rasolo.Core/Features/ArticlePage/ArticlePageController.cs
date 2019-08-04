@@ -1,20 +1,13 @@
-﻿using Rasolo.Core.Features.Shared.Controllers;
-using System.Web.Mvc;
-using Umbraco.Web.Models;
+﻿using Rasolo.Core.Features.Shared.UI;
 using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.ArticlePage
 {
-	public class ArticlePageController : BasePageController<ArticlePage>
+	public class ArticlePageController: BaseContentPageController<ArticlePage>
 	{
-		public ArticlePageController(IUmbracoMapper umbracoMapper) : base(umbracoMapper)
+		public ArticlePageController(IUmbracoMapper umbracoMapper, IArticlePageViewModelFactory viewModelFactory) : base(umbracoMapper, viewModelFactory)
 		{
 
-		}
-
-		public override ActionResult Index(ContentModel model)
-		{
-			return base.Index(model);
 		}
 	}
 }

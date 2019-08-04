@@ -3,5 +3,6 @@
 	public class DocumentTypeAlias
 	{
 		public const string GlobalSettingsPage = "globalSettings";
+		public const string ArticlePage = "articlePage";
 	}
 }

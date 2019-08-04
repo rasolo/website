@@ -265,6 +265,8 @@
     <Compile Include="Features\ArticlePage\ArticlePage.cs" />
     <Compile Include="Features\ArticlePage\ArticlePageController.cs" />
     <Compile Include="Features\ArticlePage\ArticlePageViewModelFactory.cs" />
+    <Compile Include="Features\ArticlePage\ArticlePageComposer.cs" />
+    <Compile Include="Features\ArticlePage\IArticlePageViewModelFactory.cs" />
     <Compile Include="Features\BlogPage\BlogPage.cs" />
     <Compile Include="Features\BlogPage\BlogPageController.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
@@ -274,6 +276,7 @@
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BaseContentPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\GlobalSettingsPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
+    <Compile Include="Features\Shared\Controllers\IBasePageController.cs" />
     <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeController.cs" />
     <Compile Include="Features\Shared\CookiesNotice\ICookiesNoticeViewModelFactory.cs" />
     <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeViewModelFactory.cs" />
@@ -293,8 +296,14 @@
     <Compile Include="Features\Shared\Settings\IGlobalSettings.cs" />
     <Compile Include="Features\Shared\Settings\GlobalSettingsModel.cs" />
     <Compile Include="Features\Shared\UI\BaseContentPage.cs" />
+    <Compile Include="Features\Shared\UI\BaseContentPageController.cs" />
     <Compile Include="Features\Shared\UI\BaseContentPageViewModelFactory.cs" />
+    <Compile Include="Features\Shared\UI\CookiesNoticeMapperComposer.cs" />
+    <Compile Include="Features\Shared\UI\IBaseContentPageViewModelFactory.cs" />
     <Compile Include="Features\Shared\UI\IContentPage.cs" />
+    <Compile Include="Features\StartPage\StartPageViewModelFactory.cs" />
+    <Compile Include="Features\StartPage\IStartPageViewModelFactory.cs" />
+    <Compile Include="Features\StartPage\StartPageComposer.cs" />
     <Compile Include="Features\StartPage\StartPage.cs" />
     <Compile Include="Features\StartPage\StartPageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

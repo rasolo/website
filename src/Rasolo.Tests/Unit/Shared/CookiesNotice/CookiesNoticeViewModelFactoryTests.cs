@@ -26,9 +26,10 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 
 		private CookiesNoticeViewModel SetUp(Mock<IPublishedProperty> property)
 		{
-			var httpCookieCollection = new HttpCookieCollection();
-			httpCookieCollection.Add(
-				new HttpCookie(Core.Features.Shared.Constants.CookiesNotice.CookiesNoticeCookieName, "false"));
+			var httpCookieCollection = new HttpCookieCollection
+			{
+				new HttpCookie(Core.Features.Shared.Constants.CookiesNotice.CookiesNoticeCookieName, "false")
+			};
 
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			var umbracoServiceMock = new Mock<IUmbracoService>();
@@ -65,9 +66,11 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		[Test]
 		public void CreateModel_OnCookiesNoticeCookieNotNull_ThenReturnViewModelWithShowCookieNoticeFalse()
 		{
-			var httpCookieCollection = new HttpCookieCollection();
-			httpCookieCollection.Add(
-				new HttpCookie(Core.Features.Shared.Constants.CookiesNotice.CookiesNoticeCookieName, "false"));
+			var httpCookieCollection = new HttpCookieCollection
+			{
+				new HttpCookie(Core.Features.Shared.Constants.CookiesNotice.CookiesNoticeCookieName, "false")
+			};
+
 			var viewModel = _sut.CreateModel(httpCookieCollection);
 
 			Assert.AreEqual(false, viewModel.ShowCookiesNotice);

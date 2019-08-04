@@ -3,7 +3,7 @@ using System.Web;
 
 namespace Rasolo.Core.Features.ArticlePage
 {
-	public class ArticlePageViewModelFactory : BaseContentPageViewModelFactory<ArticlePage>
+	public class ArticlePageViewModelFactory : BaseContentPageViewModelFactory<ArticlePage>, IArticlePageViewModelFactory
 	{
 	}
 }
