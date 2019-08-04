@@ -2,15 +2,21 @@
     position: absolute;
     z-index: 999;
     margin: 1%;
-    color: #2b1e1f;
-    font-weight: bold;
-    font-size: 2vw;
+
+    & a{
+        color: #2b1e1f;
+        font-weight: bold;
+        font-size: 2vw;
+        text-decoration: none;
+
+        &:hover {
+            cursor: pointer;
+            color: #ceafb1;
+        }
+    }
 }
 
-.site__header:hover {
-    cursor: pointer;
-    color: lightgray;
-}
+
 
 @media screen and (max-width: 900px) {
     .site__header {

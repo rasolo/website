@@ -103,14 +103,15 @@ html,
 .site__header {
   position: absolute;
   z-index: 999;
-  margin: 1%;
-  color: #2b1e1f;
-  font-weight: bold;
-  font-size: 2vw; }
-
-.site__header:hover {
-  cursor: pointer;
-  color: lightgray; }
+  margin: 1%; }
+  .site__header a {
+    color: #2b1e1f;
+    font-weight: bold;
+    font-size: 2vw;
+    text-decoration: none; }
+    .site__header a:hover {
+      cursor: pointer;
+      color: #ceafb1; }
 
 @media screen and (max-width: 900px) {
   .site__header {
