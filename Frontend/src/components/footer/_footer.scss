@@ -12,28 +12,38 @@ html,
   display: flex;
   justify-content: center;
 }
+.cookies-notice a {
+
+}
 
 .cookies-notice {
   position: fixed;
   bottom: 0;
   text-align: center;
   width: 100%;
-  background-color: lightskyblue;
-  padding: 2%;
-  max-height: 20%;
-  height: 15%;  
-
+  background-color: #05113d;
+  padding: 6%;
+  height: 240px;
+  margin-bottom: initial;
+  color: #fff;
+  line-height: 1.5em;
+  font-size: 1em;
   .cookies_accept {
-    background-color: green;
+    background-color: #11c011d1;
     cursor: pointer;
 
     &:hover {
       background-color: darkgreen;
     }
   }
+
+  & p {
+    margin-bottom: 3%;
+
+  }
   
   .cookies_read-more {
-    background-color: #7d7b7b;
+    background-color: #7b7e83;
 
     &:hover {
       background-color: darkgray;
@@ -43,7 +53,6 @@ html,
 .cookies-notice a {
     border: 2px solid;
     display: inline-block;
-    padding: 1%;
     text-decoration: none;
     margin: 2%;
     color: white;
@@ -55,19 +64,42 @@ html,
     justify-content: center;
     align-content: center;
     margin: 1%;
-}
-
-@media screen and (max-width: 600px) {
-  .cookies-notice{
-    height: initial;
-  }
-  .cookies-notice p {
-    margin-bottom: 3%;
-  }
-  .cookies-notice a {
     width: 50%;
     padding: 2%;
     margin-bottom: 2%;
+}
+
+@media screen and (min-width: 800px) {
+  .cookies-notice{
+    height: initial;
+    padding: 1%;
+    padding-top: 3%;
+
+    & p {
+      margin-bottom: initial;
+      padding: 1%;
+    }
+
+    & a {
+      padding: 1%;
+      width: 20%;
+    }
   }
 }
 
+@media screen and (min-width: 1200px) {
+  .cookies-notice a {
+    width: 15%;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .cookies-notice {
+    padding-top: 1%;
+
+    & a {
+      width: 
+      9%;
+    }
+  }
+}
