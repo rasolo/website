@@ -1,53 +1,87 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
-using Rasolo.Core.Features.Shared.CookiesNotice;
+using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Core.Features.Shared.Mappings;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 
-namespace Rasolo.Tests.Unit.Shared.CookiesNotice
+namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 {
-	public class CookiesNoticeViewModelFactoryTests : UmbracoBaseTests
+	class GlobalSettingsPageViewModelFactoryTests : UmbracoBaseTests
 	{
-		private CookiesNoticeViewModelFactory _sut;
+		private GlobalSettingsPagePageViewModelFactory _sut;
 		private readonly string _cookiesNoticeText = "The cookies notice text";
-
 		public override void SetUp()
 		{
 			base.SetUp();
-
-			SetUpCookiesNoticeText(this._cookiesNoticeText);
-		}
-
-		private CookiesNoticeViewModel SetUp(Mock<IPublishedProperty> property)
-		{
-			var httpCookieCollection = new HttpCookieCollection
-			{
-				new HttpCookie(Core.Features.Shared.Constants.CookiesNotice.CookiesNoticeCookieName, "false")
-			};
-
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			var umbracoServiceMock = new Mock<IUmbracoService>();
-			var content = this.SetupContent(DocumentTypeAlias.GlobalSettingsPage, property);
-			umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(content.Content);
-			this._sut = new CookiesNoticeViewModelFactory(umbracoMapper, umbracoServiceMock.Object);
+
+			this._sut = new GlobalSettingsPagePageViewModelFactory(umbracoMapper, umbracoServiceMock.Object);
+		}
+
+
+		private GlobalSettingsPageViewModel SetUp(Mock<IPublishedProperty> property)
+		{
+			SetUp(DocumentTypeAlias.GlobalSettingsPage, property);
+
+			return this._sut.CreateModel(null);
+		}
+
+		private void SetUp(string propertyAlias, Mock<IPublishedProperty> property)
+		{
+			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
+			var umbracoServiceMock = new Mock<IUmbracoService>();
+			var contentModel = this.SetupContent(propertyAlias, property);
+			umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(contentModel.Content);
+
+			this._sut = new GlobalSettingsPagePageViewModelFactory(umbracoMapper, umbracoServiceMock.Object);
+		}
+
+		private GlobalSettingsPageViewModel SetUp(HttpCookieCollection httpCookieCollection)
+		{
+			SetUp(DocumentTypeAlias.GlobalSettingsPage, this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesNoticeTextAlias, string.Empty));
+
 			return this._sut.CreateModel(httpCookieCollection);
 		}
 
-		private CookiesNoticeViewModel SetUpCookiesNoticeText(string cookiesNoticeText)
+
+		[Test]
+		[TestCase("The home text", "The home text")]
+		[TestCase("Another home text", "Another home text")]
+		public void CreateModel_OnHomeTextGiven_ThenReturnViewModelWithHomeText(string homeText, string expected)
 		{
-			return SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieNoticeText, cookiesNoticeText));
+			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, homeText));
+
+			Assert.AreEqual(expected, viewModel.HomeText);
+		}
+
+		[Test]
+		[TestCase(null, "")]
+		[TestCase("", "")]
+		public void CreateModel_OnHomeTextNullOrEmpty_ThenReturnViewModelWithHomeTextEmptyString(string homeText, string expected)
+		{
+			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, homeText));
+
+			Assert.AreEqual(expected, viewModel.HomeText);
+		}
+
+
+		private GlobalSettingsPageViewModel SetUpCookiesNoticeText(string cookiesNoticeText)
+		{
+			return SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesNoticeTextAlias, cookiesNoticeText));
 		}
 
 		[Test]
 		public void CreateModel_OnGlobalSettingsPageCookiesNoticeTextGiven_ThenReturnViewmodelWithCookiesNoticeText()
 		{
-			var viewModel = _sut.CreateModel(new HttpCookieCollection());
+			var viewModel = SetUpCookiesNoticeText(this._cookiesNoticeText);
 			Assert.AreEqual(this._cookiesNoticeText, viewModel.CookiesNoticeText);
 		}
 
@@ -56,22 +90,21 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		[Test]
 		public void CreateModel_OnCookiesNoticeCookieNull_ThenReturnViewModelWithShowCookieNoticeTrue()
 		{
-			var httpCookieCollection = new HttpCookieCollection();
-			var viewModel = _sut.CreateModel(httpCookieCollection);
+			var viewModel = SetUp(httpCookieCollection: null);
 
 			Assert.AreEqual(true, viewModel.ShowCookiesNotice);
 		}
 
-		//If the cookie is not null, it means that the user has accepted it, therefore the cookie notice should not be shown.
+		//If the cookie is already set/not null, it means that the user has accepted it, therefore the cookie notice should not be shown.
 		[Test]
-		public void CreateModel_OnCookiesNoticeCookieNotNull_ThenReturnViewModelWithShowCookieNoticeFalse()
+		public void CreateModel_OnCookiesNoticeCookieSet_ThenReturnViewModelWithShowCookieNoticeFalse()
 		{
 			var httpCookieCollection = new HttpCookieCollection
 			{
 				new HttpCookie(Core.Features.Shared.Constants.CookiesNotice.CookiesNoticeCookieName, "false")
 			};
 
-			var viewModel = _sut.CreateModel(httpCookieCollection);
+			var viewModel = SetUp(httpCookieCollection);
 
 			Assert.AreEqual(false, viewModel.ShowCookiesNotice);
 		}
@@ -101,7 +134,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		[TestCase("Another cookies accept text", "Another cookies accept text")]
 		public void CreateModel_OnCookiesAcceptTextGiven_ThenReturnViewModelWithCookiesAcceptText(string cookiesAcceptText, string expected)
 		{
-			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieAcceptText, cookiesAcceptText));
+			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesAcceptTextAlias, cookiesAcceptText));
 
 			Assert.AreEqual(expected, viewModel.CookiesAcceptText);
 		}
@@ -111,7 +144,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		[TestCase("", "")]
 		public void CreateModel_OnCookiesAcceptTextNullOrEmpty_ThenReturnViewModelWithCookiesAcceptTextEmptyString(string cookiesAcceptText, string expected)
 		{
-			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieAcceptText, cookiesAcceptText));
+			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesAcceptTextAlias, cookiesAcceptText));
 
 			Assert.AreEqual(expected, viewModel.CookiesAcceptText);
 		}
@@ -120,7 +153,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		[TestCase(null, "/")]
 		public void CreateModel_OnCookiesLinkNull_ThenReturnViewModelWithCookiesLinkPointingToHome(Link cookiesLink, string expected)
 		{
-			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookieLink, cookiesLink));
+			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesLinkAlias, cookiesLink));
 
 			Assert.AreEqual(expected, viewModel.CookiesLink.Url);
 		}

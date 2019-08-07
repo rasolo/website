@@ -270,9 +270,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Shared\BaseContentPage\BaseContentPageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Shared\CookiesNotice\CookiesNoticeControllerTests.cs" />
-    <Compile Include="Unit\Shared\CookiesNotice\CookiesNoticeViewModelFactoryTests.cs" />
-    <Compile Include="Unit\Shared\GlobalSettings\GlobalSettingsControllerTests.cs" />
-    <Compile Include="Unit\Shared\GlobalSettings\GlobalSettingsViewModelFactoryTests.cs" />
+    <Compile Include="Unit\Shared\GlobalSettings\GlobalSettingsPageControllerTests.cs" />
+    <Compile Include="Unit\Shared\GlobalSettings\GlobalSettingsPageViewModelFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

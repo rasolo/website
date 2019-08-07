@@ -7,7 +7,7 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 	{
 		public void Compose(Composition composition)
 		{
-			composition.Register<IGlobalSettingsViewModelFactory, GlobalSettingsViewModelFactory>();
+			composition.Register<IGlobalSettingsPageViewModelFactory, GlobalSettingsPagePageViewModelFactory>();
 		}
 	}
 }
