@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Constants;
@@ -13,10 +12,11 @@ using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 {
-	class GlobalSettingsPageViewModelFactoryTests : UmbracoBaseTests
+	internal class GlobalSettingsPageViewModelFactoryTests : UmbracoBaseTests
 	{
 		private GlobalSettingsPagePageViewModelFactory _sut;
-		private readonly string _cookiesNoticeText = "The cookies notice text";
+		private const string CookiesNoticeText = "The cookies notice text";
+
 		public override void SetUp()
 		{
 			base.SetUp();
@@ -81,8 +81,8 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		public void CreateModel_OnGlobalSettingsPageCookiesNoticeTextGiven_ThenReturnViewmodelWithCookiesNoticeText()
 		{
-			var viewModel = SetUpCookiesNoticeText(this._cookiesNoticeText);
-			Assert.AreEqual(this._cookiesNoticeText, viewModel.CookiesNoticeText);
+			var viewModel = SetUpCookiesNoticeText(CookiesNoticeText);
+			Assert.AreEqual(CookiesNoticeText, viewModel.CookiesNoticeText);
 		}
 
 

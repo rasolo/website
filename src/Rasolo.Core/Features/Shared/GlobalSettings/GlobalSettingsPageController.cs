@@ -1,8 +1,5 @@
-﻿using Rasolo.Core.Features.Shared.Constants;
-using Rasolo.Core.Features.Shared.Services;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Umbraco.Web.Mvc;
-using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.Shared.GlobalSettings
 {

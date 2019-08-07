@@ -1,5 +1,4 @@
 ﻿using Rasolo.Core.Features.ArticlePage;
-using Rasolo.Core.Features.Shared.UI;
 using Umbraco.Core;
 using Umbraco.Core.Composing;
 

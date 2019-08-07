@@ -1,18 +1,15 @@
 ﻿using System.Web.Mvc;
 using Rasolo.Core.Features.Shared.GlobalSettings;
 using Umbraco.Web.Mvc;
-using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.Shared.CookiesNotice
 {
 	public class CookiesNoticeController : SurfaceController
 	{
-		public IUmbracoMapper _mapper;
-		public IGlobalSettingsPageViewModelFactory GlobalSettingsPageViewModelFactory { get; }
+		private IGlobalSettingsPageViewModelFactory GlobalSettingsPageViewModelFactory { get; }
 
-		public CookiesNoticeController(IUmbracoMapper mapper, IGlobalSettingsPageViewModelFactory globalSettingsPageViewModelFactory)
+		public CookiesNoticeController(IGlobalSettingsPageViewModelFactory globalSettingsPageViewModelFactory)
 		{
-			this._mapper = mapper;
 			this.GlobalSettingsPageViewModelFactory = globalSettingsPageViewModelFactory;
 		}
 

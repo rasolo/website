@@ -1,6 +1,4 @@
-﻿using Rasolo.Core.Features.ArticlePage;
-using Rasolo.Core.Features.Shared.UI;
-using System.Web;
+﻿using Rasolo.Core.Features.Shared.UI;
 
 namespace Rasolo.Core.Features.StartPage
 {

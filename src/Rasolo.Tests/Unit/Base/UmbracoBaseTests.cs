@@ -8,7 +8,7 @@ using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Base
 {
-	public abstract class UmbracoBaseTests
+	internal abstract class UmbracoBaseTests
 	{
 		protected Mock<IPublishedContent> Content;
 
