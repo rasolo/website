@@ -6,7 +6,7 @@ namespace Rasolo.Core.Features.Shared.Services
 {
 	public class UmbracoService : IUmbracoService
 	{
-		public readonly IUmbracoContextFactory _umbracoContextFactory;
+		private readonly IUmbracoContextFactory _umbracoContextFactory;
 		public UmbracoService(IUmbracoContextFactory context)
 		{
 			this._umbracoContextFactory = context;

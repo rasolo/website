@@ -1,12 +1,12 @@
 .site__header {
     position: absolute;
     z-index: 999;
-    margin: 1%;
+    margin: 2%;
 
     & a{
         color: #2b1e1f;
         font-weight: bold;
-        font-size: 2vw;
+        font-size: 7vw;
         text-decoration: none;
 
         &:hover {
@@ -18,9 +18,8 @@
 
 
 
-@media screen and (max-width: 900px) {
-    .site__header {
-        margin: 2%;
-        font-size: 5vw;
+@media screen and (min-width: 1080px) {
+    .site__header a{
+    font-size: 4vw;
     }
 }
