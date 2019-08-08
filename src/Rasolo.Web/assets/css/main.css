@@ -36,25 +36,6 @@
     display: flex;
     flex-wrap: wrap; }
 
-#freepik {
-  text-align: center;
-  padding-bottom: 5px;
-  font-style: italic; }
-
-/* This is only used for the component */
-html,
-*,
-*::after,
-::before {
-  box-sizing: border-box;
-  margin: 0;
-  font-family: "roboto", cursive; }
-
-/* END This is only used for the component */
-.footer {
-  display: flex;
-  justify-content: center; }
-
 .cookies-notice {
   position: fixed;
   bottom: 0;
