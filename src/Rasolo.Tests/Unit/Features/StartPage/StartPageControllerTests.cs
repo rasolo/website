@@ -2,7 +2,7 @@
 
 namespace Rasolo.Tests.Unit.Features.StartPage
 {
-	public class StartPageControllerTests : BaseContentPageControllerTests<Core.Features.StartPage.StartPage>
+	internal class StartPageControllerTests : BaseContentPageControllerTests<Core.Features.StartPage.StartPage>
 	{
 	}
 }

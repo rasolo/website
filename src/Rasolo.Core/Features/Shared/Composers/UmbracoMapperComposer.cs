@@ -2,7 +2,7 @@
 using Umbraco.Core.Composing;
 using Zone.UmbracoMapper.V8;
 
-namespace Rasolo.Core.Features.Shared.Mappings
+namespace Rasolo.Core.Features.Shared.Composers
 {
 	public class UmbracoMapperComposer : IUserComposer
 	{

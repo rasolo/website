@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
-	public class BaseContentPageViewModelFactoryTests <TModel> : UmbracoBaseTests where TModel : Core.Features.Shared.UI.BaseContentPage, new()
+	internal class BaseContentPageViewModelFactoryTests <TModel> : UmbracoBaseTests where TModel : Core.Features.Shared.UI.BaseContentPage, new()
 	{
-		protected BaseContentPageViewModelFactory<Core.Features.Shared.UI.BaseContentPage> _sut;
+		private BaseContentPageViewModelFactory<Core.Features.Shared.UI.BaseContentPage> _sut;
 
 		public override void SetUp()
 		{

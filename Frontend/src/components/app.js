@@ -1,6 +1,6 @@
 let massEvolve = require('./massEvolve');
-let footer = require('./footer/footer');
+let cookiesNotice = require('./cookies-notice/cookies-notice');
 
 massEvolve();
-footer();
+cookiesNotice();
 

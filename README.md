@@ -54,6 +54,12 @@ ___
 
 
 
+## Development
+#### Naming conventions:
+Private fields are named as: _camelCase.
+
+
+
 ## Deployment
 
 * Make sure code works locally, all tests builds and the site works.

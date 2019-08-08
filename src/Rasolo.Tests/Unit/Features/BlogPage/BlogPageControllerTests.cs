@@ -2,7 +2,7 @@
 
 namespace Rasolo.Tests.Unit.Features.BlogPage
 {
-	public class BlogPageControllerTests : BaseContentPageControllerTests<Core.Features.BlogPage.BlogPage>
+	internal class BlogPageControllerTests : BaseContentPageControllerTests<Core.Features.BlogPage.BlogPage>
 	{
 	}
 }

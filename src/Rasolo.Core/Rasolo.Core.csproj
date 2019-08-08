@@ -58,8 +58,8 @@
     <Reference Include="Examine, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Examine.1.0.1\lib\net452\Examine.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\HtmlAgilityPack.1.11.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.12.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.11.12\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.1.0.145, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SharpZipLib.1.1.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -243,34 +243,34 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="Umbraco.Core, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoCms.Core.8.1.0\lib\net472\Umbraco.Core.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoCms.Core.8.1.1\lib\net472\Umbraco.Core.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Examine, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoCms.Web.8.1.0\lib\net472\Umbraco.Examine.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoCms.Web.8.1.1\lib\net472\Umbraco.Examine.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Web, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoCms.Web.8.1.0\lib\net472\Umbraco.Web.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoCms.Web.8.1.1\lib\net472\Umbraco.Web.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Web.UI, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoCms.Web.8.1.0\lib\net472\Umbraco.Web.UI.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoCms.Web.8.1.1\lib\net472\Umbraco.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="Zone.UmbracoMapper.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoMapper.4.1.0\lib\Zone.UmbracoMapper.Common.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoMapper.4.2.0\lib\Zone.UmbracoMapper.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Zone.UmbracoMapper.V8, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoMapper.4.1.0\lib\Zone.UmbracoMapper.V8.dll</HintPath>
+    <Reference Include="Zone.UmbracoMapper.V8, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UmbracoMapper.4.2.0\lib\Zone.UmbracoMapper.V8.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\ArticlePage\ArticlePage.cs" />
     <Compile Include="Features\ArticlePage\ArticlePageController.cs" />
     <Compile Include="Features\ArticlePage\ArticlePageViewModelFactory.cs" />
-    <Compile Include="Features\ArticlePage\ArticlePageComposer.cs" />
     <Compile Include="Features\ArticlePage\IArticlePageViewModelFactory.cs" />
     <Compile Include="Features\BlogPage\BlogPage.cs" />
     <Compile Include="Features\BlogPage\BlogPageController.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPageController.cs" />
+    <Compile Include="Features\Shared\Composers\GenericClassesComposer.cs" />
     <Compile Include="Features\Shared\Constants\CookiesNotice.cs" />
     <Compile Include="Features\Shared\Constants\DocumentTypeAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BaseContentPagePropertyAlias.cs" />
@@ -278,32 +278,23 @@
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
     <Compile Include="Features\Shared\Controllers\IBasePageController.cs" />
     <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeController.cs" />
-    <Compile Include="Features\Shared\CookiesNotice\ICookiesNoticeViewModelFactory.cs" />
-    <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeViewModelFactory.cs" />
-    <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeViewModel.cs" />
-    <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeMapperComposer.cs" />
     <Compile Include="Features\Shared\Extensions\StringExtensions.cs" />
-    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsComposer.cs" />
-    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsController.cs" />
-    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsViewModel.cs" />
-    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsViewModelFactory.cs" />
-    <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsViewModelFactory.cs" />
-    <Compile Include="Features\Shared\Mappings\UmbracoMapperComposer.cs" />
-    <Compile Include="Features\Shared\Mappings\UmbracoServiceComposer.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsPageController.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsPageViewModel.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsPagePageViewModelFactory.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsPageViewModel.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsPage.cs" />
+    <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsPageViewModelFactory.cs" />
+    <Compile Include="Features\Shared\Composers\UmbracoMapperComposer.cs" />
     <Compile Include="Features\Shared\Services\IUmbracoService.cs" />
     <Compile Include="Features\Shared\Services\UmbracoService.cs" />
-    <Compile Include="Features\Shared\Settings\ICookiesNotice.cs" />
-    <Compile Include="Features\Shared\Settings\IGlobalSettings.cs" />
-    <Compile Include="Features\Shared\Settings\GlobalSettingsModel.cs" />
     <Compile Include="Features\Shared\UI\BaseContentPage.cs" />
     <Compile Include="Features\Shared\UI\BaseContentPageController.cs" />
     <Compile Include="Features\Shared\UI\BaseContentPageViewModelFactory.cs" />
-    <Compile Include="Features\Shared\UI\CookiesNoticeMapperComposer.cs" />
     <Compile Include="Features\Shared\UI\IBaseContentPageViewModelFactory.cs" />
     <Compile Include="Features\Shared\UI\IContentPage.cs" />
     <Compile Include="Features\StartPage\StartPageViewModelFactory.cs" />
     <Compile Include="Features\StartPage\IStartPageViewModelFactory.cs" />
-    <Compile Include="Features\StartPage\StartPageComposer.cs" />
     <Compile Include="Features\StartPage\StartPage.cs" />
     <Compile Include="Features\StartPage\StartPageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
