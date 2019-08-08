@@ -7,8 +7,8 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 {
 	public class GlobalSettingsPagePageViewModelFactory : IGlobalSettingsPageViewModelFactory
 	{
-		public readonly IUmbracoMapper _mapper;
-		public readonly IUmbracoService _umbracoService;
+		private readonly IUmbracoMapper _mapper;
+		private readonly IUmbracoService _umbracoService;
 
 		public GlobalSettingsPagePageViewModelFactory(IUmbracoMapper mapper, IUmbracoService umbracoService)
 		{
