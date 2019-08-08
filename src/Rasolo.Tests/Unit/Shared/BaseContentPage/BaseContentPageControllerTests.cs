@@ -1,11 +1,11 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Constants;
-using Rasolo.Core.Features.Shared.Mappings;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Core.Features.Shared.UI;
 using Rasolo.Tests.Unit.Base;
 using System.Web.Mvc;
+using Rasolo.Core.Features.Shared.Composers;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 
