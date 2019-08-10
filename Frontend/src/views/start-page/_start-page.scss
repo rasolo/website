@@ -39,11 +39,8 @@ body {
       justify-items: center;
       grid-gap: 50px;
       a {
+        color: initial;
         text-decoration: none;
-        &:visited {
-          text-decoration: none;
-          color: initial;
-        }
       }
       .posts__post {
         width: 150px;

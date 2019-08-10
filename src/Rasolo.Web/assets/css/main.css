@@ -189,10 +189,8 @@ body .posts-container .posts-container__posts {
   justify-items: center;
   grid-gap: 50px; }
   body .posts-container .posts-container__posts a {
+    color: initial;
     text-decoration: none; }
-    body .posts-container .posts-container__posts a:visited {
-      text-decoration: none;
-      color: initial; }
   body .posts-container .posts-container__posts .posts__post {
     width: 150px;
     text-align: center; }
