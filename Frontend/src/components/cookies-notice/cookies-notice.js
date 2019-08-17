@@ -5,7 +5,7 @@ module.exports = function () {
     if (!cookiesNotice) {
         return;
     }
-    
+
     //Activates animation of cookies notice slide up.
     cookiesNotice.style.marginBottom = "initial";
 
