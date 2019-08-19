@@ -4,10 +4,10 @@
 <head>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="shortcut icon" type="image/png" href="/favicon.png">
 	@Html.Partial("GoogleTagManager")
 </head>
 
@@ -17,11 +17,11 @@
 			@Html.Action("Index", "GlobalSettingsPage")
 		</div>
 	</nav>
-	<main class="page__main">
+	<main class="main">
 		@RenderBody()
 	</main>
-@Html.Action("Index", "CookiesNotice")
-<script src="/assets/js/bundle.js"></script>
+	@Html.Action("Index", "CookiesNotice")
+	<script src="/assets/js/bundle.js"></script>
 </body>
 
 </html>

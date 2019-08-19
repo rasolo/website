@@ -50,7 +50,7 @@
   font-size: 1em;
   transition: all 2s ease-out; }
   .cookies-notice .cookies_accept {
-    background-color: #11c011d1;
+    background-color: rgba(16, 192, 16, 0.819608);
     cursor: pointer; }
     .cookies-notice .cookies_accept:hover {
       background-color: darkgreen; }
@@ -118,19 +118,44 @@
   .site__header a {
     font-size: 4vw; } }
 
-.article h1 {
-  font-family: "roboto", cursive;
-  text-align: center; }
+.site__header {
+  margin: 1%;
+  left: 2%;
+  top: 1%; }
 
-.article__content__main__body {
-  margin: 5%;
-  margin-top: 2%; }
+.article {
+  margin-top: 25%; }
+  .article h1 {
+    font-family: "roboto", cursive;
+    text-align: center;
+    font-size: 23px; }
+  .article h2 {
+    font-size: 30px; }
+  .article .article__content {
+    margin: 5%; }
+    .article .article__content p {
+      margin: 0.8%;
+      line-height: 1.58;
+      font-size: 16px;
+      margin: 10px 0; }
 
-.article h2 {
-  font-size: 30px; }
+@media (min-width: 600px) {
+  .article h1 {
+    font-size: 5vw; }
+  .article .article__content p {
+    font-size: 18px; } }
 
-.article__content__main__body p {
-  margin: 0.8%; }
+@media (min-width: 1080px) {
+  .article {
+    margin-top: 8%; }
+    .article h1 {
+      font-size: 4vw; }
+    .article .article__content {
+      margin: 3% auto;
+      max-width: 900px; }
+      .article .article__content p {
+        font-size: 18px;
+        max-width: 80%; } }
 
 body h1 {
   font-family: "lobster", cursive;
@@ -158,36 +183,38 @@ body .posts-container h2 {
   margin: 15%;
   font-weight: normal; }
 
-body .posts-container .posts {
+body .posts-container .posts-container__posts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   justify-items: center;
   grid-gap: 50px; }
-  body .posts-container .posts a {
+  body .posts-container .posts-container__posts a {
+    color: initial;
     text-decoration: none; }
-    body .posts-container .posts a:visited {
-      text-decoration: none;
-      color: initial; }
-  body .posts-container .posts .post {
+  body .posts-container .posts-container__posts .posts__post {
     width: 150px;
     text-align: center; }
-    body .posts-container .posts .post span {
+    body .posts-container .posts-container__posts .posts__post h4 {
+      margin-top: 2%; }
+      body .posts-container .posts-container__posts .posts__post h4:hover {
+        color: #00000094; }
+    body .posts-container .posts-container__posts .posts__post span {
       display: block; }
-    body .posts-container .posts .post .post-date {
+    body .posts-container .posts-container__posts .posts__post .post__post-date {
       font-style: italic;
       font-size: 13px; }
-    body .posts-container .posts .post .post-category {
+    body .posts-container .posts-container__posts .posts__post .post__post-category {
       font-weight: bold;
       margin-bottom: 5%; }
-    body .posts-container .posts .post p {
+    body .posts-container .posts-container__posts .posts__post p {
       font-size: 14px; }
-      body .posts-container .posts .post p:hover {
+      body .posts-container .posts-container__posts .posts__post p:hover {
         color: lightgray; }
-  body .posts-container .posts img {
+  body .posts-container .posts-container__posts img {
     width: 100%;
     height: auto;
     border-radius: 50%; }
-    body .posts-container .posts img:hover {
+    body .posts-container .posts-container__posts img:hover {
       opacity: 0.5; }
 
 body .spacer {
@@ -200,14 +227,16 @@ body .spacer {
     margin: 5%;
     margin-bottom: 4%;
     font-size: 60px; }
-  body .posts-container .posts .post {
+  body .posts-container .posts-container__posts .posts__post {
     width: 330px; }
-    body .posts-container .posts .post .post-date {
+    body .posts-container .posts-container__posts .posts__post h4 {
+      font-size: 20px; }
+    body .posts-container .posts-container__posts .posts__post .post__post-date {
       margin: 4%;
       font-size: 18px; }
-    body .posts-container .posts .post .post-category {
+    body .posts-container .posts-container__posts .posts__post .post__post-category {
       font-size: 18px; }
-    body .posts-container .posts .post p {
+    body .posts-container .posts-container__posts .posts__post p {
       font-size: 20px; }
   body .spacer {
     height: 150px; } }
