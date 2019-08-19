@@ -46,10 +46,51 @@ namespace Rasolo.Tests.Unit.Base
 			content.Setup(x => x.Name).Returns(contentTypeAlias);
 			content.Setup(x => x.Id).Returns(99);
 
-
 			var contentModel = new ContentModel(content.Object);
 
 			return contentModel;
+		}
+
+		public static Mock<IPublishedContent> SetupImage()
+		{
+			var widthPropertyMock = new Mock<IPublishedProperty>();
+			widthPropertyMock.Setup(c => c.Alias).Returns("umbracoWidth");
+			widthPropertyMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+			widthPropertyMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(100);
+
+			var heightPropertyMock = new Mock<IPublishedProperty>();
+			heightPropertyMock.Setup(c => c.Alias).Returns("umbracoHeight");
+			heightPropertyMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+			heightPropertyMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(200);
+
+			var sizePropertyMock = new Mock<IPublishedProperty>();
+			sizePropertyMock.Setup(c => c.Alias).Returns("umbracoBytes");
+			sizePropertyMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+			sizePropertyMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(1000);
+
+			var extensionPropertyMock = new Mock<IPublishedProperty>();
+			extensionPropertyMock.Setup(c => c.Alias).Returns("umbracoExtension");
+			extensionPropertyMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+			extensionPropertyMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(".jpg");
+
+			var altTextPropertyMock = new Mock<IPublishedProperty>();
+			altTextPropertyMock.Setup(c => c.Alias).Returns("altText");
+			altTextPropertyMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+			altTextPropertyMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns("Test image alt text");
+
+			var contentType = new PublishedContentType(1000, "Image", PublishedItemType.Media, Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing);
+
+			var imageMock = new Mock<IPublishedContent>();
+			imageMock.Setup(c => c.Id).Returns(2000);
+			imageMock.Setup(c => c.Name).Returns("Test image");
+			imageMock.Setup(c => c.Url).Returns("/media/test.jpg");
+			imageMock.Setup(c => c.ContentType).Returns(contentType);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoWidth"))).Returns(widthPropertyMock.Object);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoHeight"))).Returns(heightPropertyMock.Object);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoBytes"))).Returns(sizePropertyMock.Object);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoExtension"))).Returns(extensionPropertyMock.Object);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "altText"))).Returns(altTextPropertyMock.Object);
+			return imageMock;
 		}
 
 	}
