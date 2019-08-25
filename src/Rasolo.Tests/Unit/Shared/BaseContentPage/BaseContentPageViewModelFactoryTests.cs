@@ -1,7 +1,11 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using Rasolo.Core.Features.Shared.Composers;
+using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.UI;
 using Rasolo.Tests.Unit.Base;
 using System.Web;
+using Umbraco.Core.Models.PublishedContent;
 
 namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
@@ -46,6 +50,23 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			var viewModel = this._sut.CreateModel(contentPage);
 
 			Assert.AreEqual(viewModel.MainBody.ToString(), expected);
+		}
+
+		[Test]
+		public void CreateModel_OnHeroImageGiven_ThenReturnViewModelWithHeroImage()
+		{
+			var imageMock = new Mock<IPublishedProperty>();
+			imageMock.Setup(c => c.Alias).Returns(BaseContentPagePropertyAlias.HeroImage);
+			imageMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+			imageMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(SetupImage().Object);
+			var contentModel = SetupContent(typeof(TModel).Name, imageMock);
+			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
+			var page = new Core.Features.Shared.UI.BaseContentPage();
+			umbracoMapper.Map(contentModel.Content, page);
+
+			var viewModel = this._sut.CreateModel(page);
+
+			Assert.AreEqual(page.HeroImage, viewModel.HeroImage);
 		}
 
 		[Test]

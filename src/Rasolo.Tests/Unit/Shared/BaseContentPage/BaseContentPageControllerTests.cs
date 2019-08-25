@@ -148,5 +148,33 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			Assert.AreEqual(".jpg", viewModel.TeaserMedia.FileExtension);
 			Assert.AreEqual("Image", viewModel.TeaserMedia.DocumentTypeAlias);
 		}
+
+		[Test]
+		public void GivenPageHasHeroImage_WhenIndexAction_ThenReturnViewModelWithHeroImage()
+		{
+			var mainImageMock = new Mock<IPublishedProperty>();
+			mainImageMock.Setup(c => c.Alias).Returns("heroImage");
+			mainImageMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+			mainImageMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(SetupImage().Object);
+			//This will automatically set the DomainWithUrl property for the media file. The url will be appended to this domain for the property.
+			this._umbracoMapper.AssetsRootUrl = "http://www.mysite.com";
+			var contentModel = SetupContent(typeof(TContentPage).Name, mainImageMock);
+
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>())).Returns(this._sut.MapModel(contentModel.Content));
+
+			var viewModel = (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
+
+			Assert.IsNotNull(viewModel.HeroImage);
+			Assert.AreEqual(2000, viewModel.HeroImage.Id);
+			Assert.AreEqual("/media/test.jpg", viewModel.HeroImage.Url);
+			Assert.AreEqual("http://www.mysite.com/media/test.jpg", viewModel.HeroImage.DomainWithUrl);
+			Assert.AreEqual("Test image", viewModel.HeroImage.Name);
+			Assert.AreEqual("Test image alt text", viewModel.HeroImage.AltText);
+			Assert.AreEqual(100, viewModel.HeroImage.Width);
+			Assert.AreEqual(200, viewModel.HeroImage.Height);
+			Assert.AreEqual(1000, viewModel.HeroImage.Size);
+			Assert.AreEqual(".jpg", viewModel.HeroImage.FileExtension);
+			Assert.AreEqual("Image", viewModel.HeroImage.DocumentTypeAlias);
+		}
 	}
 }

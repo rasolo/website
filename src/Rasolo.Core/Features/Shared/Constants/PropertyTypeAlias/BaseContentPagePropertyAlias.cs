@@ -2,5 +2,6 @@
 {
 	public class BaseContentPagePropertyAlias
 	{
+		public const string HeroImage = "heroImage";
 	}
 }
