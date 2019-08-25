@@ -2295,7 +2295,8 @@
                 $scope.gotoFolder({
                     id: $scope.lastOpenedNode,
                     name: 'Media',
-                    icon: 'icon-folder'
+                    icon: 'icon-folder',
+                    path: node.path
                 });
                 return true;
             } else {
@@ -4795,6 +4796,10 @@
         $scope.closeDialog = function (showMenu) {
             navigationService.hideDialog(showMenu);
         };
+        $scope.editContentType = function () {
+            $location.path('/settings/documenttypes/edit/' + $scope.contentTypeId).search('view', 'permissions');
+            close();
+        };
         $scope.createBlank = createBlank;
         $scope.createOrSelectBlueprintIfAny = createOrSelectBlueprintIfAny;
         $scope.createFromBlueprint = createFromBlueprint;
@@ -4929,7 +4934,7 @@
         $scope.page = $routeParams.page;
         $scope.isNew = infiniteMode ? $scope.model.create : $routeParams.create;
         //load the default culture selected in the main tree if any
-        $scope.culture = $routeParams.cculture ? $routeParams.cculture : $routeParams.mculture === 'true';
+        $scope.culture = $routeParams.cculture ? $routeParams.cculture : $routeParams.mculture;
         //Bind to $routeUpdate which will execute anytime a location changes but the route is not triggered.
         //This is so we can listen to changes on the cculture parameter since that will not cause a route change
         //and then we can pass in the updated culture to the editor.
@@ -19166,7 +19171,7 @@
             editorService.mediaPicker(mediaPicker);
         };
         $scope.sortableOptions = {
-            disabled: !$scope.isMultiPicker,
+            disabled: !multiPicker,
             items: 'li:not(.add-wrapper)',
             cancel: '.unsortable',
             update: function update(e, ui) {
@@ -20039,24 +20044,22 @@
             function createNode(scaffold, fromNcEntry) {
                 var node = angular.copy(scaffold);
                 node.key = fromNcEntry && fromNcEntry.key ? fromNcEntry.key : String.CreateGuid();
-                for (var v = 0; v < node.variants.length; v++) {
-                    var variant = node.variants[v];
-                    for (var t = 0; t < variant.tabs.length; t++) {
-                        var tab = variant.tabs[t];
-                        for (var p = 0; p < tab.properties.length; p++) {
-                            var prop = tab.properties[p];
-                            prop.propertyAlias = prop.alias;
-                            prop.alias = $scope.model.alias + '___' + prop.alias;
-                            // Force validation to occur server side as this is the
-                            // only way we can have consistency between mandatory and
-                            // regex validation messages. Not ideal, but it works.
-                            prop.validation = {
-                                mandatory: false,
-                                pattern: ''
-                            };
-                            if (fromNcEntry && fromNcEntry[prop.propertyAlias]) {
-                                prop.value = fromNcEntry[prop.propertyAlias];
-                            }
+                var variant = node.variants[0];
+                for (var t = 0; t < variant.tabs.length; t++) {
+                    var tab = variant.tabs[t];
+                    for (var p = 0; p < tab.properties.length; p++) {
+                        var prop = tab.properties[p];
+                        prop.propertyAlias = prop.alias;
+                        prop.alias = $scope.model.alias + '___' + prop.alias;
+                        // Force validation to occur server side as this is the
+                        // only way we can have consistency between mandatory and
+                        // regex validation messages. Not ideal, but it works.
+                        prop.validation = {
+                            mandatory: false,
+                            pattern: ''
+                        };
+                        if (fromNcEntry && fromNcEntry[prop.propertyAlias]) {
+                            prop.value = fromNcEntry[prop.propertyAlias];
                         }
                     }
                 }
@@ -23109,7 +23112,7 @@
                     localizationService.localize('defaultdialogs_confirmdelete').then(function (value) {
                         var confirmResponse = confirm(value);
                         if (confirmResponse === true) {
-                            userGroupsResource.deleteUserGroups(vm.selection).then(function (data) {
+                            userGroupsResource.deleteUserGroups(_.pluck(vm.selection, 'id')).then(function (data) {
                                 clearSelection();
                                 onInit();
                             }, angular.noop);
