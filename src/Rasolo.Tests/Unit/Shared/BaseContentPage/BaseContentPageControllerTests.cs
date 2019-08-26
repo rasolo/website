@@ -8,6 +8,7 @@ using Rasolo.Core.Features.Shared.Composers;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 using Umbraco.Core.Models.PublishedContent;
+using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 
 namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
@@ -124,17 +125,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		public void GivenPageHasTeaserMedia_WhenIndexAction_ThenReturnViewModelWithTeaserMedia()
 		{
-			var mainImageMock = new Mock<IPublishedProperty>();
-			mainImageMock.Setup(c => c.Alias).Returns("teaserMedia");
-			mainImageMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
-			mainImageMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(SetupImage().Object);
-			//This will automatically set the DomainWithUrl property for the media file. The url will be appended to this domain for the property.
-			this._umbracoMapper.AssetsRootUrl = "http://www.mysite.com";
-			var contentModel = SetupContent(typeof(TContentPage).Name, mainImageMock);
-
-			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>())).Returns(this._sut.MapModel(contentModel.Content));
-
-			var viewModel = (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
+			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.TeaserMedia);
 
 			Assert.IsNotNull(viewModel.TeaserMedia);
 			Assert.AreEqual(2000, viewModel.TeaserMedia.Id);
@@ -149,11 +140,10 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			Assert.AreEqual("Image", viewModel.TeaserMedia.DocumentTypeAlias);
 		}
 
-		[Test]
-		public void GivenPageHasHeroImage_WhenIndexAction_ThenReturnViewModelWithHeroImage()
+		TContentPage TestMediaReturnViewModel(string propertyAlias)
 		{
 			var mainImageMock = new Mock<IPublishedProperty>();
-			mainImageMock.Setup(c => c.Alias).Returns("heroImage");
+			mainImageMock.Setup(c => c.Alias).Returns(propertyAlias);
 			mainImageMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
 			mainImageMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(SetupImage().Object);
 			//This will automatically set the DomainWithUrl property for the media file. The url will be appended to this domain for the property.
@@ -162,7 +152,13 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>())).Returns(this._sut.MapModel(contentModel.Content));
 
-			var viewModel = (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
+			return (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
+		}
+
+		[Test]
+		public void GivenPageHasHeroImage_WhenIndexAction_ThenReturnViewModelWithHeroImage()
+		{
+			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.HeroImage);
 
 			Assert.IsNotNull(viewModel.HeroImage);
 			Assert.AreEqual(2000, viewModel.HeroImage.Id);
