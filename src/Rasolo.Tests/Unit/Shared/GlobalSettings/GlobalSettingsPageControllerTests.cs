@@ -28,7 +28,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		}
 
 		[Test]
-		public void Index_OnRun_GlobalSettingsViewModelFactoryIsCalled()
+		public void Given_Controller_When_IndexAction_GlobalSettingsViewModelFactoryIsCalled()
 		{
 			var globalSettingsViewModelFactoryMock = new Mock<IGlobalSettingsPageViewModelFactory>();
 			this._sut = new GlobalSettingsPageController(globalSettingsViewModelFactoryMock.Object);
@@ -40,7 +40,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		}
 
 		[Test]
-		public void Index_OnRun_ThenReturnsGlobalSettingsViewModel()
+		public void Given_Controller_When_IndexAction_ThenReturnsGlobalSettingsViewModel()
 		{
 			this._sut = new GlobalSettingsPageController(new GlobalSettingsPagePageViewModelFactory(this._umbracoMapper, this._umbracoServiceMock.Object));
 

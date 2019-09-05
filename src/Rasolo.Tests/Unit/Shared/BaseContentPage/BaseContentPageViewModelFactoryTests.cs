@@ -22,7 +22,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase(null, "")]
 		[TestCase("", "")]
-		public void CreateModel_OnTitleNullOrEmpty_ThenReturnViewModelWithTitleEmptyString(string title, string expected)
+		public void Given_CreateModel_When_TitleNullOrEmpty_ThenReturnViewModelWithTitleEmptyString(string title, string expected)
 		{
 			var contentPage = new TModel() { Title = title };
 			var viewModel = this._sut.CreateModel(contentPage);
@@ -33,7 +33,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("The content page title", "The content page title")]
 		[TestCase("Another content page title", "Another content page title")]
-		public void CreateModel_OnTitleGiven_ThenReturnViewModelWithTitle(string title, string expected)
+		public void Given_CreateModel_When_TitleGiven_ThenReturnViewModelWithTitle(string title, string expected)
 		{
 			var contentPage = new TModel() { Title = title };
 			var viewModel = this._sut.CreateModel(contentPage);
@@ -44,7 +44,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("The content page main body", "The content page main body")]
 		[TestCase("Another content page main body", "Another content page main body")]
-		public void CreateModel_OnMainBodyGiven_ThenReturnViewModelWithMainBody(string mainBody, string expected)
+		public void Given_CreateModel_When_MainBodyGiven_ThenReturnViewModelWithMainBody(string mainBody, string expected)
 		{
 			var contentPage = new TModel() { MainBody = new HtmlString(mainBody) };
 			var viewModel = this._sut.CreateModel(contentPage);
@@ -53,7 +53,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void CreateModel_OnHeroImageGiven_ThenReturnViewModelWithHeroImage()
+		public void Given_CreateModel_When_HeroImageGiven_ThenReturnViewModelWithHeroImage()
 		{
 			var imageMock = new Mock<IPublishedProperty>();
 			imageMock.Setup(c => c.Alias).Returns(BaseContentPagePropertyAlias.HeroImage);
@@ -70,7 +70,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void CreateModel_OnMainBodyNullOrEmpty_ThenReturnViewModelWithMainBodyEmptyString()
+		public void Given_CreateModel_When_MainBodyNullOrEmpty_ThenReturnViewModelWithMainBodyEmptyString()
 		{
 			var contentPage = new TModel() { MainBody = null };
 			var viewModel = this._sut.CreateModel(contentPage);
