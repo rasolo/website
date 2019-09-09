@@ -10,6 +10,7 @@ using Zone.UmbracoMapper.V8;
 using Umbraco.Core.Models.PublishedContent;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Shouldly;
+using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
@@ -123,24 +124,6 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			viewModel.TeaserPreamble.ToString().ShouldBe(expected);
 		}
 
-		[Test]
-		public void Given_PageHasTeaserMedia_When_IndexAction_ThenReturnViewModelWithTeaserMedia()
-		{
-			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.TeaserMedia);
-
-			viewModel.TeaserMedia.ShouldNotBeNull();
-			viewModel.TeaserMedia.Id.ShouldBe(2000);
-			viewModel.TeaserMedia.Url.ShouldBe("/media/test.jpg");
-			viewModel.TeaserMedia.DomainWithUrl.ShouldBe("http://www.mysite.com/media/test.jpg");
-			viewModel.TeaserMedia.Name.ShouldBe("Test image");
-			viewModel.TeaserMedia.AltText.ShouldBe("Test image alt text");
-			viewModel.TeaserMedia.Width.ShouldBe(100);
-			viewModel.TeaserMedia.Height.ShouldBe(200);
-			viewModel.TeaserMedia.Size.ShouldBe(1000);
-			viewModel.TeaserMedia.FileExtension.ShouldBe(".jpg");
-			viewModel.TeaserMedia.DocumentTypeAlias.ShouldBe("Image");
-		}
-
 		TContentPage TestMediaReturnViewModel(string propertyAlias)
 		{
 			var mainImageMock = new Mock<IPublishedProperty>();
@@ -157,21 +140,34 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
+		public void Given_PageHasTeaserMedia_When_IndexAction_ThenReturnViewModelWithTeaserMedia()
+		{
+			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.TeaserMedia);
+
+			MediaFileShouldBe(viewModel.TeaserMedia);
+		}
+
+		void MediaFileShouldBe(MediaFile mediaFile)
+		{
+			mediaFile.ShouldNotBeNull();
+			mediaFile.Id.ShouldBe(2000);
+			mediaFile.Url.ShouldBe("/media/test.jpg");
+			mediaFile.DomainWithUrl.ShouldBe("http://www.mysite.com/media/test.jpg");
+			mediaFile.Name.ShouldBe("Test image");
+			mediaFile.AltText.ShouldBe("Test image alt text");
+			mediaFile.Width.ShouldBe(100);
+			mediaFile.Height.ShouldBe(200);
+			mediaFile.Size.ShouldBe(1000);
+			mediaFile.FileExtension.ShouldBe(".jpg");
+			mediaFile.DocumentTypeAlias.ShouldBe("Image");
+		}
+
+		[Test]
 		public void Given_PageHasHeroImage_When_IndexAction_ThenReturnViewModelWithHeroImage()
 		{
 			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.HeroImage);
 
-			viewModel.HeroImage.ShouldNotBeNull();
-			viewModel.HeroImage.Id.ShouldBe(2000);
-			viewModel.HeroImage.Url.ShouldBe("/media/test.jpg");
-			viewModel.HeroImage.DomainWithUrl.ShouldBe("http://www.mysite.com/media/test.jpg");
-			viewModel.HeroImage.Name.ShouldBe("Test image");
-			viewModel.HeroImage.AltText.ShouldBe("Test image alt text");
-			viewModel.HeroImage.Width.ShouldBe(100);
-			viewModel.HeroImage.Height.ShouldBe(200);
-			viewModel.HeroImage.Size.ShouldBe(1000);
-			viewModel.HeroImage.FileExtension.ShouldBe(".jpg");
-			viewModel.HeroImage.DocumentTypeAlias.ShouldBe("Image");
+			MediaFileShouldBe(viewModel.HeroImage);
 		}
 	}
 }
