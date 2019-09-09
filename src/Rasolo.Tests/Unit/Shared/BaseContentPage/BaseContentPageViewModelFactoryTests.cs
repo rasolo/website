@@ -4,6 +4,7 @@ using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.UI;
 using Rasolo.Tests.Unit.Base;
+using Shouldly;
 using System.Web;
 using Umbraco.Core.Models.PublishedContent;
 
@@ -27,7 +28,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			var contentPage = new TModel() { Title = title };
 			var viewModel = this._sut.CreateModel(contentPage);
 
-			Assert.AreEqual(expected, viewModel.Title);
+			viewModel.Title.ShouldBe(expected);
 		}
 
 		[Test]
@@ -38,7 +39,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			var contentPage = new TModel() { Title = title };
 			var viewModel = this._sut.CreateModel(contentPage);
 
-			Assert.AreEqual(viewModel.Title, expected);
+			viewModel.Title.ShouldBe(expected);
 		}
 
 		[Test]
@@ -49,7 +50,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			var contentPage = new TModel() { MainBody = new HtmlString(mainBody) };
 			var viewModel = this._sut.CreateModel(contentPage);
 
-			Assert.AreEqual(viewModel.MainBody.ToString(), expected);
+			viewModel.MainBody.ToString().ShouldBe(expected);
 		}
 
 		[Test]
@@ -66,7 +67,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = this._sut.CreateModel(page);
 
-			Assert.AreEqual(page.HeroImage, viewModel.HeroImage);
+			viewModel.HeroImage.ShouldBe(page.HeroImage);
 		}
 
 		[Test]
@@ -75,7 +76,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			var contentPage = new TModel() { MainBody = null };
 			var viewModel = this._sut.CreateModel(contentPage);
 
-			Assert.AreEqual(viewModel.MainBody.ToString(), string.Empty);
+			viewModel.MainBody.ToString().ShouldBe(string.Empty);
 		}
 	}
 }

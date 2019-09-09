@@ -9,6 +9,7 @@ using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 using Umbraco.Core.Models.PublishedContent;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
+using Shouldly;
 
 namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
@@ -50,7 +51,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var returnedViewModel = (TContentPage)((ViewResult)_sut.Index(content)).Model;
 
-			Assert.AreEqual(this._mockedViewModel.GetType(), returnedViewModel.GetType());
+			this._mockedViewModel.GetType().ShouldBe(returnedViewModel.GetType());
 		}
 
 		[Test]
@@ -63,7 +64,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(new ContentModel(Content.Object))).Model;
 
-			Assert.AreEqual(expected, viewModel.Name);
+			viewModel.Name.ShouldBe(expected);
 		}
 
 		[Test]
@@ -77,7 +78,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.Title);
+			viewModel.Title.ShouldBe(expected);
 		}
 
 		[Test]
@@ -91,7 +92,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.MainBody.ToString());
+			viewModel.MainBody.ToString().ShouldBe(expected);
 		}
 
 		[Test]
@@ -105,7 +106,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.TeaserHeading);
+			viewModel.TeaserHeading.ShouldBe(expected);
 		}
 
 		[Test]
@@ -119,7 +120,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.TeaserPreamble.ToString());
+			viewModel.TeaserPreamble.ToString().ShouldBe(expected);
 		}
 
 		[Test]
@@ -127,17 +128,17 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		{
 			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.TeaserMedia);
 
-			Assert.IsNotNull(viewModel.TeaserMedia);
-			Assert.AreEqual(2000, viewModel.TeaserMedia.Id);
-			Assert.AreEqual("/media/test.jpg", viewModel.TeaserMedia.Url);
-			Assert.AreEqual("http://www.mysite.com/media/test.jpg", viewModel.TeaserMedia.DomainWithUrl);
-			Assert.AreEqual("Test image", viewModel.TeaserMedia.Name);
-			Assert.AreEqual("Test image alt text", viewModel.TeaserMedia.AltText);
-			Assert.AreEqual(100, viewModel.TeaserMedia.Width);
-			Assert.AreEqual(200, viewModel.TeaserMedia.Height);
-			Assert.AreEqual(1000, viewModel.TeaserMedia.Size);
-			Assert.AreEqual(".jpg", viewModel.TeaserMedia.FileExtension);
-			Assert.AreEqual("Image", viewModel.TeaserMedia.DocumentTypeAlias);
+			viewModel.TeaserMedia.ShouldNotBeNull();
+			viewModel.TeaserMedia.Id.ShouldBe(2000);
+			viewModel.TeaserMedia.Url.ShouldBe("/media/test.jpg");
+			viewModel.TeaserMedia.DomainWithUrl.ShouldBe("http://www.mysite.com/media/test.jpg");
+			viewModel.TeaserMedia.Name.ShouldBe("Test image");
+			viewModel.TeaserMedia.AltText.ShouldBe("Test image alt text");
+			viewModel.TeaserMedia.Width.ShouldBe(100);
+			viewModel.TeaserMedia.Height.ShouldBe(200);
+			viewModel.TeaserMedia.Size.ShouldBe(1000);
+			viewModel.TeaserMedia.FileExtension.ShouldBe(".jpg");
+			viewModel.TeaserMedia.DocumentTypeAlias.ShouldBe("Image");
 		}
 
 		TContentPage TestMediaReturnViewModel(string propertyAlias)
@@ -160,17 +161,17 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		{
 			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.HeroImage);
 
-			Assert.IsNotNull(viewModel.HeroImage);
-			Assert.AreEqual(2000, viewModel.HeroImage.Id);
-			Assert.AreEqual("/media/test.jpg", viewModel.HeroImage.Url);
-			Assert.AreEqual("http://www.mysite.com/media/test.jpg", viewModel.HeroImage.DomainWithUrl);
-			Assert.AreEqual("Test image", viewModel.HeroImage.Name);
-			Assert.AreEqual("Test image alt text", viewModel.HeroImage.AltText);
-			Assert.AreEqual(100, viewModel.HeroImage.Width);
-			Assert.AreEqual(200, viewModel.HeroImage.Height);
-			Assert.AreEqual(1000, viewModel.HeroImage.Size);
-			Assert.AreEqual(".jpg", viewModel.HeroImage.FileExtension);
-			Assert.AreEqual("Image", viewModel.HeroImage.DocumentTypeAlias);
+			viewModel.HeroImage.ShouldNotBeNull();
+			viewModel.HeroImage.Id.ShouldBe(2000);
+			viewModel.HeroImage.Url.ShouldBe("/media/test.jpg");
+			viewModel.HeroImage.DomainWithUrl.ShouldBe("http://www.mysite.com/media/test.jpg");
+			viewModel.HeroImage.Name.ShouldBe("Test image");
+			viewModel.HeroImage.AltText.ShouldBe("Test image alt text");
+			viewModel.HeroImage.Width.ShouldBe(100);
+			viewModel.HeroImage.Height.ShouldBe(200);
+			viewModel.HeroImage.Size.ShouldBe(1000);
+			viewModel.HeroImage.FileExtension.ShouldBe(".jpg");
+			viewModel.HeroImage.DocumentTypeAlias.ShouldBe("Image");
 		}
 	}
 }

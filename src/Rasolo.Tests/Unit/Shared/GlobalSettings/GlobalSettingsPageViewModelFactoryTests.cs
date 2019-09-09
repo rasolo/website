@@ -7,6 +7,7 @@ using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
+using Shouldly;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 
@@ -59,7 +60,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, homeText));
 
-			Assert.AreEqual(expected, viewModel.HomeText);
+			viewModel.HomeText.ShouldBe(expected);
 		}
 
 		[Test]
@@ -69,7 +70,8 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, homeText));
 
-			Assert.AreEqual(expected, viewModel.HomeText);
+			viewModel.HomeText.ShouldBe(expected);
+
 		}
 
 
@@ -82,7 +84,8 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		public void Given_CreateModel_When_GlobalSettingsPageCookiesNoticeTextGiven_ThenReturnViewmodelWithCookiesNoticeText()
 		{
 			var viewModel = SetUpCookiesNoticeText(CookiesNoticeText);
-			Assert.AreEqual(CookiesNoticeText, viewModel.CookiesNoticeText);
+
+			viewModel.CookiesNoticeText.ShouldBe(CookiesNoticeText);
 		}
 
 
@@ -92,7 +95,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			var viewModel = SetUp(httpCookieCollection: null);
 
-			Assert.AreEqual(true, viewModel.ShowCookiesNotice);
+			viewModel.ShowCookiesNotice.ShouldBe(true);
 		}
 
 		//If the cookie is already set/not null, it means that the user has accepted it, therefore the cookie notice should not be shown.
@@ -106,7 +109,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 
 			var viewModel = SetUp(httpCookieCollectiWhen_);
 
-			Assert.AreEqual(false, viewModel.ShowCookiesNotice);
+			viewModel.ShowCookiesNotice.ShouldBe(false);
 		}
 
 		[Test]
@@ -116,7 +119,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			var viewModel = SetUpCookiesNoticeText(cookiesNoticeText);
 
-			Assert.AreEqual(expected, viewModel.CookiesNoticeText);
+			viewModel.CookiesNoticeText.ShouldBe(expected);
 		}
 
 		[Test]
@@ -126,7 +129,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			var viewModel = SetUpCookiesNoticeText(cookiesNoticeText);
 
-			Assert.AreEqual(expected, viewModel.CookiesNoticeText);
+			viewModel.CookiesNoticeText.ShouldBe(expected);
 		}
 
 		[Test]
@@ -136,7 +139,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesAcceptTextAlias, cookiesAcceptText));
 
-			Assert.AreEqual(expected, viewModel.CookiesAcceptText);
+			viewModel.CookiesAcceptText.ShouldBe(expected);
 		}
 
 		[Test]
@@ -146,7 +149,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesAcceptTextAlias, cookiesAcceptText));
 
-			Assert.AreEqual(expected, viewModel.CookiesAcceptText);
+			viewModel.CookiesAcceptText.ShouldBe(expected);
 		}
 
 		[Test]
@@ -155,7 +158,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesLinkAlias, cookiesLink));
 
-			Assert.AreEqual(expected, viewModel.CookiesLink.Url);
+			viewModel.CookiesLink.Url.ShouldBe(expected);
 		}
 	}
 }

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Zone.UmbracoMapper.V8;
+using Shouldly;
 
 namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 {
@@ -46,7 +47,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 
 			var returnedViewModel = (GlobalSettingsPageViewModel)((PartialViewResult)this._sut.Index()).Model;
 
-			Assert.AreEqual(this._globalSettingsPageViewModel.GetType(), returnedViewModel.GetType());
+			returnedViewModel.GetType().ShouldBe(this._globalSettingsPageViewModel.GetType());
 		}
 	}
 }
