@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Zone.UmbracoMapper.V8;
+using Shouldly;
 
 namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 {
@@ -28,7 +29,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		}
 
 		[Test]
-		public void Index_OnRun_GlobalSettingsViewModelFactoryIsCalled()
+		public void Given_Controller_When_IndexAction_GlobalSettingsViewModelFactoryIsCalled()
 		{
 			var globalSettingsViewModelFactoryMock = new Mock<IGlobalSettingsPageViewModelFactory>();
 			this._sut = new GlobalSettingsPageController(globalSettingsViewModelFactoryMock.Object);
@@ -40,13 +41,13 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		}
 
 		[Test]
-		public void Index_OnRun_ThenReturnsGlobalSettingsViewModel()
+		public void Given_Controller_When_IndexAction_ThenReturnsGlobalSettingsViewModel()
 		{
 			this._sut = new GlobalSettingsPageController(new GlobalSettingsPagePageViewModelFactory(this._umbracoMapper, this._umbracoServiceMock.Object));
 
 			var returnedViewModel = (GlobalSettingsPageViewModel)((PartialViewResult)this._sut.Index()).Model;
 
-			Assert.AreEqual(this._globalSettingsPageViewModel.GetType(), returnedViewModel.GetType());
+			returnedViewModel.GetType().ShouldBe(this._globalSettingsPageViewModel.GetType());
 		}
 	}
 }

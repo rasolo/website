@@ -819,7 +819,7 @@
     'use strict';
     (function () {
         'use strict';
-        function CompositionsController($scope, $location, $filter) {
+        function CompositionsController($scope, $location, $filter, overlayService) {
             var vm = this;
             var oldModel = null;
             vm.showConfirmSubmit = false;
@@ -858,18 +858,33 @@
             function submit() {
                 if ($scope.model && $scope.model.submit) {
                     // check if any compositions has been removed
-                    vm.compositionRemoved = false;
+                    var compositionRemoved = false;
                     for (var i = 0; oldModel.compositeContentTypes.length > i; i++) {
                         var oldComposition = oldModel.compositeContentTypes[i];
                         if (_.contains($scope.model.compositeContentTypes, oldComposition) === false) {
-                            vm.compositionRemoved = true;
+                            compositionRemoved = true;
                         }
                     }
                     /* submit the form if there havne't been removed any composition
         or the confirm checkbox has been checked */
-                    if (!vm.compositionRemoved || vm.allowSubmit) {
-                        $scope.model.submit($scope.model);
+                    if (compositionRemoved) {
+                        vm.allowSubmit = false;
+                        var dialog = {
+                            view: 'views/common/infiniteeditors/compositions/overlays/confirmremove.html',
+                            submitButtonLabelKey: 'general_ok',
+                            closeButtonLabelKey: 'general_cancel',
+                            submit: function submit(model) {
+                                $scope.model.submit($scope.model);
+                                overlayService.close();
+                            },
+                            close: function close() {
+                                overlayService.close();
+                            }
+                        };
+                        overlayService.open(dialog);
+                        return;
                     }
+                    $scope.model.submit($scope.model);
                 }
             }
             function close() {
@@ -1807,7 +1822,7 @@
                         $scope.model.target.url = resp.url;
                     });
                 }
-            } else if ($scope.model.target.url.length) {
+            } else if ($scope.model.target.url && $scope.model.target.url.length) {
                 // a url but no id/udi indicates an external link - trim the url to remove the anchor/qs
                 // only do the substring if there's a # or a ?
                 var indexOfAnchor = $scope.model.target.url.search(/(#|\?)/);
@@ -2295,7 +2310,8 @@
                 $scope.gotoFolder({
                     id: $scope.lastOpenedNode,
                     name: 'Media',
-                    icon: 'icon-folder'
+                    icon: 'icon-folder',
+                    path: node.path
                 });
                 return true;
             } else {
@@ -4761,7 +4777,8 @@
         }
         function createBlank(docType) {
             $location.path('/content/content/edit/' + $scope.currentNode.id).search('doctype', docType.alias).search('create', 'true')    /* when we create a new node we want to make sure it uses the same 
-    language as what is selected in the tree */.search('cculture', mainCulture);
+    language as what is selected in the tree */.search('cculture', mainCulture)    /* when we create a new node we must make sure that any previously 
+    used blueprint is reset */.search('blueprintId', null);
             close();
         }
         function createOrSelectBlueprintIfAny(docType) {
@@ -4794,6 +4811,10 @@
         };
         $scope.closeDialog = function (showMenu) {
             navigationService.hideDialog(showMenu);
+        };
+        $scope.editContentType = function () {
+            $location.path('/settings/documenttypes/edit/' + $scope.contentTypeId).search('view', 'permissions');
+            close();
         };
         $scope.createBlank = createBlank;
         $scope.createOrSelectBlueprintIfAny = createOrSelectBlueprintIfAny;
@@ -4889,7 +4910,7 @@
                         location = '/content/content/edit/' + $scope.currentNode.parentId;
                     $location.path(location);
                 }
-                navigationService.hideMenu();
+                $scope.success = true;
             }, function (err) {
                 toggleDeleting(false);
                 //check if response is ysod
@@ -4901,6 +4922,9 @@
         };
         $scope.cancel = function () {
             toggleDeleting(false);
+            $scope.close();
+        };
+        $scope.close = function () {
             navigationService.hideDialog();
         };
     }
@@ -4929,7 +4953,7 @@
         $scope.page = $routeParams.page;
         $scope.isNew = infiniteMode ? $scope.model.create : $routeParams.create;
         //load the default culture selected in the main tree if any
-        $scope.culture = $routeParams.cculture ? $routeParams.cculture : $routeParams.mculture === 'true';
+        $scope.culture = $routeParams.cculture ? $routeParams.cculture : $routeParams.mculture;
         //Bind to $routeUpdate which will execute anytime a location changes but the route is not triggered.
         //This is so we can listen to changes on the cculture parameter since that will not cause a route change
         //and then we can pass in the updated culture to the editor.
@@ -10232,7 +10256,7 @@
                         location = '/media/media/edit/' + $scope.currentNode.parentId;
                     $location.path(location);
                 }
-                navigationService.hideMenu();
+                $scope.success = true;
             }, function (err) {
                 $scope.currentNode.loading = false;
                 $scope.busy = false;
@@ -10243,7 +10267,7 @@
                 }
             });
         };
-        $scope.cancel = function () {
+        $scope.close = function () {
             navigationService.hideDialog();
         };
     }
@@ -11588,7 +11612,7 @@
  * @description
  * The controller for the member creation dialog
  */
-    function memberCreateController($scope, memberTypeResource, iconHelper, navigationService) {
+    function memberCreateController($scope, memberTypeResource, iconHelper, navigationService, $location) {
         memberTypeResource.getTypes($scope.currentNode.id).then(function (data) {
             $scope.allowedTypes = iconHelper.formatContentTypeIcons(data);
         });
@@ -11596,7 +11620,8 @@
             var showMenu = true;
             navigationService.hideDialog(showMenu);
         };
-        $scope.hideActions = function () {
+        $scope.createMemberType = function (memberType) {
+            $location.path('/member/member/edit/' + $scope.currentNode.id).search('doctype', memberType.alias).search('create', 'true');
             navigationService.hideNavigation();
         };
     }
@@ -18987,7 +19012,7 @@
     'use strict';
     //this controller simply tells the dialogs service to open a mediaPicker window
     //with a specified callback, this callback will receive an object with a selection on it
-    angular.module('umbraco').controller('Umbraco.PropertyEditors.MediaPickerController', function ($scope, entityResource, mediaHelper, $timeout, userService, localizationService, editorService) {
+    angular.module('umbraco').controller('Umbraco.PropertyEditors.MediaPickerController', function ($scope, entityResource, mediaHelper, $timeout, userService, localizationService, editorService, angularHelper) {
         var vm = {
             labels: { mediaPicker_deletedItem: '' }    //check the pre-values for multi-picker
         };
@@ -19057,6 +19082,9 @@
             $scope.model.value = $scope.ids.join();
         }
         ;
+        function setDirty() {
+            angularHelper.getCurrentForm($scope).$setDirty();
+        }
         function reloadUpdatedMediaItems(updatedMediaNodes) {
             // because the images can be edited through the media picker we need to 
             // reload. We only reload the images that is already picked but has been updated.
@@ -19104,6 +19132,7 @@
             $scope.mediaItems.splice(index, 1);
             $scope.ids.splice(index, 1);
             sync();
+            setDirty();
         };
         $scope.editItem = function (item) {
             var mediaEditor = {
@@ -19157,6 +19186,7 @@
                     });
                     sync();
                     reloadUpdatedMediaItems(model.updatedMediaNodes);
+                    setDirty();
                 },
                 close: function close(model) {
                     editorService.close();
@@ -19166,10 +19196,11 @@
             editorService.mediaPicker(mediaPicker);
         };
         $scope.sortableOptions = {
-            disabled: !$scope.isMultiPicker,
+            disabled: !multiPicker,
             items: 'li:not(.add-wrapper)',
             cancel: '.unsortable',
             update: function update(e, ui) {
+                setDirty();
                 var r = [];
                 // TODO: Instead of doing this with a half second delay would be better to use a watch like we do in the
                 // content picker. Then we don't have to worry about setting ids, render models, models, we just set one and let the
@@ -19566,7 +19597,7 @@
             var linkPicker = {
                 currentTarget: target,
                 dataTypeKey: $scope.model.dataTypeKey,
-                ignoreUserStartNodes: $scope.model.config.ignoreUserStartNodes,
+                ignoreUserStartNodes: $scope.model.config && $scope.model.config.ignoreUserStartNodes ? $scope.model.config.ignoreUserStartNodes : '0',
                 submit: function submit(model) {
                     if (model.target.url || model.target.anchor) {
                         // if an anchor exists, check that it is appropriately prefixed
@@ -20039,24 +20070,22 @@
             function createNode(scaffold, fromNcEntry) {
                 var node = angular.copy(scaffold);
                 node.key = fromNcEntry && fromNcEntry.key ? fromNcEntry.key : String.CreateGuid();
-                for (var v = 0; v < node.variants.length; v++) {
-                    var variant = node.variants[v];
-                    for (var t = 0; t < variant.tabs.length; t++) {
-                        var tab = variant.tabs[t];
-                        for (var p = 0; p < tab.properties.length; p++) {
-                            var prop = tab.properties[p];
-                            prop.propertyAlias = prop.alias;
-                            prop.alias = $scope.model.alias + '___' + prop.alias;
-                            // Force validation to occur server side as this is the
-                            // only way we can have consistency between mandatory and
-                            // regex validation messages. Not ideal, but it works.
-                            prop.validation = {
-                                mandatory: false,
-                                pattern: ''
-                            };
-                            if (fromNcEntry && fromNcEntry[prop.propertyAlias]) {
-                                prop.value = fromNcEntry[prop.propertyAlias];
-                            }
+                var variant = node.variants[0];
+                for (var t = 0; t < variant.tabs.length; t++) {
+                    var tab = variant.tabs[t];
+                    for (var p = 0; p < tab.properties.length; p++) {
+                        var prop = tab.properties[p];
+                        prop.propertyAlias = prop.alias;
+                        prop.alias = $scope.model.alias + '___' + prop.alias;
+                        // Force validation to occur server side as this is the
+                        // only way we can have consistency between mandatory and
+                        // regex validation messages. Not ideal, but it works.
+                        prop.validation = {
+                            mandatory: false,
+                            pattern: ''
+                        };
+                        if (fromNcEntry && fromNcEntry[prop.propertyAlias]) {
+                            prop.value = fromNcEntry[prop.propertyAlias];
                         }
                     }
                 }
@@ -23035,7 +23064,7 @@
     'use strict';
     (function () {
         'use strict';
-        function UserGroupsController($scope, $timeout, $location, $filter, userService, userGroupsResource, formHelper, localizationService, listViewHelper) {
+        function UserGroupsController($scope, $timeout, $location, $filter, userService, userGroupsResource, formHelper, localizationService, listViewHelper, overlayService) {
             var vm = this;
             vm.userGroups = [];
             vm.selection = [];
@@ -23106,14 +23135,30 @@
             }
             function deleteUserGroups() {
                 if (vm.selection.length > 0) {
-                    localizationService.localize('defaultdialogs_confirmdelete').then(function (value) {
-                        var confirmResponse = confirm(value);
-                        if (confirmResponse === true) {
-                            userGroupsResource.deleteUserGroups(vm.selection).then(function (data) {
-                                clearSelection();
-                                onInit();
-                            }, angular.noop);
-                        }
+                    localizationService.localizeMany([
+                        'general_delete',
+                        'defaultdialogs_confirmdelete',
+                        'general_cancel',
+                        'contentTypeEditor_yesDelete'
+                    ]).then(function (data) {
+                        var overlay = {
+                            title: data[0],
+                            content: data[1] + '?',
+                            closeButtonLabel: data[2],
+                            submitButtonLabel: data[3],
+                            submitButtonStyle: 'danger',
+                            close: function close() {
+                                overlayService.close();
+                            },
+                            submit: function submit() {
+                                userGroupsResource.deleteUserGroups(_.pluck(vm.selection, 'id')).then(function (data) {
+                                    clearSelection();
+                                    onInit();
+                                }, angular.noop);
+                                overlayService.close();
+                            }
+                        };
+                        overlayService.open(overlay);
                     });
                 }
             }

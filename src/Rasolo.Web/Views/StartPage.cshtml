@@ -9,8 +9,11 @@
 			<div class="hero-header">
 				<h1>@Model.Title</h1>
 			</div>
-			<img src="@Model.HeroImage.DomainWithUrl" id="hero-img" data-hero-type="start-page" alt="@Model.HeroImage.AltText" />
-			<noscript><img src="@Model.HeroImage.DomainWithUrl"></noscript>
+			@if (Model.ShowHeroImage)
+			{
+				<img src="@Model.HeroImage.DomainWithUrl" id="hero-img" data-hero-type="start-page" alt="@Model.HeroImage.AltText" />
+				<noscript><img src="@Model.HeroImage.DomainWithUrl"></noscript>
+			}
 		</div>
 	</section>
 </div>
