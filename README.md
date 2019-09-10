@@ -63,12 +63,15 @@ Private fields are named as: _camelCase.
 ## Deployment
 
 * Make sure code works locally, all tests builds and the site works.
-* Tag develop with release/{versionnumber}
-* Create a branch release/{versionnumber} from develop
-  * Bump the version number in the following files depending if it is major/minor:
+* Bump the version number in the following files depending if it is major/minor/build:
+
   * Frontend/package-lock.json
+
   * Frontend/package.json
+
   * Rasolo.Web/Properties/AssemblyInfo.cs
+* Tag develop with release number.
+* Create a branch release/{versionnumber} from develop
 * Merge release branch into stage using a new commit
 * Make sure everything works with the stage database
 * Merge stage into master
