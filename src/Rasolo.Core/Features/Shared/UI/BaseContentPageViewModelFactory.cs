@@ -8,6 +8,8 @@ namespace Rasolo.Core.Features.Shared.UI
 		{
 			viewModel.Title = viewModel.Title ?? string.Empty;
 			viewModel.MainBody = viewModel.MainBody ?? new HtmlString(string.Empty);
+			viewModel.ShowHeroImage = viewModel.HeroImage == null ? false : true;
+
 			return viewModel;
 		}
 	}

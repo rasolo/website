@@ -151,8 +151,8 @@
     .article h1 {
       font-size: 4vw; }
     .article .article__content {
-      margin: 3% auto;
-      max-width: 900px; }
+      margin: auto;
+      margin-left: 16%; }
       .article .article__content p {
         font-size: 18px;
         max-width: 80%; } }

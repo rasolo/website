@@ -56,18 +56,40 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		public void Given_CreateModel_When_HeroImageGiven_ThenReturnViewModelWithHeroImage()
 		{
+			var page = new Core.Features.Shared.UI.BaseContentPage();
+			var viewModel = SetUpGetHeroImage(page);
+
+			viewModel.HeroImage.ShouldBe(page.HeroImage);
+		}
+
+		Core.Features.Shared.UI.BaseContentPage SetUpGetHeroImage(Core.Features.Shared.UI.BaseContentPage page)
+		{
 			var imageMock = new Mock<IPublishedProperty>();
 			imageMock.Setup(c => c.Alias).Returns(BaseContentPagePropertyAlias.HeroImage);
 			imageMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
 			imageMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(SetupImage().Object);
 			var contentModel = SetupContent(typeof(TModel).Name, imageMock);
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			var page = new Core.Features.Shared.UI.BaseContentPage();
 			umbracoMapper.Map(contentModel.Content, page);
 
-			var viewModel = this._sut.CreateModel(page);
+			return this._sut.CreateModel(page);
+		}
 
-			viewModel.HeroImage.ShouldBe(page.HeroImage);
+		[Test]
+		public void Given_CreateModel_When_HeroImageGiven_ThenReturnViewModelWithShowHeroImageTrue()
+		{
+			var viewModel = SetUpGetHeroImage(new Core.Features.Shared.UI.BaseContentPage());
+
+			viewModel.ShowHeroImage.ShouldBe(true);
+		}
+
+		[Test]
+		public void Given_CreateModel_When_HeroImageNotGiven_ThenReturnViewModelWithShowHeroImageFalse()
+		{
+			var contentPage = new TModel() { HeroImage = null };
+			var viewModel = this._sut.CreateModel(contentPage);
+
+			viewModel.ShowHeroImage.ShouldBe(false);
 		}
 
 		[Test]

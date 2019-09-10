@@ -12,5 +12,6 @@ namespace Rasolo.Core.Features.Shared.UI
 		IHtmlString TeaserPreamble { get; }
 		MediaFile TeaserMedia { get; }
 		MediaFile HeroImage { get; }
+		bool ShowHeroImage { get; set; }
 	}
 }
