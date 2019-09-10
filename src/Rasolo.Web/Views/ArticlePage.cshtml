@@ -9,3 +9,13 @@
 		@Model.MainBody
 	</div>
 </div>
+
+@if (Model.ShowHeroImage)
+{
+	<style>
+		html {
+			background-image: url(@Model.HeroImage.DomainWithUrl);
+			background-repeat: no-repeat;
+		}
+	</style>
+}

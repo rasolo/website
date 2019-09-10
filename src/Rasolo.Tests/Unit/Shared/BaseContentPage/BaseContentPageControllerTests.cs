@@ -8,6 +8,9 @@ using Rasolo.Core.Features.Shared.Composers;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 using Umbraco.Core.Models.PublishedContent;
+using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
+using Shouldly;
+using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
@@ -28,7 +31,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Index_OnRun_ViewModelFactoryIsCalled()
+		public void Given_Controller_When_IndexAction_ViewModelFactoryIsCalled()
 		{
 			var property = this.SetupPropertyValue("whatever", "whatever");
 			var content = this.SetupContent(typeof(TContentPage).Name, property);
@@ -39,7 +42,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Index_OnRun_ThenReturnsPageViewModel()
+		public void Given_Controller_When_IndexAction_ThenReturnsPageViewModel()
 		{
 			var umbracoServiceMock = new Mock<IUmbracoService>();
 			var property = this.SetupPropertyValue("whatever", "whatever");
@@ -49,26 +52,26 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var returnedViewModel = (TContentPage)((ViewResult)_sut.Index(content)).Model;
 
-			Assert.AreEqual(this._mockedViewModel.GetType(), returnedViewModel.GetType());
+			this._mockedViewModel.GetType().ShouldBe(returnedViewModel.GetType());
 		}
 
 		[Test]
 		[TestCase("Page name", "Page name")]
 		[TestCase("Another Page name", "Another Page name")]
-		public void GivenPageHasName_WhenIndexAction_ThenReturnViewModelWithPageName(string name, string expected)
+		public void Given_PageHasName_When_IndexAction_ThenReturnViewModelWithPageName(string name, string expected)
 		{
 			Content.SetupGet(x => x.Name).Returns(name);
 			this._mockedViewModel.Name = name;
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(new ContentModel(Content.Object))).Model;
 
-			Assert.AreEqual(expected, viewModel.Name);
+			viewModel.Name.ShouldBe(expected);
 		}
 
 		[Test]
 		[TestCase("Page title", "Page title")]
 		[TestCase("Another Page title", "Another Page title")]
-		public void GivenPageHasTitle_WhenIndexAction_ThenReturnViewModelWithPageTitle(string title, string expected)
+		public void Given_PageHasTitle_When_IndexAction_ThenReturnViewModelWithPageTitle(string title, string expected)
 		{
 			var property = SetupPropertyValue("title", title);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
@@ -76,13 +79,13 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.Title);
+			viewModel.Title.ShouldBe(expected);
 		}
 
 		[Test]
 		[TestCase("Main body", "Main body")]
 		[TestCase("Another Main body", "Another Main body")]
-		public void GivenPageHasMainBody_WhenIndexAction_ThenReturnViewModelWithMainBody(string mainBody, string expected)
+		public void Given_PageHasMainBody_When_IndexAction_ThenReturnViewModelWithMainBody(string mainBody, string expected)
 		{
 			var property = SetupPropertyValue("mainBody", mainBody);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
@@ -90,13 +93,13 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.MainBody.ToString());
+			viewModel.MainBody.ToString().ShouldBe(expected);
 		}
 
 		[Test]
 		[TestCase("Teaser heading", "Teaser heading")]
 		[TestCase("Another Teaser heading", "Another Teaser heading")]
-		public void GivenPageHasTeaserHeading_WhenIndexAction_ThenReturnViewModelWithTeaserHeading(string teaserHeading, string expected)
+		public void Given_PageHasTeaserHeading_When_IndexAction_ThenReturnViewModelWithTeaserHeading(string teaserHeading, string expected)
 		{
 			var property = SetupPropertyValue("teaserHeading", teaserHeading);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
@@ -104,13 +107,13 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.TeaserHeading);
+			viewModel.TeaserHeading.ShouldBe(expected);
 		}
 
 		[Test]
 		[TestCase("My preamble text", "My preamble text")]
 		[TestCase("Another preamble text", "Another preamble text")]
-		public void GivenPageHasTeaserPreamble_WhenIndexAction_ThenReturnViewModelWithTeaserPreamble(string teaserPreamble, string expected)
+		public void Given_PageHasTeaserPreamble_When_IndexAction_ThenReturnViewModelWithTeaserPreamble(string teaserPreamble, string expected)
 		{
 			var property = SetupPropertyValue("teaserPreamble", teaserPreamble);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
@@ -118,14 +121,13 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			var viewModel = (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
 
-			Assert.AreEqual(expected, viewModel.TeaserPreamble.ToString());
+			viewModel.TeaserPreamble.ToString().ShouldBe(expected);
 		}
 
-		[Test]
-		public void GivenPageHasTeaserMedia_WhenIndexAction_ThenReturnViewModelWithTeaserMedia()
+		TContentPage TestMediaReturnViewModel(string propertyAlias)
 		{
 			var mainImageMock = new Mock<IPublishedProperty>();
-			mainImageMock.Setup(c => c.Alias).Returns("teaserMedia");
+			mainImageMock.Setup(c => c.Alias).Returns(propertyAlias);
 			mainImageMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
 			mainImageMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(SetupImage().Object);
 			//This will automatically set the DomainWithUrl property for the media file. The url will be appended to this domain for the property.
@@ -134,19 +136,38 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 
 			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>())).Returns(this._sut.MapModel(contentModel.Content));
 
-			var viewModel = (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
+			return (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
+		}
 
-			Assert.IsNotNull(viewModel.TeaserMedia);
-			Assert.AreEqual(2000, viewModel.TeaserMedia.Id);
-			Assert.AreEqual("/media/test.jpg", viewModel.TeaserMedia.Url);
-			Assert.AreEqual("http://www.mysite.com/media/test.jpg", viewModel.TeaserMedia.DomainWithUrl);
-			Assert.AreEqual("Test image", viewModel.TeaserMedia.Name);
-			Assert.AreEqual("Test image alt text", viewModel.TeaserMedia.AltText);
-			Assert.AreEqual(100, viewModel.TeaserMedia.Width);
-			Assert.AreEqual(200, viewModel.TeaserMedia.Height);
-			Assert.AreEqual(1000, viewModel.TeaserMedia.Size);
-			Assert.AreEqual(".jpg", viewModel.TeaserMedia.FileExtension);
-			Assert.AreEqual("Image", viewModel.TeaserMedia.DocumentTypeAlias);
+		[Test]
+		public void Given_PageHasTeaserMedia_When_IndexAction_ThenReturnViewModelWithTeaserMedia()
+		{
+			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.TeaserMedia);
+
+			MediaFileShouldBe(viewModel.TeaserMedia);
+		}
+
+		void MediaFileShouldBe(MediaFile mediaFile)
+		{
+			mediaFile.ShouldNotBeNull();
+			mediaFile.Id.ShouldBe(2000);
+			mediaFile.Url.ShouldBe("/media/test.jpg");
+			mediaFile.DomainWithUrl.ShouldBe("http://www.mysite.com/media/test.jpg");
+			mediaFile.Name.ShouldBe("Test image");
+			mediaFile.AltText.ShouldBe("Test image alt text");
+			mediaFile.Width.ShouldBe(100);
+			mediaFile.Height.ShouldBe(200);
+			mediaFile.Size.ShouldBe(1000);
+			mediaFile.FileExtension.ShouldBe(".jpg");
+			mediaFile.DocumentTypeAlias.ShouldBe("Image");
+		}
+
+		[Test]
+		public void Given_PageHasHeroImage_When_IndexAction_ThenReturnViewModelWithHeroImage()
+		{
+			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.HeroImage);
+
+			MediaFileShouldBe(viewModel.HeroImage);
 		}
 	}
 }

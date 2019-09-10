@@ -11,5 +11,7 @@ namespace Rasolo.Core.Features.Shared.UI
 		public virtual string TeaserHeading { get; set; }
 		public virtual IHtmlString TeaserPreamble { get; set; }
 		public MediaFile TeaserMedia { get; set; }
+		public MediaFile HeroImage { get; set; }
+		public bool ShowHeroImage { get; set; }
 	}
 }
