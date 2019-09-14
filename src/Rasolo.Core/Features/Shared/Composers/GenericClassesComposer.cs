@@ -14,6 +14,7 @@ namespace Rasolo.Core.Features.Shared.Composers
 		{
 			composition.Register<IArticlePageViewModelFactory, ArticlePageViewModelFactory>();
 			composition.Register<IBaseContentPageViewModelFactory<BlogPage.BlogPage>, BaseContentPageViewModelFactory<BlogPage.BlogPage>>();
+			composition.Register<IBaseContentPageViewModelFactory<BlogPostPage.BlogPostPage>, BaseContentPageViewModelFactory<BlogPostPage.BlogPostPage>>();
 			composition.Register<IGlobalSettingsPageViewModelFactory, GlobalSettingsPagePageViewModelFactory>();
 			composition.Register<IStartPageViewModelFactory, StartPageViewModelFactory>();
 			composition.Register<IUmbracoService, UmbracoService>();
