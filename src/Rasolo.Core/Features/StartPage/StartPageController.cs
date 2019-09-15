@@ -1,25 +1,12 @@
-﻿using Rasolo.Core.Features.Shared.Controllers;
-using System.Web.Mvc;
-using Umbraco.Web.Models;
+﻿using Rasolo.Core.Features.Shared.UI;
 using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.StartPage
 {
-	public class StartPageController : BasePageController<StartPage>
+	public class StartPageController : BaseContentPageController<StartPage>
 	{
-		private readonly IStartPageViewModelFactory _startPageViewModelFactory;
-
-		public StartPageController(IUmbracoMapper umbracoMapper, IStartPageViewModelFactory startPageViewModelFactory) : base(umbracoMapper)
+		public StartPageController(IUmbracoMapper umbracoMapper, IStartPageViewModelFactory viewModelFactory) : base(umbracoMapper, viewModelFactory)
 		{
-			_startPageViewModelFactory = startPageViewModelFactory;
-		}
-
-
-		public override ActionResult Index(ContentModel model)
-		{
-			var startPageModel = this.MapModel(model.Content);
-			startPageModel = _startPageViewModelFactory.CreateModel(startPageModel);
-			return View(startPageModel);
 		}
 	}
 }

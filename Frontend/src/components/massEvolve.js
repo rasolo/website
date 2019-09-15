@@ -1,9 +1,9 @@
 module.exports = function () {
 
-    if(getPokeSelect() === undefined) {
+    if (getPokeSelect() === undefined) {
         return;
     }
-    
+
     let pokemon = require('./pokemon.js');
 
     (function addPokemonToSelect() {

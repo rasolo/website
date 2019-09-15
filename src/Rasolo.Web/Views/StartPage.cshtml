@@ -9,42 +9,39 @@
 			<div class="hero-header">
 				<h1>@Model.Title</h1>
 			</div>
-			<img src="@Model.HeroImage.DomainWithUrl" id="hero-img" data-hero-type="start-page" alt="@Model.HeroImage.AltText"/>
-			<noscript><img src="@Model.HeroImage.DomainWithUrl"></noscript>
+			@if (Model.ShowHeroImage)
+			{
+				<img src="@Model.HeroImage.DomainWithUrl" id="hero-img" data-hero-type="start-page" alt="@Model.HeroImage.AltText" />
+				<noscript><img src="@Model.HeroImage.DomainWithUrl"></noscript>
+			}
 		</div>
 	</section>
-	
-	<div class="posts">
-		<h2>Latest posts</h2>
-		<div class="counters">
-        
-			<div class="section">
-				<span class="post-meta">May 17, 2019</span>
-				<h3>CSS grid3</h3>
-				<a class="post-link" href="#">Open</a>
-			</div>
-        
-			<div class="section">
-				<span class="post-meta">May 17, 2019</span>
-				<h3>CSS grid2</h3>
-				<a class="post-link" href="#">Open</a>
-			</div>
-        
-			<div class="section">
-				<span class="post-meta">May 17, 2019</span>
-				<h3>CSS grid</h3>
-				<a class="post-link" href="#">Open</a>
-			</div>
-        
-			<div class="section">
-				<span class="post-meta">May 17, 2019</span>
-				<h3>Hello world</h3>
-				<a class="post-link" href="#">Open</a>
-			</div>
-        
-      
-		</div>
-		<div class="spacer"></div>
+</div>
 
+<div class="posts-container">
+	<h2>Latest posts</h2>
+	<div class="posts-container__posts">
+		<a href="#">
+			<article class="posts__post">
+				<img src="https://picsum.photos/500/500" />
+				<p class="post__date">2019-06-07</p>
+				<h4>Sourcetree VS Git Kraken VS Fork</h4>
+			</article>
+		</a>
+		<a href="#">
+			<article class="posts__post">
+				<img src="https://picsum.photos/500/501" />
+				<p class="post__date">2019-05-06</p>
+				<h4>How to deploy Umbraco 8 to Azure</h4>
+			</article>
+		</a>
+		<a href="#">
+			<article class="posts__post">
+				<img src="https://picsum.photos/500/502" />
+				<p class="post__date">2019-04-06</p>
+				<h4>Huel VS Jimmy Joy VS Queal</h4>
+			</article>
+		</a>
 	</div>
+	<div class="spacer"></div>
 </div>
