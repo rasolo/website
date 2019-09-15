@@ -56,7 +56,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		[TestCase("The home text", "The home text")]
 		[TestCase("Another home text", "Another home text")]
-		public void Given_CreateModel_When_HomeTextGiven_ThenReturnViewModelWithHomeText(string homeText, string expected)
+		public void Given_CreateModel_When_HomeTextGiven_Then_ReturnViewModelWithHomeText(string homeText, string expected)
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, homeText));
 
@@ -66,7 +66,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		[TestCase(null, "")]
 		[TestCase("", "")]
-		public void Given_CreateModel_When_HomeTextNullOrEmpty_ThenReturnViewModelWithHomeTextEmptyString(string homeText, string expected)
+		public void Given_CreateModel_When_HomeTextNullOrEmpty_Then_ReturnViewModelWithHomeTextEmptyString(string homeText, string expected)
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, homeText));
 
@@ -81,7 +81,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		}
 
 		[Test]
-		public void Given_CreateModel_When_GlobalSettingsPageCookiesNoticeTextGiven_ThenReturnViewmodelWithCookiesNoticeText()
+		public void Given_CreateModel_When_GlobalSettingsPageCookiesNoticeTextGiven_Then_ReturnViewmodelWithCookiesNoticeText()
 		{
 			var viewModel = SetUpCookiesNoticeText(CookiesNoticeText);
 
@@ -91,7 +91,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 
 		//If the cookie is null, it means that the user has not accepted it, therefore the cookie notice should be shown.
 		[Test]
-		public void Given_CreateModel_When_CookiesNoticeCookieNull_ThenReturnViewModelWithShowCookieNoticeTrue()
+		public void Given_CreateModel_When_CookiesNoticeCookieNull_Then_ReturnViewModelWithShowCookieNoticeTrue()
 		{
 			var viewModel = SetUp(httpCookieCollection: null);
 
@@ -100,7 +100,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 
 		//If the cookie is already set/not null, it means that the user has accepted it, therefore the cookie notice should not be shown.
 		[Test]
-		public void Given_CreateModel_When_CookiesNoticeCookieSet_ThenReturnViewModelWithShowCookieNoticeFalse()
+		public void Given_CreateModel_When_CookiesNoticeCookieSet_Then_ReturnViewModelWithShowCookieNoticeFalse()
 		{
 			var httpCookieCollectiWhen_ = new HttpCookieCollection
 			{
@@ -115,7 +115,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		[TestCase(null, "")]
 		[TestCase("", "")]
-		public void Given_CreateModel_When_CookiesNoticeTextNullOrEmpty_ThenReturnViewModelWithCookiesNoticeTextEmptyString(string cookiesNoticeText, string expected)
+		public void Given_CreateModel_When_CookiesNoticeTextNullOrEmpty_Then_ReturnViewModelWithCookiesNoticeTextEmptyString(string cookiesNoticeText, string expected)
 		{
 			var viewModel = SetUpCookiesNoticeText(cookiesNoticeText);
 
@@ -125,7 +125,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		[TestCase("The cookies notice text", "The cookies notice text")]
 		[TestCase("Another cookies notice text", "Another cookies notice text")]
-		public void Given_CreateModel_When_CookiesNoticeTextGiven_ThenReturnViewModelWithCookiesNoticeText(string cookiesNoticeText, string expected)
+		public void Given_CreateModel_When_CookiesNoticeTextGiven_Then_ReturnViewModelWithCookiesNoticeText(string cookiesNoticeText, string expected)
 		{
 			var viewModel = SetUpCookiesNoticeText(cookiesNoticeText);
 
@@ -135,7 +135,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		[TestCase("The cookies accept text", "The cookies accept text")]
 		[TestCase("Another cookies accept text", "Another cookies accept text")]
-		public void Given_CreateModel_When_CookiesAcceptTextGiven_ThenReturnViewModelWithCookiesAcceptText(string cookiesAcceptText, string expected)
+		public void Given_CreateModel_When_CookiesAcceptTextGiven_Then_ReturnViewModelWithCookiesAcceptText(string cookiesAcceptText, string expected)
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesAcceptTextAlias, cookiesAcceptText));
 
@@ -145,7 +145,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		[TestCase(null, "")]
 		[TestCase("", "")]
-		public void Given_CreateModel_When_CookiesAcceptTextNullOrEmpty_ThenReturnViewModelWithCookiesAcceptTextEmptyString(string cookiesAcceptText, string expected)
+		public void Given_CreateModel_When_CookiesAcceptTextNullOrEmpty_Then_ReturnViewModelWithCookiesAcceptTextEmptyString(string cookiesAcceptText, string expected)
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesAcceptTextAlias, cookiesAcceptText));
 
@@ -154,7 +154,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 
 		[Test]
 		[TestCase(null, "/")]
-		public void Given_CreateModel_When_CookiesLinkNull_ThenReturnViewModelWithCookiesLinkPointingToHome(Link cookiesLink, string expected)
+		public void Given_CreateModel_When_CookiesLinkNull_Then_ReturnViewModelWithCookiesLinkPointingToHome(Link cookiesLink, string expected)
 		{
 			var viewModel = SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesLinkAlias, cookiesLink));
 

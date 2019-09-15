@@ -20,7 +20,7 @@ namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 		}
 
 		[Test]
-		public void Given_Controller_When_IndexAction_GlobalSettingsPageViewModelFactoryIsCalled()
+		public void Given_Controller_When_IndexAction_Then_GlobalSettingsPageViewModelFactoryIsCalled()
 		{
 			this._sut.Index();
 			this._globalSettingsPageViewModelFactory.Verify(x => x.CreateModel(It.IsAny<HttpCookieCollection>()), Times.Exactly(1));
