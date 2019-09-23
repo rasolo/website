@@ -8,7 +8,7 @@
 
         vm.page = {
             title: 'uSync 8',
-            description: '8.1.0',
+            description: '8.1.x',
             navigation: [
                 {
                     'name': 'uSync',
@@ -41,7 +41,7 @@
             .then(function (result) {
 
                 if (result.data.AddOnString.length > 0) {
-                    vm.page.description += ' + ' + result.data.AddOnString;
+                    vm.page.description = 'v' + result.data.Version + ' + ' + result.data.AddOnString;
                 }
                 vm.addOns = result.data.AddOns;
 
