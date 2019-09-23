@@ -254,10 +254,10 @@
       <HintPath>..\..\packages\UmbracoCms.Web.8.1.4\lib\net472\Umbraco.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="Zone.UmbracoMapper.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoMapper.4.2.0\lib\Zone.UmbracoMapper.Common.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoMapper.4.2.1\lib\Zone.UmbracoMapper.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Zone.UmbracoMapper.V8, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoMapper.4.2.0\lib\Zone.UmbracoMapper.V8.dll</HintPath>
+    <Reference Include="Zone.UmbracoMapper.V8, Version=4.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UmbracoMapper.4.2.1\lib\Zone.UmbracoMapper.V8.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
