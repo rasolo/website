@@ -1,12 +1,25 @@
-﻿using Rasolo.Core.Features.Shared.UI;
+﻿using System.Web.Http;
+using System.Web.Mvc;
+using Rasolo.Core.Features.Shared.UI;
+using Umbraco.Core;
+using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.BlogPage
 {
 	public class BlogPageController : BaseContentPageController<BlogPage>
 	{
-		public BlogPageController(IUmbracoMapper umbracoMapper, IBaseContentPageViewModelFactory<BlogPage> viewModelFactory) : base(umbracoMapper, viewModelFactory)
+		private readonly IBlogPageViewModelFactory _viewModelFactory;
+
+		public BlogPageController(IUmbracoMapper umbracoMapper, IBlogPageViewModelFactory viewModelFactory) : base(umbracoMapper, viewModelFactory)
 		{
+			_viewModelFactory = viewModelFactory;
+		}
+
+		public new ActionResult Index(ContentModel model)
+		{
+			var blogPage = this._viewModelFactory.CreateModel(model);
+			return View(blogPage);
 		}
 	}
 }

@@ -1,29 +1,34 @@
-﻿using Rasolo.Core.Features.Shared.UI;
+﻿using System.Collections.Generic;
+using Rasolo.Core.Features.Shared.UI;
 using System.Linq;
 using Umbraco.Web.Models;
+using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.BlogPage
 {
 	public class BlogPageViewModelFactory : BaseContentPageViewModelFactory<BlogPage>, IBlogPageViewModelFactory
 	{
-		public override BlogPage CreateModel(BlogPage viewModel)
-		{
-			viewModel = base.CreateModel(viewModel);
+		private readonly IUmbracoMapper _umbracoMapper;
 
-			//viewModel.BlogPosts = viewModel.
-			return viewModel;
+		public BlogPageViewModelFactory(IUmbracoMapper umbracoMapper)
+		{
+			_umbracoMapper = umbracoMapper;
 		}
 
 		public BlogPage CreateModel(ContentModel viewModel)
 		{
-		//	blogPage = base.CreateModel(blogPage);
-			//blogPage.BlogPosts = viewModel.Content.Children
-			//viewModel.Content.Children.wh
+			var blogPage = new BlogPage();
+			blogPage.BlogPosts = new List<BlogPostPage.BlogPostPage>();
+			foreach (var child in viewModel.Content.Children)
+			{
+				var blogPost = new BlogPostPage.BlogPostPage();
+				this._umbracoMapper.Map(child, blogPost);
 
-			return new BlogPage();
-
+				blogPage.BlogPosts.Add(blogPost);
+			}
+			return blogPage;
 		}
 
-	
+
 	}
 }

@@ -4,7 +4,11 @@ using Rasolo.Tests.Unit.Shared.BaseContentPage;
 using Shouldly;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using Rasolo.Core.Features.Shared.Composers;
+using Rasolo.Core.Features.Shared.Constants;
+using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 
@@ -17,36 +21,36 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 		public override void SetUp()
 		{
 			base.SetUp();
-			this._sut = new Core.Features.BlogPage.BlogPageViewModelFactory();
+			this._sut = new Core.Features.BlogPage.BlogPageViewModelFactory(new UmbracoMapperComposer().SetupMapper());
 		}
 
-		[Test]
-		public void Given_CreateModelAndPageHasBlogPosts_When_ContentModelGiven_Then_ReturnViewModelWithBlogPosts()
+			[Test]
+			[TestCase("The main body of first blog post", "The main body of first blog post", 
+				"The main body of second blog post", "The main body of second blog post")]
+			[TestCase("Another the main body of first blog post", "Another the main body of first blog post",
+				"Another the body of second blog post", "Another the body of second blog post")]
+		public void Given_CreateModelAndPageHasBlogPosts_When_ContentModelGiven_Then_ReturnViewModelWithBlogPosts(string mainBodyFirstBlogPost, string expectedFirstBlogPostMainBody, string mainBodySecondBlogPost, string expectedSecondBlogPostMainBody)
 		{
-			var blogPosts = new List<Core.Features.BlogPostPage.BlogPostPage>()
-			{
-				new Core.Features.BlogPostPage.BlogPostPage { Title = "First"},
-				new Core.Features.BlogPostPage.BlogPostPage { Title = "Second"},
-				new Core.Features.BlogPostPage.BlogPostPage { Title = "Third"},
-			};
+			var blogPostProperty1 = this.SetupPropertyValue(BaseContentPagePropertyAlias.MainBody, new HtmlString(mainBodyFirstBlogPost));
+			var blogPostPage1 = this.SetupContent(DocumentTypeAlias.BlogPostPage, blogPostProperty1);
+			var blogPostProperty2 = this.SetupPropertyValue(BaseContentPagePropertyAlias.MainBody, new HtmlString(mainBodySecondBlogPost));
+			var blogPostPage2 = this.SetupContent(DocumentTypeAlias.BlogPostPage, blogPostProperty2);
 
-			//var contentPage = new Core.Features.BlogPage.BlogPage { BlogPosts = blogPosts };
-			var blogPostsMock = new Mock<IPublishedProperty>();
-			blogPostsMock.Setup(c => c.Alias).Returns("whatever");
-			blogPostsMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
-			blogPostsMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(blogPosts);
+			var blogPageBlogPostChildren = new List<IPublishedContent>();
+			blogPageBlogPostChildren.Add(blogPostPage1.Content);
+			blogPageBlogPostChildren.Add(blogPostPage2.Content);
+			var blogTestProperty = this.SetupPropertyValue("children", blogPageBlogPostChildren);
+			var blogTest = this.SetupContentMock(DocumentTypeAlias.BlogPage, blogTestProperty);
+			blogTest.Setup(x => x.Children).Returns(blogPageBlogPostChildren);
 
-			var blogPostPageMock = this.SetupContentMock(typeof(Core.Features.BlogPostPage.BlogPostPage).Name, blogPostsMock);
-			var blogPostPagesList = new List<IPublishedContent> { blogPostPageMock.Object };
+			var contentModel = new ContentModel(blogTest.Object);
 
+			var viewModel = this._sut.CreateModel(contentModel);
 
-			var blogPageMock = this.SetupContentMock(typeof(Core.Features.BlogPage.BlogPage).Name, blogPostsMock);
-			blogPageMock.Setup(x => x.Children).Returns(blogPostPagesList);
+			viewModel.BlogPosts.Count.ShouldBeGreaterThan(1);
+			viewModel.BlogPosts.First().MainBody.ToString().ShouldBe(expectedFirstBlogPostMainBody);
+			viewModel.BlogPosts.Skip(1).First().MainBody.ToString().ShouldBe(expectedSecondBlogPostMainBody);
 
-
-			var viewModel = this._sut.CreateModel(new ContentModel(blogPageMock.Object));
-
-			viewModel.BlogPosts.First().Title.ShouldBe(blogPosts.First().Title);
 		}
 	}
 }
