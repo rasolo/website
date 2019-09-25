@@ -16,9 +16,9 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
 	internal class BaseContentPageControllerTests<TContentPage> : UmbracoBaseTests where TContentPage : Core.Features.Shared.UI.BaseContentPage, new()
 	{
-		private BaseContentPageController<TContentPage> _sut;
-		private Mock<IBaseContentPageViewModelFactory<TContentPage>> _viewModelFactory;
-		private UmbracoMapper _umbracoMapper;
+		protected BaseContentPageController<TContentPage> _sut;
+		protected Mock<IBaseContentPageViewModelFactory<TContentPage>> _viewModelFactory;
+		protected UmbracoMapper _umbracoMapper;
 		private readonly TContentPage _mockedViewModel = new TContentPage();
 
 		public override void SetUp()

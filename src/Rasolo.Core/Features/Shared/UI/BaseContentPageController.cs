@@ -17,7 +17,6 @@ namespace Rasolo.Core.Features.Shared.UI
 		{
 			var mappedModel = this.MapModel(model.Content);
 			var viewModel = this._viewModelFactory.CreateModel(mappedModel);
-
 			return View(viewModel);
 		}
 	}
