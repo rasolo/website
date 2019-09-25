@@ -47,7 +47,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			var umbracoServiceMock = new Mock<IUmbracoService>();
 			var property = this.SetupPropertyValue("whatever", "whatever");
 			var content = this.SetupContent(typeof(TContentPage).Name, property);
-			umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(content.Content);
+			umbracoServiceMock.Setup(x => x.GetFirstPageByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(content.Content);
 			this._sut = new BaseContentPageController<TContentPage>(this._umbracoMapper, this._viewModelFactory.Object);
 
 			var returnedViewModel = (TContentPage)((ViewResult)_sut.Index(content)).Model;

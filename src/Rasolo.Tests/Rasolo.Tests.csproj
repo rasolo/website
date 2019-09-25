@@ -268,7 +268,9 @@
     <Compile Include="Unit\Features\ArticlePage\ArticlePageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Features\BlogPage\BlogPageControllerTests.cs" />
     <Compile Include="Unit\Features\BlogPage\BlogPageViewModelFactoryTests.cs" />
+    <Compile Include="Unit\Features\BlogPage\BlogServiceTests.cs" />
     <Compile Include="Unit\Features\BlogPostPage\BlogPostPageControllerTests.cs" />
+    <Compile Include="Unit\Features\StartPage\StartPageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Shared\BaseContentPage\BaseContentPageControllerTests.cs" />
     <Compile Include="Unit\Features\StartPage\StartPageControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,6 +278,7 @@
     <Compile Include="Unit\Shared\CookiesNotice\CookiesNoticeControllerTests.cs" />
     <Compile Include="Unit\Shared\GlobalSettings\GlobalSettingsPageControllerTests.cs" />
     <Compile Include="Unit\Shared\GlobalSettings\GlobalSettingsPageViewModelFactoryTests.cs" />
+    <Compile Include="Unit\Shared\Services\UmbracoServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

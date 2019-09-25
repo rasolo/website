@@ -25,7 +25,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 			this._umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			this._umbracoServiceMock = new Mock<IUmbracoService>();
 			var content = this.SetupContent(DocumentTypeAlias.GlobalSettingsPage, this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, "Home text"));
-			this._umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(content.Content);
+			this._umbracoServiceMock.Setup(x => x.GetFirstPageByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(content.Content);
 		}
 
 		[Test]

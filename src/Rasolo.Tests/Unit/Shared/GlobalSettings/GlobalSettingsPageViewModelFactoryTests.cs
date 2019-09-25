@@ -40,7 +40,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			var umbracoServiceMock = new Mock<IUmbracoService>();
 			var contentModel = this.SetupContent(propertyAlias, property);
-			umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(contentModel.Content);
+			umbracoServiceMock.Setup(x => x.GetFirstPageByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(contentModel.Content);
 
 			this._sut = new GlobalSettingsPagePageViewModelFactory(umbracoMapper, umbracoServiceMock.Object);
 		}

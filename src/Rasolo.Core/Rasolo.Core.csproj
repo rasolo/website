@@ -268,12 +268,15 @@
     <Compile Include="Features\BlogPage\BlogPage.cs" />
     <Compile Include="Features\BlogPage\BlogPageController.cs" />
     <Compile Include="Features\BlogPage\BlogPageViewModelFactory.cs" />
+    <Compile Include="Features\BlogPage\BlogService.cs" />
     <Compile Include="Features\BlogPage\IBlogPageViewModelFactory.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPageController.cs" />
     <Compile Include="Features\Shared\Composers\GenericClassesComposer.cs" />
     <Compile Include="Features\Shared\Constants\CookiesNotice.cs" />
     <Compile Include="Features\Shared\Constants\DocumentTypeAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogPostPagePropertyAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\StartPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BaseContentPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\GlobalSettingsPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
