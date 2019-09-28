@@ -268,7 +268,6 @@
     <Compile Include="Features\BlogPage\BlogPage.cs" />
     <Compile Include="Features\BlogPage\BlogPageController.cs" />
     <Compile Include="Features\BlogPage\BlogPageViewModelFactory.cs" />
-    <Compile Include="Features\BlogPage\BlogService.cs" />
     <Compile Include="Features\BlogPage\IBlogPageViewModelFactory.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPageController.cs" />

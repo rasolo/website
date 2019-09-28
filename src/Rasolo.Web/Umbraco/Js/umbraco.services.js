@@ -5724,7 +5724,7 @@ When building a custom infinite editor view you can use the same components as a
      */
             getFileExtension: function getFileExtension(filePath) {
                 if (!filePath) {
-                    return false;
+                    return null;
                 }
                 var lowered = filePath.toLowerCase();
                 var ext = lowered.substr(lowered.lastIndexOf('.') + 1);

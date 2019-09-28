@@ -268,7 +268,6 @@
     <Compile Include="Unit\Features\ArticlePage\ArticlePageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Features\BlogPage\BlogPageControllerTests.cs" />
     <Compile Include="Unit\Features\BlogPage\BlogPageViewModelFactoryTests.cs" />
-    <Compile Include="Unit\Features\BlogPage\BlogServiceTests.cs" />
     <Compile Include="Unit\Features\BlogPostPage\BlogPostPageControllerTests.cs" />
     <Compile Include="Unit\Features\StartPage\StartPageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Shared\BaseContentPage\BaseContentPageControllerTests.cs" />
