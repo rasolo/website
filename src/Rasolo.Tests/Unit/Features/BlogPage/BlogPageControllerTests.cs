@@ -12,11 +12,6 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 	internal class BlogPageControllerTests : BaseContentPageControllerTests<Core.Features.BlogPage.BlogPage>
 	{
 		private Mock<IBlogPageViewModelFactory> _blogViewModelFactory;
-		public override void SetUp()
-		{
-			base.SetUp();
-		
-		}
 
 		[Test]
 		public void Given_PageHasBlogPosts_When_IndexAction_Then_ReturnViewModelWithBlogPosts()
