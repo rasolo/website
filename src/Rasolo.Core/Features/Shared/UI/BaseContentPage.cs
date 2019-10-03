@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using AutoMapper.Configuration.Annotations;
 using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Core.Features.Shared.UI
@@ -12,6 +13,7 @@ namespace Rasolo.Core.Features.Shared.UI
 		public virtual IHtmlString TeaserPreamble { get; set; }
 		public MediaFile TeaserMedia { get; set; }
 		public MediaFile HeroImage { get; set; }
+		[Ignore]
 		public bool ShowHeroImage { get; set; }
 	}
 }
