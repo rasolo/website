@@ -36,6 +36,15 @@ namespace Rasolo.Tests.Unit.Base
 
 		public ContentModel SetupContent(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty)
 		{
+			var content = SetupContentMock(contentTypeAlias, publishedProperty);
+
+			var contentModel = new ContentModel(content.Object);
+
+			return contentModel;
+		}
+
+		public Mock<IPublishedContent> SetupContentMock(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty)
+		{
 			var content = new Mock<IPublishedContent>();
 			content
 				.Setup(x => x.ContentType)
@@ -46,9 +55,7 @@ namespace Rasolo.Tests.Unit.Base
 			content.Setup(x => x.Name).Returns(contentTypeAlias);
 			content.Setup(x => x.Id).Returns(99);
 
-			var contentModel = new ContentModel(content.Object);
-
-			return contentModel;
+			return content;
 		}
 
 		public static Mock<IPublishedContent> SetupImage()

@@ -6459,31 +6459,34 @@ Use this directive to prevent default action of an element. Effectively implemen
 </pre>
 
 @param {boolean} model Set to <code>true</code> or <code>false</code> to set the checkbox to checked or unchecked.
-@param {string} input-id Set the <code>id</code> of the checkbox.
+@param {string} inputId Set the <code>id</code> of the checkbox.
 @param {string} value Set the value of the checkbox.
 @param {string} name Set the name of the checkbox.
 @param {string} text Set the text for the checkbox label.
-@param {string} server-validation-field Set the <code>val-server-field</code> of the checkbox.
+@param {string} serverValidationField Set the <code>val-server-field</code> of the checkbox.
 @param {boolean} disabled Set the checkbox to be disabled.
 @param {boolean} required Set the checkbox to be required.
-@param {string} on-change Callback when the value of the checkbox changed by interaction.
+@param {callback} onChange Callback when the value of the checkbox change by interaction.
 
 **/
     (function () {
         'use strict';
         function UmbCheckboxController($timeout) {
             var vm = this;
-            vm.callOnChange = function () {
-                $timeout(function () {
-                    vm.onChange({
-                        model: vm.model,
-                        value: vm.value
-                    });
-                }, 0);
-            };
+            vm.change = change;
+            function change() {
+                if (vm.onChange) {
+                    $timeout(function () {
+                        vm.onChange({
+                            model: vm.model,
+                            value: vm.value
+                        });
+                    }, 0);
+                }
+            }
         }
         var component = {
-            template: '<label class="checkbox umb-form-check umb-form-check--checkbox" ng-class="{ \'umb-form-check--disabled\': disabled }"> <input type="checkbox" id="{{vm.inputId}}" name="{{vm.name}}" value="{{vm.value}}" class="umb-form-check__input" val-server-field="{{vm.serverValidationField}}" ng-model="vm.model" ng-disabled="vm.disabled" ng-required="vm.required" ng-change="vm.callOnChange()"> <span class="umb-form-check__state" aria-hidden="true"> <span class="umb-form-check__check"> <i class="umb-form-check__icon icon-check"></i> </span> </span> <span class="umb-form-check__text">{{vm.text}}</span> </label> ',
+            template: '<label class="checkbox umb-form-check umb-form-check--checkbox" ng-class="{ \'umb-form-check--disabled\': vm.disabled }"> <input type="checkbox" id="{{vm.inputId}}" name="{{vm.name}}" value="{{vm.value}}" class="umb-form-check__input" val-server-field="{{vm.serverValidationField}}" ng-model="vm.model" ng-disabled="vm.disabled" ng-required="vm.required" ng-change="vm.change()"> <span class="umb-form-check__state" aria-hidden="true"> <span class="umb-form-check__check"> <i class="umb-form-check__icon icon-check"></i> </span> </span> <span class="umb-form-check__text">{{vm.text}}</span> </label> ',
             controller: UmbCheckboxController,
             controllerAs: 'vm',
             bindings: {
@@ -6495,7 +6498,7 @@ Use this directive to prevent default action of an element. Effectively implemen
                 serverValidationField: '@',
                 disabled: '<',
                 required: '<',
-                onChange: '&'
+                onChange: '&?'
             }
         };
         angular.module('umbraco.directives').component('umbCheckbox', component);
@@ -6530,27 +6533,40 @@ Use this directive to prevent default action of an element. Effectively implemen
 @param {string} text Set the text for the radiobutton label.
 @param {boolean} disabled Set the radiobutton to be disabled.
 @param {boolean} required Set the radiobutton to be required.
+@param {callback} onChange Callback when the value of the radiobutton change by interaction.
 
 **/
     (function () {
         'use strict';
-        function RadiobuttonDirective() {
-            var directive = {
-                restrict: 'E',
-                replace: true,
-                template: '<label class="radio umb-form-check umb-form-check--radiobutton" ng-class="{ \'umb-form-check--disabled\': disabled }"> <input type="radio" name="{{name}}" value="{{value}}" class="umb-form-check__input" ng-model="model" ng-disabled="disabled" ng-required="required"> <span class="umb-form-check__state" aria-hidden="true"> <span class="umb-form-check__check"></span> </span> <span class="umb-form-check__text">{{text}}</span> </label> ',
-                scope: {
-                    model: '=',
-                    value: '@',
-                    name: '@',
-                    text: '@',
-                    disabled: '=',
-                    required: '='
+        function UmbRadiobuttonController($timeout) {
+            var vm = this;
+            vm.change = change;
+            function change() {
+                if (vm.onChange) {
+                    $timeout(function () {
+                        vm.onChange({
+                            model: vm.model,
+                            value: vm.value
+                        });
+                    }, 0);
                 }
-            };
-            return directive;
+            }
         }
-        angular.module('umbraco.directives').directive('umbRadiobutton', RadiobuttonDirective);
+        var component = {
+            template: '<label class="radio umb-form-check umb-form-check--radiobutton" ng-class="{ \'umb-form-check--disabled\': vm.disabled }"> <input type="radio" name="{{vm.name}}" value="{{vm.value}}" class="umb-form-check__input" ng-model="vm.model" ng-disabled="vm.disabled" ng-required="vm.required" ng-change="vm.change()"> <span class="umb-form-check__state" aria-hidden="true"> <span class="umb-form-check__check"></span> </span> <span class="umb-form-check__text">{{vm.text}}</span> </label> ',
+            controller: UmbRadiobuttonController,
+            controllerAs: 'vm',
+            bindings: {
+                model: '=',
+                value: '@',
+                name: '@',
+                text: '@',
+                disabled: '=',
+                required: '=',
+                onChange: '&?'
+            }
+        };
+        angular.module('umbraco.directives').component('umbRadiobutton', component);
     }());
     'use strict';
     /*
@@ -7451,7 +7467,7 @@ Use this directive to construct a title. Recommended to use it inside an {@link 
         return {
             restrict: 'E',
             replace: true,
-            template: '<div class="umb-crop-thumbnail-container" ng-style="{height: height, width: width, overflow: \'hidden\', position: \'relative\'}" ng-show="loaded"> <img ng-src="{{src}}" alt="{{}}" ng-style="preview" class="noScale"> </div> ',
+            template: '<div class="umb-crop-thumbnail-container" ng-style="{height: height, width: width, overflow: \'hidden\', position: \'relative\'}" ng-show="loaded"> <img ng-src="{{src}}" ng-style="preview" class="noScale"> </div> ',
             scope: {
                 src: '=',
                 width: '@',
@@ -11779,6 +11795,8 @@ the directive will use {@link umbraco.directives.directive:umbLockedField umbLoc
                     }
                     // activate group
                     scope.activateGroup(group);
+                    // push new init tab to the scope
+                    addInitGroup(scope.model.groups);
                 };
                 scope.activateGroup = function (selectedGroup) {
                     // set all other groups that are inactive to active
@@ -11792,7 +11810,6 @@ the directive will use {@link umbraco.directives.directive:umbLockedField umbLoc
                 };
                 scope.removeGroup = function (groupIndex) {
                     scope.model.groups.splice(groupIndex, 1);
-                    addInitGroup(scope.model.groups);
                 };
                 scope.updateGroupTitle = function (group) {
                     if (group.properties.length === 0) {
@@ -11895,8 +11912,7 @@ the directive will use {@link umbraco.directives.directive:umbLockedField umbLoc
                                 // set focus on init property
                                 var numberOfProperties = group.properties.length;
                                 group.properties[numberOfProperties - 1].focus = true;
-                                // push new init tab to the scope
-                                addInitGroup(scope.model.groups);
+                                notifyChanged();
                             },
                             close: function close() {
                                 if (_.isEqual(oldPropertyModel, propertyModel) === false) {
@@ -11939,14 +11955,7 @@ the directive will use {@link umbraco.directives.directive:umbLockedField umbLoc
                 scope.deleteProperty = function (tab, propertyIndex) {
                     // remove property
                     tab.properties.splice(propertyIndex, 1);
-                    // if the last property in group is an placeholder - remove add new tab placeholder
-                    if (tab.properties.length === 1 && tab.properties[0].propertyState === 'init') {
-                        angular.forEach(scope.model.groups, function (group, index, groups) {
-                            if (group.tabState === 'init') {
-                                groups.splice(index, 1);
-                            }
-                        });
-                    }
+                    notifyChanged();
                 };
                 function addInitProperty(group) {
                     var addInitPropertyBool = true;
@@ -13053,7 +13062,7 @@ Use this directive to generate a thumbnail grid of media items.
             var directive = {
                 restrict: 'E',
                 replace: true,
-                template: '<div data-element="media-grid" class="umb-media-grid"> <div data-element="media-grid-item-{{$index}}" class="umb-media-grid__item" title="{{item.name}}" ng-click="clickItem(item, $event, $index)" ng-repeat="item in items | filter:filterBy" ng-style="item.flexStyle" ng-class="{\'-selected\': item.selected, \'-file\': !item.thumbnail, \'-svg\': item.extension == \'svg\'}"> <div>  <a ng-if="allowOnClickEdit === \'true\'" ng-click="clickEdit(item, $event)" ng-href class="icon-edit umb-media-grid__edit"></a> <div data-element="media-grid-item-edit" class="umb-media-grid__item-overlay" ng-class="{\'-locked\': item.selected || !item.file || !item.thumbnail}" ng-click="clickItemName(item, $event, $index)"> <i ng-if="onDetailsHover" class="icon-info umb-media-grid__info" ng-mouseover="hoverItemDetails(item, $event, true)" ng-mouseleave="hoverItemDetails(item, $event, false)"></i> <div class="umb-media-grid__item-name">{{item.name}}</div> </div>  <div class="umb-media-grid__image-background" ng-if="item.thumbnail || item.extension == \'svg\'"></div>  <img class="umb-media-grid__item-image" width="{{item.width}}" height="{{item.height}}" ng-if="item.thumbnail" ng-src="{{item.thumbnail}}" alt="{{item.name}}" draggable="false">  <img class="umb-media-grid__item-image" width="{{item.width}}" height="{{item.height}}" ng-if="!item.thumbnail && item.extension == \'svg\'" ng-src="{{item.image}}" alt="{{item.name}}" draggable="false">  <img class="umb-media-grid__item-image-placeholder" ng-if="!item.thumbnail && item.extension != \'svg\'" src="assets/img/transparent.png" alt="{{item.name}}" draggable="false">  <span class="umb-media-grid__item-file-icon" ng-if="!item.thumbnail && item.extension != \'svg\'"> <i class="umb-media-grid__item-icon {{item.icon}}"></i> <span ng-if="item.extension">.{{item.extension}}</span> </span> </div> </div> </div> ',
+                template: '<div data-element="media-grid" class="umb-media-grid"> <div data-element="media-grid-item-{{$index}}" class="umb-media-grid__item" title="{{item.name}}" ng-click="clickItem(item, $event, $index)" ng-repeat="item in items | filter:filterBy" ng-style="item.flexStyle" ng-class="{\'-selected\': item.selected, \'-file\': !item.thumbnail, \'-svg\': item.extension == \'svg\'}"> <div>  <a ng-if="allowOnClickEdit === \'true\'" ng-click="clickEdit(item, $event)" ng-href class="icon-edit umb-media-grid__edit"></a> <div data-element="media-grid-item-edit" class="umb-media-grid__item-overlay" ng-class="{\'-locked\': item.selected || !item.file || !item.thumbnail}" ng-click="clickItemName(item, $event, $index)"> <i ng-if="onDetailsHover" class="icon-info umb-media-grid__info" ng-mouseover="hoverItemDetails(item, $event, true)" ng-mouseleave="hoverItemDetails(item, $event, false)"></i> <div class="umb-media-grid__item-name">{{item.name}}</div> </div>  <div class="umb-media-grid__image-background" ng-if="item.thumbnail || item.extension === \'svg\'"></div>  <img class="umb-media-grid__item-image" width="{{item.width}}" height="{{item.height}}" ng-if="item.thumbnail" ng-src="{{item.thumbnail}}" alt="{{item.name}}" draggable="false">  <img class="umb-media-grid__item-image" width="{{item.width}}" height="{{item.height}}" ng-if="!item.thumbnail && item.extension === \'svg\'" ng-src="{{item.image}}" alt="{{item.name}}" draggable="false">  <img class="umb-media-grid__item-image-placeholder" ng-if="!item.thumbnail && item.extension !== \'svg\'" src="assets/img/transparent.png" alt="{{item.name}}" draggable="false">  <span class="umb-media-grid__item-file-icon" ng-if="!item.thumbnail && item.extension !== \'svg\'"> <i class="umb-media-grid__item-icon {{item.icon}}"></i> <span ng-if="item.extension">.{{item.extension}}</span> </span> </div> </div> </div> ',
                 scope: {
                     items: '=',
                     onDetailsHover: '=',
@@ -14833,6 +14842,9 @@ TODO
                 }
             }
             function getThumbnail(file) {
+                if (file.extension === 'svg') {
+                    return file.fileName;
+                }
                 if (!file.isImage) {
                     return null;
                 }
@@ -14914,7 +14926,7 @@ TODO
         }
         ;
         var umbPropertyFileUploadComponent = {
-            template: ' <div class="umb-property-file-upload"> <ng-form name="vm.fileUploadForm"> <div class="fileinput-button umb-upload-button-big" style="margin-bottom: 5px;" ng-hide="vm.files.length > 0"> <i class="icon icon-page-up"></i> <p><localize key="media_clickToUpload">Click to upload</localize></p> <umb-single-file-upload></umb-single-file-upload> </div> <div ng-if="vm.files.length > 0"> <div ng-if="!vm.hideSelection"> <div class="umb-fileupload clearfix" ng-repeat="file in vm.files"> <div ng-if="file.isImage || file.extension == \'svg\'"> <div class="gravity-container"> <div class="viewport"> <img ng-if="file.isClientSide" ng-src="{{file.fileSrc}}" style="max-width: 100%; max-height: 100%" alt="{{file.fileName}}"> <a ng-if="!file.isClientSide" href="{{file.fileSrc}}" target="_blank"> <img ng-src="{{file.fileSrc}}" style="max-width: 100%; max-height: 100%" alt="{{file.fileName}}"> </a> </div> </div> </div> <div ng-if="!file.isImage && file.extension != \'svg\'"> <a class="span6 thumbnail tc" ng-show="!file.isClientSide" ng-href="{{file.fileName}}" target="_blank"> <span class="file-icon-wrap"> <span class="file-icon"> <i class="icon icon-document"></i> <span>.{{file.extension}}</span> </span> </span> <div>{{file.fileName}}</div> </a> <div class="span6 thumbnail tc" ng-show="file.isClientSide"> <span class="file-icon-wrap"> <span class="file-icon"> <i class="icon icon-document"></i> <span>.{{file.extension}}</span> </span> </span> <div>{{file.fileName}}</div> </div> </div> </div> <div> <a class="btn btn-link btn-crop-delete" ng-click="vm.clear()"><i class="icon-delete red"></i> <localize key="content_uploadClear">Remove file</localize></a> </div> </div> <div ng-if="vm.hideSelection"> <div ng-transclude></div> </div> </div> </ng-form> </div> ',
+            template: ' <div class="umb-property-file-upload"> <ng-form name="vm.fileUploadForm"> <div class="fileinput-button umb-upload-button-big" style="margin-bottom: 5px;" ng-hide="vm.files.length > 0"> <i class="icon icon-page-up"></i> <p><localize key="media_clickToUpload">Click to upload</localize></p> <umb-single-file-upload></umb-single-file-upload> </div> <div ng-if="vm.files.length > 0"> <div ng-if="!vm.hideSelection"> <div class="umb-fileupload clearfix" ng-repeat="file in vm.files"> <div ng-if="file.isImage || file.extension === \'svg\'"> <div class="gravity-container"> <div class="viewport"> <img ng-if="file.isClientSide" ng-src="{{file.fileSrc}}" style="max-width: 100%; max-height: 100%" alt="{{file.fileName}}"> <a ng-if="!file.isClientSide" href="{{file.fileSrc}}" target="_blank"> <img ng-src="{{file.fileSrc}}" style="max-width: 100%; max-height: 100%" alt="{{file.fileName}}"> </a> </div> </div> </div> <div ng-if="!file.isImage && file.extension !== \'svg\'"> <a class="span6 thumbnail tc" ng-show="!file.isClientSide" ng-href="{{file.fileName}}" target="_blank"> <span class="umb-icon-holder"> <span class="file-icon"> <i class="icon icon-document"></i> <span ng-if="file.extension">.{{file.extension}}</span> </span> </span> <div>{{file.fileName}}</div> </a> <div class="span6 thumbnail tc" ng-show="file.isClientSide"> <span class="umb-icon-holder"> <span class="file-icon"> <i class="icon icon-document"></i> <span ng-if="file.extension">.{{file.extension}}</span> </span> </span> <div>{{file.fileName}}</div> </div> </div> </div> <div> <a class="btn btn-link btn-crop-delete" ng-click="vm.clear()"><i class="icon-delete red"></i> <localize key="content_uploadClear">Remove file</localize></a> </div> </div> <div ng-if="vm.hideSelection"> <div ng-transclude></div> </div> </div> </ng-form> </div> ',
             bindings: {
                 culture: '@?',
                 propertyAlias: '@',
@@ -15097,7 +15109,7 @@ TODO
             ;
         }
         var component = {
-            template: '<div> <div class="alert alert-success text-center" ng-hide="!vm.passwordValues.generatedPassword"> <small>Password has been reset to:</small> <br> <strong>{{vm.passwordValues.generatedPassword}}</strong> </div> <div ng-switch="vm.changing"> <div ng-switch-when="false"> <a ng-click="vm.doChange()" class="btn btn-small"> <localize key="general_changePassword">Change password</localize> </a> </div> <div ng-switch-when="true"> <ng-form name="vm.passwordForm"> <umb-control-group alias="resetPassword" label="@user_resetPassword" ng-show="vm.config.enableReset"> <input type="checkbox" ng-model="vm.passwordValues.reset" id="Checkbox1" name="resetPassword" val-server-field="resetPassword" no-dirty-check ng-change="vm.showReset = !vm.showReset"> <span ng-messages="vm.passwordForm.resetPassword.$error" show-validation-on-submit> <span class="help-inline" ng-message="valServerField">{{vm.passwordForm.resetPassword.errorMsg}}</span> </span> </umb-control-group>  <umb-control-group alias="oldPassword" label="@user_oldPassword" ng-if="vm.showOldPass()" required="true"> <input type="password" name="oldPassword" ng-model="vm.passwordValues.oldPassword" class="input-block-level umb-textstring textstring" required val-server-field="oldPassword" no-dirty-check> <span ng-messages="vm.passwordForm.oldPassword.$error" show-validation-on-submit> <span class="help-inline" ng-message="required">Required</span> <span class="help-inline" ng-message="valServerField">{{vm.passwordForm.oldPassword.errorMsg}}</span> </span> </umb-control-group> <umb-control-group alias="password" label="@user_newPassword" ng-if="!vm.showReset" required="true"> <input type="password" name="password" ng-model="vm.passwordValues.newPassword" class="input-block-level umb-textstring textstring" required val-server-field="password" ng-minlength="{{vm.config.minPasswordLength}}" no-dirty-check> <span ng-messages="vm.passwordForm.password.$error" show-validation-on-submit> <span class="help-inline" ng-message="required">Required</span> <span class="help-inline" ng-message="minlength">Minimum {{vm.config.minPasswordLength}} characters</span> <span class="help-inline" ng-message="valServerField">{{vm.passwordForm.password.errorMsg}}</span> </span> </umb-control-group> <umb-control-group alias="confirmpassword" label="@user_confirmNewPassword" ng-if="!vm.showReset" required="true"> <input type="password" name="confirmpassword" ng-model="vm.passwordValues.confirm" class="input-block-level umb-textstring textstring" val-compare="password" no-dirty-check> <span ng-messages="vm.passwordForm.confirmpassword.$error" show-validation-on-submit> <span class="help-inline" ng-message="valCompare"><localize key="user_passwordMismatch">The confirmed password doesn\'t match the new password!</localize></span> </span> </umb-control-group> <a ng-click="vm.cancelChange()" ng-show="vm.showCancelBtn()" class="btn btn-small"> <localize key="general_cancel">Cancel</localize> </a> </ng-form> </div> </div> </div> ',
+            template: '<div> <div class="alert alert-success text-center" ng-hide="!vm.passwordValues.generatedPassword"> <small>Password has been reset to:</small> <br> <strong>{{vm.passwordValues.generatedPassword}}</strong> </div> <div ng-switch="vm.changing"> <div ng-switch-when="false"> <a ng-click="vm.doChange()" class="btn btn-small"> <localize key="general_changePassword">Change password</localize> </a> </div> <div ng-switch-when="true"> <ng-form name="changePasswordForm"> <umb-control-group alias="resetPassword" label="@user_resetPassword" ng-show="vm.config.enableReset"> <input type="checkbox" ng-model="vm.passwordValues.reset" name="resetPassword" val-server-field="resetPassword" no-dirty-check ng-change="vm.showReset = !vm.showReset"> <span ng-messages="changePasswordForm.resetPassword.$error" show-validation-on-submit> <span class="help-inline" ng-message="valServerField">{{changePasswordForm.resetPassword.errorMsg}}</span> </span> </umb-control-group>  <umb-control-group alias="oldPassword" label="@user_oldPassword" ng-if="vm.showOldPass()" required="true"> <input type="password" name="oldPassword" ng-model="vm.passwordValues.oldPassword" class="input-block-level umb-textstring textstring" required val-server-field="oldPassword" no-dirty-check> <span ng-messages="changePasswordForm.oldPassword.$error" show-validation-on-submit> <span class="help-inline" ng-message="required">Required</span> <span class="help-inline" ng-message="valServerField">{{changePasswordForm.oldPassword.errorMsg}}</span> </span> </umb-control-group> <umb-control-group alias="password" label="@user_newPassword" ng-if="!vm.showReset" required="true"> <input type="password" name="password" ng-model="vm.passwordValues.newPassword" class="input-block-level umb-textstring textstring" required val-server-field="password" ng-minlength="{{vm.config.minPasswordLength}}" no-dirty-check> <span ng-messages="changePasswordForm.password.$error" show-validation-on-submit> <span class="help-inline" ng-message="required">Required</span> <span class="help-inline" ng-message="minlength">Minimum {{vm.config.minPasswordLength}} characters</span> <span class="help-inline" ng-message="valServerField">{{changePasswordForm.password.errorMsg}}</span> </span> </umb-control-group> <umb-control-group alias="confirmPassword" label="@user_confirmNewPassword" ng-if="!vm.showReset" required="true"> <input type="password" name="confirmPassword" ng-model="vm.passwordValues.confirm" class="input-block-level umb-textstring textstring" val-compare="password" no-dirty-check> <span ng-messages="changePasswordForm.confirmPassword.$error" show-validation-on-submit> <span class="help-inline" ng-message="valCompare"><localize key="user_passwordMismatch">The confirmed password doesn\'t match the new password!</localize></span> </span> </umb-control-group> <a ng-click="vm.cancelChange()" ng-show="vm.showCancelBtn()" class="btn btn-small"> <localize key="general_cancel">Cancel</localize> </a> </ng-form> </div> </div> </div> ',
             controller: ChangePasswordController,
             controllerAs: 'vm',
             bindings: {

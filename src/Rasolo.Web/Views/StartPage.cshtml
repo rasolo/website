@@ -1,4 +1,5 @@
-﻿@inherits UmbracoViewPage<Rasolo.Core.Features.StartPage.StartPage>
+﻿@using System.Activities.Statements
+@inherits UmbracoViewPage<Rasolo.Core.Features.StartPage.StartPage>
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -21,27 +22,12 @@
 <div class="posts-container">
 	<h2>Latest posts</h2>
 	<div class="posts-container__posts">
-		<a href="#">
-			<article class="posts__post">
-				<img src="https://picsum.photos/500/500" />
-				<p class="post__date">2019-06-07</p>
-				<h4>Sourcetree VS Git Kraken VS Fork</h4>
-			</article>
-		</a>
-		<a href="#">
-			<article class="posts__post">
-				<img src="https://picsum.photos/500/501" />
-				<p class="post__date">2019-05-06</p>
-				<h4>How to deploy Umbraco 8 to Azure</h4>
-			</article>
-		</a>
-		<a href="#">
-			<article class="posts__post">
-				<img src="https://picsum.photos/500/502" />
-				<p class="post__date">2019-04-06</p>
-				<h4>Huel VS Jimmy Joy VS Queal</h4>
-			</article>
-		</a>
+		@{
+			foreach (var blogPostPage in Model.BlogPostPages)
+			{
+				@Html.Partial("BlogPostTeaser", blogPostPage)
+			}
+		}
 	</div>
 	<div class="spacer"></div>
 </div>

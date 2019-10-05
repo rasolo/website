@@ -14654,7 +14654,7 @@
         var vm = this;
         vm.configItems = [];
         vm.viewItems = [];
-        vm.changed = changed;
+        vm.change = change;
         function init() {
             // currently the property editor will onyl work if our input is an object.
             if (angular.isObject($scope.model.config.items)) {
@@ -14669,7 +14669,7 @@
                         value: vals[i].value
                     });
                 }
-                //ensure the items are sorted by the provided sort order
+                // ensure the items are sorted by the provided sort order
                 sortedItems.sort(function (a, b) {
                     return a.sortOrder > b.sortOrder ? 1 : b.sortOrder > a.sortOrder ? -1 : 0;
                 });
@@ -14708,7 +14708,7 @@
                 });
             }
         }
-        function changed(model, value) {
+        function change(model, value) {
             var index = $scope.model.value.indexOf(value);
             if (model === true) {
                 //if it doesn't exist in the model, then add it
@@ -14725,7 +14725,7 @@
         init();
     });
     'use strict';
-    function ColorPickerController($scope) {
+    function ColorPickerController($scope, $timeout) {
         //setup the default config
         var config = {
             items: [],
@@ -14735,35 +14735,6 @@
         angular.extend(config, $scope.model.config);
         //map back to the model
         $scope.model.config = config;
-        // TODO: This isn't used
-        function convertArrayToDictionaryArray(model) {
-            //now we need to format the items in the dictionary because we always want to have an array
-            var newItems = [];
-            for (var i = 0; i < model.length; i++) {
-                newItems.push({
-                    id: model[i],
-                    sortOrder: 0,
-                    value: model[i]
-                });
-            }
-            return newItems;
-        }
-        // TODO: This isn't used
-        function convertObjectToDictionaryArray(model) {
-            //now we need to format the items in the dictionary because we always want to have an array
-            var newItems = [];
-            var vals = _.values($scope.model.config.items);
-            var keys = _.keys($scope.model.config.items);
-            for (var i = 0; i < vals.length; i++) {
-                var label = vals[i].value ? vals[i].value : vals[i];
-                newItems.push({
-                    id: keys[i],
-                    sortOrder: vals[i].sortOrder,
-                    value: label
-                });
-            }
-            return newItems;
-        }
         $scope.isConfigured = $scope.model.config && $scope.model.config.items && _.keys($scope.model.config.items).length > 0;
         if ($scope.isConfigured) {
             for (var key in $scope.model.config.items) {
@@ -14804,26 +14775,12 @@
             //now make the editor model the array
             $scope.model.config.items = items;
         }
-        $scope.toggleItem = function (color) {
-            var currentColor = $scope.model.value && $scope.model.value.hasOwnProperty('value') ? $scope.model.value.value : $scope.model.value;
-            var newColor;
-            if (currentColor === color.value) {
-                // deselect
-                $scope.model.value = $scope.model.useLabel ? {
-                    value: '',
-                    label: ''
-                } : '';
-                newColor = '';
-            } else {
-                // select
-                $scope.model.value = $scope.model.useLabel ? {
-                    value: color.value,
-                    label: color.label
-                } : color.value;
-                newColor = color.value;
-            }
+        $scope.selectColor = function (color) {
             // this is required to re-validate
-            $scope.propertyForm.modelValue.$setViewValue(newColor);
+            $timeout(function () {
+                var newColor = color ? color.value : null;
+                $scope.propertyForm.selectedColor.$setViewValue(newColor);
+            });
         };
         // Method required by the valPropertyValidator directive (returns true if the property editor has at least one color selected)
         $scope.validateMandatory = function () {
@@ -14835,17 +14792,6 @@
             };
         };
         $scope.isConfigured = $scope.model.config && $scope.model.config.items && _.keys($scope.model.config.items).length > 0;
-        // A color is active if it matches the value and label of the model.
-        // If the model doesn't store the label, ignore the label during the comparison.
-        $scope.isActiveColor = function (color) {
-            // no value
-            if (!$scope.model.value)
-                return false;
-            // Complex color (value and label)?
-            if (!$scope.model.value.hasOwnProperty('value'))
-                return $scope.model.value === color.value;
-            return $scope.model.value.value === color.value && $scope.model.value.label === color.label;
-        };
         // Finds the color best matching the model's color,
         // and sets the model color to that one. This is useful when
         // either the value or label was changed on the data type.
@@ -15149,6 +15095,11 @@
             }
             //merge the server config on top of the default config, then set the server config to use the result
             $scope.model.config = angular.extend(defaultConfig, $scope.model.config);
+            // if the property is mandatory, set the minCount config to 1 (unless of course it is set to something already),
+            // that way the minCount/maxCount validation handles the mandatory as well
+            if ($scope.model.validation && $scope.model.validation.mandatory && !$scope.model.config.minNumber) {
+                $scope.model.config.minNumber = 1;
+            }
         }
         //Umbraco persists boolean for prevalues as "0" or "1" so we need to convert that!
         $scope.model.config.multiPicker = Object.toBoolean($scope.model.config.multiPicker);
@@ -19063,9 +19014,15 @@
                         }
                     });
                     _.each(medias, function (media, i) {
+                        if (!media.extension && media.id && media.metaData) {
+                            media.extension = mediaHelper.getFileExtension(media.metaData.MediaPath);
+                        }
                         // if there is no thumbnail, try getting one if the media is not a placeholder item
                         if (!media.thumbnail && media.id && media.metaData) {
                             media.thumbnail = mediaHelper.resolveFileFromEntity(media, true);
+                            if (!media.thumbnail && media.extension === 'svg') {
+                                media.thumbnail = media.metaData.MediaPath;
+                            }
                         }
                         $scope.mediaItems.push(media);
                         if ($scope.model.config.idType === 'udi') {
@@ -19119,12 +19076,6 @@
                     $scope.allowEditMedia = hasAccessToMedia;
                     $scope.allowAddMedia = hasAccessToMedia;
                     setupViewModel();
-                    //When the model value changes sync the view model
-                    $scope.$watch('model.value', function (newVal, oldVal) {
-                        if (newVal !== oldVal) {
-                            setupViewModel();
-                        }
-                    });
                 });
             });
         }
@@ -19196,22 +19147,23 @@
             editorService.mediaPicker(mediaPicker);
         };
         $scope.sortableOptions = {
+            containment: 'parent',
+            cursor: 'move',
+            tolerance: 'pointer',
             disabled: !multiPicker,
             items: 'li:not(.add-wrapper)',
             cancel: '.unsortable',
             update: function update(e, ui) {
                 setDirty();
-                var r = [];
-                // TODO: Instead of doing this with a half second delay would be better to use a watch like we do in the
-                // content picker. Then we don't have to worry about setting ids, render models, models, we just set one and let the
-                // watch do all the rest.
                 $timeout(function () {
-                    angular.forEach($scope.mediaItems, function (value, key) {
-                        r.push($scope.model.config.idType === 'udi' ? value.udi : value.id);
+                    // TODO: Instead of doing this with a timeout would be better to use a watch like we do in the
+                    // content picker. Then we don't have to worry about setting ids, render models, models, we just set one and let the
+                    // watch do all the rest.
+                    $scope.ids = _.map($scope.mediaItems, function (item) {
+                        return $scope.model.config.idType === 'udi' ? item.udi : item.id;
                     });
-                    $scope.ids = r;
                     sync();
-                }, 500, false);
+                });
             }
         };
         $scope.showAdd = function () {
@@ -19648,6 +19600,11 @@
             localizationService.localizeMany(['general_recycleBin']).then(function (data) {
                 vm.labels.general_recycleBin = data[0];
             });
+            // if the property is mandatory, set the minCount config to 1 (unless of course it is set to something already),
+            // that way the minCount/maxCount validation handles the mandatory as well
+            if ($scope.model.validation && $scope.model.validation.mandatory && !$scope.model.config.minNumber) {
+                $scope.model.config.minNumber = 1;
+            }
         }
         init();
     }
@@ -19850,13 +19807,14 @@
                 }
             };
             $scope.deleteNode = function (idx) {
-                if ($scope.nodes.length > $scope.model.config.minItems) {
-                    $scope.nodes.splice(idx, 1);
-                    $scope.setDirty();
-                    updateModel();
-                }
+                $scope.nodes.splice(idx, 1);
+                $scope.setDirty();
+                updateModel();
             };
             $scope.requestDeleteNode = function (idx) {
+                if ($scope.nodes.length <= $scope.model.config.minItems) {
+                    return;
+                }
                 if ($scope.model.config.confirmDeletes === true) {
                     localizationService.localizeMany([
                         'content_nestedContentDeleteItem',
@@ -20138,25 +20096,27 @@
     ]);
     'use strict';
     angular.module('umbraco').controller('Umbraco.PropertyEditors.RadioButtonsController', function ($scope) {
+        var vm = this;
+        vm.viewItems = [];
         function init() {
             //we can't really do anything if the config isn't an object
             if (angular.isObject($scope.model.config.items)) {
-                //now we need to format the items in the dictionary because we always want to have an array
-                var configItems = [];
+                // formatting the items in the dictionary into an array
+                var sortedItems = [];
                 var vals = _.values($scope.model.config.items);
                 var keys = _.keys($scope.model.config.items);
                 for (var i = 0; i < vals.length; i++) {
-                    configItems.push({
-                        id: keys[i],
+                    sortedItems.push({
+                        key: keys[i],
                         sortOrder: vals[i].sortOrder,
                         value: vals[i].value
                     });
                 }
-                //ensure the items are sorted by the provided sort order
-                configItems.sort(function (a, b) {
+                // ensure the items are sorted by the provided sort order
+                sortedItems.sort(function (a, b) {
                     return a.sortOrder > b.sortOrder ? 1 : b.sortOrder > a.sortOrder ? -1 : 0;
                 });
-                $scope.configItems = configItems;
+                vm.viewItems = sortedItems;
             }
         }
         init();

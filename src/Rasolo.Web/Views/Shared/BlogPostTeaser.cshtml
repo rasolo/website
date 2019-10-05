@@ -1,0 +1,18 @@
+﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPostPage.BlogPostPage>
+
+<a href="@Model.PageUrl">
+	<article class="posts__post">
+		@{
+			if (string.IsNullOrEmpty(Model.HeroImage?.Url))
+			{
+				<img src="/favicon.ico"/>
+			}
+			else
+			{
+				<img src="@Model.HeroImage.Url"/>
+			}
+		}
+		<p class="post__date">@Model.CreatedDate.ToString("yyyy-MM-dd")</p>
+		<h4>@Model.Title</h4>
+	</article>
+</a>

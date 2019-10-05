@@ -4,5 +4,8 @@
 	{
 		public const string GlobalSettingsPage = "globalSettings";
 		public const string ArticlePage = "articlePage";
+		public const string BlogPage = "blogPage";
+		public const string BlogPostPage = "blogPostPage";
+		public const string StartPage = "startPage";
 	}
 }

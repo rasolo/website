@@ -16,9 +16,9 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 {
 	internal class BaseContentPageControllerTests<TContentPage> : UmbracoBaseTests where TContentPage : Core.Features.Shared.UI.BaseContentPage, new()
 	{
-		private BaseContentPageController<TContentPage> _sut;
-		private Mock<IBaseContentPageViewModelFactory<TContentPage>> _viewModelFactory;
-		private UmbracoMapper _umbracoMapper;
+		protected BaseContentPageController<TContentPage> _sut;
+		protected Mock<IBaseContentPageViewModelFactory<TContentPage>> _viewModelFactory;
+		protected UmbracoMapper _umbracoMapper;
 		private readonly TContentPage _mockedViewModel = new TContentPage();
 
 		public override void SetUp()
@@ -31,7 +31,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Given_Controller_When_IndexAction_ViewModelFactoryIsCalled()
+		public void Given_Controller_When_IndexAction_Then_ViewModelFactoryIsCalled()
 		{
 			var property = this.SetupPropertyValue("whatever", "whatever");
 			var content = this.SetupContent(typeof(TContentPage).Name, property);
@@ -42,12 +42,12 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Given_Controller_When_IndexAction_ThenReturnsPageViewModel()
+		public void Given_Controller_When_IndexAction_Then_ReturnsPageViewModel()
 		{
 			var umbracoServiceMock = new Mock<IUmbracoService>();
 			var property = this.SetupPropertyValue("whatever", "whatever");
 			var content = this.SetupContent(typeof(TContentPage).Name, property);
-			umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(content.Content);
+			umbracoServiceMock.Setup(x => x.GetFirstPageByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(content.Content);
 			this._sut = new BaseContentPageController<TContentPage>(this._umbracoMapper, this._viewModelFactory.Object);
 
 			var returnedViewModel = (TContentPage)((ViewResult)_sut.Index(content)).Model;
@@ -58,7 +58,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("Page name", "Page name")]
 		[TestCase("Another Page name", "Another Page name")]
-		public void Given_PageHasName_When_IndexAction_ThenReturnViewModelWithPageName(string name, string expected)
+		public void Given_PageHasName_When_IndexAction_Then_ReturnViewModelWithPageName(string name, string expected)
 		{
 			Content.SetupGet(x => x.Name).Returns(name);
 			this._mockedViewModel.Name = name;
@@ -71,7 +71,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("Page title", "Page title")]
 		[TestCase("Another Page title", "Another Page title")]
-		public void Given_PageHasTitle_When_IndexAction_ThenReturnViewModelWithPageTitle(string title, string expected)
+		public void Given_PageHasTitle_When_IndexAction_Then_ReturnViewModelWithPageTitle(string title, string expected)
 		{
 			var property = SetupPropertyValue("title", title);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
@@ -85,7 +85,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("Main body", "Main body")]
 		[TestCase("Another Main body", "Another Main body")]
-		public void Given_PageHasMainBody_When_IndexAction_ThenReturnViewModelWithMainBody(string mainBody, string expected)
+		public void Given_PageHasMainBody_When_IndexAction_Then_ReturnViewModelWithMainBody(string mainBody, string expected)
 		{
 			var property = SetupPropertyValue("mainBody", mainBody);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
@@ -99,7 +99,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("Teaser heading", "Teaser heading")]
 		[TestCase("Another Teaser heading", "Another Teaser heading")]
-		public void Given_PageHasTeaserHeading_When_IndexAction_ThenReturnViewModelWithTeaserHeading(string teaserHeading, string expected)
+		public void Given_PageHasTeaserHeading_When_IndexAction_Then_ReturnViewModelWithTeaserHeading(string teaserHeading, string expected)
 		{
 			var property = SetupPropertyValue("teaserHeading", teaserHeading);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
@@ -113,7 +113,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("My preamble text", "My preamble text")]
 		[TestCase("Another preamble text", "Another preamble text")]
-		public void Given_PageHasTeaserPreamble_When_IndexAction_ThenReturnViewModelWithTeaserPreamble(string teaserPreamble, string expected)
+		public void Given_PageHasTeaserPreamble_When_IndexAction_Then_ReturnViewModelWithTeaserPreamble(string teaserPreamble, string expected)
 		{
 			var property = SetupPropertyValue("teaserPreamble", teaserPreamble);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
@@ -140,7 +140,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Given_PageHasTeaserMedia_When_IndexAction_ThenReturnViewModelWithTeaserMedia()
+		public void Given_PageHasTeaserMedia_When_IndexAction_Then_ReturnViewModelWithTeaserMedia()
 		{
 			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.TeaserMedia);
 
@@ -163,7 +163,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Given_PageHasHeroImage_When_IndexAction_ThenReturnViewModelWithHeroImage()
+		public void Given_PageHasHeroImage_When_IndexAction_Then_ReturnViewModelWithHeroImage()
 		{
 			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.HeroImage);
 

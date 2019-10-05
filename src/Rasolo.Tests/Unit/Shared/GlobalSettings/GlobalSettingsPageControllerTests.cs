@@ -25,11 +25,11 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 			this._umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			this._umbracoServiceMock = new Mock<IUmbracoService>();
 			var content = this.SetupContent(DocumentTypeAlias.GlobalSettingsPage, this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, "Home text"));
-			this._umbracoServiceMock.Setup(x => x.GetFirstContentTypeAtRoot(It.IsAny<string>())).Returns(content.Content);
+			this._umbracoServiceMock.Setup(x => x.GetFirstPageByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(content.Content);
 		}
 
 		[Test]
-		public void Given_Controller_When_IndexAction_GlobalSettingsViewModelFactoryIsCalled()
+		public void Given_Controller_When_IndexAction_Then_GlobalSettingsViewModelFactoryIsCalled()
 		{
 			var globalSettingsViewModelFactoryMock = new Mock<IGlobalSettingsPageViewModelFactory>();
 			this._sut = new GlobalSettingsPageController(globalSettingsViewModelFactoryMock.Object);
@@ -41,7 +41,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		}
 
 		[Test]
-		public void Given_Controller_When_IndexAction_ThenReturnsGlobalSettingsViewModel()
+		public void Given_Controller_When_IndexAction_Then_ReturnsGlobalSettingsViewModel()
 		{
 			this._sut = new GlobalSettingsPageController(new GlobalSettingsPagePageViewModelFactory(this._umbracoMapper, this._umbracoServiceMock.Object));
 

@@ -99,7 +99,6 @@
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -243,22 +242,22 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="Umbraco.Core, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoCms.Core.8.1.4\lib\net472\Umbraco.Core.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoCms.Core.8.1.5\lib\net472\Umbraco.Core.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Examine, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoCms.Web.8.1.4\lib\net472\Umbraco.Examine.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoCms.Web.8.1.5\lib\net472\Umbraco.Examine.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Web, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoCms.Web.8.1.4\lib\net472\Umbraco.Web.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoCms.Web.8.1.5\lib\net472\Umbraco.Web.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Web.UI, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoCms.Web.8.1.4\lib\net472\Umbraco.Web.UI.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoCms.Web.8.1.5\lib\net472\Umbraco.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="Zone.UmbracoMapper.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoMapper.4.2.0\lib\Zone.UmbracoMapper.Common.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoMapper.4.2.1\lib\Zone.UmbracoMapper.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Zone.UmbracoMapper.V8, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoMapper.4.2.0\lib\Zone.UmbracoMapper.V8.dll</HintPath>
+    <Reference Include="Zone.UmbracoMapper.V8, Version=4.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UmbracoMapper.4.2.1\lib\Zone.UmbracoMapper.V8.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -268,11 +267,15 @@
     <Compile Include="Features\ArticlePage\IArticlePageViewModelFactory.cs" />
     <Compile Include="Features\BlogPage\BlogPage.cs" />
     <Compile Include="Features\BlogPage\BlogPageController.cs" />
+    <Compile Include="Features\BlogPage\BlogPageViewModelFactory.cs" />
+    <Compile Include="Features\BlogPage\IBlogPageViewModelFactory.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPageController.cs" />
     <Compile Include="Features\Shared\Composers\GenericClassesComposer.cs" />
     <Compile Include="Features\Shared\Constants\CookiesNotice.cs" />
     <Compile Include="Features\Shared\Constants\DocumentTypeAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogPostPagePropertyAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\StartPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BaseContentPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\GlobalSettingsPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
