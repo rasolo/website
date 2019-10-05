@@ -23,7 +23,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase(null, "")]
 		[TestCase("", "")]
-		public void Given_CreateModel_When_TitleNullOrEmpty_ThenReturnViewModelWithTitleEmptyString(string title, string expected)
+		public void Given_CreateModel_When_TitleNullOrEmpty_Then_ReturnViewModelWithTitleEmptyString(string title, string expected)
 		{
 			var contentPage = new TModel() { Title = title };
 			var viewModel = this._sut.CreateModel(contentPage);
@@ -34,7 +34,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("The content page title", "The content page title")]
 		[TestCase("Another content page title", "Another content page title")]
-		public void Given_CreateModel_When_TitleGiven_ThenReturnViewModelWithTitle(string title, string expected)
+		public void Given_CreateModel_When_TitleGiven_Then_ReturnViewModelWithTitle(string title, string expected)
 		{
 			var contentPage = new TModel() { Title = title };
 			var viewModel = this._sut.CreateModel(contentPage);
@@ -45,7 +45,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		[Test]
 		[TestCase("The content page main body", "The content page main body")]
 		[TestCase("Another content page main body", "Another content page main body")]
-		public void Given_CreateModel_When_MainBodyGiven_ThenReturnViewModelWithMainBody(string mainBody, string expected)
+		public void Given_CreateModel_When_MainBodyGiven_Then_ReturnViewModelWithMainBody(string mainBody, string expected)
 		{
 			var contentPage = new TModel() { MainBody = new HtmlString(mainBody) };
 			var viewModel = this._sut.CreateModel(contentPage);
@@ -54,7 +54,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Given_CreateModel_When_HeroImageGiven_ThenReturnViewModelWithHeroImage()
+		public void Given_CreateModel_When_HeroImageGiven_Then_ReturnViewModelWithHeroImage()
 		{
 			var page = new Core.Features.Shared.UI.BaseContentPage();
 			var viewModel = SetUpGetHeroImage(page);
@@ -76,7 +76,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Given_CreateModel_When_HeroImageGiven_ThenReturnViewModelWithShowHeroImageTrue()
+		public void Given_CreateModel_When_HeroImageGiven_Then_ReturnViewModelWithShowHeroImageTrue()
 		{
 			var viewModel = SetUpGetHeroImage(new Core.Features.Shared.UI.BaseContentPage());
 
@@ -84,7 +84,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Given_CreateModel_When_HeroImageNotGiven_ThenReturnViewModelWithShowHeroImageFalse()
+		public void Given_CreateModel_When_HeroImageNotGiven_Then_ReturnViewModelWithShowHeroImageFalse()
 		{
 			var contentPage = new TModel() { HeroImage = null };
 			var viewModel = this._sut.CreateModel(contentPage);
@@ -93,7 +93,7 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 		}
 
 		[Test]
-		public void Given_CreateModel_When_MainBodyNullOrEmpty_ThenReturnViewModelWithMainBodyEmptyString()
+		public void Given_CreateModel_When_MainBodyNullOrEmpty_Then_ReturnViewModelWithMainBodyEmptyString()
 		{
 			var contentPage = new TModel() { MainBody = null };
 			var viewModel = this._sut.CreateModel(contentPage);

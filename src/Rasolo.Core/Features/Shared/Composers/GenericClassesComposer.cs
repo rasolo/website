@@ -1,4 +1,5 @@
 ﻿using Rasolo.Core.Features.ArticlePage;
+using Rasolo.Core.Features.BlogPage;
 using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Core.Features.Shared.UI;
@@ -13,7 +14,8 @@ namespace Rasolo.Core.Features.Shared.Composers
 		public void Compose(Composition composition)
 		{
 			composition.Register<IArticlePageViewModelFactory, ArticlePageViewModelFactory>();
-			composition.Register<IBaseContentPageViewModelFactory<BlogPage.BlogPage>, BaseContentPageViewModelFactory<BlogPage.BlogPage>>();
+			composition.Register<IBlogPageViewModelFactory, BlogPageViewModelFactory>();
+			composition.Register<IBaseContentPageViewModelFactory<BlogPostPage.BlogPostPage>, BaseContentPageViewModelFactory<BlogPostPage.BlogPostPage>>();
 			composition.Register<IGlobalSettingsPageViewModelFactory, GlobalSettingsPagePageViewModelFactory>();
 			composition.Register<IStartPageViewModelFactory, StartPageViewModelFactory>();
 			composition.Register<IUmbracoService, UmbracoService>();

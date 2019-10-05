@@ -18,7 +18,7 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 
 		public GlobalSettingsPageViewModel CreateModel(HttpCookieCollection httpCookieCollection)
 		{
-			var globalSettingsPage = _umbracoService.GetFirstContentTypeAtRoot(DocumentTypeAlias.GlobalSettingsPage);
+			var globalSettingsPage = _umbracoService.GetFirstPageByDocumentTypeAtRootLevel(DocumentTypeAlias.GlobalSettingsPage);
 			var viewModel = new GlobalSettingsPageViewModel();
 			if (globalSettingsPage == null)
 			{
