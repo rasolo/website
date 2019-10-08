@@ -1,8 +1,8 @@
 ﻿using Rasolo.Core.Features.ArticlePage;
 using Rasolo.Core.Features.BlogPage;
+using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Core.Features.Shared.Services;
-using Rasolo.Core.Features.Shared.UI;
 using Rasolo.Core.Features.StartPage;
 using Umbraco.Core;
 using Umbraco.Core.Composing;

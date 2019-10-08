@@ -1,6 +1,6 @@
 ﻿using AutoMapper.Configuration.Annotations;
-using Rasolo.Core.Features.Shared.UI;
 using System.Collections.Generic;
+using Rasolo.Core.Features.Shared.Compositions;
 
 namespace Rasolo.Core.Features.BlogPage
 {
