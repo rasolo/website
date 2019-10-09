@@ -1,4 +1,4 @@
-﻿namespace Rasolo.Core.Features.Shared.UI
+﻿namespace Rasolo.Core.Features.Shared.Compositions
 {
 	public interface IBaseContentPageViewModelFactory<TModel>
 	{ 

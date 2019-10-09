@@ -3,16 +3,16 @@
 <a href="@Model.PageUrl">
 	<article class="posts__post">
 		@{
-			if (string.IsNullOrEmpty(Model.HeroImage?.Url))
+			if (string.IsNullOrEmpty(Model.TeaserMedia?.Url))
 			{
-				<img src="/favicon.ico"/>
+				<img src="/assets/img/teaser/bear.jpeg"/>
 			}
 			else
 			{
-				<img src="@Model.HeroImage.Url"/>
+				<img src="@Model.TeaserMedia.Url"/>
 			}
 		}
 		<p class="post__date">@Model.CreatedDate.ToString("yyyy-MM-dd")</p>
-		<h4>@Model.Title</h4>
+		<h4>@Model.TeaserHeading</h4>
 	</article>
 </a>

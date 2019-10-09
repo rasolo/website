@@ -1,8 +1,8 @@
-﻿using Rasolo.Core.Features.Shared.Controllers;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Rasolo.Core.Features.Shared.Controllers;
 using Umbraco.Web.Models;
 
-namespace Rasolo.Core.Features.Shared.UI
+namespace Rasolo.Core.Features.Shared.Compositions
 {
 	public class BaseContentPageController<TModel> : BasePageController<TModel> where TModel : class, new()
 	{

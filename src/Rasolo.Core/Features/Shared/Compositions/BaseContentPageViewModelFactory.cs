@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Rasolo.Core.Features.Shared.UI
+namespace Rasolo.Core.Features.Shared.Compositions
 {
 	public class BaseContentPageViewModelFactory<TModel> : IBaseContentPageViewModelFactory<TModel> where TModel: IContentPage ,new() 
 	{

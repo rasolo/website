@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
+using Rasolo.Core.Features.Shared.Compositions;
 using Zone.UmbracoMapper.V8;
-using Rasolo.Core.Features.Shared.UI;
 using Umbraco.Web.Models;
 
 namespace Rasolo.Core.Features.BlogPostPage

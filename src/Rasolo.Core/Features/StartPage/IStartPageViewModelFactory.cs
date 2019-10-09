@@ -1,4 +1,4 @@
-﻿using Rasolo.Core.Features.Shared.UI;
+﻿using Rasolo.Core.Features.Shared.Compositions;
 
 namespace Rasolo.Core.Features.StartPage
 {

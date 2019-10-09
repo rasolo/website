@@ -4,9 +4,9 @@ using NUnit.Framework;
 using Rasolo.Core.Features.BlogPostPage;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
-using Rasolo.Tests.Unit.Shared.BaseContentPage;
 using Shouldly;
 using Moq;
+using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Umbraco.Web.Models;
 
 

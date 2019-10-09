@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Rasolo.Core.Features.Shared.UI;
 using System.Linq;
+using Rasolo.Core.Features.Shared.Compositions;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 
