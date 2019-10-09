@@ -1,20 +1,20 @@
-﻿using Moq;
+﻿using System.Web.Mvc;
+using Moq;
 using NUnit.Framework;
-using Rasolo.Core.Features.Shared.Services;
-using Rasolo.Core.Features.Shared.UI;
-using Rasolo.Tests.Unit.Base;
-using System.Web.Mvc;
 using Rasolo.Core.Features.Shared.Composers;
-using Umbraco.Web.Models;
-using Zone.UmbracoMapper.V8;
-using Umbraco.Core.Models.PublishedContent;
+using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
+using Rasolo.Core.Features.Shared.Services;
+using Rasolo.Tests.Unit.Base;
 using Shouldly;
+using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Web.Models;
 using Zone.UmbracoMapper.Common.BaseDestinationTypes;
+using Zone.UmbracoMapper.V8;
 
-namespace Rasolo.Tests.Unit.Shared.BaseContentPage
+namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 {
-	internal class BaseContentPageControllerTests<TContentPage> : UmbracoBaseTests where TContentPage : Core.Features.Shared.UI.BaseContentPage, new()
+	internal class BaseContentPageControllerTests<TContentPage> : UmbracoBaseTests where TContentPage : Core.Features.Shared.Compositions.BaseContentPage, new()
 	{
 		protected BaseContentPageController<TContentPage> _sut;
 		protected Mock<IBaseContentPageViewModelFactory<TContentPage>> _viewModelFactory;
@@ -96,34 +96,6 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			viewModel.MainBody.ToString().ShouldBe(expected);
 		}
 
-		[Test]
-		[TestCase("Teaser heading", "Teaser heading")]
-		[TestCase("Another Teaser heading", "Another Teaser heading")]
-		public void Given_PageHasTeaserHeading_When_IndexAction_Then_ReturnViewModelWithTeaserHeading(string teaserHeading, string expected)
-		{
-			var property = SetupPropertyValue("teaserHeading", teaserHeading);
-			var contentModel = SetupContent(typeof(TContentPage).Name, property);
-			this._mockedViewModel.TeaserHeading = teaserHeading;
-
-			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
-
-			viewModel.TeaserHeading.ShouldBe(expected);
-		}
-
-		[Test]
-		[TestCase("My preamble text", "My preamble text")]
-		[TestCase("Another preamble text", "Another preamble text")]
-		public void Given_PageHasTeaserPreamble_When_IndexAction_Then_ReturnViewModelWithTeaserPreamble(string teaserPreamble, string expected)
-		{
-			var property = SetupPropertyValue("teaserPreamble", teaserPreamble);
-			var contentModel = SetupContent(typeof(TContentPage).Name, property);
-			this._mockedViewModel.TeaserPreamble = new MvcHtmlString(teaserPreamble);
-
-			var viewModel = (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
-
-			viewModel.TeaserPreamble.ToString().ShouldBe(expected);
-		}
-
 		TContentPage TestMediaReturnViewModel(string propertyAlias)
 		{
 			var mainImageMock = new Mock<IPublishedProperty>();
@@ -137,14 +109,6 @@ namespace Rasolo.Tests.Unit.Shared.BaseContentPage
 			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>())).Returns(this._sut.MapModel(contentModel.Content));
 
 			return (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
-		}
-
-		[Test]
-		public void Given_PageHasTeaserMedia_When_IndexAction_Then_ReturnViewModelWithTeaserMedia()
-		{
-			var viewModel = TestMediaReturnViewModel(BaseContentPagePropertyAlias.TeaserMedia);
-
-			MediaFileShouldBe(viewModel.TeaserMedia);
 		}
 
 		void MediaFileShouldBe(MediaFile mediaFile)

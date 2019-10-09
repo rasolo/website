@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Rasolo.Tests.Unit.Shared.BaseContentPage;
 using Shouldly;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Web.Mvc;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
+using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 
