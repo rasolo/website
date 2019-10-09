@@ -1,7 +1,11 @@
 ﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPostPage.BlogPostPage>
 @{
-	Layout = null;
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Model.Title
-@Model.Preamble
+<div class="blogpost">
+	<h1>@Model.Title</h1>
+	<div class="blogpost__content">
+		@Model.MainBody
+	</div>
+</div>

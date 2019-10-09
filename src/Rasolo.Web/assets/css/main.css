@@ -123,37 +123,38 @@
   left: 2%;
   top: 1%; }
 
-.article {
+.article, .blogpost {
   margin-top: 25%; }
-  .article h1 {
+  .article h1, .blogpost h1 {
     font-family: "roboto", cursive;
     text-align: center;
     font-size: 23px; }
-  .article h2 {
+  .article h2, .blogpost h2 {
     font-size: 30px; }
-  .article .article__content {
+  .article .article__content, .blogpost .article__content, .article .blogpost__content, .blogpost .blogpost__content {
     margin: 5%; }
-    .article .article__content p {
+    .article .article__content p, .blogpost .article__content p, .article .blogpost__content p, .blogpost .blogpost__content p {
       margin: 0.8%;
       line-height: 1.58;
       font-size: 16px;
       margin: 10px 0; }
 
 @media (min-width: 600px) {
-  .article h1 {
+  .article h1, .blogpost h1 {
     font-size: 5vw; }
-  .article .article__content p {
+  .article .article__content p, .blogpost .article__content p, .article .blogpost__content p, .blogpost .blogpost__content p {
     font-size: 18px; } }
 
 @media (min-width: 1080px) {
-  .article {
+  .article, .blogpost {
     margin-top: 8%; }
-    .article h1 {
+    .article h1, .blogpost h1 {
       font-size: 4vw; }
-    .article .article__content {
+    .article .article__content, .blogpost .article__content, .article .blogpost__content, .blogpost .blogpost__content {
       margin: auto;
+      margin-top: 3%;
       margin-left: 16%; }
-      .article .article__content p {
+      .article .article__content p, .blogpost .article__content p, .article .blogpost__content p, .blogpost .blogpost__content p {
         font-size: 18px;
         max-width: 80%; } }
 

@@ -1,0 +1,10 @@
+
+.blogpost {
+    @extend .article;
+  }
+
+  .blogpost__content {
+    @extend .article__content 
+  }
+
+  
