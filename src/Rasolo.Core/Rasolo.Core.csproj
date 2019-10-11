@@ -284,8 +284,6 @@
     <Compile Include="Features\BlogPage\IBlogPageViewModelFactory.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPageController.cs" />
-    <Compile Include="Features\BlogPostPage\BlogPostPageViewModelFactory.cs" />
-    <Compile Include="Features\BlogPostPage\IBlogPostPageViewModelFactory.cs" />
     <Compile Include="Features\Shared\Composers\GenericClassesComposer.cs" />
     <Compile Include="Features\Shared\Compositions\TeaserPage\ITeaserPage.cs" />
     <Compile Include="Features\Shared\Compositions\TeaserPage\TeaserPage.cs" />
