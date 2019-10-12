@@ -2,7 +2,10 @@
 using System.Linq;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
+using Rasolo.Core.Features.Shared.Constants.MediaCropAliases.BlogPostPage;
+using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.Services;
+using Umbraco.Web;
 using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.StartPage
@@ -55,6 +58,9 @@ namespace Rasolo.Core.Features.StartPage
 				this._umbracoMapper.Map(blogPostPagePublishedContent, blogPostPage);
 				blogPostPage.CreatedDate = blogPostPagePublishedContent.CreateDate;
 				blogPostPage.PageUrl = blogPostPagePublishedContent.Url;
+				blogPostPage.TeaserMediaUrl =
+					blogPostPagePublishedContent.GetCropUrl(BlogPostPagePropertyAlias.TeaserMedia,
+						BlogPostPageMediaCropAliases.StartPage);
 				viewModel.BlogPostPages.Add(blogPostPage);
 			}
 		}

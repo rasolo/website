@@ -6,7 +6,7 @@ using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Core.Features.BlogPostPage
 {
-	public class BlogPostPage : BaseContentPage, ITeaserPage
+	public class BlogPostPage : BaseContentPage
 	{
 		public virtual string Preamble { get; set; }
 		[Ignore]
@@ -15,7 +15,9 @@ namespace Rasolo.Core.Features.BlogPostPage
 		public string PageUrl { get; set; }
 
 		public string TeaserHeading { get; set; }
-		public MediaFile TeaserMedia { get; set; }
+		public string TeaserMedia { get; set; }
+		[Ignore]
+		public string TeaserMediaUrl { get; set; }
 		public string TeaserPreamble { get; set; }
 	}
 }
