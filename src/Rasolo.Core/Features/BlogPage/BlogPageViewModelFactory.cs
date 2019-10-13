@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Rasolo.Core.Features.Shared.Compositions;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
@@ -26,6 +25,7 @@ namespace Rasolo.Core.Features.BlogPage
 
 				blogPage.BlogPosts.Add(blogPost);
 			}
+
 			return blogPage;
 		}
 

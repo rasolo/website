@@ -105,6 +105,7 @@ body {
       }
 
       .posts-container__posts {
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
         .posts__post {
           h4 {
             font-size: 20px;

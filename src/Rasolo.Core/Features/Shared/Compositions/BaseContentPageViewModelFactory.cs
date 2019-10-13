@@ -8,7 +8,7 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		{
 			viewModel.Title = viewModel.Title ?? string.Empty;
 			viewModel.MainBody = viewModel.MainBody ?? new HtmlString(string.Empty);
-			viewModel.ShowHeroImage = viewModel.HeroImage == null ? false : true;
+			viewModel.ShowHeroImage = viewModel.HeroImage != null;
 
 			return viewModel;
 		}

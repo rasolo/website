@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -28,6 +29,8 @@ namespace Rasolo.Tests.Unit.Shared.StartPage
 			var blogPageProperty2 = this.SetupPropertyValue(BaseContentPagePropertyAlias.Title, "title2");
 			var blogPage2 = this.SetupContentMock(DocumentTypeAlias.BlogPage, blogPageProperty2);
 
+			blogPage1.Setup(x => x.UpdateDate).Returns(DateTime.Now);
+			blogPage2.Setup(x => x.UpdateDate).Returns(DateTime.Now);
 			var blogPages = new List<IPublishedContent> {blogPage1.Object, blogPage2.Object};
 
 			umbracoServiceMock.Setup(x => x.GetAllPagesByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(blogPages);
@@ -40,7 +43,6 @@ namespace Rasolo.Tests.Unit.Shared.StartPage
 		public void Given_CreateModel_When_MethodCalled_Then_ReturnViewModelWithBlogPages()
 		{
 			var viewModel = this._sut.CreateModel(new Core.Features.StartPage.StartPage());
-
 			viewModel.BlogPages.Count().ShouldBeGreaterThan(1);
 		}
 
@@ -56,6 +58,9 @@ namespace Rasolo.Tests.Unit.Shared.StartPage
 			var blogPostPage2 = this.SetupContentMock(DocumentTypeAlias.BlogPostPage, blogPostPageProperty2);
 
 			var blogPostPages = new List<IPublishedContent> { blogPostPage1.Object, blogPostPage2.Object };
+
+			blogPostPage1.Setup(x => x.UpdateDate).Returns(DateTime.Now);
+			blogPostPage2.Setup(x => x.UpdateDate).Returns(DateTime.Now);
 
 			umbracoServiceMock.Setup(x => x.GetAllPagesByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(blogPostPages);
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
