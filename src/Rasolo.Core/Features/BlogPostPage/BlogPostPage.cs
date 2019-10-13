@@ -1,8 +1,6 @@
 ﻿using System;
 using AutoMapper.Configuration.Annotations;
 using Rasolo.Core.Features.Shared.Compositions;
-using Rasolo.Core.Features.Shared.Compositions.TeaserPage;
-using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Core.Features.BlogPostPage
 {

@@ -58,6 +58,9 @@ namespace Rasolo.Core.Features.StartPage
 				this._umbracoMapper.Map(blogPostPagePublishedContent, blogPostPage);
 				blogPostPage.CreatedDate = blogPostPagePublishedContent.CreateDate;
 				blogPostPage.PageUrl = blogPostPagePublishedContent.Url;
+				blogPostPage.TeaserHeading = !string.IsNullOrEmpty(blogPostPage.TeaserHeading)
+					? blogPostPage.TeaserHeading
+					: blogPostPage.Title;
 				blogPostPage.TeaserMediaUrl =
 					blogPostPagePublishedContent.GetCropUrl(BlogPostPagePropertyAlias.TeaserMedia,
 						BlogPostPageMediaCropAliases.StartPage);
