@@ -228,17 +228,19 @@ body .spacer {
     margin: 5%;
     margin-bottom: 4%;
     font-size: 60px; }
-  body .posts-container .posts-container__posts .posts__post {
-    width: 330px; }
-    body .posts-container .posts-container__posts .posts__post h4 {
-      font-size: 20px; }
-    body .posts-container .posts-container__posts .posts__post .post__post-date {
-      margin: 4%;
-      font-size: 18px; }
-    body .posts-container .posts-container__posts .posts__post .post__post-category {
-      font-size: 18px; }
-    body .posts-container .posts-container__posts .posts__post p {
-      font-size: 20px; }
+  body .posts-container .posts-container__posts {
+    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr)); }
+    body .posts-container .posts-container__posts .posts__post {
+      width: 330px; }
+      body .posts-container .posts-container__posts .posts__post h4 {
+        font-size: 20px; }
+      body .posts-container .posts-container__posts .posts__post .post__post-date {
+        margin: 4%;
+        font-size: 18px; }
+      body .posts-container .posts-container__posts .posts__post .post__post-category {
+        font-size: 18px; }
+      body .posts-container .posts-container__posts .posts__post p {
+        font-size: 20px; }
   body .spacer {
     height: 150px; } }
 
