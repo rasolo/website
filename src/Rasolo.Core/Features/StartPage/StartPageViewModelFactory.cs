@@ -66,6 +66,8 @@ namespace Rasolo.Core.Features.StartPage
 						BlogPostPageMediaCropAliases.StartPage);
 				viewModel.BlogPostPages.Add(blogPostPage);
 			}
+
+			viewModel.BlogPostPages = viewModel.BlogPostPages.OrderByDescending(x => x.CreatedDate).ToList();
 		}
 	}
 }
