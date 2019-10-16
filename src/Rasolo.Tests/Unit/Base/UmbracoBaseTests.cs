@@ -34,16 +34,16 @@ namespace Rasolo.Tests.Unit.Base
 			return property;
 		}
 
-		public ContentModel SetupContent(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty)
+		public ContentModel SetupContent(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty, string url = "http://rasolo.local/pagename", string pageName = "anyPageName")
 		{
-			var content = SetupContentMock(contentTypeAlias, publishedProperty);
+			var content = SetupContentMock(contentTypeAlias, publishedProperty, url, pageName);
 
 			var contentModel = new ContentModel(content.Object);
 
 			return contentModel;
 		}
 
-		public Mock<IPublishedContent> SetupContentMock(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty)
+		public Mock<IPublishedContent> SetupContentMock(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty, string url = "http://rasolo.local/pagename", string pageName = "anyPageName")
 		{
 			var content = new Mock<IPublishedContent>();
 			content
@@ -52,8 +52,9 @@ namespace Rasolo.Tests.Unit.Base
 				Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing));
 			content.Setup(c => c.GetProperty(It.Is<string>(x => x == publishedProperty.Object.Alias)))
 				.Returns(publishedProperty.Object);
-			content.Setup(x => x.Name).Returns(contentTypeAlias);
 			content.Setup(x => x.Id).Returns(99);
+			content.Setup(x => x.Url).Returns(url);
+			content.Setup(x => x.Name).Returns(pageName);
 
 			return content;
 		}

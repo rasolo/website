@@ -15,7 +15,6 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		public bool ShowHeroImage { get; set; }
 		public virtual string SiteTitle => Constants.GlobalSettings.SiteTitle;
 		public string Url { get; set; }
-		[Ignore]
 		public virtual string MetaTitle { get; set; }
 		public virtual string MetaDescription { get; set; }
 
