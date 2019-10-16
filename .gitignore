@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#Ignore Umbraco media files 
+src/Rasolo.Web/Media
+
 # User-specific files
 *.rsuser
 *.suo

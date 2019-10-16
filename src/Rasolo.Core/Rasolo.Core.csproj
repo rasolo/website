@@ -290,6 +290,7 @@
     <Compile Include="Features\Shared\Compositions\TeaserPage\TeaserPageController.cs" />
     <Compile Include="Features\Shared\Constants\CookiesNotice.cs" />
     <Compile Include="Features\Shared\Constants\DocumentTypeAlias.cs" />
+    <Compile Include="Features\Shared\Constants\GlobalSettings.cs" />
     <Compile Include="Features\Shared\Constants\MediaCropAliases\BlogPostPage\BlogPostPageMediaCropAliases.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogPostPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\StartPagePropertyAlias.cs" />
@@ -299,6 +300,7 @@
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
     <Compile Include="Features\Shared\Controllers\IBasePageController.cs" />
     <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeController.cs" />
+    <Compile Include="Features\Shared\DocumentTypeInterfaces\IMetaData.cs" />
     <Compile Include="Features\Shared\Extensions\StringExtensions.cs" />
     <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsPageController.cs" />
     <Compile Include="Features\Shared\GlobalSettings\GlobalSettingsPageViewModel.cs" />
