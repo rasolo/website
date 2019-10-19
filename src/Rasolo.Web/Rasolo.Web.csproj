@@ -466,6 +466,7 @@
     <Content Include="css\umbraco-starterkit-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="robots.txt" />
     <Content Include="scripts\umbraco-starterkit-app.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -547,6 +548,7 @@
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
+    <Content Include="Views\SiteMapPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rasolo.Core\Rasolo.Core.csproj">

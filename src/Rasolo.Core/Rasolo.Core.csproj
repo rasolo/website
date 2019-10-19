@@ -293,6 +293,7 @@
     <Compile Include="Features\Shared\Constants\GlobalSettings.cs" />
     <Compile Include="Features\Shared\Constants\MediaCropAliases\BlogPostPage\BlogPostPageMediaCropAliases.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogPostPagePropertyAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\SiteMapPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\StartPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BaseContentPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\GlobalSettingsPagePropertyAlias.cs" />
@@ -316,6 +317,8 @@
     <Compile Include="Features\Shared\Compositions\BaseContentPageViewModelFactory.cs" />
     <Compile Include="Features\Shared\Compositions\IBaseContentPageViewModelFactory.cs" />
     <Compile Include="Features\Shared\Compositions\IContentPage.cs" />
+    <Compile Include="Features\SiteMapPage\SiteMapPage.cs" />
+    <Compile Include="Features\SiteMapPage\SiteMapPageController.cs" />
     <Compile Include="Features\StartPage\StartPageViewModelFactory.cs" />
     <Compile Include="Features\StartPage\IStartPageViewModelFactory.cs" />
     <Compile Include="Features\StartPage\StartPage.cs" />

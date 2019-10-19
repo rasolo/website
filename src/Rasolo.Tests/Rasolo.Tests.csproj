@@ -278,6 +278,7 @@
     <Compile Include="Unit\Features\BlogPage\BlogPageControllerTests.cs" />
     <Compile Include="Unit\Features\BlogPage\BlogPageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Features\BlogPostPage\BlogPostPageControllerTests.cs" />
+    <Compile Include="Unit\Features\SiteMapPage\SiteMapPageControllerTests.cs" />
     <Compile Include="Unit\Features\StartPage\StartPageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Shared\Compositions\BaseContentPage\BaseContentPageControllerTests.cs" />
     <Compile Include="Unit\Features\StartPage\StartPageControllerTests.cs" />

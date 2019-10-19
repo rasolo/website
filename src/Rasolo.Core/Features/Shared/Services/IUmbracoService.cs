@@ -5,8 +5,9 @@ namespace Rasolo.Core.Features.Shared.Services
 {
 	public interface IUmbracoService
 	{
-		IPublishedContent GetFirstPageByDocumentTypeAtRootLevel(string alias);
-		IEnumerable<IPublishedContent> GetAllPagesByDocumentTypeAtRootLevel(string alias);
+		IPublishedContent GetFirstPageByDocumentTypeAtRootLevel(string documentTypeAlias);
+		IEnumerable<IPublishedContent> GetFirstPageByDocumentTypeAtRootLevelAndDescendants(string documentTypeAlias);
+		IEnumerable<IPublishedContent> GetAllPagesByDocumentTypeAtRootLevel(string documentTypeAlias);
 		
 	}
 }

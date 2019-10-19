@@ -13,6 +13,7 @@ namespace Rasolo.Core.Features.Shared.Composers
 	{
 		public void Compose(Composition composition)
 		{
+			composition.Register<IBaseContentPageViewModelFactory<SiteMapPage.SiteMapPage>, BaseContentPageViewModelFactory<SiteMapPage.SiteMapPage>>();
 			composition.Register<IArticlePageViewModelFactory, ArticlePageViewModelFactory>();
 			composition.Register<IBlogPageViewModelFactory, BlogPageViewModelFactory>();
 			composition.Register<IBaseContentPageViewModelFactory<BlogPostPage.BlogPostPage>, BaseContentPageViewModelFactory<BlogPostPage.BlogPostPage>>();
