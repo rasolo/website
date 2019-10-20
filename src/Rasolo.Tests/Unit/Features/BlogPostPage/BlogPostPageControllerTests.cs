@@ -27,28 +27,12 @@ namespace Rasolo.Tests.Unit.Features.BlogPostPage
 			var property = SetupPropertyValue(BlogPostPagePropertyAlias.DateCreated, expectedCreatedDate);
 			var content = SetupContentMock(DocumentTypeAlias.BlogPostPage, property);
 			content.Setup(x => x.CreateDate).Returns(expectedCreatedDate);
-
+			
 			var contentModel = new ContentModel(content.Object);
-
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<Core.Features.BlogPostPage.BlogPostPage>())).Returns(_sut.MapModel(contentModel.Content));
 			var viewModel = (Core.Features.BlogPostPage.BlogPostPage)((ViewResult)_sut.Index(contentModel)).Model;
 
-			viewModel.CreatedDate.ShouldBe(expectedCreatedDate);
-		}
-
-		[Test]
-		[TestCase("The page url", "The page url")]
-		[TestCase("Another the page url", "Another the page url")]
-		public void Given_BlogPostHasPageUrl_When_IndexAction_Then_ReturnViewModelWithPageUrl(string pageUrl, string expected)
-		{
-			var property = SetupPropertyValue(BlogPostPagePropertyAlias.PageUrl, pageUrl);
-			var content = SetupContentMock(DocumentTypeAlias.BlogPostPage, property);
-			content.Setup(x => x.Url).Returns(pageUrl);
-
-			var contentModel = new ContentModel(content.Object);
-
-			var viewModel = (Core.Features.BlogPostPage.BlogPostPage)((ViewResult)_sut.Index(contentModel)).Model;
-
-			viewModel.PageUrl.ShouldBe(expected);
+			viewModel.CreateDate.ShouldBe(expectedCreatedDate);
 		}
 	}
 }

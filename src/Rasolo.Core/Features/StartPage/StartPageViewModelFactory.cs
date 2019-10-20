@@ -5,6 +5,7 @@ using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.MediaCropAliases.BlogPostPage;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.Services;
+using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 using Zone.UmbracoMapper.V8;
 
@@ -14,11 +15,14 @@ namespace Rasolo.Core.Features.StartPage
 	{
 		private readonly IUmbracoMapper _umbracoMapper;
 		private readonly IUmbracoService _umbracoService;
+		private readonly IBlogPostService _blogPostService;
 
-		public StartPageViewModelFactory(IUmbracoMapper mapper, IUmbracoService umbracoService)
+
+		public StartPageViewModelFactory(IUmbracoMapper mapper, IUmbracoService umbracoService, IBlogPostService blogPostService)
 		{
 			this._umbracoMapper = mapper;
-			_umbracoService = umbracoService;
+			this._umbracoService = umbracoService;
+			this._blogPostService = blogPostService;
 		}
 
 		public override StartPage CreateModel(StartPage viewModel)
@@ -26,7 +30,10 @@ namespace Rasolo.Core.Features.StartPage
 			viewModel = base.CreateModel(viewModel);
 
 			SetBlogPagesOnViewModel(viewModel);
-			SetBlogPostPagesOnViewModel(viewModel);
+			viewModel.BlogPostPages = this._blogPostService
+                .GetMappedBlogPosts(_umbracoService
+                .GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).ToList();
+
 			return viewModel;
 		}
 
@@ -44,30 +51,6 @@ namespace Rasolo.Core.Features.StartPage
 
 				viewModel.BlogPages.Add(blogPage);
 			}
-		}
-
-		private void SetBlogPostPagesOnViewModel(StartPage viewModel)
-		{
-			var blogPostPagesAsPublishedContent = _umbracoService.GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage).ToList();
-
-			viewModel.BlogPostPages = new List<BlogPostPage.BlogPostPage>();
-
-			foreach (var blogPostPagePublishedContent in blogPostPagesAsPublishedContent)
-			{
-				var blogPostPage = new BlogPostPage.BlogPostPage();
-				this._umbracoMapper.Map(blogPostPagePublishedContent, blogPostPage);
-				blogPostPage.CreatedDate = blogPostPagePublishedContent.CreateDate;
-				blogPostPage.PageUrl = blogPostPagePublishedContent.Url;
-				blogPostPage.TeaserHeading = !string.IsNullOrEmpty(blogPostPage.TeaserHeading)
-					? blogPostPage.TeaserHeading
-					: blogPostPage.Title;
-				blogPostPage.TeaserMediaUrl =
-					blogPostPagePublishedContent.GetCropUrl(BlogPostPagePropertyAlias.TeaserMedia,
-						BlogPostPageMediaCropAliases.StartPage);
-				viewModel.BlogPostPages.Add(blogPostPage);
-			}
-
-			viewModel.BlogPostPages = viewModel.BlogPostPages.OrderByDescending(x => x.CreatedDate).ToList();
 		}
 	}
 }
