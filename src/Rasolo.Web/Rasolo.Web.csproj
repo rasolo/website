@@ -549,7 +549,7 @@
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\SiteMapPage.cshtml" />
-    <None Include="Views\Shared\BlogPostsTeaser.cshtml" />
+    <Content Include="Views\Shared\BlogPostsTeaser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rasolo.Core\Rasolo.Core.csproj">
