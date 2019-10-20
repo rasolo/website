@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using AutoMapper.Configuration.Annotations;
 using Rasolo.Core.Features.Shared.DocumentTypeInterfaces;
+using Umbraco.Core.Models.PublishedContent;
 using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
 namespace Rasolo.Core.Features.Shared.Compositions
@@ -14,6 +16,7 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		public MediaFile HeroImage { get; set; }
 		[Ignore]
 		public bool ShowHeroImage { get; set; }
+		public virtual IEnumerable<IPublishedContent> Children { get; set; }
 		public virtual string SiteTitle => Constants.GlobalSettings.SiteTitle;
 		public string Url { get; set; }
 		public virtual string MetaTitle { get; set; }

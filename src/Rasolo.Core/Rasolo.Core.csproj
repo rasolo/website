@@ -206,6 +206,10 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Syndication, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ServiceModel.Syndication.4.6.0\lib\net461\System.ServiceModel.Syndication.dll</HintPath>
+    </Reference>
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Threading.Tasks.Dataflow, Version=4.6.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Dataflow.4.10.0\lib\netstandard2.0\System.Threading.Tasks.Dataflow.dll</HintPath>
@@ -286,6 +290,8 @@
     <Compile Include="Features\BlogPostPage\BlogPostPageController.cs" />
     <Compile Include="Features\Shared\Attributes\MapFromImageCropperAttribute.cs" />
     <Compile Include="Features\Shared\Composers\GenericClassesComposer.cs" />
+    <Compile Include="Features\Shared\Composers\BlogPageRouteHandler.cs" />
+    <Compile Include="Features\Shared\Composers\RegisterCustomRouteComposer.cs" />
     <Compile Include="Features\Shared\Compositions\TeaserPage\ITeaserPage.cs" />
     <Compile Include="Features\Shared\Compositions\TeaserPage\TeaserPage.cs" />
     <Compile Include="Features\Shared\Compositions\TeaserPage\TeaserPageController.cs" />
@@ -311,6 +317,7 @@
     <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsPage.cs" />
     <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsPageViewModelFactory.cs" />
     <Compile Include="Features\Shared\Composers\UmbracoMapperComposer.cs" />
+    <Compile Include="Features\Shared\RssResult.cs" />
     <Compile Include="Features\Shared\Services\BlogPostService.cs" />
     <Compile Include="Features\Shared\Services\IBlogPostService.cs" />
     <Compile Include="Features\Shared\Services\IUmbracoService.cs" />
