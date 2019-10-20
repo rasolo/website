@@ -1,6 +1,6 @@
 ﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPostPage.BlogPostPage>
 
-<a href="@Model.PageUrl">
+<a href="@Model.Url">
 	<article class="posts__post">
 		@{
 			if (string.IsNullOrEmpty(Model.TeaserMediaUrl))
@@ -12,7 +12,7 @@
 				<img src="@Model.TeaserMediaUrl"/>
 			}
 		}
-		<p class="post__date">@Model.CreatedDate.ToString("yyyy-MM-dd")</p>
+		<p class="post__date">@Model.CreateDate.ToString("yyyy-MM-dd")</p>
 		<h4>@Model.TeaserHeading</h4>
 	</article>
 </a>

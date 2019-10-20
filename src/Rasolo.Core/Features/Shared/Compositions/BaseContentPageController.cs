@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Rasolo.Core.Features.Shared.Controllers;
 using Umbraco.Web.Models;
+using System.Web;
 
 namespace Rasolo.Core.Features.Shared.Compositions
 {
@@ -17,7 +18,9 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		{
 			var mappedModel = this.MapModel(model.Content);
 			var viewModel = this._viewModelFactory.CreateModel(mappedModel);
+
 			return View(viewModel);
+
 		}
 	}
 }

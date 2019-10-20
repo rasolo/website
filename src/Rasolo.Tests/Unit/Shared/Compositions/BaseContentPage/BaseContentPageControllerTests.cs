@@ -60,10 +60,10 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		[TestCase("Another Page name", "Another Page name")]
 		public void Given_PageHasName_When_IndexAction_Then_ReturnViewModelWithPageName(string name, string expected)
 		{
-			Content.SetupGet(x => x.Name).Returns(name);
-			this._mockedViewModel.Name = name;
-
-			var viewModel = (TContentPage)((ViewResult)_sut.Index(new ContentModel(Content.Object))).Model;
+			var content = SetupContentMock(typeof(TContentPage).Name, SetupPropertyValue("any", "any"), pageName: name );
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>()))
+				.Returns(this._sut.MapModel(content.Object));
+			var viewModel = (TContentPage)((ViewResult)_sut.Index(new ContentModel(content.Object))).Model;
 
 			viewModel.Name.ShouldBe(expected);
 		}
@@ -73,11 +73,12 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		[TestCase("Another Page title", "Another Page title")]
 		public void Given_PageHasTitle_When_IndexAction_Then_ReturnViewModelWithPageTitle(string title, string expected)
 		{
-			var property = SetupPropertyValue("title", title);
-			var contentModel = SetupContent(typeof(TContentPage).Name, property);
+			var property = SetupPropertyValue(BaseContentPagePropertyAlias.Title, title);
+			var contentModel = SetupContentMock(typeof(TContentPage).Name, property);
+
 			this._mockedViewModel.Title = title;
 
-			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
+			var viewModel = (TContentPage) ((ViewResult) _sut.Index(new ContentModel(contentModel.Object))).Model;
 
 			viewModel.Title.ShouldBe(expected);
 		}
