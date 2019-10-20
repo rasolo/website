@@ -19,6 +19,7 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		public virtual string MetaTitle { get; set; }
 		public virtual string MetaDescription { get; set; }
 		public DateTime UpdateDate { get; set; }
+		public DateTime CreateDate { get; set; }
 
 		[Ignore]
 		public string PageAndSiteTitle => !string.IsNullOrEmpty(MetaTitle) ? $"{SiteTitle} | {MetaTitle}" :

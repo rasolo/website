@@ -288,6 +288,7 @@
     <Compile Include="Unit\Shared\CookiesNotice\CookiesNoticeControllerTests.cs" />
     <Compile Include="Unit\Shared\GlobalSettings\GlobalSettingsPageControllerTests.cs" />
     <Compile Include="Unit\Shared\GlobalSettings\GlobalSettingsPageViewModelFactoryTests.cs" />
+    <Compile Include="Unit\Shared\Services\BlogPostServiceTests.cs" />
     <Compile Include="Unit\Shared\Services\UmbracoServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>

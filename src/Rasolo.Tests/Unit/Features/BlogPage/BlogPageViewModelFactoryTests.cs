@@ -11,6 +11,7 @@ using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
+using Rasolo.Core.Features.Shared.Services;
 
 namespace Rasolo.Tests.Unit.Features.BlogPage
 {
@@ -21,7 +22,9 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 		public override void SetUp()
 		{
 			base.SetUp();
-			this._sut = new Core.Features.BlogPage.BlogPageViewModelFactory(new UmbracoMapperComposer().SetupMapper());
+			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
+			var blogPostServiceMock = new Mock<BlogPostService>(umbracoMapper);
+			this._sut = new Core.Features.BlogPage.BlogPageViewModelFactory(new UmbracoMapperComposer().SetupMapper(), blogPostServiceMock.Object);
 		}
 
 			[Test]
@@ -31,6 +34,7 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 				"Another the body of second blog post", "Another the body of second blog post")]
 		public void Given_CreateModelAndPageHasBlogPosts_When_ContentModelGiven_Then_ReturnViewModelWithBlogPosts(string mainBodyFirstBlogPost, string expectedFirstBlogPostMainBody, string mainBodySecondBlogPost, string expectedSecondBlogPostMainBody)
 		{
+#warning Refractor. Create a base method for mocking multiple pages. Similar code with many pages are used elsewhere too.
 			var blogPostProperty1 = this.SetupPropertyValue(BaseContentPagePropertyAlias.MainBody, new HtmlString(mainBodyFirstBlogPost));
 			var blogPostPage1 = this.SetupContent(DocumentTypeAlias.BlogPostPage, blogPostProperty1);
 			var blogPostProperty2 = this.SetupPropertyValue(BaseContentPagePropertyAlias.MainBody, new HtmlString(mainBodySecondBlogPost));

@@ -1,12 +1,12 @@
-﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPage.BlogPage>
-	
-@if (Model.BlogPosts != null && Model.BlogPosts.Any())
+﻿@inherits UmbracoViewPage<IEnumerable<Rasolo.Core.Features.BlogPostPage.BlogPostPage>>
+
+@if (Model != null && Model.Any())
 {
 	<div class="posts-container">
 		<h2>Latest posts</h2>
 		<div class="posts-container__posts">
 			@{
-				foreach (var blogPostPage in Model.BlogPosts)
+				foreach (var blogPostPage in Model)
 				{
 					@Html.Partial("BlogPostTeaser", blogPostPage)
 				}

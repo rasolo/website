@@ -14,8 +14,6 @@ namespace Rasolo.Core.Features.BlogPostPage
 		public override ActionResult Index(ContentModel model)
 		{
 			var viewModel  = (BlogPostPage)((ViewResult)base.Index(model)).Model;
-			viewModel.CreatedDate = model.Content.CreateDate;
-			viewModel.PageUrl = model.Content.Url;
 
 			return View(viewModel);
 		}
