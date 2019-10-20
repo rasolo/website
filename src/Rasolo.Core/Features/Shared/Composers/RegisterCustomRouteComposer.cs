@@ -15,14 +15,14 @@ namespace Rasolo.Core.Features.Shared.Composers
 		{
 			// Custom route to MyProductController which will use a node with a specific ID as the
 			// IPublishedContent for the current rendering page
-			RouteTable.Routes.MapUmbracoRoute("BlogPageRouteUmbraco", "blogs/umbraco/{id}", new
+			RouteTable.Routes.MapUmbracoRoute("BlogPageRouteUmbraco", "blogs/umbraco/feed/{id}", new
 			{
 				controller = "BlogPage",
 				action = "Feed",
 				id = UrlParameter.Optional
 			}, new BlogPageRouteHandler(1085));
 
-			RouteTable.Routes.MapUmbracoRoute("BlogPageRouteEpiserver", "blogs/episerver/{id}", new
+			RouteTable.Routes.MapUmbracoRoute("BlogPageRouteEpiserver", "blogs/episerver/feed/{id}", new
 			{
 				controller = "BlogPage",
 				action = "Feed",
