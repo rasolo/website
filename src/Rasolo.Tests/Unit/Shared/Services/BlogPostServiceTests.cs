@@ -50,5 +50,35 @@ namespace Rasolo.Tests.Unit.Shared.Services
 
 			blogPostPages.Count().ShouldBeGreaterThan(1);
 		}
+
+		[Test]
+		public void Given_Service_When_GetMappedBlogPosts_Then_ReturnsMappedBlogPostsByCreateDateDescending()
+		{
+#warning Refractor. Create a base method for mocking multiple pages. Similar code with many pages are used elsewhere too.
+			var umbracoServiceMock = new Mock<IUmbracoService>();
+
+			var blogPostPageProperty1 = this.SetupPropertyValue(BaseContentPagePropertyAlias.Title, "title1");
+			var blogPostPage1 = this.SetupContentMock(DocumentTypeAlias.BlogPostPage, blogPostPageProperty1);
+
+			var blogPostPageProperty2 = this.SetupPropertyValue(BaseContentPagePropertyAlias.Title, "title2");
+			var blogPostPage2 = this.SetupContentMock(DocumentTypeAlias.BlogPostPage, blogPostPageProperty2);
+
+			var blogPostPageProperty3 = this.SetupPropertyValue(BaseContentPagePropertyAlias.Title, "title3");
+			var blogPostPage3 = this.SetupContentMock(DocumentTypeAlias.BlogPostPage, blogPostPageProperty3);
+
+			var mockedBlogPostPages = new List<IPublishedContent> { blogPostPage1.Object, blogPostPage2.Object, blogPostPage3.Object };
+
+			blogPostPage1.Setup(x => x.CreateDate).Returns(new DateTime(2018,01,01));
+			blogPostPage2.Setup(x => x.CreateDate).Returns(new DateTime(2017,02,02));
+			blogPostPage3.Setup(x => x.CreateDate).Returns(new DateTime(2019, 03, 03));
+
+			umbracoServiceMock.Setup(x => x.GetAllPagesByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(mockedBlogPostPages);
+			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
+
+			this._sut = new BlogPostService(umbracoMapper);
+			var blogPostPages = this._sut.GetMappedBlogPosts(mockedBlogPostPages);
+
+			blogPostPages.Select(x => x.CreateDate).ShouldBeInOrder(SortDirection.Descending);
+		}
 	}
 }
