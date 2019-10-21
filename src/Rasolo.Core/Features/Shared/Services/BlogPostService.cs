@@ -26,7 +26,7 @@ namespace Rasolo.Core.Features.Shared.Services
 			{
 				x.TeaserHeading = !string.IsNullOrEmpty(x.TeaserHeading) ? x.TeaserHeading : !string.IsNullOrEmpty(x.Title) ? x.Title : x.Name;
 				return x;
-			}).ToList();
+			}).OrderByDescending(x => x.CreateDate).ToList();
 
 			return blogPostPages;
 		}
