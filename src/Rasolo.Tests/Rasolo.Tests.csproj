@@ -120,7 +120,7 @@
       <HintPath>..\..\packages\MiniProfiler.Shared.4.1.0\lib\net461\MiniProfiler.Shared.dll</HintPath>
     </Reference>
     <Reference Include="Moq, Version=4.13.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Moq.4.13.0\lib\net45\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.13.1\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -265,10 +265,10 @@
       <HintPath>..\..\packages\UmbracoCms.Web.8.2.0\lib\net472\Umbraco.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="Zone.UmbracoMapper.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoMapper.4.2.1\lib\Zone.UmbracoMapper.Common.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoMapper.4.2.2\lib\Zone.UmbracoMapper.Common.dll</HintPath>
     </Reference>
     <Reference Include="Zone.UmbracoMapper.V8, Version=4.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UmbracoMapper.4.2.1\lib\Zone.UmbracoMapper.V8.dll</HintPath>
+      <HintPath>..\..\packages\UmbracoMapper.4.2.2\lib\Zone.UmbracoMapper.V8.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
