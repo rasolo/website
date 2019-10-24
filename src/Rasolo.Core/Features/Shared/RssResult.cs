@@ -19,7 +19,7 @@ namespace Rasolo.Core.Features.Shared
 		{
 			using (var writer = XmlWriter.Create(response.OutputStream))
 			{
-				_feed.GetAtom10Formatter().WriteTo(writer);
+				_feed.GetRss20Formatter().WriteTo(writer);
 			}
 		}
 	}
