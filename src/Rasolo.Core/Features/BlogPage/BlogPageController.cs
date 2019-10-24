@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Rasolo.Core.Features.Shared;
 using Rasolo.Core.Features.Shared.Compositions;
-using Rasolo.Core.Features.Shared.Services;
+using Umbraco.Core;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 
@@ -49,7 +49,7 @@ namespace Rasolo.Core.Features.BlogPage
 
 			author.ElementExtensions.Add("image", string.Empty, "http://rasolo.azurewebsites.net/media/5a1pqhxs/rasolo.png");
             
-			SyndicationFeed feed = new SyndicationFeed(blogPage.Title, blogPage?.MainBody?.ToString(), new System.Uri(Request.Url.AbsoluteUri))
+			SyndicationFeed feed = new SyndicationFeed(blogPage.Title, blogPage?.MainBody?.ToString().StripHtml(), new System.Uri(Request.Url.AbsoluteUri))
 			{
 				Language = "en-us",
 				Id = blogUrl,
@@ -59,18 +59,13 @@ namespace Rasolo.Core.Features.BlogPage
 			var blogPostPages = new List<BlogPostPage.BlogPostPage>();
 			this._umbracoMapper.MapCollection(blogPage.Children, blogPostPages);
 
-			if (blogPostPages == null)
-			{
-				return null;
-			}
-
 			foreach (var blogPostPage in blogPostPages)
 			{
 				var blogPostPageUrl = "http://" + Request.Url.Host + blogPostPage.Url + "";
 
 				var blogPostUri =
 					new Uri(blogPostPageUrl);
-				var blogPostContent = new TextSyndicationContent(HttpUtility.HtmlDecode(blogPostPage.MainBody?.ToString()));
+				var blogPostContent = new TextSyndicationContent(HttpUtility.HtmlDecode(blogPostPage.MainBody?.ToString().StripHtml()));
 				var blogPostFeedItem = new SyndicationItem(blogPostPage.Title,
 					blogPostContent.ToString(),
 					blogPostUri);

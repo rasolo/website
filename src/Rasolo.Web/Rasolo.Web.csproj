@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\uSync.8.2.4\build\uSync.props" Condition="Exists('..\..\packages\uSync.8.2.4\build\uSync.props')" />
   <Import Project="..\..\packages\UmbracoCms.8.2.0\build\UmbracoCms.props" Condition="Exists('..\..\packages\UmbracoCms.8.2.0\build\UmbracoCms.props')" />
   <Import Project="..\..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\build\Microsoft.CodeAnalysis.Analyzers.props')" />
-  <Import Project="..\..\packages\uSync.8.2.3\build\uSync.props" Condition="Exists('..\..\packages\uSync.8.2.3\build\uSync.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\UmbracoCms.8.0.2\build\UmbracoCms.props" Condition="Exists('..\packages\UmbracoCms.8.0.2\build\UmbracoCms.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
@@ -412,11 +412,11 @@
     <Reference Include="Umbraco.Web.UI, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UmbracoCms.Web.8.2.0\lib\net472\Umbraco.Web.UI.dll</HintPath>
     </Reference>
-    <Reference Include="uSync8.BackOffice, Version=8.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\uSync.8.2.3\lib\net472\uSync8.BackOffice.dll</HintPath>
+    <Reference Include="uSync8.BackOffice, Version=8.2.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\uSync.8.2.4\lib\net472\uSync8.BackOffice.dll</HintPath>
     </Reference>
-    <Reference Include="uSync8.Core, Version=8.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\uSync.Core.8.2.3\lib\net472\uSync8.Core.dll</HintPath>
+    <Reference Include="uSync8.Core, Version=8.2.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\uSync.Core.8.2.4\lib\net472\uSync8.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -482,15 +482,15 @@
     <Content Include="Views\StartPage.cshtml" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="config\umbracoSettings.config" />
-    <Content Include="config\uSync8.config" />
-    <Content Include="App_Plugins\uSync8\package.manifest" />
-    <Content Include="App_Plugins\uSync8\addons.json" />
     <Content Include="Media\Web.config" />
     <Content Include="config\tinyMceConfig.config" />
     <Content Include="config\serilog.user.config" />
     <Content Include="config\serilog.config" />
     <Content Include="config\HealthChecks.config" />
     <Content Include="config\BackOfficeTours\getting-started.json" />
+    <Content Include="config\uSync8.config" />
+    <Content Include="App_Plugins\uSync8\package.manifest" />
+    <Content Include="App_Plugins\uSync8\addons.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="uSync\v8\ContentTypes\startpage.config" />
@@ -549,7 +549,7 @@
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\SiteMapPage.cshtml" />
-    <None Include="Views\Shared\BlogPostsTeaser.cshtml" />
+    <Content Include="Views\Shared\BlogPostsTeaser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rasolo.Core\Rasolo.Core.csproj">
@@ -597,16 +597,16 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\..\packages\uSync.8.2.3\build\uSync.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\uSync.8.2.3\build\uSync.props'))" />
-    <Error Condition="!Exists('..\..\packages\uSync.8.2.3\build\uSync.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\uSync.8.2.3\build\uSync.targets'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
     <Error Condition="!Exists('..\..\packages\UmbracoCms.8.2.0\build\UmbracoCms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\UmbracoCms.8.2.0\build\UmbracoCms.props'))" />
     <Error Condition="!Exists('..\..\packages\UmbracoCms.8.2.0\build\UmbracoCms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\UmbracoCms.8.2.0\build\UmbracoCms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\uSync.8.2.4\build\uSync.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\uSync.8.2.4\build\uSync.props'))" />
+    <Error Condition="!Exists('..\..\packages\uSync.8.2.4\build\uSync.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\uSync.8.2.4\build\uSync.targets'))" />
   </Target>
   <Import Project="..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets" Condition="Exists('..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets')" />
   <Import Project="..\packages\UmbracoCms.8.0.2\build\UmbracoCms.targets" Condition="Exists('..\packages\UmbracoCms.8.0.2\build\UmbracoCms.targets')" />
-  <Import Project="..\..\packages\uSync.8.2.3\build\uSync.targets" Condition="Exists('..\..\packages\uSync.8.2.3\build\uSync.targets')" />
   <Import Project="..\..\packages\UmbracoCms.8.2.0\build\UmbracoCms.targets" Condition="Exists('..\..\packages\UmbracoCms.8.2.0\build\UmbracoCms.targets')" />
+  <Import Project="..\..\packages\uSync.8.2.4\build\uSync.targets" Condition="Exists('..\..\packages\uSync.8.2.4\build\uSync.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
