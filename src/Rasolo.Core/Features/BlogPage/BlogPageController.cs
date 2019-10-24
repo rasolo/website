@@ -69,19 +69,10 @@ namespace Rasolo.Core.Features.BlogPage
 				var blogPostFeedItem = new SyndicationItem(blogPostPage.Title,
 					blogPostContent.ToString(),
 					blogPostUri);
-				blogPostFeedItem.ElementExtensions.Add("author", string.Empty, "Rasmus Olofsson");
+				blogPostFeedItem.ElementExtensions.Add("author", string.Empty, "rasmusolofssons@gmail.com");
 				blogPostFeedItem.PublishDate = blogPostPage.CreateDate;
 				blogPostFeedItem.LastUpdatedTime = blogPostPage.UpdateDate.ToUniversalTime();
 
-				if (!string.IsNullOrEmpty(blogPostPage.TeaserMedia))
-				{
-					blogPostFeedItem.ElementExtensions.Add("blogpostimage", string.Empty, "http://" + Request.Url.Host + blogPostPage.TeaserMediaUrl);
-				}
-
-				if (!string.IsNullOrEmpty(blogPostPage.TeaserPreamble))
-				{
-					blogPostFeedItem.ElementExtensions.Add("excerpt", string.Empty, blogPostPage.TeaserPreamble);
-				}
 
 				blogPostFeedItem.Content = blogPostContent;
 
