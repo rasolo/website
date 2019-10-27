@@ -87,7 +87,7 @@ namespace Rasolo.Core.Features.BlogPage
 
 			feed.Items = syndicationItems;
 			SyndicationLink link = new SyndicationLink(
-				new Uri(blogUrl + "feed"), "self", "type", "application/rss+xml", 1000);
+				new Uri(blogUrl + "feed"), "self", "type", "text/xml", 1000);
 			feed.Links.Add(link);
 			return new RssResult(feed);
 		}
