@@ -3,20 +3,20 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 using Umbraco.Web.Mvc;
 
-namespace Rasolo.Core.Features.Shared.Composers
+namespace Rasolo.Core.Features.Shared.Handlers
 {
 	internal class BlogPageRouteHandler : UmbracoVirtualNodeRouteHandler
 	{
-		private int v;
+		private readonly int _blogPageId;
 
-		public BlogPageRouteHandler(int v)
+		public BlogPageRouteHandler(int blogPageId)
 		{
-			this.v = v;
+			this._blogPageId = blogPageId;
 		}
 
 		protected override IPublishedContent FindContent(RequestContext requestContext, UmbracoContext umbracoContext)
 		{
-			var content = umbracoContext.Content.GetById(v);
+			var content = umbracoContext.Content.GetById(_blogPageId);
 			return content;
 		}
 	}

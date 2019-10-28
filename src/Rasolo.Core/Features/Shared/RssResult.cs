@@ -10,7 +10,7 @@ namespace Rasolo.Core.Features.Shared
 		private readonly SyndicationFeed _feed;
 
 		public RssResult(SyndicationFeed feed)
-			: base("application/rss+xml")
+			: base("text/xml")
 		{
 			_feed = feed;
 		}
