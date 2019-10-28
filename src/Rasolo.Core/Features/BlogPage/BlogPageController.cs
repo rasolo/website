@@ -69,19 +69,10 @@ namespace Rasolo.Core.Features.BlogPage
 				var blogPostFeedItem = new SyndicationItem(blogPostPage.Title,
 					blogPostContent.ToString(),
 					blogPostUri);
-				blogPostFeedItem.ElementExtensions.Add("author", string.Empty, "Rasmus Olofsson");
+				blogPostFeedItem.ElementExtensions.Add("author", string.Empty, "rasmusolofssons@gmail.com");
 				blogPostFeedItem.PublishDate = blogPostPage.CreateDate;
 				blogPostFeedItem.LastUpdatedTime = blogPostPage.UpdateDate.ToUniversalTime();
 
-				if (!string.IsNullOrEmpty(blogPostPage.TeaserMedia))
-				{
-					blogPostFeedItem.ElementExtensions.Add("blogpostimage", string.Empty, "http://" + Request.Url.Host + blogPostPage.TeaserMediaUrl);
-				}
-
-				if (!string.IsNullOrEmpty(blogPostPage.TeaserPreamble))
-				{
-					blogPostFeedItem.ElementExtensions.Add("excerpt", string.Empty, blogPostPage.TeaserPreamble);
-				}
 
 				blogPostFeedItem.Content = blogPostContent;
 
@@ -96,9 +87,12 @@ namespace Rasolo.Core.Features.BlogPage
 
 			feed.Items = syndicationItems;
 			SyndicationLink link = new SyndicationLink(
-				new Uri(blogUrl + "feed"), "self", "type", "application/rss+xml", 1000);
+				new Uri(blogUrl + "feed"), "self", "type", "text/xml", 1000);
 			feed.Links.Add(link);
-			return new RssResult(feed);
+			
+			var result =  new RssResult(feed);
+
+			return result;
 		}
 	}
 }
