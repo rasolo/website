@@ -41,15 +41,15 @@ body {
       a {
         color: initial;
         text-decoration: none;
+        &:hover {
+          opacity: 0.5;
+        }
       }
       .posts__post {
         width: 150px;
         text-align: center;
         h4 {
           margin-top: 2%;
-          &:hover {
-            color: #00000094;
-          }
         }
         span {
           display: block;
@@ -66,9 +66,6 @@ body {
 
         p {
           font-size: 14px;
-          &:hover {
-            color: lightgray;
-          }
         }
       }
 
@@ -76,10 +73,6 @@ body {
         width: 100%;
         height: auto;
         border-radius: 50%;
-
-        &:hover {
-          opacity: 0.5;
-        }
       }
     }
   }

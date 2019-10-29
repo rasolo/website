@@ -196,13 +196,13 @@ body .posts-container .posts-container__posts {
   body .posts-container .posts-container__posts a {
     color: initial;
     text-decoration: none; }
+    body .posts-container .posts-container__posts a:hover {
+      opacity: 0.5; }
   body .posts-container .posts-container__posts .posts__post {
     width: 150px;
     text-align: center; }
     body .posts-container .posts-container__posts .posts__post h4 {
       margin-top: 2%; }
-      body .posts-container .posts-container__posts .posts__post h4:hover {
-        color: #00000094; }
     body .posts-container .posts-container__posts .posts__post span {
       display: block; }
     body .posts-container .posts-container__posts .posts__post .post__post-date {
@@ -213,14 +213,10 @@ body .posts-container .posts-container__posts {
       margin-bottom: 5%; }
     body .posts-container .posts-container__posts .posts__post p {
       font-size: 14px; }
-      body .posts-container .posts-container__posts .posts__post p:hover {
-        color: lightgray; }
   body .posts-container .posts-container__posts img {
     width: 100%;
     height: auto;
     border-radius: 50%; }
-    body .posts-container .posts-container__posts img:hover {
-      opacity: 0.5; }
 
 body .spacer {
   height: 50px; }
