@@ -21,6 +21,7 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		public string Url { get; set; }
 		public virtual string MetaTitle { get; set; }
 		public virtual string MetaDescription { get; set; }
+		public virtual IPublishedContent Parent { get; set; }
 		public DateTime UpdateDate { get; set; }
 		public DateTime CreateDate { get; set; }
 

@@ -1557,7 +1557,7 @@
                                 notificationsService.error('Validation', args.err.data.ModelState[e][0]);
                             }
                         }
-                        if (!this.redirectToCreatedContent(args.err.data.id) || args.softRedirect) {
+                        if (!this.redirectToCreatedContent(args.err.data.id, args.softRedirect) || args.softRedirect) {
                             // If we are not redirecting it's because this is not newly created content, else in some cases we are
                             // soft-redirecting which means the URL will change but the route wont (i.e. creating content). 
                             // In this case we need to detect what properties have changed and re-bind them with the server data.
@@ -1595,7 +1595,7 @@
                 if (!args.savedContent) {
                     throw 'args.savedContent cannot be null';
                 }
-                if (!this.redirectToCreatedContent(args.redirectId ? args.redirectId : args.savedContent.id) || args.softRedirect) {
+                if (!this.redirectToCreatedContent(args.redirectId ? args.redirectId : args.savedContent.id, args.softRedirect) || args.softRedirect) {
                     // If we are not redirecting it's because this is not newly created content, else in some cases we are
                     // soft-redirecting which means the URL will change but the route wont (i.e. creating content). 
                     // In this case we need to detect what properties have changed and re-bind them with the server data.
@@ -1615,7 +1615,7 @@
      * We need to decide if we need to redirect to edito mode or if we will remain in create mode.
      * We will only need to maintain create mode if we have not fulfilled the basic requirements for creating an entity which is at least having a name and ID
      */
-            redirectToCreatedContent: function redirectToCreatedContent(id) {
+            redirectToCreatedContent: function redirectToCreatedContent(id, softRedirect) {
                 //only continue if we are currently in create mode and not in infinite mode and if the resulting ID is valid
                 if ($routeParams.create && isValidIdentifier(id)) {
                     //need to change the location to not be in 'create' mode. Currently the route will be something like:
@@ -1624,6 +1624,9 @@
                     // /belle/#/content/edit/9876 (where 9876 is the new id)
                     //clear the query strings
                     navigationService.clearSearch(['cculture']);
+                    if (softRedirect) {
+                        navigationService.setSoftRedirect();
+                    }
                     //change to new path
                     $location.path('/' + $routeParams.section + '/' + $routeParams.tree + '/' + $routeParams.method + '/' + id);
                     //don't add a browser history for this
@@ -5570,19 +5573,22 @@ When building a custom infinite editor view you can use the same components as a
      * @param {boolean} thumbnail Whether to return the thumbnail url or normal url
      */
             resolveFileFromEntity: function resolveFileFromEntity(mediaEntity, thumbnail) {
-                if (!angular.isObject(mediaEntity.metaData) || !mediaEntity.metaData.MediaPath) {
+                var mediaPath = angular.isObject(mediaEntity.metaData) ? mediaEntity.metaData.MediaPath : null;
+                if (!mediaPath) {
                     //don't throw since this image legitimately might not contain a media path, but output a warning
                     $log.warn('Cannot resolve the file url from the mediaEntity, it does not contain the required metaData');
                     return null;
                 }
                 if (thumbnail) {
-                    if (this.detectIfImageByExtension(mediaEntity.metaData.MediaPath)) {
-                        return this.getThumbnailFromPath(mediaEntity.metaData.MediaPath);
+                    if (this.detectIfImageByExtension(mediaPath)) {
+                        return this.getThumbnailFromPath(mediaPath);
+                    } else if (this.getFileExtension(mediaPath) === 'svg') {
+                        return this.getThumbnailFromPath(mediaPath);
                     } else {
                         return null;
                     }
                 } else {
-                    return mediaEntity.metaData.MediaPath;
+                    return mediaPath;
                 }
             },
             /**
@@ -5715,6 +5721,10 @@ When building a custom infinite editor view you can use the same components as a
      * @param {string} imagePath Image path, ex: /media/1234/my-image.jpg
      */
             getThumbnailFromPath: function getThumbnailFromPath(imagePath) {
+                // Check if file is a svg
+                if (this.getFileExtension(imagePath) === 'svg') {
+                    return imagePath;
+                }
                 //If the path is not an image we cannot get a thumb
                 if (!this.detectIfImageByExtension(imagePath)) {
                     return null;
@@ -5982,14 +5992,10 @@ When building a custom infinite editor view you can use the same components as a
         var nonRoutingQueryStrings = [
             'mculture',
             'cculture',
-            'lq'
+            'lq',
+            'sr'
         ];
         var retainedQueryStrings = ['mculture'];
-        //A list of trees that don't cause a route when creating new items (TODO: eventually all trees should do this!)
-        var nonRoutingTreesOnCreate = [
-            'content',
-            'contentblueprints'
-        ];
         function setMode(mode) {
             switch (mode) {
             case 'tree':
@@ -6086,9 +6092,8 @@ When building a custom infinite editor view you can use the same components as a
                 if (angular.isString(nextUrlParams)) {
                     nextUrlParams = pathToRouteParts(nextUrlParams);
                 }
-                //first check if this is a ?create=true url being redirected to it's true url
-                if (currUrlParams.create === 'true' && currUrlParams.id && currUrlParams.section && currUrlParams.tree && currUrlParams.method === 'edit' && !nextUrlParams.create && nextUrlParams.id && nextUrlParams.section === currUrlParams.section && nextUrlParams.tree === currUrlParams.tree && nextUrlParams.method === currUrlParams.method && nonRoutingTreesOnCreate.indexOf(nextUrlParams.tree.toLowerCase()) >= 0) {
-                    //this means we're coming from a path like /content/content/edit/1234?create=true to the created path like /content/content/edit/9999
+                //check if there is a query string to indicate that a "soft redirect" is taking place, if so we are not changing navigation
+                if (nextUrlParams.sr === true) {
                     return false;
                 }
                 var allowRoute = true;
@@ -6140,6 +6145,17 @@ When building a custom infinite editor view you can use the same components as a
                         $location.search(k, currentSearch[k]);
                     }
                 });
+            },
+            /**
+     * @ngdoc method
+     * @name umbraco.services.navigationService#setSoftRedirect
+     * @methodOf umbraco.services.navigationService
+     *
+     * @description
+     * utility to set a special query string to indicate that the pending navigation change is a soft redirect
+     */
+            setSoftRedirect: function setSoftRedirect() {
+                $location.search('sr', true);
             },
             /**
      * @ngdoc method
@@ -9810,9 +9826,11 @@ When building a custom infinite editor view you can use the same components as a
                         //this means that the node's path supercedes this path stored so we can remove the current 'p' and replace it with node.path
                         expandedPaths.splice(expandedPaths.indexOf(p), 1);
                         //remove it
-                        expandedPaths.push(childPath);    //replace it
+                        if (expandedPaths.indexOf(childPath) === -1) {
+                            expandedPaths.push(childPath);    //replace it
+                        }
                     } else if (p.startsWith(childPath + ',')) {
-                    } else {
+                    } else if (expandedPaths.indexOf(childPath) === -1) {
                         expandedPaths.push(childPath);    //track it
                     }
                 });
