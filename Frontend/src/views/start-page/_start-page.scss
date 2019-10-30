@@ -44,8 +44,20 @@ body {
       a {
         color: initial;
         text-decoration: none;
+     
+      }
+      a:first-of-type {
         &:hover {
           opacity: 0.5;
+        }
+        &:hover ~ .post__date {
+          color:rgb(207, 191, 191);
+        }
+      }
+
+      a:last-of-type {
+        &:hover {
+          color:rgb(207, 191, 191);
         }
       }
       .posts__post {
@@ -57,25 +69,33 @@ body {
         span {
           display: block;
         }
-        .post__post-date {
-          font-style: italic;
-          font-size: 13px;
-        }
-
-        .post__post-category {
-          font-weight: bold;
-          margin-bottom: 5%;
-        }
+    
 
         p {
           font-size: 14px;
         }
+
+      
       }
 
       img {
         width: 100%;
         height: auto;
         border-radius: 50%;
+
+        
+      }
+
+      .post__category{
+        text-align: center;
+        display: inline-block;
+        padding: 5px;
+        font-style: italic;
+      
+        &:hover {
+          font-style: initial;
+          color: rgb(189, 173, 173);
+        }
       }
     }
   }
@@ -109,9 +129,6 @@ body {
           width: 330px;
           .post__post-date {
             margin: 4%;
-            font-size: 18px;
-          }
-          .post__post-category {
             font-size: 18px;
           }
           p {

@@ -203,8 +203,12 @@ body .posts-container .posts-container__posts {
   body .posts-container .posts-container__posts a {
     color: initial;
     text-decoration: none; }
-    body .posts-container .posts-container__posts a:hover {
-      opacity: 0.5; }
+  body .posts-container .posts-container__posts a:first-of-type:hover {
+    opacity: 0.5; }
+  body .posts-container .posts-container__posts a:first-of-type:hover ~ .post__date {
+    color: #cfbfbf; }
+  body .posts-container .posts-container__posts a:last-of-type:hover {
+    color: #cfbfbf; }
   body .posts-container .posts-container__posts .posts__post {
     width: 150px;
     text-align: center; }
@@ -212,18 +216,20 @@ body .posts-container .posts-container__posts {
       margin-top: 2%; }
     body .posts-container .posts-container__posts .posts__post span {
       display: block; }
-    body .posts-container .posts-container__posts .posts__post .post__post-date {
-      font-style: italic;
-      font-size: 13px; }
-    body .posts-container .posts-container__posts .posts__post .post__post-category {
-      font-weight: bold;
-      margin-bottom: 5%; }
     body .posts-container .posts-container__posts .posts__post p {
       font-size: 14px; }
   body .posts-container .posts-container__posts img {
     width: 100%;
     height: auto;
     border-radius: 50%; }
+  body .posts-container .posts-container__posts .post__category {
+    text-align: center;
+    display: inline-block;
+    padding: 5px;
+    font-style: italic; }
+    body .posts-container .posts-container__posts .post__category:hover {
+      font-style: initial;
+      color: #bdadad; }
 
 body .spacer {
   height: 50px; }
@@ -243,8 +249,6 @@ body .spacer {
         font-size: 20px; }
       body .posts-container .posts-container__posts .posts__post .post__post-date {
         margin: 4%;
-        font-size: 18px; }
-      body .posts-container .posts-container__posts .posts__post .post__post-category {
         font-size: 18px; }
       body .posts-container .posts-container__posts .posts__post p {
         font-size: 20px; }
