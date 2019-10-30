@@ -1,3 +1,6 @@
+html main {
+  margin-top: initial;
+}
 body {
   h1 {
     font-family: "lobster", cursive;
@@ -41,35 +44,38 @@ body {
       a {
         color: initial;
         text-decoration: none;
+     
+      }
+      a:first-of-type {
+        &:hover {
+          opacity: 0.5;
+        }
+        &:hover ~ .post__date {
+          color:rgb(207, 191, 191);
+        }
+      }
+
+      a:last-of-type {
+        &:hover {
+          color:rgb(207, 191, 191);
+        }
       }
       .posts__post {
         width: 150px;
         text-align: center;
         h4 {
           margin-top: 2%;
-          &:hover {
-            color: #00000094;
-          }
         }
         span {
           display: block;
         }
-        .post__post-date {
-          font-style: italic;
-          font-size: 13px;
-        }
-
-        .post__post-category {
-          font-weight: bold;
-          margin-bottom: 5%;
-        }
+    
 
         p {
           font-size: 14px;
-          &:hover {
-            color: lightgray;
-          }
         }
+
+      
       }
 
       img {
@@ -77,8 +83,18 @@ body {
         height: auto;
         border-radius: 50%;
 
+        
+      }
+
+      .post__category{
+        text-align: center;
+        display: inline-block;
+        padding: 5px;
+        font-style: italic;
+      
         &:hover {
-          opacity: 0.5;
+          font-style: initial;
+          color: rgb(189, 173, 173);
         }
       }
     }
@@ -113,9 +129,6 @@ body {
           width: 330px;
           .post__post-date {
             margin: 4%;
-            font-size: 18px;
-          }
-          .post__post-category {
             font-size: 18px;
           }
           p {

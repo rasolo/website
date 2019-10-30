@@ -4737,7 +4737,7 @@ Use this directive to construct a main content area inside the main editor windo
                 ]).then(function (data) {
                     scope.a11yMessage = data[0];
                     scope.a11yName = data[1];
-                    var title = data[2] + ':';
+                    var title = data[2] + ': ';
                     if (!scope.isNew) {
                         scope.a11yMessage += ' ' + scope.content.name;
                         title += scope.content.name;
@@ -4747,7 +4747,7 @@ Use this directive to construct a main content area inside the main editor windo
                         scope.a11yName = name + ' ' + scope.a11yName;
                         title += name;
                     }
-                    scope.$root.locationTitle = title + ' - ' + scope.$root.locationTitle;
+                    scope.$emit('$changeTitle', title);
                 });
                 scope.vm = {};
                 scope.vm.dropdownOpen = false;

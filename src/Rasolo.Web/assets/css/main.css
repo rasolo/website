@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .pokemon {
   align-items: center;
   justify-content: center;
@@ -123,6 +124,9 @@
   left: 2%;
   top: 1%; }
 
+html main {
+  margin-top: 10%; }
+
 .article, .blogpost {
   margin-top: 25%;
   margin-left: auto;
@@ -162,6 +166,9 @@
       .article .article__content p, .blogpost .article__content p, .article .blogpost__content p, .blogpost .blogpost__content p {
         font-size: 18px; } }
 
+html main {
+  margin-top: initial; }
+
 body h1 {
   font-family: "lobster", cursive;
   font-size: 8vw; }
@@ -196,31 +203,33 @@ body .posts-container .posts-container__posts {
   body .posts-container .posts-container__posts a {
     color: initial;
     text-decoration: none; }
+  body .posts-container .posts-container__posts a:first-of-type:hover {
+    opacity: 0.5; }
+  body .posts-container .posts-container__posts a:first-of-type:hover ~ .post__date {
+    color: #cfbfbf; }
+  body .posts-container .posts-container__posts a:last-of-type:hover {
+    color: #cfbfbf; }
   body .posts-container .posts-container__posts .posts__post {
     width: 150px;
     text-align: center; }
     body .posts-container .posts-container__posts .posts__post h4 {
       margin-top: 2%; }
-      body .posts-container .posts-container__posts .posts__post h4:hover {
-        color: #00000094; }
     body .posts-container .posts-container__posts .posts__post span {
       display: block; }
-    body .posts-container .posts-container__posts .posts__post .post__post-date {
-      font-style: italic;
-      font-size: 13px; }
-    body .posts-container .posts-container__posts .posts__post .post__post-category {
-      font-weight: bold;
-      margin-bottom: 5%; }
     body .posts-container .posts-container__posts .posts__post p {
       font-size: 14px; }
-      body .posts-container .posts-container__posts .posts__post p:hover {
-        color: lightgray; }
   body .posts-container .posts-container__posts img {
     width: 100%;
     height: auto;
     border-radius: 50%; }
-    body .posts-container .posts-container__posts img:hover {
-      opacity: 0.5; }
+  body .posts-container .posts-container__posts .post__category {
+    text-align: center;
+    display: inline-block;
+    padding: 5px;
+    font-style: italic; }
+    body .posts-container .posts-container__posts .post__category:hover {
+      font-style: initial;
+      color: #bdadad; }
 
 body .spacer {
   height: 50px; }
@@ -241,12 +250,27 @@ body .spacer {
       body .posts-container .posts-container__posts .posts__post .post__post-date {
         margin: 4%;
         font-size: 18px; }
-      body .posts-container .posts-container__posts .posts__post .post__post-category {
-        font-size: 18px; }
       body .posts-container .posts-container__posts .posts__post p {
         font-size: 20px; }
   body .spacer {
     height: 150px; } }
+
+.blogpost__date-created {
+  text-align: center;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0 !important; }
+
+.blogpost__category {
+  text-align: center;
+  margin-top: 0 !important; }
+  .blogpost__category a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 0; }
+    .blogpost__category a:hover {
+      color: #7e7e79; }
 
 html *,
 html *::before,
@@ -254,3 +278,16 @@ html *::after {
   box-sizing: border-box;
   margin: 0;
   font-family: "roboto", cursive; }
+
+html pre {
+  margin: 20px;
+  padding: 20px;
+  color: #fff;
+  overflow: auto;
+  background-color: #222;
+  white-space: pre;
+  text-shadow: 0 1px 0 #000;
+  border-radius: 15px;
+  border-bottom: 1px solid #555;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4) inset, 0 0 20px rgba(0, 0, 0, 0.2) inset;
+  font: 16px/24px ‘ Courier New ’ , Courier, ‘ Lucida Sans Typewriter ’ , ‘ Lucida Typewriter ’ , monospace; }
