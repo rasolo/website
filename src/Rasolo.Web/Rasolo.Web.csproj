@@ -463,6 +463,7 @@
     <Content Include="config\Lang\sv-SE.user.xml" />
     <Content Include="config\Lang\zh-CN.user.xml" />
     <Content Include="config\logviewer.searches.config.js" />
+    <Content Include="css\rasolo.css" />
     <Content Include="css\umbraco-starterkit-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
