@@ -251,7 +251,19 @@ body .spacer {
 .blogpost__date-created {
   text-align: center;
   font-style: italic;
-  color: rgba(0, 0, 0, 0.5); }
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0 !important; }
+
+.blogpost__category {
+  text-align: center;
+  margin-top: 0 !important; }
+  .blogpost__category a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 0; }
+    .blogpost__category a:hover {
+      color: #7e7e79; }
 
 html *,
 html *::before,

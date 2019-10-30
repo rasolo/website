@@ -3,6 +3,9 @@
 <div class="blogpost">
 	<div class="blogpost__content">
 		<p class="blogpost__date-created">@Model.CreateDate.ToString("yyyy-MM-dd")</p>
+		<p class="blogpost__category">
+			<a href="@Model.Parent.Url">@Model.Parent.Name</a>
+		</p>
 		<h1>@Model.Title</h1>
 		@Model.MainBody
 	</div>

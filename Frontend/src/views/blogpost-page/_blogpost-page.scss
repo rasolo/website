@@ -7,10 +7,27 @@
     text-align: center;
     font-style: italic;
     color: rgba(0, 0, 0, 0.5);
+    margin: 0 !important;
+  }
+
+  .blogpost__category {
+    text-align: center;
+    margin-top: 0 !important;
+    
+    & a{
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      padding: 0;
+
+      &:hover {
+        color:rgb(126, 126, 121);
+      }
+    }
   }
 
   .blogpost__content {
-    @extend .article__content 
+    @extend .article__content;
   }
 
   
