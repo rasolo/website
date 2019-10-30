@@ -124,6 +124,9 @@
   left: 2%;
   top: 1%; }
 
+html main {
+  margin-top: 10%; }
+
 .article, .blogpost {
   margin-top: 25%;
   margin-left: auto;
@@ -244,6 +247,11 @@ body .spacer {
         font-size: 20px; }
   body .spacer {
     height: 150px; } }
+
+.blogpost__date-created {
+  text-align: center;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.5); }
 
 html *,
 html *::before,

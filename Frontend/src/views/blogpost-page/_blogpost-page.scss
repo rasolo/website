@@ -3,6 +3,12 @@
     @extend .article;
   }
 
+  .blogpost__date-created {
+    text-align: center;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
   .blogpost__content {
     @extend .article__content 
   }
