@@ -166,6 +166,9 @@ html main {
       .article .article__content p, .blogpost .article__content p, .article .blogpost__content p, .blogpost .blogpost__content p {
         font-size: 18px; } }
 
+html main {
+  margin-top: initial; }
+
 body h1 {
   font-family: "lobster", cursive;
   font-size: 8vw; }
