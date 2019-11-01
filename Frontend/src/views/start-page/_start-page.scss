@@ -91,6 +91,8 @@ body {
         display: inline-block;
         padding: 5px;
         font-style: italic;
+        text-decoration: underline;
+        font-weight: bold;
       
         &:hover {
           font-style: initial;
