@@ -1,6 +1,8 @@
-﻿using Moq;
+﻿using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
 using System.Linq;
+using Rasolo.Core.Features.BlogPage;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
@@ -99,6 +101,25 @@ namespace Rasolo.Tests.Unit.Base
 			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoExtension"))).Returns(extensionPropertyMock.Object);
 			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "altText"))).Returns(altTextPropertyMock.Object);
 			return imageMock;
+		}
+
+		public List<BlogPage> GetBlogPages()
+		{
+			return new List<Core.Features.BlogPage.BlogPage>
+			{
+				new BlogPage()
+				{
+					Name = "Umbraco",
+					Url = "http://rasolo.azurewebsites.net/blogs/umbraco",
+					Title = "Umbraco blog"
+				},
+				new BlogPage()
+				{
+					Name = "Episerver",
+					Url = "http://rasolo.azurewebsites.net/blogs/episerver",
+					Title = "Episerver blog"
+				}
+			};
 		}
 
 	}

@@ -3,13 +3,13 @@
 <article class="posts__post">
 	<a class="test" href="@Model.Url">
 		@{
-			if (string.IsNullOrEmpty(Model.TeaserMediaUrl))
+			if (string.IsNullOrEmpty(Model.TeaserUrl))
 			{
 				<img src="/assets/img/teaser/bear.jpeg" />
 			}
 			else
 			{
-				<img src="@Model.TeaserMediaUrl" />
+				<img src="@Model.TeaserUrl" />
 			}
 		}
 	</a>
