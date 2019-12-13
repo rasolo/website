@@ -279,6 +279,9 @@
     <Compile Include="Features\BlogsPage\BlogsPageController.cs" />
     <Compile Include="Features\BlogsPage\BlogsPageViewModelFactory.cs" />
     <Compile Include="Features\BlogsPage\IBlogsPageViewModelFactory.cs" />
+    <Compile Include="Features\Shared\Abstractions\UmbracoHelper\IUmbracoHelper.cs" />
+    <Compile Include="Features\Shared\Abstractions\UmbracoHelper\UmbracoHelperAdapter.cs" />
+    <Compile Include="Features\Shared\Abstractions\UmbracoHelper\UmbracoHelperComposer.cs" />
     <Compile Include="Features\Shared\Attributes\MapFromImageCropperAttribute.cs" />
     <Compile Include="Features\Shared\Components\RegisterCustomRouteComponent.cs" />
     <Compile Include="Features\Shared\Composers\GenericClassesComposer.cs" />
