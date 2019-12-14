@@ -1,5 +1,5 @@
 ﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogsPage.BlogsPage>
-	
+
 @if (Model.ShowBlogPages)
 {
 	<div class="posts-container">
@@ -8,7 +8,7 @@
 			@{
 				foreach (var blogPage in Model.BlogPages)
 				{
-					@Html.Partial("BlogTeaser", blogPage)
+					@Html.Partial("BlogsTeaser", blogPage)
 				}
 			}
 		</div>

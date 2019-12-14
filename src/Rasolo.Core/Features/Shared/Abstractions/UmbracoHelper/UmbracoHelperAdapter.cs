@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Web;
 
 namespace Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper
 {
@@ -15,6 +16,11 @@ namespace Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper
 		public IEnumerable<IPublishedContent> ContentAtRoot()
 		{
 			return _umbracoHelper.ContentAtRoot();
+		}
+
+		public IEnumerable<IPublishedContent> ChildrenOfType(IPublishedContent content, string contentTypeAlias, string culture = null)
+		{
+			return content.ChildrenOfType(contentTypeAlias, culture);
 		}
 	}
 }

@@ -1,11 +1,16 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.BlogsPage;
+using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Shouldly;
+using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Features.BlogsPage
 {
@@ -13,35 +18,53 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 		BlogsPageViewModelFactoryTests : BaseContentPageViewModelFactoryTests<Core.Features.BlogsPage.BlogsPage>
 	{
 		private BlogsPageViewModelFactory _sut;
+		private Mock<IUmbracoHelper> _umbracoHelper;
 
 		public override void SetUp()
 		{
 			base.SetUp();
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			_sut = new BlogsPageViewModelFactory(umbracoMapper);
+			_umbracoHelper = new Mock<IUmbracoHelper>();
+
+
+			_sut = new BlogsPageViewModelFactory(umbracoMapper, _umbracoHelper.Object);
 		}
 
 		[Test]
-		public void Given_PageHasBlogPages_When_CreateModel_Then_ReturnsBlogPages()
+		public void Given_PageHasBlogPagesAsChildren_When_CreateModel_Then_ReturnsBlogPages()
 		{
-			var blogPages = GetBlogPages();
-			var propertyValue = SetupPropertyValue(BlogsPagePropertyAlias.BlogPages, blogPages);
-			var content = SetupContent(DocumentTypeAlias.BlogsPage, propertyValue);
-			var blogPage = _sut.CreateModel(content);
+			var blogsPage = SetUpBlogPagesGetBlogPage();
 
-			blogPage.BlogPages.ShouldBe(blogPages);
-			blogPage.BlogPages.Count().ShouldBe(blogPages.Count);
+			blogsPage.BlogPages.Count().ShouldBe(3);
+		}
+
+		private Core.Features.BlogsPage.BlogsPage SetUpBlogPagesGetBlogPage()
+		{
+			var blogPagesAsPublishedContent = new List<IPublishedContent>();
+			for (var i = 0; i < 3; i++)
+			{
+				var blogPostsPropertyValue = SetupPropertyValue(BlogPagePropertyAlias.BlogPosts,
+					Enumerable.Empty<Core.Features.BlogPostPage.BlogPostPage>());
+				var content = SetupContent(DocumentTypeAlias.BlogPage, blogPostsPropertyValue);
+				blogPagesAsPublishedContent.Add(content.Content);
+			}
+
+			var propertyValue = SetupPropertyValue("Name", "Blogs page");
+			var contentMock = SetupContentMock(DocumentTypeAlias.BlogsPage, propertyValue);
+			contentMock.Setup(x => x.Children).Returns(blogPagesAsPublishedContent);
+			this._umbracoHelper
+				.Setup(x => x.ChildrenOfType(It.IsAny<IPublishedContent>(), It.IsAny<string>(), It.IsAny<string>()))
+				.Returns(blogPagesAsPublishedContent);
+
+			return _sut.CreateModel(new ContentModel(contentMock.Object));
 		}
 
 		[Test]
 		public void Given_PageHasBlogPages_When_CreateModel_Then_ReturnsShowBlogPagesTrue()
 		{
-			var blogPages = GetBlogPages();
-			var propertyValue = SetupPropertyValue(BlogsPagePropertyAlias.BlogPages, blogPages);
-			var content = SetupContent(DocumentTypeAlias.BlogsPage, propertyValue);
-			var blogPage = _sut.CreateModel(content);
+			var blogsPage = SetUpBlogPagesGetBlogPage();
 
-			blogPage.ShowBlogPages.ShouldBe(true);
+			blogsPage.ShowBlogPages.ShouldBe(true);
 		}
 
 		[Test]
