@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using System.Web.Mvc;
-using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.BlogsPage;
 using Rasolo.Core.Features.Shared.Composers;
@@ -8,8 +6,6 @@ using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Shouldly;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Features.BlogsPage
 {
@@ -38,7 +34,7 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 		}
 
 		[Test]
-		public void Given_PageHasZeroBlogPages_When_CreateModel_Then_ReturnsShowBlogPagesTrue()
+		public void Given_PageHasBlogPages_When_CreateModel_Then_ReturnsShowBlogPagesTrue()
 		{
 			var blogPages = GetBlogPages();
 			var propertyValue = SetupPropertyValue(BlogsPagePropertyAlias.BlogPages, blogPages);
@@ -51,7 +47,8 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 		[Test]
 		public void Given_PageHasZeroBlogPages_When_CreateModel_Then_ReturnsShowBlogPagesFalse()
 		{
-			var propertyValue = SetupPropertyValue(BlogsPagePropertyAlias.BlogPages, Enumerable.Empty<Core.Features.BlogPage.BlogPage>());
+			var propertyValue = SetupPropertyValue(BlogsPagePropertyAlias.BlogPages,
+				Enumerable.Empty<Core.Features.BlogPage.BlogPage>());
 			var content = SetupContent(DocumentTypeAlias.BlogsPage, propertyValue);
 			var blogPage = _sut.CreateModel(content);
 
@@ -61,25 +58,29 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 		[Test]
 		[TestCase("Teaser heading", "Teaser heading")]
 		[TestCase("Another Teaser heading", "Another Teaser heading")]
-		public void Given_PageHasTeaserHeading_When_IndexAction_Then_ReturnViewModelWithTeaserHeading(string teaserHeading, string expected)
+		public void Given_PageHasTeaserHeading_When_IndexAction_Then_ReturnViewModelWithTeaserHeading(
+			string teaserHeading, string expected)
 		{
 			var property = SetupPropertyValue(BlogsPagePropertyAlias.TeaserHeading, teaserHeading);
 			var contentModel = SetupContent(nameof(BlogsPage), property);
 
-			var viewModel = this._sut.CreateModel(contentModel);
+			var viewModel = _sut.CreateModel(contentModel);
 
 			viewModel.TeaserHeading.ShouldBe(expected);
 		}
 
 		[Test]
-		[TestCase("/media/hhon5crc/exception.png?anchor=center&mode=crop&width=500&height=500", "/media/hhon5crc/exception.png?anchor=center&mode=crop&width=500&height=500")]
-		[TestCase("/media/ahen5cya/umbraco.png?anchor=center&mode=crop&width=500&height=500", "/media/ahen5cya/umbraco.png?anchor=center&mode=crop&width=500&height=500")]
-		public void Given_PageHasTeaserUrl_When_IndexAction_Then_ReturnViewModelWithTeaserUrl(string teaserUrl, string expected)
+		[TestCase("/media/hhon5crc/exception.png?anchor=center&mode=crop&width=500&height=500",
+			"/media/hhon5crc/exception.png?anchor=center&mode=crop&width=500&height=500")]
+		[TestCase("/media/ahen5cya/umbraco.png?anchor=center&mode=crop&width=500&height=500",
+			"/media/ahen5cya/umbraco.png?anchor=center&mode=crop&width=500&height=500")]
+		public void Given_PageHasTeaserUrl_When_IndexAction_Then_ReturnViewModelWithTeaserUrl(string teaserUrl,
+			string expected)
 		{
 			var property = SetupPropertyValue(BlogsPagePropertyAlias.TeaserUrl, teaserUrl);
 			var contentModel = SetupContent(nameof(BlogsPage), property);
 
-			var viewModel = this._sut.CreateModel(contentModel);
+			var viewModel = _sut.CreateModel(contentModel);
 
 			viewModel.TeaserUrl.ShouldBe(expected);
 		}
