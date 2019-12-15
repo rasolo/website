@@ -1,16 +1,16 @@
-﻿using System.Web;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
+using System.Web;
 using Umbraco.Core.Models.PublishedContent;
 
 namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 {
-	internal class BaseContentPageViewModelFactoryTests <TModel> : UmbracoBaseTests where TModel : Core.Features.Shared.Compositions.BaseContentPage, new()
+	internal class BaseContentPageViewModelFactoryTests<TModel> : UmbracoBaseTests where TModel : Core.Features.Shared.Compositions.BaseContentPage, new()
 	{
 		private BaseContentPageViewModelFactory<Core.Features.Shared.Compositions.BaseContentPage> _sut;
 

@@ -1,17 +1,16 @@
 ﻿using Moq;
 using NUnit.Framework;
+using Rasolo.Core.Features.Shared.Composers;
+using Rasolo.Core.Features.Shared.Constants;
+using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
+using Rasolo.Core.Features.Shared.Services;
+using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Shouldly;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-using Rasolo.Core.Features.Shared.Composers;
-using Rasolo.Core.Features.Shared.Constants;
-using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
-using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
-using Rasolo.Core.Features.Shared.Services;
 
 namespace Rasolo.Tests.Unit.Features.BlogPage
 {
@@ -27,11 +26,11 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 			this._sut = new Core.Features.BlogPage.BlogPageViewModelFactory(new UmbracoMapperComposer().SetupMapper(), blogPostServiceMock.Object);
 		}
 
-			[Test]
-			[TestCase("The main body of first blog post", "The main body of first blog post", 
-				"The main body of second blog post", "The main body of second blog post")]
-			[TestCase("Another the main body of first blog post", "Another the main body of first blog post",
-				"Another the body of second blog post", "Another the body of second blog post")]
+		[Test]
+		[TestCase("The main body of first blog post", "The main body of first blog post",
+			"The main body of second blog post", "The main body of second blog post")]
+		[TestCase("Another the main body of first blog post", "Another the main body of first blog post",
+			"Another the body of second blog post", "Another the body of second blog post")]
 		public void Given_CreateModelAndPageHasBlogPosts_When_ContentModelGiven_Then_ReturnViewModelWithBlogPosts(string mainBodyFirstBlogPost, string expectedFirstBlogPostMainBody, string mainBodySecondBlogPost, string expectedSecondBlogPostMainBody)
 		{
 #warning Refractor. Create a base method for mocking multiple pages. Similar code with many pages are used elsewhere too.

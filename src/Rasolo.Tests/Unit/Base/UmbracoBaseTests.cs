@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
-using System.Linq;
 using Rasolo.Core.Features.BlogPage;
+using System.Collections.Generic;
+using System.Linq;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;

@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using Rasolo.Core.Features.BlogPage;
+using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
+using Shouldly;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Shouldly;
-using Moq;
-using Rasolo.Core.Features.BlogPage;
-using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 
 namespace Rasolo.Tests.Unit.Features.BlogPage
 {

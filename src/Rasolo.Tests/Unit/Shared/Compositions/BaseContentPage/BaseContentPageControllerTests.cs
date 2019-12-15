@@ -1,5 +1,4 @@
-﻿using System.Web.Mvc;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Compositions;
@@ -7,6 +6,7 @@ using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
+using System.Web.Mvc;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.Common.BaseDestinationTypes;
@@ -60,7 +60,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		[TestCase("Another Page name", "Another Page name")]
 		public void Given_PageHasName_When_IndexAction_Then_ReturnViewModelWithPageName(string name, string expected)
 		{
-			var content = SetupContentMock(typeof(TContentPage).Name, SetupPropertyValue("any", "any"), pageName: name );
+			var content = SetupContentMock(typeof(TContentPage).Name, SetupPropertyValue("any", "any"), pageName: name);
 			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>()))
 				.Returns(this._sut.MapModel(content.Object));
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(new ContentModel(content.Object))).Model;
@@ -78,7 +78,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 
 			this._mockedViewModel.Title = title;
 
-			var viewModel = (TContentPage) ((ViewResult) _sut.Index(new ContentModel(contentModel.Object))).Model;
+			var viewModel = (TContentPage)((ViewResult)_sut.Index(new ContentModel(contentModel.Object))).Model;
 
 			viewModel.Title.ShouldBe(expected);
 		}

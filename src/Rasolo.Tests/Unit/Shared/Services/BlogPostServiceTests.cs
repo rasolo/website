@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.Services;
-using Rasolo.Core.Features.StartPage;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Umbraco.Core.Models.PublishedContent;
 
 namespace Rasolo.Tests.Unit.Shared.Services
@@ -23,7 +22,7 @@ namespace Rasolo.Tests.Unit.Shared.Services
 			base.SetUp();
 		}
 
-//TODO: Add method for testing that teaser is returned first, then title and last page name.
+		//TODO: Add method for testing that teaser is returned first, then title and last page name.
 
 		[Test]
 		public void Given_Service_When_GetMappedBlogPosts_Then_ReturnsMappedBlogPosts()
@@ -68,8 +67,8 @@ namespace Rasolo.Tests.Unit.Shared.Services
 
 			var mockedBlogPostPages = new List<IPublishedContent> { blogPostPage1.Object, blogPostPage2.Object, blogPostPage3.Object };
 
-			blogPostPage1.Setup(x => x.CreateDate).Returns(new DateTime(2018,01,01));
-			blogPostPage2.Setup(x => x.CreateDate).Returns(new DateTime(2017,02,02));
+			blogPostPage1.Setup(x => x.CreateDate).Returns(new DateTime(2018, 01, 01));
+			blogPostPage2.Setup(x => x.CreateDate).Returns(new DateTime(2017, 02, 02));
 			blogPostPage3.Setup(x => x.CreateDate).Returns(new DateTime(2019, 03, 03));
 
 			umbracoServiceMock.Setup(x => x.GetAllPagesByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(mockedBlogPostPages);
