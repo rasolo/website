@@ -288,6 +288,7 @@
     <Compile Include="Features\Shared\Constants\MediaCropAliases\BlogPostPage\BlogsPageMediaCropAliases.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogsPagePropertyAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\PropertyTypeAlias.cs" />
     <Compile Include="Features\Shared\DocumentTypeInterfaces\ITeaserPage.cs" />
     <Compile Include="Features\Shared\Handlers\BlogPageRouteHandler.cs" />
     <Compile Include="Features\Shared\Composers\RegisterCustomRouteComposer.cs" />

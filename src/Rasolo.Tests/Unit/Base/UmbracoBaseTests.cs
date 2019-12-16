@@ -1,8 +1,7 @@
-﻿using Moq;
-using NUnit.Framework;
-using Rasolo.Core.Features.BlogPage;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Moq;
+using NUnit.Framework;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
@@ -36,7 +35,8 @@ namespace Rasolo.Tests.Unit.Base
 			return property;
 		}
 
-		public ContentModel SetupContent(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty, string url = "http://rasolo.local/pagename", string pageName = "anyPageName")
+		public ContentModel SetupContent(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty,
+			string url = "http://rasolo.local/pagename", string pageName = "anyPageName")
 		{
 			var content = SetupContentMock(contentTypeAlias, publishedProperty, url, pageName);
 
@@ -45,13 +45,15 @@ namespace Rasolo.Tests.Unit.Base
 			return contentModel;
 		}
 
-		public Mock<IPublishedContent> SetupContentMock(string contentTypeAlias, Mock<IPublishedProperty> publishedProperty, string url = "http://rasolo.local/pagename", string pageName = "anyPageName")
+		public Mock<IPublishedContent> SetupContentMock(string contentTypeAlias,
+			Mock<IPublishedProperty> publishedProperty, string url = "http://rasolo.local/pagename",
+			string pageName = "anyPageName")
 		{
 			var content = new Mock<IPublishedContent>();
 			content
 				.Setup(x => x.ContentType)
 				.Returns(new PublishedContentType(1234, contentTypeAlias, PublishedItemType.Content,
-				Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing));
+					Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing));
 			content.Setup(c => c.GetProperty(It.Is<string>(x => x == publishedProperty.Object.Alias)))
 				.Returns(publishedProperty.Object);
 			content.Setup(x => x.Id).Returns(99);
@@ -86,41 +88,48 @@ namespace Rasolo.Tests.Unit.Base
 			var altTextPropertyMock = new Mock<IPublishedProperty>();
 			altTextPropertyMock.Setup(c => c.Alias).Returns("altText");
 			altTextPropertyMock.Setup(c => c.HasValue(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
-			altTextPropertyMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns("Test image alt text");
+			altTextPropertyMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>()))
+				.Returns("Test image alt text");
 
-			var contentType = new PublishedContentType(1000, "Image", PublishedItemType.Media, Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing);
+			var contentType = new PublishedContentType(1000, "Image", PublishedItemType.Media,
+				Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing);
 
 			var imageMock = new Mock<IPublishedContent>();
 			imageMock.Setup(c => c.Id).Returns(2000);
 			imageMock.Setup(c => c.Name).Returns("Test image");
 			imageMock.Setup(c => c.Url).Returns("/media/test.jpg");
 			imageMock.Setup(c => c.ContentType).Returns(contentType);
-			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoWidth"))).Returns(widthPropertyMock.Object);
-			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoHeight"))).Returns(heightPropertyMock.Object);
-			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoBytes"))).Returns(sizePropertyMock.Object);
-			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoExtension"))).Returns(extensionPropertyMock.Object);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoWidth")))
+				.Returns(widthPropertyMock.Object);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoHeight")))
+				.Returns(heightPropertyMock.Object);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoBytes")))
+				.Returns(sizePropertyMock.Object);
+			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "umbracoExtension")))
+				.Returns(extensionPropertyMock.Object);
 			imageMock.Setup(c => c.GetProperty(It.Is<string>(x => x == "altText"))).Returns(altTextPropertyMock.Object);
 			return imageMock;
 		}
 
-		public List<BlogPage> GetBlogPages()
+		public IEnumerable<IPublishedContent> SetUpContentPages(int numberOfPages, string documentTypeAlias)
 		{
-			return new List<Core.Features.BlogPage.BlogPage>
-			{
-				new BlogPage()
-				{
-					Name = "Umbraco",
-					Url = "http://rasolo.azurewebsites.net/blogs/umbraco",
-					Title = "Umbraco blog"
-				},
-				new BlogPage()
-				{
-					Name = "Episerver",
-					Url = "http://rasolo.azurewebsites.net/blogs/episerver",
-					Title = "Episerver blog"
-				}
-			};
+			var mockedContentPages = SetUpContentPagesMock(numberOfPages, documentTypeAlias);
+
+			return mockedContentPages.Select(x => x.Object);
 		}
 
+		public IEnumerable<Mock<IPublishedContent>> SetUpContentPagesMock(int numberOfPages, string documentTypeAlias)
+		{
+			var mockedContentPages = new List<Mock<IPublishedContent>>();
+			for (var i = 0; i < numberOfPages; i++)
+			{
+				var publishedPropertyMock = SetupPropertyValue(string.Empty, string.Empty);
+				var publishedContentMock = SetupContentMock(documentTypeAlias, publishedPropertyMock);
+
+				mockedContentPages.Add(publishedContentMock);
+			}
+
+			return mockedContentPages;
+		}
 	}
 }
