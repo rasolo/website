@@ -1,9 +1,9 @@
-﻿using System.Web;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.CookiesNotice;
 using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Tests.Unit.Base;
+using System.Web;
 
 namespace Rasolo.Tests.Unit.Shared.CookiesNotice
 {

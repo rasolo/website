@@ -22,7 +22,6 @@ namespace Rasolo.Core.Features.BlogPage
 		{
 			var blogPage = new BlogPage();
 			blogPage.BlogPosts = this._blogPostService.GetMappedBlogPosts(viewModel.Content.Children).ToList();
-
 			return blogPage;
 		}
 

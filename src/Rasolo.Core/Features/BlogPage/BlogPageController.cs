@@ -23,16 +23,6 @@ namespace Rasolo.Core.Features.BlogPage
 			this._viewModelFactory = viewModelFactory;
 		}
 
-		public new ActionResult Index(ContentModel model)
-		{
-			var blogPage = this._viewModelFactory.CreateModel(model);
-
-
-			return View(blogPage);
-		}
-
-	
-
 		//TODO: Major refractor
 		public ActionResult Feed(ContentModel model)
 		{

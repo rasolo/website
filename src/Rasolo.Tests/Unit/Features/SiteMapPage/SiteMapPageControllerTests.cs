@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
@@ -11,6 +7,10 @@ using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Core.Features.SiteMapPage;
 using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Shouldly;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Umbraco.Core.Models.PublishedContent;
 
 namespace Rasolo.Tests.Unit.Features.SiteMapPage
