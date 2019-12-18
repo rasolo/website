@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.3.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.3.4.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.8\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.8\build\Microsoft.CodeAnalysis.Analyzers.props')" />
   <Import Project="..\..\packages\uSync.8.3.1\build\uSync.props" Condition="Exists('..\..\packages\uSync.8.3.1\build\uSync.props')" />
   <Import Project="..\..\packages\UmbracoCms.8.4.0\build\UmbracoCms.props" Condition="Exists('..\..\packages\UmbracoCms.8.4.0\build\UmbracoCms.props')" />
@@ -589,7 +588,6 @@
     <Error Condition="!Exists('..\..\packages\uSync.8.3.1\build\uSync.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\uSync.8.3.1\build\uSync.props'))" />
     <Error Condition="!Exists('..\..\packages\uSync.8.3.1\build\uSync.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\uSync.8.3.1\build\uSync.targets'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.8\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.8\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.3.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.3.4.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <Import Project="..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets" Condition="Exists('..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets')" />
   <Import Project="..\packages\UmbracoCms.8.0.2\build\UmbracoCms.targets" Condition="Exists('..\packages\UmbracoCms.8.0.2\build\UmbracoCms.targets')" />
