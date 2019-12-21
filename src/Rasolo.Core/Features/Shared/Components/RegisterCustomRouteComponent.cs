@@ -19,14 +19,14 @@ namespace Rasolo.Core.Features.Shared.Components
 				controller = blogPageControllerName,
 				action = nameof(BlogPageController.Feed),
 				id = UrlParameter.Optional
-			}, new BlogPageRouteHandler(1085)); //2094
+			}, new BlogPageRouteHandler(1101)); //2094
 
 			RouteTable.Routes.MapUmbracoRoute("BlogPageRouteEpiserver", $"blogs/episerver/{nameof(BlogPageController.Feed)}/{{id}}", new
 			{
 				controller = blogPageControllerName,
 				action = nameof(BlogPageController.Feed),
 				id = UrlParameter.Optional
-			}, new BlogPageRouteHandler(1097)); //2112
+			}, new BlogPageRouteHandler(1099)); //2112
 		}
 
 		public void Terminate()
