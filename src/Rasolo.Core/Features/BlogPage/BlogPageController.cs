@@ -26,7 +26,7 @@ namespace Rasolo.Core.Features.BlogPage
 		//TODO: Major refractor
 		public ActionResult Feed(ContentModel model)
 		{
-			var blogPage = this._viewModelFactory.CreateModel(model);
+			var blogPage = this._viewModelFactory.CreateModel(null, model);
 			this._umbracoMapper.Map(model.Content, blogPage);
 			var blogUrl = "http://" + Request.Url.Host  + blogPage.Url + "";
 

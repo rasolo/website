@@ -25,9 +25,15 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		{
 			base.SetUp();
 			this._viewModelFactory = new Mock<IBaseContentPageViewModelFactory<TContentPage>>();
-			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>())).Returns(this._mockedViewModel);
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>(), null)).Returns(this._mockedViewModel);
 			this._umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			this._sut = new BaseContentPageController<TContentPage>(this._umbracoMapper, _viewModelFactory.Object);
+		}
+
+		void SetUpViewModelCreateModelMethodReturnsBaseContentPageMapModel(IPublishedContent content)
+		{
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>(), It.IsAny<ContentModel>()))
+				.Returns(this._sut.MapModel(content));
 		}
 
 		[Test]
@@ -38,7 +44,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 
 			this._sut.Index(content);
 
-			this._viewModelFactory.Verify(x => x.CreateModel(It.IsAny<TContentPage>()), Times.Exactly(1));
+			this._viewModelFactory.Verify(x => x.CreateModel(It.IsAny<TContentPage>(), content), Times.Exactly(1));
 		}
 
 		[Test]
@@ -48,6 +54,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 			var property = this.SetupPropertyValue("whatever", "whatever");
 			var content = this.SetupContent(typeof(TContentPage).Name, property);
 			umbracoServiceMock.Setup(x => x.GetFirstPageByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(content.Content);
+			SetUpViewModelCreateModelMethodReturnsBaseContentPageMapModel(content.Content);
 			this._sut = new BaseContentPageController<TContentPage>(this._umbracoMapper, this._viewModelFactory.Object);
 
 			var returnedViewModel = (TContentPage)((ViewResult)_sut.Index(content)).Model;
@@ -61,8 +68,9 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		public void Given_PageHasName_When_IndexAction_Then_ReturnViewModelWithPageName(string name, string expected)
 		{
 			var content = SetupContentMock(typeof(TContentPage).Name, SetupPropertyValue("any", "any"), pageName: name);
-			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>()))
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>(), null))
 				.Returns(this._sut.MapModel(content.Object));
+			SetUpViewModelCreateModelMethodReturnsBaseContentPageMapModel(content.Object);
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(new ContentModel(content.Object))).Model;
 
 			viewModel.Name.ShouldBe(expected);
@@ -75,6 +83,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		{
 			var property = SetupPropertyValue(BaseContentPagePropertyAlias.Title, title);
 			var contentModel = SetupContentMock(typeof(TContentPage).Name, property);
+			SetUpViewModelCreateModelMethodReturnsBaseContentPageMapModel(contentModel.Object);
 
 			this._mockedViewModel.Title = title;
 
@@ -90,6 +99,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		{
 			var property = SetupPropertyValue("mainBody", mainBody);
 			var contentModel = SetupContent(typeof(TContentPage).Name, property);
+			SetUpViewModelCreateModelMethodReturnsBaseContentPageMapModel(contentModel.Content);
 			this._mockedViewModel.MainBody = new MvcHtmlString(mainBody);
 
 			var viewModel = (TContentPage)((ViewResult)_sut.Index(contentModel)).Model;
@@ -107,7 +117,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 			this._umbracoMapper.AssetsRootUrl = "http://www.mysite.com";
 			var contentModel = SetupContent(typeof(TContentPage).Name, mainImageMock);
 
-			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>())).Returns(this._sut.MapModel(contentModel.Content));
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<TContentPage>(), contentModel)).Returns(this._sut.MapModel(contentModel.Content));
 
 			return (TContentPage)((ViewResult)this._sut.Index(contentModel)).Model;
 		}

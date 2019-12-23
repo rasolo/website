@@ -18,13 +18,10 @@ namespace Rasolo.Core.Features.BlogPage
 			this._blogPostService = blogPostService;
 		}
 
-		public BlogPage CreateModel(ContentModel viewModel)
+		public override void SetViewModelProperties(BlogPage viewModel, ContentModel contentModel)
 		{
-			var blogPage = new BlogPage();
-			blogPage.BlogPosts = this._blogPostService.GetMappedBlogPosts(viewModel.Content.Children).ToList();
-			return blogPage;
+			viewModel.BlogPosts = this._blogPostService.GetMappedBlogPosts(contentModel.Content.Children).ToList();
 		}
-
 
 	}
 }

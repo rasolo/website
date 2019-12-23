@@ -14,10 +14,10 @@ namespace Rasolo.Core.Features.Shared.Compositions
 			this._viewModelFactory = viewModelFactory;
 		}
 
-		public override ActionResult Index(ContentModel model)
+		public override ActionResult Index(ContentModel contentModel)
 		{
-			var mappedModel = this.MapModel(model.Content);
-			var viewModel = this._viewModelFactory.CreateModel(mappedModel);
+			var mappedModel = this.MapModel(contentModel.Content);
+			var viewModel = this._viewModelFactory.CreateModel(mappedModel, contentModel);
 
 			return View(viewModel);
 

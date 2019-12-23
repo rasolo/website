@@ -30,11 +30,12 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 			var mockedBlogPostPages = SetUpContentPages(3, DocumentTypeAlias.BlogPostPage).ToList();
 			var blogPostPagesProperty = SetupPropertyValue(PropertyTypeAlias.Children, mockedBlogPostPages);
 			var blogPage = SetupContentMock(DocumentTypeAlias.BlogPage, blogPostPagesProperty);
+
 			blogPage.Setup(x => x.Children).Returns(mockedBlogPostPages);
 
 			var contentModel = new ContentModel(blogPage.Object);
 
-			var viewModel = _sut.CreateModel(contentModel);
+			var viewModel = _sut.CreateModel(new Core.Features.BlogPage.BlogPage(), contentModel);
 
 			viewModel.BlogPosts.Count.ShouldBe(3);
 		}

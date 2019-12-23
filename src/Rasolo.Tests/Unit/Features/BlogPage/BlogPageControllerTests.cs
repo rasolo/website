@@ -29,7 +29,7 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 			var property = SetupPropertyValue("blogPosts", blogPosts);
 			var contentModel = SetupContent(typeof(Core.Features.BlogPage.BlogPage).Name, property);
 
-			this._blogViewModelFactory.Setup(x => x.CreateModel(It.IsAny<Core.Features.BlogPage.BlogPage>())).Returns(this._sut.MapModel(contentModel.Content));
+			this._blogViewModelFactory.Setup(x => x.CreateModel(It.IsAny<Core.Features.BlogPage.BlogPage>(), contentModel)).Returns(this._sut.MapModel(contentModel.Content));
 
 			var viewModel = (Core.Features.BlogPage.BlogPage)((ViewResult)this._sut.Index(contentModel)).Model;
 

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Features.SiteMapPage
 {
@@ -36,6 +37,8 @@ namespace Rasolo.Tests.Unit.Features.SiteMapPage
 			var content = this.SetupContent(nameof(Core.Features.SiteMapPage.SiteMapPage), property);
 
 			var controller = new SiteMapPageController(this._umbracoMapper, this._viewModelFactory.Object, umbracoServiceMock.Object);
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<Core.Features.SiteMapPage.SiteMapPage>(), It.IsAny<ContentModel>()))
+				.Returns(this._sut.MapModel(content.Content));
 			var viewModel = (Core.Features.SiteMapPage.SiteMapPage)((ViewResult)controller.Index(content)).Model;
 
 			var blogPagesContentPage = new List<BaseContentPage>();

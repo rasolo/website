@@ -3,6 +3,7 @@ using System.Linq;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Services;
+using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.StartPage
@@ -22,16 +23,12 @@ namespace Rasolo.Core.Features.StartPage
 			_blogPostService = blogPostService;
 		}
 
-		public override StartPage CreateModel(StartPage viewModel)
+		public override void SetViewModelProperties(StartPage viewModel, ContentModel contentModel)
 		{
-			viewModel = base.CreateModel(viewModel);
-
 			SetBlogPagesOnViewModel(viewModel);
 			viewModel.BlogPostPages = _blogPostService
 				.GetMappedBlogPosts(_umbracoService
 					.GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).ToList();
-
-			return viewModel;
 		}
 
 		private void SetBlogPagesOnViewModel(StartPage viewModel)

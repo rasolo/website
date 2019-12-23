@@ -23,33 +23,29 @@ namespace Rasolo.Core.Features.BlogsPage
 			_umbracoHelper = umbracoHelper;
 		}
 
-		public BlogsPage CreateModel(ContentModel viewModel)
+		public override void SetViewModelProperties(BlogsPage viewModel, ContentModel contentModel)
 		{
-			var blogsPage = new BlogsPage();
-			blogsPage = base.CreateModel(blogsPage);
 
-			this._umbracoMapper.Map(viewModel.Content, blogsPage);
+			this._umbracoMapper.Map(contentModel.Content, viewModel);
 
-			if (blogsPage.Children != null && blogsPage.Children.Any())
+			if (viewModel.Children != null && viewModel.Children.Any())
 			{
 				var blogPages = new List<BlogPage.BlogPage>();
-				var blogChildren = this._umbracoHelper.ChildrenOfType(viewModel.Content,DocumentTypeAlias.BlogPage);
+				var blogChildren = this._umbracoHelper.ChildrenOfType(contentModel.Content, DocumentTypeAlias.BlogPage);
 				this._umbracoMapper.MapCollection(blogChildren, blogPages);
-				blogsPage.BlogPages = blogPages;
+				viewModel.BlogPages = blogPages;
 			}
 
-			if (blogsPage.BlogPages?.Count() >= 1)
+			if (viewModel.BlogPages?.Count() >= 1)
 			{
-				blogsPage.ShowBlogPages = true;
+				viewModel.ShowBlogPages = true;
 			}
 
 			//For unit test, TeaserUrl is null because it is set through specific attributes only used in real run
-			if (string.IsNullOrEmpty(blogsPage.TeaserUrl))
+			if (string.IsNullOrEmpty(viewModel.TeaserUrl))
 			{
-				blogsPage.TeaserUrl = viewModel.Content.GetProperty(BlogsPagePropertyAlias.TeaserUrl)?.GetValue() as string;
+				viewModel.TeaserUrl = contentModel.Content.GetProperty(BlogsPagePropertyAlias.TeaserUrl)?.GetValue() as string;
 			}
-
-			return blogsPage;
 		}
 	}
 }

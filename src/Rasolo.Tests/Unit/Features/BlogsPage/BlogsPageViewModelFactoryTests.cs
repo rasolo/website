@@ -56,7 +56,7 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 				.Setup(x => x.ChildrenOfType(It.IsAny<IPublishedContent>(), It.IsAny<string>(), It.IsAny<string>()))
 				.Returns(blogPagesAsPublishedContent);
 
-			return _sut.CreateModel(new ContentModel(contentMock.Object));
+			return _sut.CreateModel(null, new ContentModel(contentMock.Object));
 		}
 
 		[Test]
@@ -73,7 +73,7 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 			var propertyValue = SetupPropertyValue(BlogsPagePropertyAlias.BlogPages,
 				Enumerable.Empty<Core.Features.BlogPage.BlogPage>());
 			var content = SetupContent(DocumentTypeAlias.BlogsPage, propertyValue);
-			var blogPage = _sut.CreateModel(content);
+			var blogPage = _sut.CreateModel(null, content);
 
 			blogPage.ShowBlogPages.ShouldBe(false);
 		}
@@ -87,7 +87,7 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 			var property = SetupPropertyValue(BlogsPagePropertyAlias.TeaserHeading, teaserHeading);
 			var contentModel = SetupContent(nameof(BlogsPage), property);
 
-			var viewModel = _sut.CreateModel(contentModel);
+			var viewModel = _sut.CreateModel(null, contentModel);
 
 			viewModel.TeaserHeading.ShouldBe(expected);
 		}
@@ -103,7 +103,7 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 			var property = SetupPropertyValue(BlogsPagePropertyAlias.TeaserUrl, teaserUrl);
 			var contentModel = SetupContent(nameof(BlogsPage), property);
 
-			var viewModel = _sut.CreateModel(contentModel);
+			var viewModel = _sut.CreateModel(null, contentModel);
 
 			viewModel.TeaserUrl.ShouldBe(expected);
 		}

@@ -26,7 +26,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		public void Given_CreateModel_When_TitleNullOrEmpty_Then_ReturnViewModelWithTitleEmptyString(string title, string expected)
 		{
 			var contentPage = new TModel() { Title = title };
-			var viewModel = this._sut.CreateModel(contentPage);
+			var viewModel = this._sut.CreateModel(contentPage, null);
 
 			viewModel.Title.ShouldBe(expected);
 		}
@@ -37,7 +37,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		public void Given_CreateModel_When_TitleGiven_Then_ReturnViewModelWithTitle(string title, string expected)
 		{
 			var contentPage = new TModel() { Title = title };
-			var viewModel = this._sut.CreateModel(contentPage);
+			var viewModel = this._sut.CreateModel(contentPage, null);
 
 			viewModel.Title.ShouldBe(expected);
 		}
@@ -48,7 +48,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		public void Given_CreateModel_When_MainBodyGiven_Then_ReturnViewModelWithMainBody(string mainBody, string expected)
 		{
 			var contentPage = new TModel() { MainBody = new HtmlString(mainBody) };
-			var viewModel = this._sut.CreateModel(contentPage);
+			var viewModel = this._sut.CreateModel(contentPage, null);
 
 			viewModel.MainBody.ToString().ShouldBe(expected);
 		}
@@ -62,7 +62,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 			viewModel.HeroImage.ShouldBe(page.HeroImage);
 		}
 
-		Core.Features.Shared.Compositions.BaseContentPage SetUpGetHeroImage(Core.Features.Shared.Compositions.BaseContentPage page)
+		Core.Features.Shared.Compositions.BaseContentPage SetUpGetHeroImage(Core.Features.Shared.Compositions.BaseContentPage viewModel)
 		{
 			var imageMock = new Mock<IPublishedProperty>();
 			imageMock.Setup(c => c.Alias).Returns(BaseContentPagePropertyAlias.HeroImage);
@@ -70,9 +70,9 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 			imageMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>())).Returns(SetupImage().Object);
 			var contentModel = SetupContent(typeof(TModel).Name, imageMock);
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			umbracoMapper.Map(contentModel.Content, page);
+			umbracoMapper.Map(contentModel.Content, viewModel, null);
 
-			return this._sut.CreateModel(page);
+			return this._sut.CreateModel(viewModel, contentModel);
 		}
 
 		[Test]
@@ -87,7 +87,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		public void Given_CreateModel_When_HeroImageNotGiven_Then_ReturnViewModelWithShowHeroImageFalse()
 		{
 			var contentPage = new TModel() { HeroImage = null };
-			var viewModel = this._sut.CreateModel(contentPage);
+			var viewModel = this._sut.CreateModel(contentPage, null);
 
 			viewModel.ShowHeroImage.ShouldBe(false);
 		}
@@ -96,7 +96,7 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 		public void Given_CreateModel_When_MainBodyNullOrEmpty_Then_ReturnViewModelWithMainBodyEmptyString()
 		{
 			var contentPage = new TModel() { MainBody = null };
-			var viewModel = this._sut.CreateModel(contentPage);
+			var viewModel = this._sut.CreateModel(contentPage, null);
 
 			viewModel.MainBody.ToString().ShouldBe(string.Empty);
 		}

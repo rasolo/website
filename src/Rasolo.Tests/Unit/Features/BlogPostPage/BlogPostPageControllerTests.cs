@@ -29,7 +29,7 @@ namespace Rasolo.Tests.Unit.Features.BlogPostPage
 			content.Setup(x => x.CreateDate).Returns(expectedCreatedDate);
 
 			var contentModel = new ContentModel(content.Object);
-			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<Core.Features.BlogPostPage.BlogPostPage>())).Returns(_sut.MapModel(contentModel.Content));
+			this._viewModelFactory.Setup(x => x.CreateModel(It.IsAny<Core.Features.BlogPostPage.BlogPostPage>(), contentModel)).Returns(_sut.MapModel(contentModel.Content));
 			var viewModel = (Core.Features.BlogPostPage.BlogPostPage)((ViewResult)_sut.Index(contentModel)).Model;
 
 			viewModel.CreateDate.ShouldBe(expectedCreatedDate);
