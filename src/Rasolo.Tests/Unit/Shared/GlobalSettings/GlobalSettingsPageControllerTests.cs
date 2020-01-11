@@ -8,6 +8,7 @@ using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
 using System.Web.Mvc;
+using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Tests.Unit.Shared.GlobalSettings
@@ -16,16 +17,16 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 	{
 		private GlobalSettingsPageController _sut;
 		private UmbracoMapper _umbracoMapper;
-		private Mock<IUmbracoService> _umbracoServiceMock;
+		private Mock<IUmbracoHelper> _umbracoHelperMock;
 		private readonly GlobalSettingsPageViewModel _globalSettingsPageViewModel = new GlobalSettingsPageViewModel();
 
 		public override void SetUp()
 		{
 			base.SetUp();
 			this._umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			this._umbracoServiceMock = new Mock<IUmbracoService>();
+			this._umbracoHelperMock = new Mock<IUmbracoHelper>();
 			var content = this.SetupContent(DocumentTypeAlias.GlobalSettingsPage, this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.HomeTextAlias, "Home text"));
-			this._umbracoServiceMock.Setup(x => x.GetFirstPageByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(content.Content);
+			this._umbracoHelperMock.Setup(x => x.GlobalSettingsPage).Returns(content.Content);
 		}
 
 		[Test]
@@ -43,7 +44,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		public void Given_Controller_When_IndexAction_Then_ReturnsGlobalSettingsViewModel()
 		{
-			this._sut = new GlobalSettingsPageController(new GlobalSettingsPagePageViewModelFactory(this._umbracoMapper, this._umbracoServiceMock.Object));
+			this._sut = new GlobalSettingsPageController(new GlobalSettingsPagePageViewModelFactory(this._umbracoMapper, this._umbracoHelperMock.Object));
 
 			var returnedViewModel = (GlobalSettingsPageViewModel)((PartialViewResult)this._sut.Index()).Model;
 

@@ -4,10 +4,10 @@ using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.GlobalSettings;
-using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
 using System.Web;
+using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 
@@ -22,9 +22,9 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		{
 			base.SetUp();
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			var umbracoServiceMock = new Mock<IUmbracoService>();
+			var umbracoHelperMock = new Mock<IUmbracoHelper>();
 
-			this._sut = new GlobalSettingsPagePageViewModelFactory(umbracoMapper, umbracoServiceMock.Object);
+			this._sut = new GlobalSettingsPagePageViewModelFactory(umbracoMapper, umbracoHelperMock.Object);
 		}
 
 
@@ -38,11 +38,12 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		private void SetUp(string propertyAlias, Mock<IPublishedProperty> property)
 		{
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
-			var umbracoServiceMock = new Mock<IUmbracoService>();
+			var umbracoHelperMock = new Mock<IUmbracoHelper>();
 			var contentModel = this.SetupContent(propertyAlias, property);
-			umbracoServiceMock.Setup(x => x.GetFirstPageByDocumentTypeAtRootLevel(It.IsAny<string>())).Returns(contentModel.Content);
+			umbracoHelperMock.Setup(x => x.GlobalSettingsPage)
+				.Returns(contentModel.Content);
 
-			this._sut = new GlobalSettingsPagePageViewModelFactory(umbracoMapper, umbracoServiceMock.Object);
+			this._sut = new GlobalSettingsPagePageViewModelFactory(umbracoMapper, umbracoHelperMock.Object);
 		}
 
 		private GlobalSettingsPageViewModel SetUp(HttpCookieCollection httpCookieCollection)
@@ -74,7 +75,6 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 
 		}
 
-
 		private GlobalSettingsPageViewModel SetUpCookiesNoticeText(string cookiesNoticeText)
 		{
 			return SetUp(this.SetupPropertyValue(GlobalSettingsPagePropertyAlias.CookiesNoticeTextAlias, cookiesNoticeText));
@@ -87,7 +87,6 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 
 			viewModel.CookiesNoticeText.ShouldBe(CookiesNoticeText);
 		}
-
 
 		//If the cookie is null, it means that the user has not accepted it, therefore the cookie notice should be shown.
 		[Test]
