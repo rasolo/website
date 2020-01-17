@@ -182,8 +182,7 @@ body #hero_background-container {
     width: -webkit-fill-available; }
   body #hero_background-container img {
     width: 100%;
-    height: 120vw;
-    border-radius: 2%; }
+    height: 120vw; }
   body #hero_background-container .hero-header {
     position: absolute;
     left: 0;
