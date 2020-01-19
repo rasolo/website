@@ -64,7 +64,7 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 		{
 			var blogsPage = SetUpBlogPagesGetBlogPage();
 
-			blogsPage.ShowBlogPages.ShouldBe(true);
+			blogsPage.ShowPosts.ShouldBe(true);
 		}
 
 		[Test]
@@ -75,37 +75,7 @@ namespace Rasolo.Tests.Unit.Features.BlogsPage
 			var content = SetupContent(DocumentTypeAlias.BlogsPage, propertyValue);
 			var blogPage = _sut.CreateModel(null, content);
 
-			blogPage.ShowBlogPages.ShouldBe(false);
-		}
-
-		[Test]
-		[TestCase("Teaser heading", "Teaser heading")]
-		[TestCase("Another Teaser heading", "Another Teaser heading")]
-		public void Given_PageHasTeaserHeading_When_IndexAction_Then_ReturnViewModelWithTeaserHeading(
-			string teaserHeading, string expected)
-		{
-			var property = SetupPropertyValue(BlogsPagePropertyAlias.TeaserHeading, teaserHeading);
-			var contentModel = SetupContent(nameof(BlogsPage), property);
-
-			var viewModel = _sut.CreateModel(null, contentModel);
-
-			viewModel.TeaserHeading.ShouldBe(expected);
-		}
-
-		[Test]
-		[TestCase("/media/hhon5crc/exception.png?anchor=center&mode=crop&width=500&height=500",
-			"/media/hhon5crc/exception.png?anchor=center&mode=crop&width=500&height=500")]
-		[TestCase("/media/ahen5cya/umbraco.png?anchor=center&mode=crop&width=500&height=500",
-			"/media/ahen5cya/umbraco.png?anchor=center&mode=crop&width=500&height=500")]
-		public void Given_PageHasTeaserUrl_When_IndexAction_Then_ReturnViewModelWithTeaserUrl(string teaserUrl,
-			string expected)
-		{
-			var property = SetupPropertyValue(BlogsPagePropertyAlias.TeaserUrl, teaserUrl);
-			var contentModel = SetupContent(nameof(BlogsPage), property);
-
-			var viewModel = _sut.CreateModel(null, contentModel);
-
-			viewModel.TeaserUrl.ShouldBe(expected);
+			blogPage.ShowPosts.ShouldBe(false);
 		}
 	}
 }

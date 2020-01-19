@@ -393,9 +393,6 @@
     <Reference Include="uSync8.BackOffice, Version=8.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\uSync.BackOffice.Core.8.4.0\lib\net472\uSync8.BackOffice.dll</HintPath>
     </Reference>
-    <Reference Include="uSync8.Community.Contrib, Version=8.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\uSync.Community.Contrib.8.4.0\lib\net472\uSync8.Community.Contrib.dll</HintPath>
-    </Reference>
     <Reference Include="uSync8.Core, Version=8.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\uSync.Core.8.4.0\lib\net472\uSync8.Core.dll</HintPath>
     </Reference>
@@ -520,10 +517,8 @@
     <Content Include="Views\Shared\CookiesNotice.cshtml" />
     <Content Include="Views\ArticlePage.cshtml" />
     <Content Include="Views\Shared\GlobalSettings.cshtml" />
-    <Content Include="Views\Shared\BlogPostTeaser.cshtml" />
     <Content Include="Views\Shared\MetaData.cshtml" />
     <Content Include="Views\SiteMapPage.cshtml" />
-    <Content Include="Views\Shared\BlogPostsTeaser.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Media.cshtml" />
@@ -533,7 +528,10 @@
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\BlogsPage.cshtml" />
-    <Content Include="Views\Shared\BlogsTeaser.cshtml" />
+    <Content Include="Views\Shared\BlogTeaser.cshtml" />
+    <Content Include="Views\Shared\PostTeaser.cshtml" />
+    <Content Include="Views\Shared\BlogPostsTeaser.cshtml" />
+    <Content Include="Views\Shared\BlogPostTeaser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rasolo.Core\Rasolo.Core.csproj">

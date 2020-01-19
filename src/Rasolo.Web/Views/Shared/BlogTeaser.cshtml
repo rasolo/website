@@ -1,0 +1,17 @@
+﻿@model Rasolo.Core.Features.Shared.DocumentTypeInterfaces.IBlogTeaser
+
+@if (Model.ShowPosts)
+{
+	<div class="posts-container">
+		<h2 class="posts__heading">Latest posts</h2>
+		<div class="posts-container__posts">
+			@{
+				foreach (var postPage in Model.Posts)
+				{
+					@Html.Partial("PostTeaser", postPage)
+				}
+			}
+		</div>
+		<div class="spacer"></div>
+	</div>
+}
