@@ -44,11 +44,11 @@ function jsTask(){
     );
 }
 
-// Cachebust
-var cbString = new Date().getTime();
+
 function cacheBustTask(){
+    var cacheBustString = new Date().getTime();
     return src(['../src/Rasolo.Web/Views/Shared/_layout.cshtml'])
-        .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
+        .pipe(replace(/cb=\d+/g, 'cb=' + cacheBustString))
         .pipe(dest('../src/Rasolo.Web/Views/Shared/'));
 }
 
