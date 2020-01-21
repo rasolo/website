@@ -1,10 +1,10 @@
 
 @import "pokemon";
-@import "../components/cookies-notice/cookies-notice";
-@import "../components/navigation/navigation";
-@import "../views/article-page/article-page";
-@import "../views/start-page/start-page";
-@import "../views/blogpost-page/blogpost-page";
+@import "./cookies-notice/cookies-notice";
+@import "navigation";
+@import "article-page";
+@import "start-page";
+@import "blogpost-page";
 
 html {
   *,
@@ -13,7 +13,9 @@ html {
     box-sizing: border-box;
     margin: 0;
     font-family: "roboto", cursive;
+    
   }
+
 
   pre {
     margin: 20px;

@@ -49,16 +49,11 @@ ___
 #### Front-end
 * Cd to Project root/Frontend
 * Run "npm install"
-* Run "npm run scss-watch"
-* Run (in a separate window) "npm run browserify-watch"
-
-
+* Run "gulp". If you don't have gulp-cli installed, write "npm install gulp-cli -g" first.
 
 ## Development
 #### Naming conventions:
 Private fields are named as: _camelCase.
-
-
 
 ## Deployment
 

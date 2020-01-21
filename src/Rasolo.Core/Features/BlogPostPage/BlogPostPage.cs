@@ -1,8 +1,6 @@
-﻿using System;
-using AutoMapper.Configuration.Annotations;
-using Rasolo.Core.Features.Shared.Attributes;
+﻿using Rasolo.Core.Features.Shared.Attributes;
 using Rasolo.Core.Features.Shared.Compositions;
-using Rasolo.Core.Features.Shared.Constants.MediaCropAliases.BlogPostPage;
+using Rasolo.Core.Features.Shared.Constants.MediaCropAliases;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.DocumentTypeInterfaces;
 using Zone.UmbracoMapper.Common.Attributes;
@@ -13,8 +11,12 @@ namespace Rasolo.Core.Features.BlogPostPage
 	{
 		public string TeaserHeading { get; set; }
 		[PropertyMapping(SourceProperty = BlogPostPagePropertyAlias.TeaserMedia)]
-		[MapFromImageCropper(CropName = BlogPostPageMediaCropAliases.StartPage)]
+		[MapFromImageCropper(CropName = MediaCropAlias.StartPage)]
 		public string TeaserUrl { get; set; }
 		public string TeaserPreamble { get; set; }
+
+		public string ParentUrl { get; set; }
+
+		public string ParentName { get; set; }
 	}
 }

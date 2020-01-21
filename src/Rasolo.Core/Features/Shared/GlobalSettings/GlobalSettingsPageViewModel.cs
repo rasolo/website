@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Configuration.Annotations;
+using Rasolo.Core.Features.Shared.Compositions;
 using Umbraco.Web.Models;
 
 namespace Rasolo.Core.Features.Shared.GlobalSettings
@@ -11,5 +12,7 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 		[Ignore]
 		public bool ShowCookiesNotice { get; set; }
 		public string HomeText { get; set; }
+		[Ignore]
+		public string HomeTextColor { get; set; }
 	}
 }

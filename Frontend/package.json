@@ -1,11 +1,11 @@
 {
   "name": "rasolo.azurewebsites.net",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss-watch": "node-sass --watch src/scss -o ../src/Rasolo.Web/assets/css",
+    "scss-watch": "node-sass --watch src/scss -o ../src/Rasolo.Web/assets/css/",
     "scss-watch-footer": "node-sass --watch src -o src/components/footer.css",
     "browserify-build": "browserify src/components/app.js > ../src/Rasolo.Web/assets/js/bundle.js",
     "browserify-watch": "watchify src/components/app.js -o ../src/Rasolo.Web/assets/js/bundle.js"
@@ -16,7 +16,6 @@
   },
   "author": "Rasmus Olofsson",
   "dependencies": {
-    "browserify": "*",
     "jslint": "^0.12.1",
     "node-sass": "^4.12.0",
     "watchify": "*"
@@ -25,5 +24,19 @@
   "bugs": {
     "url": "https://github.com/rasolo/website/issues"
   },
-  "homepage": "https://github.com/rasolo/website#readme"
+  "homepage": "https://github.com/rasolo/website#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.7.0",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.0",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "vinyl-source-stream": "^2.0.0"
+  }
 }

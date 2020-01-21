@@ -5,6 +5,7 @@ using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
+using Rasolo.Core.Features.Shared.DocumentTypeInterfaces;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 using Umbraco.Web.Models;
@@ -38,14 +39,10 @@ namespace Rasolo.Core.Features.BlogsPage
 
 			if (viewModel.BlogPages?.Count() >= 1)
 			{
-				viewModel.ShowBlogPages = true;
+				viewModel.ShowPosts = true;
+				viewModel.Posts = viewModel.BlogPages;
 			}
 
-			//For unit test, TeaserUrl is null because it is set through specific attributes only used in real run
-			if (string.IsNullOrEmpty(viewModel.TeaserUrl))
-			{
-				viewModel.TeaserUrl = contentModel.Content.GetProperty(BlogsPagePropertyAlias.TeaserUrl)?.GetValue() as string;
-			}
 		}
 	}
 }
