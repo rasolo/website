@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
+using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Services;
 using Zone.UmbracoMapper.V8;
@@ -17,6 +18,18 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 			_umbracoHelper = umbracoHelper;
 		}
 
+		public void SetViewModelProperties(GlobalSettingsPageViewModel viewModel)
+		{
+			viewModel.CookiesNoticeText = !string.IsNullOrEmpty(viewModel.CookiesNoticeText) ? viewModel.CookiesNoticeText : string.Empty;
+			viewModel.CookiesAcceptText = !string.IsNullOrEmpty(viewModel.CookiesAcceptText) ? viewModel.CookiesAcceptText : string.Empty;
+			viewModel.CookiesLink = viewModel.CookiesLink ?? new Umbraco.Web.Models.Link() { Url = "/" };
+			viewModel.HomeText = !string.IsNullOrEmpty(viewModel.HomeText) ? viewModel.HomeText : string.Empty;
+			var currentPage = new BaseContentPage();
+			this._mapper.Map(this._umbracoHelper.AssignedContentItem, currentPage);
+			viewModel.HomeTextColor = currentPage.HomeTextColor;
+		}
+
+
 		public GlobalSettingsPageViewModel CreateModel(HttpCookieCollection httpCookieCollection)
 		{
 			var globalSettingsPage = this._umbracoHelper.GlobalSettingsPage;
@@ -28,15 +41,10 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 
 			this._mapper.Map(globalSettingsPage, viewModel);
 
-
-			viewModel.CookiesNoticeText = !string.IsNullOrEmpty(viewModel.CookiesNoticeText) ? viewModel.CookiesNoticeText : string.Empty;
-			viewModel.CookiesAcceptText = !string.IsNullOrEmpty(viewModel.CookiesAcceptText) ? viewModel.CookiesAcceptText : string.Empty;
-			viewModel.CookiesLink = viewModel.CookiesLink ?? new Umbraco.Web.Models.Link() { Url = "/" };
-			viewModel.HomeText = !string.IsNullOrEmpty(viewModel.HomeText) ? viewModel.HomeText : string.Empty;
+			SetViewModelProperties(viewModel);
 			viewModel.ShowCookiesNotice = httpCookieCollection?[Constants.CookiesNotice.CookiesNoticeCookieName] == null;
 
 			return viewModel;
-
 		}
 	}
 }

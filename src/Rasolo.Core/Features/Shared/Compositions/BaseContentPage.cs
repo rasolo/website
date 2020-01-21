@@ -14,6 +14,7 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		public virtual string Title { get; set; }
 		public virtual IHtmlString MainBody { get; set; }
 		public MediaFile HeroImage { get; set; }
+		public string HomeTextColor { get; set; }
 		[Ignore]
 		public bool ShowHeroImage { get; set; }
 		public virtual IEnumerable<IPublishedContent> Children { get; set; }

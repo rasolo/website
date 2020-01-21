@@ -15,15 +15,16 @@ namespace Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper
 			_umbracoHelper = umbracoHelper;
 		}
 
-		public IEnumerable<IPublishedContent> ContentAtRoot()
-		{
-			return _umbracoHelper.ContentAtRoot();
-		}
-
+		public IPublishedContent AssignedContentItem => _umbracoHelper.AssignedContentItem;
 
 		public IEnumerable<IPublishedContent> ChildrenOfType(IPublishedContent content, string contentTypeAlias, string culture = null)
 		{
 			return content.ChildrenOfType(contentTypeAlias, culture);
+		}
+
+		public IEnumerable<IPublishedContent> ContentAtRoot()
+		{
+			return _umbracoHelper.ContentAtRoot();
 		}
 
 		public IPublishedContent GlobalSettingsPage => ContentAtRoot().OfTypes(DocumentTypeAlias.GlobalSettingsPage).FirstOrDefault();

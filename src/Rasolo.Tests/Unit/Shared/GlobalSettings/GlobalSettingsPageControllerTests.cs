@@ -4,7 +4,6 @@ using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.GlobalSettings;
-using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
 using System.Web.Mvc;
@@ -33,7 +32,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		public void Given_Controller_When_IndexAction_Then_GlobalSettingsViewModelFactoryIsCalled()
 		{
 			var globalSettingsViewModelFactoryMock = new Mock<IGlobalSettingsPageViewModelFactory>();
-			this._sut = new GlobalSettingsPageController(globalSettingsViewModelFactoryMock.Object);
+			this._sut = new GlobalSettingsPageController(globalSettingsViewModelFactoryMock.Object, _umbracoHelperMock.Object);
 			globalSettingsViewModelFactoryMock.Setup(x => x.CreateModel(null)).Returns(this._globalSettingsPageViewModel);
 
 			this._sut.Index();
@@ -44,7 +43,7 @@ namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 		[Test]
 		public void Given_Controller_When_IndexAction_Then_ReturnsGlobalSettingsViewModel()
 		{
-			this._sut = new GlobalSettingsPageController(new GlobalSettingsPagePageViewModelFactory(this._umbracoMapper, this._umbracoHelperMock.Object));
+			this._sut = new GlobalSettingsPageController(new GlobalSettingsPagePageViewModelFactory(this._umbracoMapper, this._umbracoHelperMock.Object), this._umbracoHelperMock.Object);
 
 			var returnedViewModel = (GlobalSettingsPageViewModel)((PartialViewResult)this._sut.Index()).Model;
 
