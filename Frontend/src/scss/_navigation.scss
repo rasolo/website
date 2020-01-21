@@ -2,7 +2,6 @@
     position: absolute;
     z-index: 999;
     margin: 2%;
-
     & a{
         color: #2b1e1f;
         font-weight: bold;
@@ -11,12 +10,10 @@
 
         &:hover {
             cursor: pointer;
-            color: #ceafb1;
+            color: #ceafb1!important;
         }
     }
 }
-
-
 
 @media screen and (min-width: 1080px) {
     .site__header a{
