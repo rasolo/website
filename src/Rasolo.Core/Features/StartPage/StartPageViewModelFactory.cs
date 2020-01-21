@@ -3,6 +3,7 @@ using System.Linq;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Services;
+using Umbraco.Core;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
 
@@ -29,6 +30,9 @@ namespace Rasolo.Core.Features.StartPage
 			viewModel.BlogPostPages = _blogPostService
 				.GetMappedBlogPosts(_umbracoService
 					.GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).ToList();
+
+			viewModel.Title = viewModel.Title.StripHtml().Replace("\n", "<br />");
+
 		}
 
 		private void SetBlogPagesOnViewModel(StartPage viewModel)

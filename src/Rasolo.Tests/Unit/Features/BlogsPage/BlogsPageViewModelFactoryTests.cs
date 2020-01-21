@@ -14,8 +14,7 @@ using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Features.BlogsPage
 {
-	internal class
-		BlogsPageViewModelFactoryTests : BaseContentPageViewModelFactoryTests<Core.Features.BlogsPage.BlogsPage>
+	internal class BlogsPageViewModelFactoryTests : BaseContentPageViewModelFactoryTests<Core.Features.BlogsPage.BlogsPage>
 	{
 		private BlogsPageViewModelFactory _sut;
 		private Mock<IUmbracoHelper> _umbracoHelper;
