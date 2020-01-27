@@ -1,7 +1,7 @@
 # rasolo.azurewebsites.net [![Build Status](https://dev.azure.com/rasmusolofssons/rasolo/_apis/build/status/rasolo%20-%201%20-%20CI?branchName=master)](https://dev.azure.com/rasmusolofssons/rasolo/_build/latest?definitionId=2&branchName=master)
 
 ## About ##
-My personal website made in Umbraco 8.1+ hosted on Azure.
+My personal website made in Umbraco 8+ hosted on Azure.
 
 #### Some dependencies
 
@@ -12,6 +12,8 @@ The project uses **Browserify** for the front-end in order to make the code more
 **uSync** is used in order to make working with different environments and deployment easier. uSync stores database settings on disk which are tracked in git and can be imported in other environments. The settings that are stored are things such as document types, properties and tree structure. https://our.umbraco.com/packages/developer-tools/usync/.
 
 **Moq** is used to make mocking and unit testing easier: https://github.com/Moq/moq4/wiki/Quickstart.
+
+**Shouldly** is used to improve the unit testing experience. It is an assertion framework https://github.com/shouldly/shouldly
 
 ___
 
@@ -39,7 +41,7 @@ Find and replace this line:
 **From:** "connectionString="server=.;database=rasmuso.azurewebsites.net;user id=rasmuso.azurewebsites.net;password=5A2068b67C" providerName="System.Data.SqlClient" />"
 **To:** connectionString=""
 Find and replace this line:
-**From:** <add key="Umbraco.Core.ConfigurationStatus" value="8.1.0" />
+**From:** <add key="Umbraco.Core.ConfigurationStatus" value="{version}" />
 **To:** <add key="Umbraco.Core.ConfigurationStatus" value="" />
 (This will force Umbraco to create a new database for you when you reload the page for the site)
 
