@@ -315,7 +315,8 @@
     <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsPage.cs" />
     <Compile Include="Features\Shared\GlobalSettings\IGlobalSettingsPageViewModelFactory.cs" />
     <Compile Include="Features\Shared\Composers\UmbracoMapperComposer.cs" />
-    <Compile Include="Features\Shared\RssResult.cs" />
+    <Compile Include="Features\Shared\Models\BreadCrumb.cs" />
+    <Compile Include="Features\Shared\Models\RssResult.cs" />
     <Compile Include="Features\Shared\Services\BlogPostService.cs" />
     <Compile Include="Features\Shared\Services\IBlogPostService.cs" />
     <Compile Include="Features\Shared\Services\IUmbracoService.cs" />

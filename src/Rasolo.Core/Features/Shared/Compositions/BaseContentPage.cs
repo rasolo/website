@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using AutoMapper.Configuration.Annotations;
 using Rasolo.Core.Features.Shared.DocumentTypeInterfaces;
+using Rasolo.Core.Features.Shared.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Zone.UmbracoMapper.Common.BaseDestinationTypes;
 
@@ -29,5 +30,7 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		[Ignore]
 		public string PageAndSiteTitle => !string.IsNullOrEmpty(MetaTitle) ? $"{SiteTitle} | {MetaTitle}" :
 			!string.IsNullOrEmpty(Title) ? $"{SiteTitle} | {Title}" : $"{SiteTitle} | {Name}";
+
+		public IEnumerable<BreadCrumb> BreadCrumbs { get; set; }
 	}
 }

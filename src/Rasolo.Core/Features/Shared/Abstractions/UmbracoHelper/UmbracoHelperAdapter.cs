@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Rasolo.Core.Features.Shared.Constants;
+using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 
@@ -13,6 +14,12 @@ namespace Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper
 		public UmbracoHelperAdapter(Umbraco.Web.UmbracoHelper umbracoHelper)
 		{
 			_umbracoHelper = umbracoHelper;
+			umbracoHelper.Content(2).AncestorsOrSelf();
+		}
+
+		public IEnumerable<IPublishedContent> AncestorsOrSelf(IPublishedContent content)
+		{
+			return content.AncestorsOrSelf();
 		}
 
 		public IPublishedContent AssignedContentItem => _umbracoHelper.AssignedContentItem;

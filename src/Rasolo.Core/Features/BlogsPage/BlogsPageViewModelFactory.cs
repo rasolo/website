@@ -18,7 +18,7 @@ namespace Rasolo.Core.Features.BlogsPage
 		private readonly IUmbracoMapper _umbracoMapper;
 		private readonly IUmbracoHelper _umbracoHelper;
 
-		public BlogsPageViewModelFactory(IUmbracoMapper umbracoMapper, IUmbracoHelper umbracoHelper)
+		public BlogsPageViewModelFactory(IUmbracoMapper umbracoMapper, IUmbracoHelper umbracoHelper) : base(umbracoMapper, umbracoHelper)
 		{
 			this._umbracoMapper = umbracoMapper;
 			_umbracoHelper = umbracoHelper;
