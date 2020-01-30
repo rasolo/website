@@ -1,4 +1,6 @@
-﻿using Moq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Compositions;
@@ -6,19 +8,67 @@ using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
 using System.Web;
+using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
+using Rasolo.Core.Features.Shared.Extensions;
 using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Web;
+using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 {
 	internal class BaseContentPageViewModelFactoryTests<TModel> : UmbracoBaseTests where TModel : Core.Features.Shared.Compositions.BaseContentPage, new()
 	{
 		private BaseContentPageViewModelFactory<Core.Features.Shared.Compositions.BaseContentPage> _sut;
+		private Mock<IUmbracoHelper> _umbracoHelperMock;
 
 		public override void SetUp()
 		{
 			base.SetUp();
-			this._sut = new BaseContentPageViewModelFactory<Core.Features.Shared.Compositions.BaseContentPage>();
+			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
+			 this._umbracoHelperMock = new Mock<IUmbracoHelper>();
+			this._sut = new BaseContentPageViewModelFactory<Core.Features.Shared.Compositions.BaseContentPage>(umbracoMapper, this._umbracoHelperMock.Object);
 		}
+
+		[Test]
+		public void Given_CreateModel_When_PageHasTwoParents_Then_ReturnViewModelWithBreadCrumbsTwoParents()
+		{
+			var contentPage = new TModel();
+			var contentMock = this.SetupContentMock(nameof(Core.Features.Shared.Compositions.BaseContentPage)
+				.FirstLetterToLower(), new Mock<IPublishedProperty>());
+
+			var parentsContentMock = this.SetUpContentPages(2, nameof(Core.Features.Shared.Compositions.BaseContentPage)
+				.FirstLetterToLower());
+			this._umbracoHelperMock.Setup(x => x.AncestorsOrSelf(It.IsAny<IPublishedContent>())).Returns(parentsContentMock);
+			var viewModel = this._sut.CreateModel(contentPage, new ContentModel(contentMock.Object));
+
+			viewModel.BreadCrumbs.Count().ShouldBe(2);
+		}
+
+		[Test]
+		public void Given_CreateModel_When_PageHasBreadCrumbs_Then_ReturnViewModelWithBreadCrumbsAscending()
+		{
+			var contentPage = new TModel();
+			var contentMock = this.SetupContentMock(nameof(Core.Features.Shared.Compositions.BaseContentPage)
+				.FirstLetterToLower(), new Mock<IPublishedProperty>());
+
+			var parentMock = this.SetupContentMock(nameof(Core.Features.Shared.Compositions.BaseContentPage)
+				.FirstLetterToLower(), new Mock<IPublishedProperty>(), pageName: "parent");
+
+
+			var grandParentMock = this.SetupContentMock(nameof(Core.Features.Shared.Compositions.BaseContentPage)
+				.FirstLetterToLower(), new Mock<IPublishedProperty>(), pageName: "grandParent");
+
+			this._umbracoHelperMock.Setup(x => x.AncestorsOrSelf(parentMock.Object)).Returns(new List<IPublishedContent>{grandParentMock.Object});
+
+			var ancestors = new List<IPublishedContent> {parentMock.Object, grandParentMock.Object};
+
+			this._umbracoHelperMock.Setup(x => x.AncestorsOrSelf(contentMock.Object)).Returns(ancestors);
+			var viewModel = this._sut.CreateModel(contentPage, new ContentModel(contentMock.Object));
+
+
+			viewModel.BreadCrumbs.First().Name.ShouldBe("grandParent");
+		}
+
 
 		[Test]
 		[TestCase(null, "")]

@@ -19,7 +19,9 @@ namespace Rasolo.Tests.Unit.Features.StartPage
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			var umbracoService = new Mock<IUmbracoService>();
 			var blogPostService = new Mock<IBlogPostService>();
-			_sut = new StartPageViewModelFactory(umbracoMapper, umbracoService.Object, blogPostService.Object);
+			var umbracoHelperMock = new Mock<IUmbracoHelper>();
+
+			_sut = new StartPageViewModelFactory(umbracoMapper, umbracoService.Object, blogPostService.Object, umbracoHelperMock.Object);
 		}
 
 		[Test]

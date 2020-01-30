@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Services;
@@ -16,16 +17,17 @@ namespace Rasolo.Core.Features.StartPage
 		private readonly IUmbracoService _umbracoService;
 
 
-		public StartPageViewModelFactory(IUmbracoMapper mapper, IUmbracoService umbracoService,
-			IBlogPostService blogPostService)
+		public StartPageViewModelFactory(IUmbracoMapper umbracoMapper, IUmbracoService umbracoService,
+			IBlogPostService blogPostService, IUmbracoHelper umbracoHelper) : base(umbracoMapper, umbracoHelper)
 		{
-			_umbracoMapper = mapper;
+			_umbracoMapper = umbracoMapper;
 			_umbracoService = umbracoService;
 			_blogPostService = blogPostService;
 		}
 
 		public override void SetViewModelProperties(StartPage viewModel, ContentModel contentModel)
 		{
+			base.SetViewModelProperties(viewModel, contentModel);
 			SetBlogPagesOnViewModel(viewModel);
 			viewModel.BlogPostPages = _blogPostService
 				.GetMappedBlogPosts(_umbracoService

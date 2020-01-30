@@ -49,6 +49,11 @@ Open the website either by CTRL + F5 in Visual Studio or by having set it up in 
 
 ___
 #### Front-end
+Using Docker:
+* Cd to Project root.
+* Run docker-compose up
+
+Without Docker:
 * Cd to Project root/Frontend
 * Run "npm install"
 * Run "gulp". If you don't have gulp-cli installed, write "npm install gulp-cli -g" first.

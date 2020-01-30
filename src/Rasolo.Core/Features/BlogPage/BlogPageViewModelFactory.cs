@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.DocumentTypeInterfaces;
 using Rasolo.Core.Features.Shared.Services;
@@ -13,7 +14,7 @@ namespace Rasolo.Core.Features.BlogPage
 		private readonly IUmbracoMapper _umbracoMapper;
 		private readonly IBlogPostService _blogPostService;
 
-		public BlogPageViewModelFactory(IUmbracoMapper umbracoMapper, IBlogPostService blogPostService)
+		public BlogPageViewModelFactory(IUmbracoMapper umbracoMapper, IBlogPostService blogPostService, IUmbracoHelper umbracoHelper) : base(umbracoMapper, umbracoHelper)
 		{
 			this._umbracoMapper = umbracoMapper;
 			this._blogPostService = blogPostService;

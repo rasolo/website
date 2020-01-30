@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.BlogPage;
+using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
@@ -21,7 +22,8 @@ namespace Rasolo.Tests.Unit.Features.BlogPage
 			base.SetUp();
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 			var blogPostServiceMock = new Mock<BlogPostService>(umbracoMapper);
-			_sut = new BlogPageViewModelFactory(new UmbracoMapperComposer().SetupMapper(), blogPostServiceMock.Object);
+			var umbracoHelperMock = new Mock<IUmbracoHelper>();
+			_sut = new BlogPageViewModelFactory(new UmbracoMapperComposer().SetupMapper(), blogPostServiceMock.Object, umbracoHelperMock.Object);
 		}
 
 		[Test]

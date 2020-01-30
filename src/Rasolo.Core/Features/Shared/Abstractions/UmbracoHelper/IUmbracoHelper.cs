@@ -5,6 +5,7 @@ namespace Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper
 {
 	public interface IUmbracoHelper
 	{
+		IEnumerable<IPublishedContent> AncestorsOrSelf(IPublishedContent content);
 		IPublishedContent AssignedContentItem { get; }
 		IEnumerable<IPublishedContent> ContentAtRoot();
 		IEnumerable<IPublishedContent> ChildrenOfType(IPublishedContent content, string contentTypeAlias, string culture = null);
