@@ -17,10 +17,7 @@
 					}
 				}
 			}
-			@*@foreach (var bread in Model.BreadCrumbs)
-		{
-			<a href="@bread.Url">@bread.Name</a>
-		}*@
+		
 		</p>
 		<p class="blogpost__date-created">@Model.CreateDate.ToString("yyyy-MM-dd")</p>
 		<p class="blogpost__category">
