@@ -8,6 +8,19 @@
     }
   }
 
+  .blogpost__breadcrumb {
+    margin-bottom: -1%!important;
+  }
+
+  .blogpost__breadcrumb a{
+    color: black;
+    font-style: italic;
+
+    &:hover {
+      color:gray;
+    }
+  }
+
   .blogpost__date-created {
     display:inline-block;
     font-style: italic;

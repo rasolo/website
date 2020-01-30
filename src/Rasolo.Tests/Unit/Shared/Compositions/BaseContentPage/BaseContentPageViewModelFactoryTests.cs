@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.Shared.Composers;
@@ -42,6 +43,32 @@ namespace Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage
 
 			viewModel.BreadCrumbs.Count().ShouldBe(2);
 		}
+
+		[Test]
+		public void Given_CreateModel_When_PageHasBreadCrumbs_Then_ReturnViewModelWithBreadCrumbsAscending()
+		{
+			var contentPage = new TModel();
+			var contentMock = this.SetupContentMock(nameof(Core.Features.Shared.Compositions.BaseContentPage)
+				.FirstLetterToLower(), new Mock<IPublishedProperty>());
+
+			var parentMock = this.SetupContentMock(nameof(Core.Features.Shared.Compositions.BaseContentPage)
+				.FirstLetterToLower(), new Mock<IPublishedProperty>(), pageName: "parent");
+
+
+			var grandParentMock = this.SetupContentMock(nameof(Core.Features.Shared.Compositions.BaseContentPage)
+				.FirstLetterToLower(), new Mock<IPublishedProperty>(), pageName: "grandParent");
+
+			this._umbracoHelperMock.Setup(x => x.AncestorsOrSelf(parentMock.Object)).Returns(new List<IPublishedContent>{grandParentMock.Object});
+
+			var ancestors = new List<IPublishedContent> {parentMock.Object, grandParentMock.Object};
+
+			this._umbracoHelperMock.Setup(x => x.AncestorsOrSelf(contentMock.Object)).Returns(ancestors);
+			var viewModel = this._sut.CreateModel(contentPage, new ContentModel(contentMock.Object));
+
+
+			viewModel.BreadCrumbs.First().Name.ShouldBe("grandParent");
+		}
+
 
 		[Test]
 		[TestCase(null, "")]

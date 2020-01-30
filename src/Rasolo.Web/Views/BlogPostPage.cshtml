@@ -1,17 +1,32 @@
-﻿
+﻿@using System.Linq;
 @inherits UmbracoViewPage<Rasolo.Core.Features.BlogPostPage.BlogPostPage>
 <div class="blogpost">
 	<div class="blogpost__content">
+		<p class="blogpost__breadcrumb">
+			@{
+				var breadCrumbs = Model.BreadCrumbs.ToList();
+				for (int i = 0; i < breadCrumbs.Count; i++)
+				{
+					if (i == 0)
+					{
+						<a href="@breadCrumbs[i].Url">@breadCrumbs[i].Name</a>
+					}
+					else
+					{
+						<a href="@breadCrumbs[i].Url">| @breadCrumbs[i].Name</a>
+					}
+				}
+			}
+			@*@foreach (var bread in Model.BreadCrumbs)
+		{
+			<a href="@bread.Url">@bread.Name</a>
+		}*@
+		</p>
 		<p class="blogpost__date-created">@Model.CreateDate.ToString("yyyy-MM-dd")</p>
 		<p class="blogpost__category">
 			<a href="@Model.Parent.Url">@Model.Parent.Name</a>
 		</p>
-		<p class="blogpost__breadcrumb">
-			@foreach (var bread in Model.BreadCrumbs)
-			{
-			<a href="@bread.Url">@bread.Name</a>
-			}
-		</p>
+
 		<h1>@Model.Title</h1>
 		@Model.MainBody
 	</div>

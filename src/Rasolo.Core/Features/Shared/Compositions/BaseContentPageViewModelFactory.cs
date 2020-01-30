@@ -41,6 +41,8 @@ namespace Rasolo.Core.Features.Shared.Compositions
 			viewModel.ShowHeroImage = viewModel.HeroImage != null;
 			var breadCrumbs = new List<BreadCrumb>();
 			this._umbracoMapper.MapCollection(this._umbracoHelper.AncestorsOrSelf(contentModel?.Content), breadCrumbs);
+			breadCrumbs.Reverse();
+
 			viewModel.BreadCrumbs = breadCrumbs;
 		}
 	}
