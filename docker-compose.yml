@@ -1,0 +1,17 @@
+#Builds front end for this project.
+#Runs npm install and builds FE and watches for changes.
+#Write the command "docker-compose up" inside a shell in this folder to run this file.
+
+version: "3.7"
+
+services:
+  build-watch:
+    image: node:10
+    command: bash -c "npm cache clean -f; cd vol/Frontend; npm install; npx gulp"
+    volumes:
+      - ./:/vol
+      # make node_modules persistent to this docker container
+      - node_modules:/vol/Frontend/node_modules/
+
+volumes:
+  node_modules:
