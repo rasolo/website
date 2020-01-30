@@ -27,6 +27,7 @@ namespace Rasolo.Core.Features.StartPage
 
 		public override void SetViewModelProperties(StartPage viewModel, ContentModel contentModel)
 		{
+			base.SetViewModelProperties(viewModel, contentModel);
 			SetBlogPagesOnViewModel(viewModel);
 			viewModel.BlogPostPages = _blogPostService
 				.GetMappedBlogPosts(_umbracoService
