@@ -1,0 +1,12 @@
+#Builds front end for this project.
+#Runs npm install and builds FE and watches for changes.
+#Write the command "docker-compose up" inside a shell in this folder to run this file.
+
+version: "3.7"
+
+services:
+  build-watch:
+    image: node:10.16.0-alpine
+    command: /bin/sh -c "npm cache clean -f; cd vol/Frontend; echo running npm install; npm install; npx gulp"
+    volumes:
+       - ./../:/vol
