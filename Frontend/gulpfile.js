@@ -71,3 +71,7 @@ exports.default = series(
     cacheBustTask,
     watchTask
 );
+
+exports.dist = series(
+    parallel(scssTask, jsTask), 
+);
