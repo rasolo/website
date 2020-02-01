@@ -1,0 +1,137 @@
+.footer {
+  background-color: #485b61;
+  color: #ffffff;
+  //   #485b61
+}
+
+.footer__inner {
+  padding: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 3rem;
+}
+
+/* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+@media (min-width: 641px) {
+  .footer__inner {
+    display: flex;
+  }
+}
+
+/* PC */
+@media (min-width: 900px) {
+  .footer__inner {
+    display: flex;
+    max-width: 90%;
+    justify-content: center;
+  }
+}
+
+.footer__section {
+  margin-bottom: 12%;
+  margin-top: 10%;
+  border-bottom: 1px solid white;
+  text-align: center;
+  padding-bottom: 4rem;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+@media (min-width: 641px) {
+  .footer__section {
+    border-bottom: initial;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+  .footer__section:not(:first-child) {
+    border-left: 1px solid white;
+  }
+}
+
+@media (min-width: 900px) {
+  .footer__section {
+    margin-bottom: 3%;
+    margin-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+.footer__img {
+  width: 20%;
+  border-radius: 50%;
+}
+
+@media (min-width: 641px) {
+  .footer__img {
+    width: 50px;
+    border-bottom: initial;
+  }
+}
+
+.footer__ul {
+  list-style-type: none;
+  margin-top: 10%;
+}
+
+@media (min-width: 641px) {
+  .footer__ul {
+    display: flex;
+    margin-top: 15%;
+  }
+}
+
+.footer__li {
+  display: inline;
+  margin: unset;
+  margin-right: 21%;
+  margin-left: 3%;
+}
+
+@media (orientation: landscape) {
+  .footer__li {
+    margin-right: 8%;
+    margin-left: 4%;
+  }
+}
+
+@media (min-width: 641px) {
+  .footer__li {
+    margin-right: 60%;
+    margin-left: -35%;
+  }
+}
+
+.footer__anchor {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer__anchor:hover {
+  text-decoration: underline;
+}
+
+.footer__header {
+  margin-bottom: 2%;
+}
+
+.footer__paragraph {
+  line-height: 150%;
+  padding: 2%;
+  font-size: 0.85em;
+}
+
+@media (min-width: 641px) {
+  .footer__paragraph {
+    line-height: 100%;
+    padding: 3%;
+    font-size: 1em;
+  }
+}
+
+@media (min-width: 900px) {
+  .footer__paragraph {
+    line-height: 100%;
+    padding: 3%;
+    font-size: 1em;
+  }
+}

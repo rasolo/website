@@ -2,7 +2,6 @@
 	<!doctype html>
 	<html>
 	<head>
-		<meta charset="utf-8" />
 		<title>@Model.PageAndSiteTitle</title>
 		@Html.Partial("MetaData", Model)
 		<link rel="stylesheet" href="/assets/css/main.css?ver=1.7.0" />
@@ -21,6 +20,7 @@
 		<main class="main">
 			@RenderBody()
 		</main>
+			@Html.Partial("Footer")
 		@Html.Action("Index", "CookiesNotice")
 		<script src="/assets/js/bundle.js"></script>
 	</body>
