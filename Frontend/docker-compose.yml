@@ -6,7 +6,7 @@ version: "3.7"
 
 services:
   build-watch:
-    image: node:10.16.0-alpine
+    image: node:12-alpine
     command: /bin/sh -c "npm cache clean -f; cd vol/Frontend; echo running npm install; npm install; npx gulp"
     volumes:
        - ./../:/vol
