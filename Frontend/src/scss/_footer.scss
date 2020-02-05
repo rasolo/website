@@ -51,8 +51,6 @@
   .footer__section {
     margin-bottom: 3%;
     margin-top: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
   }
 }
 
@@ -123,7 +121,6 @@
 @media (min-width: 641px) {
   .footer__paragraph {
     line-height: 100%;
-    padding: 3%;
     font-size: 1em;
   }
 }
@@ -131,7 +128,7 @@
 @media (min-width: 900px) {
   .footer__paragraph {
     line-height: 100%;
-    padding: 3%;
+    padding: 1%;
     font-size: 1em;
   }
 }
