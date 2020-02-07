@@ -16,6 +16,7 @@ html {
   margin-left: auto;
   margin-right: auto;
   max-width: 730px;
+  margin-bottom: 120px;
   h1 {
     font-family: "roboto", cursive;
     font-size: 23px;
@@ -42,7 +43,6 @@ html {
   }
 }
 
-
 @media (min-width: 600px) {
   .article {
     h1 {
@@ -65,7 +65,7 @@ html {
 
     .article__content {
       margin: auto;
-      margin-top:3%;
+      margin-top: 3%;
       & p {
         font-size: 18px;
       }
