@@ -1,22 +1,24 @@
 .site__header {
-    position: absolute;
-    z-index: 999;
-    margin: 2%;
-    & a{
-        color: #2b1e1f;
-        font-weight: bold;
-        font-size: 7vw;
-        text-decoration: none;
+  position: absolute;
+  z-index: 999;
+  margin: 1%;
+  left: 5%;
+  top: 4%;
+  & a {
+    color: #2b1e1f;
+    font-weight: bold;
+    font-size: 7vw;
+    text-decoration: underline;
 
-        &:hover {
-            cursor: pointer;
-            color: #ceafb1!important;
-        }
+    &:hover {
+      cursor: pointer;
+      color: #ceafb1 !important;
     }
+  }
 }
 
 @media screen and (min-width: 1080px) {
-    .site__header a{
+  .site__header a {
     font-size: 4vw;
-    }
+  }
 }
