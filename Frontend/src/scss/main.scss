@@ -15,6 +15,15 @@ html {
     font-family: "roboto", cursive;
   }
 
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 110vh;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
   pre {
     margin: 20px;
     padding: 20px;
