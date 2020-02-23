@@ -282,6 +282,7 @@
     <Compile Include="Features\BlogsPage\BlogsPageController.cs" />
     <Compile Include="Features\BlogsPage\BlogsPageViewModelFactory.cs" />
     <Compile Include="Features\BlogsPage\IBlogsPageViewModelFactory.cs" />
+    <Compile Include="Features\Comments\CommentsController.cs" />
     <Compile Include="Features\Shared\Abstractions\UmbracoHelper\IUmbracoHelper.cs" />
     <Compile Include="Features\Shared\Abstractions\UmbracoHelper\UmbracoHelperAdapter.cs" />
     <Compile Include="Features\Shared\Abstractions\UmbracoHelper\UmbracoHelperComposer.cs" />
@@ -348,6 +349,7 @@
       <Name>Rasolo.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

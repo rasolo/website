@@ -25,5 +25,17 @@
 
 		<h1>@Model.Title</h1>
 		@Model.MainBody
+		@Html.Partial("CommentForm", Model.Id)
+		
+		@if (Model.Comments != null)
+		{
+			foreach (var comment in Model.Comments)
+			{
+				<h3>@comment.Name</h3>
+								 <br
+				<p>@comment.Message</p>
+					
+			}
+		}
 	</div>
 </div>

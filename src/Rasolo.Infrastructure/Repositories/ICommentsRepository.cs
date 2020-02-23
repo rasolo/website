@@ -6,5 +6,6 @@ namespace Rasolo.Infrastructure.Repositories
 	public interface ICommentsRepository
 	{
 		IEnumerable<CommentViewModel> GetByContentId(int contentId);
+		void Add(CommentViewModel comment);
 	}
 }
