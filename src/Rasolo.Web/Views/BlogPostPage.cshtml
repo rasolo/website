@@ -1,11 +1,10 @@
-﻿@using System.Linq;
-@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPostPage.BlogPostPage>
+﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPostPage.BlogPostPage>
 <div class="blogpost">
 	<div class="blogpost__content">
 		<p class="blogpost__breadcrumb">
 			@{
 				var breadCrumbs = Model.BreadCrumbs.ToList();
-				for (int i = 0; i < breadCrumbs.Count; i++)
+				for (var i = 0; i < breadCrumbs.Count; i++)
 				{
 					if (i == 0)
 					{
@@ -17,7 +16,7 @@
 					}
 				}
 			}
-		
+
 		</p>
 		<p class="blogpost__date-created">@Model.CreateDate.ToString("yyyy-MM-dd")</p>
 		<p class="blogpost__category">
