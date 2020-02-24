@@ -1,12 +1,10 @@
 ﻿@model int
-@using (Html.BeginForm("SubmitComment", "Comments", FormMethod.Post))
-{
+
+<form class="comment-form" action='@Url.Action("SubmitComment","Comments")' method="POST">
 	<div>
-		<label for="name">Name</label>
 		<input type="text" name="name" id="name" required>
 	</div>
 	<div>
-		<label for="message">Enter your message: </label>
 		<input type="text" name="message" id="message" required>
 	</div>
 	<input type="hidden" id="contentid" name="contentid" value=@Model>
@@ -14,4 +12,4 @@
 		<input type="submit" value="Post">
 		@Html.AntiForgeryToken()
 	</div>
-}
+</form>

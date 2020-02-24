@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Rasolo.Infrastructure.Models.CommentViewModel>
+
+<div class="comments">
+	<h3 class="comments__heading">Comments</h3>
+	@foreach (var comment in Model)
+	{
+		<div class="comment">
+			<h3 class="comment__name">@comment.Name</h3>
+			<p class="comment__message">@comment.Message</p>
+		</div>
+	}
+</div>
