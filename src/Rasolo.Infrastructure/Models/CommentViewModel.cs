@@ -11,5 +11,6 @@ namespace Rasolo.Infrastructure.Models
 		public string Name { get; set; }
 		[Required]
 		public string Message { get; set; }
+		public string DateCreated { get; set; }
 	}
 }

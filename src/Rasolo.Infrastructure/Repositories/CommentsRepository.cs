@@ -15,7 +15,7 @@ namespace Rasolo.Infrastructure.Repositories
 		public IEnumerable<CommentViewModel> GetByContentId(int contentId)
 		{
 			var comments = this._commentsContext.Comments.Where(c => c.ContentId == contentId);
-			return comments.Select(x => new CommentViewModel() {Message = x.Message, Name = x.Name});
+			return comments.Select(x => new CommentViewModel() {Message = x.Message, Name = x.Name, ContentId = contentId, DateCreated = x.DateCreated.ToString("yyyy-MM-dd")});
 		}
 
 		public void Add(CommentViewModel commentViewModel)

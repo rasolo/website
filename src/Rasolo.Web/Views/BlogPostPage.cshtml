@@ -1,38 +1,38 @@
 ﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPostPage.BlogPostPage>
 <div class="blogpost">
-<div class="blogpost__content">
-	<p class="blogpost__breadcrumb">
-		@{
-			var breadCrumbs = Model.BreadCrumbs.ToList();
-			for (var i = 0; i < breadCrumbs.Count; i++)
-			{
-				if (i == 0)
+	<div class="blogpost__content">
+		<p class="blogpost__breadcrumb">
+			@{
+				var breadCrumbs = Model.BreadCrumbs.ToList();
+				for (var i = 0; i < breadCrumbs.Count; i++)
 				{
-					<a href="@breadCrumbs[i].Url">@breadCrumbs[i].Name</a>
-				}
-				else
-				{
-					<a href="@breadCrumbs[i].Url">| @breadCrumbs[i].Name</a>
+					if (i == 0)
+					{
+						<a href="@breadCrumbs[i].Url">@breadCrumbs[i].Name</a>
+					}
+					else
+					{
+						<a href="@breadCrumbs[i].Url">| @breadCrumbs[i].Name</a>
+					}
 				}
 			}
+
+		</p>
+		<p class="blogpost__date-created">@Model.CreateDate.ToString("yyyy-MM-dd")</p>
+		<p class="blogpost__category">
+			<a href="@Model.Parent.Url">@Model.Parent.Name</a>
+		</p>
+
+		<h1>@Model.Title</h1>
+		@Model.MainBody
+
+		@if (Model.Comments != null)
+		{
+			<div class="comments">
+				@Html.Partial("CommentsList", Model.Comments)
+				@Html.Partial("CommentsForm", Model.Id)
+			</div>
 		}
 
-	</p>
-	<p class="blogpost__date-created">@Model.CreateDate.ToString("yyyy-MM-dd")</p>
-	<p class="blogpost__category">
-		<a href="@Model.Parent.Url">@Model.Parent.Name</a>
-	</p>
-
-	<h1>@Model.Title</h1>
-	@Model.MainBody
-
-	@if (Model.Comments != null)
-	{
-		@Html.Partial("CommentsList", Model.Comments)
-	}
-
-	@Html.Partial("CommentsForm", Model.Id)
-
-
-</div>
+	</div>
 </div>

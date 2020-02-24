@@ -1,52 +1,39 @@
 .comments {
   text-align: center;
-
   border-style: double;
-
   border-color: #dbe0e8;
-
-
   padding-top: 30px;
-
-  padding: 10px;
+  padding: 30px;
   border-width: 1.5px;
-  border-radius: 3%;
-}
+  margin-top: 40px;
 
-.comments__heading {
+  &__heading{
     text-align: left;
-
-padding: 10px;
-
-font-size: 23px;
-
-margin-bottom: 15px;
-
-border-bottom: solid;
-
+    padding: 10px;
+    margin-bottom: 15px;
+    border-bottom: solid;
     border-bottom-color: currentcolor;
     border-bottom-width: medium;
+    border-color: #80808040;
+    border-width: 1px;
+    margin-bottom: 7%;
+    padding-bottom: 25px;
+  }
 
-border-style: solid;
+  &__name {
+    font-size:13px;
+  }
 
-border-color:
-#80808040;
-
-border-width: 1px;
+  &__message {
+    font-size: 13px;
+  }
 }
 
 .comment {
-  border-style: double;
-
-  border-color: #cfd4dbb0;
-
+  font-size: 3vw;
   margin-bottom: 10px;
-
   padding: 5px;
-
   padding-top: 10px;
-
   padding-right: 5px;
-
-  border-width: 0.5px;
+  border-bottom: 0.5px double rgba(207, 212, 219, 0.69);
 }
