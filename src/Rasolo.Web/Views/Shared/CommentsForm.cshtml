@@ -2,10 +2,10 @@
 
 <form class="comment-form" action='@Url.Action("SubmitComment","Comments")' method="POST">
 	<div>
-		<input class="input" onfocus="this.value=''" type="text" name="name" id="name" value="Name" required>
+		<input class="input"placeholder="Name" type="text" name="name" id="name" required>
 	</div>
 	<div>
-		<input class="input" onfocus="this.value=''" type="text" name="message" id="message" value="Message" required>
+		<input class="input" placeholder="Message" type="text" name="message" id="message"  required>
 	</div>
 	<input type="hidden" id="contentid" name="contentid" value=@Model>
 	<div>
