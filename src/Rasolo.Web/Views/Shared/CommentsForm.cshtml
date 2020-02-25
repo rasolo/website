@@ -2,14 +2,14 @@
 
 <form class="comment-form" action='@Url.Action("SubmitComment","Comments")' method="POST">
 	<div>
-		<input type="text" name="name" id="name" value="Name" required>
+		<input class="input" onfocus="this.value=''" type="text" name="name" id="name" value="Name" required>
 	</div>
 	<div>
-		<input type="text" name="message" id="message" value="Message" required>
+		<input class="input" onfocus="this.value=''" type="text" name="message" id="message" value="Message" required>
 	</div>
 	<input type="hidden" id="contentid" name="contentid" value=@Model>
 	<div>
-		<input type="submit" value="Post">
+		<input class="submit" type="submit" value="Post comment">
 		@Html.AntiForgeryToken()
 	</div>
 </form>

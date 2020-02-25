@@ -7,7 +7,7 @@
   border-width: 1.5px;
   margin-top: 40px;
 
-  &__heading{
+  &__heading {
     text-align: left;
     padding: 10px;
     margin-bottom: 15px;
@@ -21,7 +21,7 @@
   }
 
   &__name {
-    font-size:13px;
+    font-size: 13px;
   }
 
   &__message {
@@ -29,11 +29,36 @@
   }
 }
 
+.comment-form {
+  padding-top: 20px;
+}
 .comment {
-  font-size: 3vw;
+  font-size: 11px;
   margin-bottom: 10px;
   padding: 5px;
   padding-top: 10px;
   padding-right: 5px;
   border-bottom: 0.5px double rgba(207, 212, 219, 0.69);
+}
+
+
+.input {
+  border-color: #f2f2f23b;
+  border-style: ridge;
+  padding: 5px;
+  margin: 3px;
+  color: #d7cdcd;
+
+  &:required {
+    box-shadow: none;;
+  }
+}
+
+.submit {
+  background-color:#fffffe;
+  color: #8c8c8c;
+  width: 156px;
+  height: 46px;
+  margin-top: 18px;
+  font-weight: 700;
 }

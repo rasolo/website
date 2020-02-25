@@ -39,11 +39,6 @@ html {
     h1 {
       font-size: 3rem;
     }
-    .article__content {
-      & p {
-        font-size: 18px;
-      }
-    }
   }
 }
 
@@ -57,9 +52,6 @@ html {
     .article__content {
       margin: auto;
       margin-top: 3%;
-      & p {
-        font-size: 18px;
-      }
     }
   }
 }
