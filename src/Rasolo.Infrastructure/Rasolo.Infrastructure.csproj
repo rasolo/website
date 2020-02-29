@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\DbContext.cs" />
+    <Compile Include="Data\CommentsContext.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
