@@ -42,6 +42,9 @@
 
   &__message {
     line-height: 1.15;
+    @media (min-width: 900px) {
+      margin-top:5px;
+    }
   }
 
   &__admin {
