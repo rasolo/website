@@ -24,7 +24,10 @@
 		</p>
 
 		<h1>@Model.Title</h1>
-		@Model.MainBody
+
+		<div class="blogpost__main-body">
+			@Model.MainBody
+		</div>
 
 		@if (Model.Comments != null)
 		{

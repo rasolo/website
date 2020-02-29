@@ -6,6 +6,6 @@
 		<div class="comment">
 			<p class="comment__date">@comment.DateCreated</p>
 			<h3 class="comment__name">@comment.Name</h3>
-			<p class="comment__message">@comment.Message</p>
+			<p class="comment__message">@Html.Raw(comment.Message.Replace("\n", "<br />"))</p>
 		</div>
 	}

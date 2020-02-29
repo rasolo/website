@@ -1,5 +1,4 @@
 .comments {
-  text-align: center;
   border-style: double;
   border-color: #dbe0e8;
   padding-top: 30px;
@@ -19,16 +18,8 @@
     margin-bottom: 7%;
     padding-bottom: 25px;
     @media (min-width: 900px) {
-        font-size: 25px;
+      font-size: 25px;
     }
-  }
-
-  &__name {
-    font-size: 13px;
-  }
-
-  &__message {
-    font-size: 13px;
   }
 }
 
@@ -43,10 +34,24 @@
   padding-right: 5px;
   border-bottom: 0.5px double rgba(207, 212, 219, 0.69);
   overflow: hidden;
+  line-height: 20px;
 
   @media (min-width: 900px) {
     font-size: 13px;
-}
+  }
+
+  &__name {
+    font-size: 13px;
+  }
+
+  &__message {
+    font-size: 13px;
+    line-height: 1.15;
+  }
+
+  &__date {
+    line-height: 10px;
+  }
 }
 
 .input {
@@ -66,6 +71,10 @@
   margin-top: 10px;
   resize: vertical;
   max-height: 500px;
+}
+
+.submit-container {
+  text-align: center;
 }
 
 .submit {
