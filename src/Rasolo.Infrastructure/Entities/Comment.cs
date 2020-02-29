@@ -15,5 +15,7 @@ namespace Rasolo.Infrastructure.Entities
 		public int ContentId { get; set; }
 		[Required]
 		public DateTime DateCreated { get; set; }
+
+		public bool IsAdmin { get; set; }
 	}
 }

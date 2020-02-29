@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Rasolo.Core.Features.BlogsPage;
-using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
@@ -9,6 +8,7 @@ using Rasolo.Tests.Unit.Shared.Compositions.BaseContentPage;
 using Shouldly;
 using System.Collections.Generic;
 using System.Linq;
+using Rasolo.Services.Abstractions.UmbracoHelper;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 

@@ -60,5 +60,11 @@
   <ItemGroup>
     <Reference Include="System.Configuration" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rasolo.Services\Rasolo.Services.csproj">
+      <Project>{5f558a6e-25df-4c73-906b-834cb4f9aa2d}</Project>
+      <Name>Rasolo.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

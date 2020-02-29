@@ -12,5 +12,6 @@ namespace Rasolo.Infrastructure.Models
 		[Required]
 		public string Message { get; set; }
 		public string DateCreated { get; set; }
+		public bool IsAdmin { get; set; }
 	}
 }
