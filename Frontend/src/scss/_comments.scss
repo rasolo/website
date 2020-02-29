@@ -35,17 +35,12 @@
   border-bottom: 0.5px double rgba(207, 212, 219, 0.69);
   overflow: hidden;
   line-height: 20px;
-
+  
   @media (min-width: 900px) {
-    font-size: 13px;
-  }
-
-  &__name {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   &__message {
-    font-size: 13px;
     line-height: 1.15;
   }
 
