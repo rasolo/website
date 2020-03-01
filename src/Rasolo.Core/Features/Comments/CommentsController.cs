@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using Rasolo.Infrastructure.Models;
 using Rasolo.Infrastructure.Repositories;
 using Umbraco.Web.Mvc;
@@ -14,8 +15,9 @@ namespace Rasolo.Core.Features.Comments
 			_commentsRepository = commentsRepository;
 		}
 
-		[ValidateAntiForgeryToken]
 		[HttpPost]
+		[ValidateInput(false)]
+		[ValidateAntiForgeryToken]
 		public ActionResult SubmitComment(CommentViewModel comment)
 		{
 			if (ModelState.IsValid)

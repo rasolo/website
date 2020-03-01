@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rasolo.Services\Rasolo.Services.csproj">
