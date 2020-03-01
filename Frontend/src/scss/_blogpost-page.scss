@@ -3,17 +3,13 @@
     @extend .article;
 
     h1 {
-      padding-bottom: 20px;
+      padding-bottom: 40px;
       border-bottom: 1px solid #ddd;
-    }
-
-    &__main-body {
-      margin-top: 4%;
     }
   }
 
   .blogpost__breadcrumb {
-    margin-bottom: 1% !important;
+    margin-bottom: -1%!important;
   }
 
   .blogpost__breadcrumb a{
@@ -49,7 +45,8 @@
   }
 
   .blogpost__content {
-    @extend .article__content;
+    margin: 5%;
+    padding-top: 5%;
   
     p:nth-of-type(3) {
       margin-top: 25px;
