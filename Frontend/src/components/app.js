@@ -1,4 +1,4 @@
-let cookiesNotice = require('./cookies-notice');
-cookiesNotice();
+// let cookiesNotice = require('./cookies-notice');
+// cookiesNotice();
 
 

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Services;
+using Rasolo.Services.Abstractions.UmbracoHelper;
 using Umbraco.Core;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;

@@ -100,8 +100,8 @@
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.2\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -273,36 +273,35 @@
     <Compile Include="Features\BlogPage\BlogPageViewModelFactory.cs" />
     <Compile Include="Features\BlogPage\IBlogPageViewModelFactory.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPage.cs" />
+    <Compile Include="Features\BlogPostPage\BlogPostPageComposer.cs" />
     <Compile Include="Features\BlogPostPage\BlogPostPageController.cs" />
+    <Compile Include="Features\BlogPostPage\BlogPostPageViewModelFactory.cs" />
+    <Compile Include="Features\BlogPostPage\IBlogPostPageViewModelFactory.cs" />
     <Compile Include="Features\BlogsPage\BlogsPage.cs" />
     <Compile Include="Features\BlogsPage\BlogsPageComposer.cs" />
     <Compile Include="Features\BlogsPage\BlogsPageController.cs" />
     <Compile Include="Features\BlogsPage\BlogsPageViewModelFactory.cs" />
     <Compile Include="Features\BlogsPage\IBlogsPageViewModelFactory.cs" />
-    <Compile Include="Features\Shared\Abstractions\UmbracoHelper\IUmbracoHelper.cs" />
-    <Compile Include="Features\Shared\Abstractions\UmbracoHelper\UmbracoHelperAdapter.cs" />
-    <Compile Include="Features\Shared\Abstractions\UmbracoHelper\UmbracoHelperComposer.cs" />
+    <Compile Include="Features\Comments\CommentsController.cs" />
     <Compile Include="Features\Shared\Attributes\MapFromImageCropperAttribute.cs" />
     <Compile Include="Features\Shared\Components\RegisterCustomRouteComponent.cs" />
     <Compile Include="Features\Shared\Composers\GenericClassesComposer.cs" />
+    <Compile Include="Features\Shared\Constants\CookiesNotice.cs" />
+    <Compile Include="Features\Shared\Constants\GlobalSettings.cs" />
     <Compile Include="Features\Shared\Constants\MediaCropAliases\BlogPostPage\BlogsPageMediaCropAliases.cs" />
     <Compile Include="Features\Shared\Constants\MediaCropAliases\MediaCropAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BaseContentPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogPagePropertyAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogPostPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogsPagePropertyAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\GlobalSettingsPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\PropertyTypeAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\SiteMapPagePropertyAlias.cs" />
+    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\StartPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\DocumentTypeInterfaces\IBlogTeaser.cs" />
     <Compile Include="Features\Shared\DocumentTypeInterfaces\ITeaserPage.cs" />
     <Compile Include="Features\Shared\Handlers\BlogPageRouteHandler.cs" />
     <Compile Include="Features\Shared\Composers\RegisterCustomRouteComposer.cs" />
-    <Compile Include="Features\Shared\Constants\CookiesNotice.cs" />
-    <Compile Include="Features\Shared\Constants\DocumentTypeAlias.cs" />
-    <Compile Include="Features\Shared\Constants\GlobalSettings.cs" />
-    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BlogPostPagePropertyAlias.cs" />
-    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\SiteMapPagePropertyAlias.cs" />
-    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\StartPagePropertyAlias.cs" />
-    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\BaseContentPagePropertyAlias.cs" />
-    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\GlobalSettingsPagePropertyAlias.cs" />
-    <Compile Include="Features\Shared\Constants\PropertyTypeAlias\TeaserPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Controllers\BasePageController.cs" />
     <Compile Include="Features\Shared\Controllers\IBasePageController.cs" />
     <Compile Include="Features\Shared\CookiesNotice\CookiesNoticeController.cs" />
@@ -338,6 +337,16 @@
     <None Include="packages.config" />
     <Content Include="app.config" />
     <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rasolo.Infrastructure\Rasolo.Infrastructure.csproj">
+      <Project>{2F776E13-E0C0-4F39-BEC4-3BE5DCF34595}</Project>
+      <Name>Rasolo.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rasolo.Services\Rasolo.Services.csproj">
+      <Project>{5F558A6E-25DF-4C73-906B-834CB4F9AA2D}</Project>
+      <Name>Rasolo.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

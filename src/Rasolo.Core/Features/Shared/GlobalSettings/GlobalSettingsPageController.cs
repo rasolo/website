@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
+using Rasolo.Services.Abstractions.UmbracoHelper;
 using Umbraco.Web.Mvc;
 
 namespace Rasolo.Core.Features.Shared.GlobalSettings

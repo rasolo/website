@@ -44,21 +44,12 @@ function jsTask(){
     );
 }
 
-
-function cacheBustTask(){
-    var cacheBustString = new Date().getTime();
-    return src(['../src/Rasolo.Web/Views/Shared/_layout.cshtml'])
-        .pipe(replace(/cb=\d+/g, 'cb=' + cacheBustString))
-        .pipe(dest('../src/Rasolo.Web/Views/Shared/'));
-}
-
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
 function watchTask(){
     watch([files.scssPath, files.jsPath], {interval: 1000, usePolling: true}, 
         series(
             parallel(scssTask, jsTask),
-            cacheBustTask
         )
     );    
 }
@@ -68,7 +59,6 @@ function watchTask(){
 // then runs cacheBust, then watch task
 exports.default = series(
     parallel(scssTask, jsTask), 
-    cacheBustTask,
     watchTask
 );
 

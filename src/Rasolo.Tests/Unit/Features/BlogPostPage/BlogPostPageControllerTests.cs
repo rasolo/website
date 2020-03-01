@@ -17,7 +17,6 @@ namespace Rasolo.Tests.Unit.Features.BlogPostPage
 		public override void SetUp()
 		{
 			base.SetUp();
-			this._sut = new BlogPostPageController(this._umbracoMapper, this._viewModelFactory.Object);
 		}
 
 		[Test]

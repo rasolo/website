@@ -1,21 +1,12 @@
-﻿using System.Web.Mvc;
-using Rasolo.Core.Features.Shared.Compositions;
+﻿using Rasolo.Core.Features.Shared.Compositions;
 using Zone.UmbracoMapper.V8;
-using Umbraco.Web.Models;
 
 namespace Rasolo.Core.Features.BlogPostPage
 {
 	public class BlogPostPageController : BaseContentPageController<BlogPostPage>
 	{
-		public BlogPostPageController(IUmbracoMapper umbracoMapper, IBaseContentPageViewModelFactory<BlogPostPage> viewModelFactory) : base(umbracoMapper, viewModelFactory)
+		public BlogPostPageController(IUmbracoMapper umbracoMapper, IBlogPostPageViewModelFactory viewModelFactory) : base(umbracoMapper, viewModelFactory)
 		{
-		}
-
-		public override ActionResult Index(ContentModel model)
-		{
-			var viewModel  = (BlogPostPage)((ViewResult)base.Index(model)).Model;
-
-			return View(viewModel);
 		}
 	}
 }

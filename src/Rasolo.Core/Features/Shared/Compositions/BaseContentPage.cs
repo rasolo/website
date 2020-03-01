@@ -11,6 +11,7 @@ namespace Rasolo.Core.Features.Shared.Compositions
 {
 	public class BaseContentPage : IContentPage, IMetaData
 	{
+		public int Id { get; set; }
 		public virtual string Name { get; set; }
 		public virtual string Title { get; set; }
 		public virtual IHtmlString MainBody { get; set; }

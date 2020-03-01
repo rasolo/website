@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Rasolo.Core.Features.Shared.Constants;
-using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 
-namespace Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper
+namespace Rasolo.Services.Abstractions.UmbracoHelper
+
 {
 	public class UmbracoHelperAdapter : IUmbracoHelper
 	{

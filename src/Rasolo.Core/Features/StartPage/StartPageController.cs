@@ -5,7 +5,9 @@ namespace Rasolo.Core.Features.StartPage
 {
 	public class StartPageController : BaseContentPageController<StartPage>
 	{
-		public StartPageController(IUmbracoMapper umbracoMapper, IStartPageViewModelFactory viewModelFactory) : base(umbracoMapper, viewModelFactory)
+		public StartPageController
+			(IUmbracoMapper umbracoMapper, IStartPageViewModelFactory viewModelFactory) : base(umbracoMapper,
+			viewModelFactory)
 		{
 		}
 	}
