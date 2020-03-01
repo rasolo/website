@@ -7,7 +7,7 @@ using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
 using System.Web.Mvc;
-using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
+using Rasolo.Services.Abstractions.UmbracoHelper;
 using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Tests.Unit.Shared.GlobalSettings

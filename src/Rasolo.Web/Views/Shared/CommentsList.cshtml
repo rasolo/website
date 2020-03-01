@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Rasolo.Infrastructure.Models.CommentViewModel>
+
+<h3 class="comments__heading">Comments</h3>
+@foreach (var comment in Model)
+{
+	<div class="comment">
+		<p class="comment__date">@comment.DateCreated</p>
+		<h3 class="comment__name">@comment.Name</h3>
+		@if (comment.IsAdmin)
+		{
+			<span class="admin">Admin</span>
+		}
+		<p class="comment__message">@Html.Raw(comment.Message.Replace("\n", "<br />"))</p>
+	</div>
+}

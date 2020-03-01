@@ -1,0 +1,15 @@
+﻿@model int
+
+<form class="comment-form" action='@Url.Action("SubmitComment","Comments")' method="POST">
+	<div>
+		<input class="input"placeholder="Name" type="text" name="name" id="name" required>
+	</div>
+	<div>
+		<textarea class="input textarea" placeholder="Enter your message"  name="message" required></textarea>
+	</div>
+	<input type="hidden" id="contentid" name="contentid" value=@Model>
+	<div class="submit-container">
+		<input class="submit" type="submit" value="Post comment">
+		@Html.AntiForgeryToken()
+	</div>
+</form>

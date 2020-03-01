@@ -7,7 +7,7 @@ using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
 using System.Web;
-using Rasolo.Core.Features.Shared.Abstractions.UmbracoHelper;
+using Rasolo.Services.Abstractions.UmbracoHelper;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Models;
 

@@ -4,6 +4,7 @@ using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Core.Features.StartPage;
+using Rasolo.Infrastructure.Repositories;
 using Umbraco.Core;
 using Umbraco.Core.Composing;
 
@@ -21,6 +22,7 @@ namespace Rasolo.Core.Features.Shared.Composers
 			composition.Register<IGlobalSettingsPageViewModelFactory, GlobalSettingsPagePageViewModelFactory>();
 			composition.Register<IStartPageViewModelFactory, StartPageViewModelFactory>();
 			composition.Register<IUmbracoService, UmbracoService>();
+			composition.Register<ICommentsRepository, CommentsRepository>();
 		}
 	}
 }

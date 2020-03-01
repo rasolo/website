@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasolo.Core", "src\Rasolo.Core\Rasolo.Core.csproj", "{27F23B7F-1982-479D-AD49-B80DEBF26802}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasolo.Infrastructure", "src\Rasolo.Infrastructure\Rasolo.Infrastructure.csproj", "{2F776E13-E0C0-4F39-BEC4-3BE5DCF34595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasolo.Services", "src\Rasolo.Services\Rasolo.Services.csproj", "{5F558A6E-25DF-4C73-906B-834CB4F9AA2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,14 @@ Global
 		{27F23B7F-1982-479D-AD49-B80DEBF26802}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27F23B7F-1982-479D-AD49-B80DEBF26802}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27F23B7F-1982-479D-AD49-B80DEBF26802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F776E13-E0C0-4F39-BEC4-3BE5DCF34595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F776E13-E0C0-4F39-BEC4-3BE5DCF34595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F776E13-E0C0-4F39-BEC4-3BE5DCF34595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F776E13-E0C0-4F39-BEC4-3BE5DCF34595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F558A6E-25DF-4C73-906B-834CB4F9AA2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F558A6E-25DF-4C73-906B-834CB4F9AA2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F558A6E-25DF-4C73-906B-834CB4F9AA2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F558A6E-25DF-4C73-906B-834CB4F9AA2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
