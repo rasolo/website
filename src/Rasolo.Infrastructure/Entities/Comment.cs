@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rasolo.Infrastructure.Entities
 {
+	[Table("rasoloComments")]
 	public class Comment
 	{
 		[Required]
