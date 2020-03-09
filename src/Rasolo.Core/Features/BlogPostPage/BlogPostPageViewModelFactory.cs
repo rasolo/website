@@ -15,8 +15,11 @@ namespace Rasolo.Core.Features.BlogPostPage
 		{
 			_commentsRepository = commentsRepository;
 		}
-		public BlogPostPage CreateModel(BlogPostPage viewModel, ContentModel contentModel)
+
+		public override BlogPostPage CreateModel(BlogPostPage viewModel, ContentModel contentModel)
 		{
+			viewModel = base.CreateModel(viewModel, contentModel);
+
 			SetViewModelProperties(viewModel, contentModel);
 			return viewModel;
 		}
