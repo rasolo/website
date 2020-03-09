@@ -9,7 +9,7 @@ namespace Rasolo.Core.Features.Shared.Components
 {
 	public class RegisterCustomRouteComponent : IComponent
 	{
-		#warning using hardcoded page ids for blogs. Fix
+		//TODO: using hardcoded page ids for blogs. Fix
 		public void Initialize()
 		{
 			 var blogPageControllerName = nameof(BlogPageController).Replace("Controller", string.Empty);
