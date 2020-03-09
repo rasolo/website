@@ -277,7 +277,7 @@
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.Release.config">
+    <None Include="Rasolo.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
