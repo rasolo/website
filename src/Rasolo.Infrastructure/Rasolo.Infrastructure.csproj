@@ -36,7 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\CommentsContext.cs" />
+    <Compile Include="Data\Constants.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Migrations\CreateBlogPostCommentsTableMigration.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentsRepository.cs" />
@@ -48,13 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>3.1.2</Version>
+      <Version>3.1.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
-      <Version>3.1.2</Version>
+      <Version>3.1.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-      <Version>3.1.2</Version>
+      <Version>3.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="NPoco">
+      <Version>3.9.4</Version>
+    </PackageReference>
+    <PackageReference Include="UmbracoCms.Core">
+      <Version>8.6.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -67,5 +75,6 @@
       <Name>Rasolo.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

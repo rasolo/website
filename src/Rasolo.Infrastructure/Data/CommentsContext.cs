@@ -13,7 +13,7 @@ namespace Rasolo.Infrastructure.Data
 				if (optionsBuilder.IsConfigured == false)
 				{
 					optionsBuilder.UseSqlServer(
-						ConfigurationManager.ConnectionStrings["umbracoDbDSN"].ConnectionString);
+						ConfigurationManager.ConnectionStrings[Constants.UmbracoDatabaseConnectionStringName].ConnectionString);
 				}
 
 				base.OnConfiguring(optionsBuilder);

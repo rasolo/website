@@ -1,10 +1,13 @@
-﻿using System;
+﻿using NPoco;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rasolo.Infrastructure.Entities
 {
-	[Table("rasoloComments")]
+	[Table(Data.Constants.BlogPostCommentsTableName)]
+	[TableName(Data.Constants.BlogPostCommentsTableName)]
+	[PrimaryKey("Id")]
 	public class Comment
 	{
 		[Required]
