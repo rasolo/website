@@ -289,7 +289,7 @@
     <Compile Include="Features\Comments\CommentsController.cs" />
     <Compile Include="Features\Shared\Attributes\MapFromImageCropperAttribute.cs" />
     <Compile Include="Features\Shared\Components\BlogPostCommentsComponent.cs" />
-    <Compile Include="Features\Shared\Components\RegisterCustomRouteComponent.cs" />
+    <Compile Include="Features\Shared\Components\RegisterBlogPagesFeedRouteComponent.cs" />
     <Compile Include="Features\Shared\Composers\GenericClassesComposer.cs" />
     <Compile Include="Features\Shared\Composers\BlogPostCommentsComposer.cs" />
     <Compile Include="Features\Shared\Constants\CookiesNotice.cs" />
