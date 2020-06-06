@@ -2,11 +2,13 @@
 using System.Linq;
 using Moq;
 using NUnit.Framework;
+using Rasolo.Core.Features.BlogPostPage;
 using Rasolo.Core.Features.Shared.Composers;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Tests.Unit.Base;
 using Shouldly;
+using Umbraco.Web.Models;
 
 namespace Rasolo.Tests.Unit.Shared.Services
 {
@@ -26,7 +28,12 @@ namespace Rasolo.Tests.Unit.Shared.Services
 				.Returns(mockedBlogPostPages);
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 
-			_sut = new BlogPostService(umbracoMapper);
+			var blogPostPageViewModelFactoryMock = new Mock<IBlogPostPageViewModelFactory>();
+			var blogPostPage = new BlogPostPage();
+			umbracoMapper.Map(mockedBlogPostPages.First(), blogPostPage);
+			blogPostPageViewModelFactoryMock.Setup(x => x.CreateModel(It.IsAny<BlogPostPage>(), It.IsAny<ContentModel>())).Returns(blogPostPage);
+
+			_sut = new BlogPostService(umbracoMapper, blogPostPageViewModelFactoryMock.Object);
 			var blogPostPages = _sut.GetMappedBlogPosts(mockedBlogPostPages);
 
 			blogPostPages.Count().ShouldBeGreaterThan(1);
@@ -49,7 +56,12 @@ namespace Rasolo.Tests.Unit.Shared.Services
 				.Returns(blogPostPagesPublishedContent);
 			var umbracoMapper = new UmbracoMapperComposer().SetupMapper();
 
-			_sut = new BlogPostService(umbracoMapper);
+			var blogPostPageViewModelFactoryMock = new Mock<IBlogPostPageViewModelFactory>();
+			var blogPostPage = new BlogPostPage();
+			umbracoMapper.Map(mockedBlogPostPages.First().Object, blogPostPage);
+			blogPostPageViewModelFactoryMock.Setup(x => x.CreateModel(It.IsAny<BlogPostPage>(), It.IsAny<ContentModel>())).Returns(blogPostPage);
+
+			_sut = new BlogPostService(umbracoMapper, blogPostPageViewModelFactoryMock.Object);
 			var blogPostPages = _sut.GetMappedBlogPosts(blogPostPagesPublishedContent);
 
 			blogPostPages.Select(x => x.CreateDate).ShouldBeInOrder(SortDirection.Descending);

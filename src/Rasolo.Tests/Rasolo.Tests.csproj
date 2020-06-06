@@ -268,6 +268,7 @@
     <Compile Include="Unit\Features\ArticlePage\ArticlePageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Features\BlogPage\BlogPageControllerTests.cs" />
     <Compile Include="Unit\Features\BlogPage\BlogPageViewModelFactoryTests.cs" />
+    <Compile Include="Unit\Features\BlogPostPage\BlogPostPageViewModelFactoryTests.cs" />
     <Compile Include="Unit\Features\BlogPostPage\BlogPostPageControllerTests.cs" />
     <Compile Include="Unit\Features\BlogsPage\BlogsPageControllerTests.cs" />
     <Compile Include="Unit\Features\BlogsPage\BlogsPageViewModelFactoryTests.cs" />
@@ -292,6 +293,10 @@
     <ProjectReference Include="..\Rasolo.Core\Rasolo.Core.csproj">
       <Project>{27F23B7F-1982-479D-AD49-B80DEBF26802}</Project>
       <Name>Rasolo.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rasolo.Infrastructure\Rasolo.Infrastructure.csproj">
+      <Project>{2F776E13-E0C0-4F39-BEC4-3BE5DCF34595}</Project>
+      <Name>Rasolo.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rasolo.Services\Rasolo.Services.csproj">
       <Project>{5F558A6E-25DF-4C73-906B-834CB4F9AA2D}</Project>
