@@ -298,6 +298,9 @@
     <Compile Include="Features\SearchPage\SearchPageComposer.cs" />
     <Compile Include="Features\SearchPage\SearchPageController.cs" />
     <Compile Include="Features\SearchPage\SearchPageViewModelFactory.cs" />
+    <Compile Include="Features\SearchPage\SearchParameters.cs" />
+    <Compile Include="Features\SearchPage\SearchResultItem.cs" />
+    <Compile Include="Features\SearchPage\SearchSurfaceController.cs" />
     <Compile Include="Features\Shared\Abstractions\HttpUtilityAdapter.cs" />
     <Compile Include="Features\Shared\Abstractions\HttpUtilityComposer.cs" />
     <Compile Include="Features\Shared\Abstractions\IHttpUtility.cs" />

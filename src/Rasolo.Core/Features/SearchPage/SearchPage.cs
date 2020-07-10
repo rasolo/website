@@ -1,4 +1,5 @@
-﻿using AutoMapper.Configuration.Annotations;
+﻿using System.Collections.Generic;
+using AutoMapper.Configuration.Annotations;
 using Rasolo.Core.Features.Shared.Compositions;
 
 namespace Rasolo.Core.Features.SearchPage
@@ -7,5 +8,8 @@ namespace Rasolo.Core.Features.SearchPage
 	{
 		[Ignore]
 		public string Query { get; set; }
+		[Ignore] public List<SearchResultItem> Results { get; set; }
+		[Ignore] public long TotalItems { get; set; }
+
 	}
 }

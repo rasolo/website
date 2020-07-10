@@ -1,5 +1,28 @@
-﻿@inherits UmbracoViewPage<Rasolo.Core.Features.SearchPage.SearchPage>
+﻿@using Rasolo.Core.Features.SearchPage
+@inherits UmbracoViewPage<Rasolo.Core.Features.SearchPage.SearchPage>
+
+<div class="search-page">
+	@{
+		using (Html.BeginUmbracoForm<SearchSurfaceController>(nameof(SearchSurfaceController.Post), FormMethod.Post, new Dictionary<string, object> {{"class", "search-form"}}))
+		{
+			@Html.AntiForgeryToken()
+			<input id="search-input" placeholder="Enter text" name="query" />
+			<button type="submit">Search</button>
+		}
+	}
 
 	<h1>Search page</h1>
 
 	<h2>Query: @Model.Query</h2>
+
+	<h3>Results:</h3>
+	@if (Model.Results != null)
+	{
+		foreach (var item in Model.Results)
+		{
+			<li>@item.Name</li>
+			<li>@item.Url</li>
+		}
+	}
+
+</div>

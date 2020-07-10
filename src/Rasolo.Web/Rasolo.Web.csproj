@@ -250,6 +250,7 @@
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\Shared\CommentsForm.cshtml" />
     <Content Include="Views\Shared\CommentsList.cshtml" />
+    <Content Include="Views\SearchPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
