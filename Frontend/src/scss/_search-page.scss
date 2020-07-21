@@ -1,0 +1,51 @@
+.search-page {
+    margin-top: 30%;
+    @media (min-width: 641px) {
+        margin-top: 20%;
+    }
+
+    @media (min-width: 1360px) {
+        margin-top: 12%;
+    }
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+}
+
+#search-input {
+    padding-left: 9px;
+    width: 250px;
+    @media (min-width: 641px) {
+        width: 450px;
+    }
+
+    /* PC */
+    @media (min-width: 900px) {
+        width: 750px;
+    }
+}
+
+.search-form {
+    &__submit {
+        background-color: #006ebf;
+        border: 0;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.search-submit-icon {
+    width: 20px;
+}
+
+.search-wrapper {
+    display: flex;
+    height: 200%;
+}
+
+.search-submit-text {
+    color: #ffffff;
+    padding: 5px;
+}

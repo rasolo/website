@@ -64,7 +64,7 @@ namespace Rasolo.Core.Features.SearchPage
 			var searchTerms = viewModel.Query.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
 			foreach (string item in searchTerms)
 			{
-				operation.And().GroupedOr(new []{PropertyTypeAlias.Title, BlogPostPagePropertyAlias.TeaserUrl}, item.Fuzzy(0.6f));
+				operation.And().GroupedOr(new []{PropertyTypeAlias.Title, BlogPostPagePropertyAlias.TeaserUrl, PropertyTypeAlias.Preamble}, item.Fuzzy(0.6f));
 			}
 
 			var searchResults = operation.Execute(5);
