@@ -49,3 +49,38 @@
     color: #ffffff;
     padding: 5px;
 }
+
+.search-result {
+    display: flex;
+    flex-direction:column;
+    margin-top: 20%;
+    margin-left: 7%;
+
+    &__title {
+        font-size: 1.2rem;
+    }
+
+    &__list {
+        list-style: none;
+        padding:initial;
+    }
+    &__image {
+        width: 95%;
+        margin-bottom: 3%;
+        margin-top: 10%;
+    }
+
+    &__preamble {
+        max-width: 95%;
+    }
+}
+
+.search-result__item {
+    margin-bottom: 13%;
+    max-width: 95%;
+    &-header{
+    margin-bottom: 10px;
+    font-size:1.2rem;
+    max-width: 95%;
+    }
+}

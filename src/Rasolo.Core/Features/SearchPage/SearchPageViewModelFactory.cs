@@ -83,6 +83,8 @@ namespace Rasolo.Core.Features.SearchPage
 
 			this._umbracoMapper.Map(content, viewModel);
 
+			viewModel.ShowTeaserMediaAltText = !string.IsNullOrEmpty(viewModel.TeaserMediaAltText);
+
 			return viewModel;
 		}
 	}
