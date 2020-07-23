@@ -52,3 +52,14 @@ html {
 .transparent {
   color: transparent;
 }
+
+.anchor-empty {
+  color: inherit;
+  text-decoration: none;
+}
+
+.flex-align-center-direction {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}

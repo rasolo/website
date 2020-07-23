@@ -18,26 +18,28 @@
 		}
 	</div>
 
-	<section class="search-result">
+	<section class="search-result flex-align-center-direction">
 		<h2 class="search-result__title">Your search gave: @Model.TotalItems hits</h2>
 		@if (Model.Results != null)
 		{
-			<ul class="search-result__list">
+			<ul class="search-result__list flex-align-center-direction">
 				@foreach (var item in Model.Results)
 				{
-					<li class="search-result__item">
-						<img class="search-result__image" src="@item.TeaserMediaUrl"
-						     @if (item.ShowTeaserMediaAltText)
-						     {
-							     <text> alt="@item.TeaserMediaAltText" </text>
-						     }/>
-						<h3 class="search-result__item-header">@item.Title</h3>
+					<a class="anchor-empty" href="@item.Url">
+						<li class="search-result__item flex-align-center-direction">
+							<img class="search-result__image" src="@item.TeaserMediaUrl"
+							     @if (item.ShowTeaserMediaAltText)
+							     {
+								     <text> alt="@item.TeaserMediaAltText" </text>
+							     }/>
+							<h3 class="search-result__header">@item.Title</h3>
 
-						<p class="search-result__preamble">
-							@item.Preamble
-						</p>
+							<p class="search-result__preamble">
+								@item.Preamble
+							</p>
 
-					</li>
+						</li>
+					</a>
 				}
 			</ul>
 		}
