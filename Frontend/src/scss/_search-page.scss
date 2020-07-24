@@ -57,6 +57,14 @@
         margin-top: 7%;
     }
 
+    @media (min-width: 1360px) {
+        margin-top: 4%;
+    }
+
+    @media (min-width: 1920px) {
+        margin-top: 3%;
+    }
+
     &__title {
         font-size: 1.2rem;
         @media (min-width: 641px) {
@@ -64,6 +72,7 @@
         }
         @media (min-width: 900px) {
             margin-right: 621px;
+            margin-bottom: 1%;
         }
     }
 
