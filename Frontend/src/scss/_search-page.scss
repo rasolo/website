@@ -53,10 +53,17 @@
 .search-result {
     margin-top: 20%;
 
+    @media (min-width: 900px) {
+        margin-top: 7%;
+    }
+
     &__title {
         font-size: 1.2rem;
         @media (min-width: 641px) {
             margin-bottom: 3%;
+        }
+        @media (min-width: 900px) {
+            margin-right: 621px;
         }
     }
 
@@ -76,7 +83,8 @@
 
         /* PC */
         @media (min-width: 900px) {
-            width: 50%;
+            width: 45%;
+            float: left;
         }
     }
 
@@ -91,7 +99,7 @@
 
         @media (min-width: 900px) {
             margin-left: 28%;
-            max-width: 42%
+            max-width: 725px;
         }
     }
     &__header {
@@ -107,6 +115,7 @@
 
         @media (min-width: 900px) {
             margin-left: 28%;
+            padding-top: 10%;
         }
 
         &:hover {
@@ -117,7 +126,9 @@
     &__item {
         margin-bottom: 13%;
 
-        @media (min-width: 641px) {
+        @media (min-width: 900px) {
+            display: inherit!important;
+            margin-right: 165px;
         }
     }
 }
