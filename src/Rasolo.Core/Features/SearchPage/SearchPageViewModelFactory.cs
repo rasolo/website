@@ -68,9 +68,10 @@ namespace Rasolo.Core.Features.SearchPage
 			}
 
 			var searchResults = operation.Execute(5);
-			viewModel.TotalItems = searchResults.TotalItemCount;
 			var searchResultItems = searchResults.Select(MapViewModels);
 			viewModel.Results = searchResultItems.ToList();
+			viewModel.TotalItems = viewModel.Results.Count;
+
 		}
 
 		private SearchResultItem MapViewModels(ISearchResult result)
