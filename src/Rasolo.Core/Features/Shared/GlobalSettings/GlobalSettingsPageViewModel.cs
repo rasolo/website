@@ -14,5 +14,7 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 		public string HomeText { get; set; }
 		[Ignore]
 		public string HomeTextColor { get; set; }
+
+		public int SearchResultsPerPage { get; set; }
 	}
 }

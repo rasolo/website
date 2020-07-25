@@ -2,5 +2,13 @@
 @inherits UmbracoViewPage<Rasolo.Core.Features.SearchPage.SearchPage>
 
 <div class="search-result-pagination">
-
+	<h3>Number of pages: @Model.NumberOfPages</h3>
+	<h3>Show pagination: @Model.ShowPagination</h3>
+	
+	<ul>
+		@for (int i = 1; i <= Model.NumberOfPages; i++)
+		{
+		<a href="@Model.PaginationSearchQuery@i"><li>@i</li></a>
+		}
+	</ul>
 </div>

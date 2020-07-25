@@ -5,6 +5,7 @@ using Rasolo.Core.Features.Shared.Abstractions;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
+using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Services.Abstractions.HttpRequest;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Umbraco.Core;
@@ -21,9 +22,10 @@ namespace Rasolo.Core.Features.SearchPage
 		private readonly IHttpUtility _httpUtility;
 		private readonly IHttpRequest _httpRequest;
 		private readonly IExamineManager _examineManager;
+		private readonly GlobalSettingsPageViewModel _globalSettingsPageViewModel;
 
 		public SearchPageViewModelFactory(IUmbracoMapper umbracoMapper, IUmbracoHelper umbracoHelper, IHttpUtility httpUtility, IHttpRequest httpRequest,
-			IExamineManager examineManager)
+			IExamineManager examineManager, IGlobalSettingsPageViewModelFactory globalSettingsPageViewModelFactory)
 		 : base(umbracoMapper, umbracoHelper)
 		{
 			_umbracoMapper = umbracoMapper;
@@ -31,6 +33,7 @@ namespace Rasolo.Core.Features.SearchPage
 			_httpUtility = httpUtility;
 			_httpRequest = httpRequest;
 			_examineManager = examineManager;
+			_globalSettingsPageViewModel = globalSettingsPageViewModelFactory.CreateModel(null);
 		}
 		public override SearchPage CreateModel(SearchPage viewModel, ContentModel contentModel)
 		{
@@ -44,11 +47,18 @@ namespace Rasolo.Core.Features.SearchPage
 			base.SetViewModelProperties(viewModel, contentModel);
 
 			viewModel.Query = this._httpUtility.UrlDecode(this._httpRequest.QueryString[QueryStrings.SearchQuery]);
+			viewModel.CurrentPaginationPageNumber = int.Parse(string.IsNullOrEmpty(this._httpRequest.QueryString[QueryStrings.Pagination]) ? "1" : this._httpRequest.QueryString[QueryStrings.Pagination]);
+			
 
 			if (!string.IsNullOrEmpty(viewModel.Query))
 			{
 				Search(viewModel);
 			}
+
+
+			viewModel.NumberOfPages = (int)Math.Round(Convert.ToDecimal((double)viewModel.TotalItems / this._globalSettingsPageViewModel.SearchResultsPerPage), MidpointRounding.AwayFromZero);
+			viewModel.ShowPagination = viewModel.NumberOfPages >= 2;
+			viewModel.PaginationSearchQuery = $"{viewModel.Url}?{QueryStrings.SearchQuery}={viewModel.Query}&{QueryStrings.Pagination}=";
 		}
 
 		public void Search(SearchPage viewModel)
@@ -69,8 +79,9 @@ namespace Rasolo.Core.Features.SearchPage
 
 			var searchResults = operation.Execute(5);
 			var searchResultItems = searchResults.Select(MapViewModels);
-			viewModel.Results = searchResultItems.ToList();
-			viewModel.TotalItems = viewModel.Results.Count;
+
+			viewModel.Results = searchResultItems.Skip((viewModel.CurrentPaginationPageNumber -1) * this._globalSettingsPageViewModel.SearchResultsPerPage).Take(this._globalSettingsPageViewModel.SearchResultsPerPage).ToList();
+			viewModel.TotalItems = searchResultItems.Count();
 
 		}
 
