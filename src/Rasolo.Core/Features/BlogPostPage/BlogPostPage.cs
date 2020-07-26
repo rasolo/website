@@ -23,5 +23,6 @@ namespace Rasolo.Core.Features.BlogPostPage
 		[Ignore] public IEnumerable<CommentViewModel> Comments { get; set; }
 		public string TeaserMediaAltText { get; set; }
 		public bool ShowTeaserMediaAltText { get; set; }
+		public string Preamble { get; set; }
 	}
 }
