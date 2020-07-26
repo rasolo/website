@@ -292,6 +292,7 @@
     <Compile Include="Features\BlogsPage\BlogsPageViewModelFactory.cs" />
     <Compile Include="Features\BlogsPage\IBlogsPageViewModelFactory.cs" />
     <Compile Include="Features\Comments\CommentsController.cs" />
+    <Compile Include="Features\SearchPage\Examine\ExactPhraseExamineValue.cs" />
     <Compile Include="Features\SearchPage\ISearchPageViewModelFactory.cs" />
     <Compile Include="Features\SearchPage\SearchPage.cs" />
     <Compile Include="Features\SearchPage\SearchPageComposer.cs" />

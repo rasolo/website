@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Web.UI.WebControls;
 using Examine;
+using Examine.Search;
+using Rasolo.Core.Features.SearchPage.Examine;
 using Rasolo.Core.Features.Shared.Abstractions;
 using Rasolo.Core.Features.Shared.Compositions;
 using Rasolo.Core.Features.Shared.Constants;
@@ -77,12 +79,15 @@ namespace Rasolo.Core.Features.SearchPage
 			var query = searcher.CreateQuery(IndexTypes.Content);
 			var operation = query.GroupedOr(new[] { "__NodeTypeAlias" }, new []{DocumentTypeAlias.BlogPostPage});
 			var searchTerms = viewModel.Query.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
-			foreach (string item in searchTerms)
+			var exactSearchPhrase = new ExactPhraseExamineValue(viewModel.Query);
+			foreach (string searchTerm in searchTerms)
 			{
-				operation.And().GroupedOr(new []{PropertyTypeAlias.Title, BlogPostPagePropertyAlias.TeaserUrl, PropertyTypeAlias.Preamble}, item.Fuzzy(0.6f));
+				{
+					operation.And().GroupedOr(new[] { PropertyTypeAlias.Title, PropertyTypeAlias.Preamble }, new[] { searchTerm.Fuzzy(0.4f), exactSearchPhrase });
+				}
 			}
 
-			var searchResults = operation.Execute(5);
+			var searchResults = operation.Execute();
 			var searchResultItems = searchResults.Select(MapViewModels);
 
 			viewModel.Results = searchResultItems.Skip((viewModel.CurrentPaginationPageNumber -1) * this._globalSettingsPageViewModel.SearchResultsPerPage).Take(this._globalSettingsPageViewModel.SearchResultsPerPage).ToList();
