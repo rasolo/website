@@ -52,19 +52,7 @@ $search-color: #4973a0;
 }
 
 .search-result {
-    margin-top: 20%;
-
-    @media (min-width: 900px) {
-        margin-top: 7%;
-    }
-
-    @media (min-width: 1360px) {
-        margin-top: 4%;
-    }
-
-    @media (min-width: 1920px) {
-        margin-top: 3%;
-    }
+    margin-top: 150px;
 
     &__title {
         font-size: 1.2rem;
