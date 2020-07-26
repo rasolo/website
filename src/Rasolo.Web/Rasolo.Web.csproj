@@ -253,6 +253,7 @@
     </None>
     <None Include="Rasolo.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+			<IsTransformFile>True</IsTransformFile>
     </None>
   </ItemGroup>
   <ItemGroup>
