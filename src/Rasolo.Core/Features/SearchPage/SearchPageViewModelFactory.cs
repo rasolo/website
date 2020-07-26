@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web.UI.WebControls;
 using Examine;
 using Rasolo.Core.Features.Shared.Abstractions;
 using Rasolo.Core.Features.Shared.Compositions;
@@ -59,6 +60,10 @@ namespace Rasolo.Core.Features.SearchPage
 			viewModel.NumberOfPages = (int)Math.Round(Convert.ToDecimal((double)viewModel.TotalItems / this._globalSettingsPageViewModel.SearchResultsPerPage), MidpointRounding.AwayFromZero);
 			viewModel.ShowPagination = viewModel.NumberOfPages >= 2;
 			viewModel.PaginationSearchQuery = $"{viewModel.Url}?{QueryStrings.SearchQuery}={viewModel.Query}&{QueryStrings.Pagination}=";
+			viewModel.ShowNextPagePaginationSymbol = viewModel.CurrentPaginationPageNumber < viewModel.NumberOfPages;
+			viewModel.ShowPreviousPagePaginationSymbol = viewModel.CurrentPaginationPageNumber > 1;
+			viewModel.NextPaginationPageUrl = $"{viewModel.PaginationSearchQuery}{viewModel.CurrentPaginationPageNumber + 1}";
+			viewModel.PreviousPaginationPageUrl = $"{viewModel.PaginationSearchQuery}{viewModel.CurrentPaginationPageNumber + -1}";
 		}
 
 		public void Search(SearchPage viewModel)
