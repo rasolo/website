@@ -27,7 +27,12 @@ namespace Rasolo.Core.Features.BlogPostPage
 		public override void SetViewModelProperties(BlogPostPage viewModel, ContentModel contentModel)
 		{
 			base.SetViewModelProperties(viewModel, contentModel);
-			viewModel.Comments = this._commentsRepository.GetByContentId(contentModel.Content.Id);
+			if (contentModel != null)
+			{
+				viewModel.Comments = this._commentsRepository.GetByContentId(contentModel.Content.Id);
+			}
+			viewModel.ShowTeaserMediaAltText = !string.IsNullOrEmpty(viewModel.TeaserMediaAltText);
+			viewModel.TeaserHeading = viewModel.TeaserHeading = !string.IsNullOrEmpty(viewModel.TeaserHeading) ? viewModel.TeaserHeading : !string.IsNullOrEmpty(viewModel.Title) ? viewModel.Title : viewModel.Name;
 		}
 	}
 }

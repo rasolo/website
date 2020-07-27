@@ -9,7 +9,7 @@
 			}
 			else
 			{
-				<img src="@Model.TeaserUrl" />
+				<img src="@Model.TeaserUrl" @if(Model.ShowTeaserMediaAltText){<text>alt="@Model.TeaserMediaAltText"</text>} />
 			}
 		}
 	</a>

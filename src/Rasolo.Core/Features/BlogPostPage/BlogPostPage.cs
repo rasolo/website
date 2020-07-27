@@ -16,11 +16,13 @@ namespace Rasolo.Core.Features.BlogPostPage
 		[PropertyMapping(SourceProperty = BlogPostPagePropertyAlias.TeaserMedia)]
 		[MapFromImageCropper(CropName = MediaCropAlias.StartPage)]
 		public string TeaserUrl { get; set; }
-		public string TeaserPreamble { get; set; }
 
 		public string ParentUrl { get; set; }
 
 		public string ParentName { get; set; }
 		[Ignore] public IEnumerable<CommentViewModel> Comments { get; set; }
+		public string TeaserMediaAltText { get; set; }
+		public bool ShowTeaserMediaAltText { get; set; }
+		public string Preamble { get; set; }
 	}
 }
