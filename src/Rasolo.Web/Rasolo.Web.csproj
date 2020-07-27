@@ -313,9 +313,6 @@
     <PackageReference Include="uSync">
       <Version>8.6.3</Version>
     </PackageReference>
-    <PackageReference Include="uSync.ContentEdition">
-      <Version>8.6.3</Version>
-    </PackageReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
