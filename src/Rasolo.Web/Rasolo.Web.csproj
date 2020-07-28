@@ -255,6 +255,7 @@
     </None>
     <None Include="Rasolo.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -312,7 +313,7 @@
       <Version>8.6.3</Version>
     </PackageReference>
     <PackageReference Include="uSync">
-      <Version>8.6.4</Version>
+      <Version>8.6.3</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
