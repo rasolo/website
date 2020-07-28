@@ -12,7 +12,6 @@ $search-color: #4973a0;
 
 .search-container {
     display: flex;
-    justify-content: center;
 }
 
 #search-input {
@@ -24,15 +23,16 @@ $search-color: #4973a0;
 
     /* PC */
     @media (min-width: 900px) {
-        width: 750px;
+        width: 40%
     }
 }
 
 .search-form {
+    width: 100%;
+
     &__submit {
         background-color: $search-color;
         border: 0;
-        display: flex;
         align-items: center;
     }
 }
@@ -44,6 +44,9 @@ $search-color: #4973a0;
 .search-wrapper {
     display: flex;
     height: 200%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .search-submit-text {
@@ -52,7 +55,11 @@ $search-color: #4973a0;
 }
 
 .search-result {
-    margin-top: 150px;
+    margin-top: 100px;
+
+    &__link {
+        width: 100%;
+    }
 
     &__title {
         font-size: 1.2rem;
@@ -60,7 +67,7 @@ $search-color: #4973a0;
             margin-bottom: 3%;
         }
         @media (min-width: 900px) {
-            margin-right: 621px;
+            margin-right: 34%;
             margin-bottom: 1%;
         }
     }
@@ -68,6 +75,7 @@ $search-color: #4973a0;
     &__list {
         list-style: none;
         padding: initial;
+        min-width: 45%;
     }
     &__image {
         width: 100%;
@@ -81,7 +89,7 @@ $search-color: #4973a0;
 
         /* PC */
         @media (min-width: 900px) {
-            width: 45%;
+            width: 30%;
             float: left;
         }
     }
@@ -97,7 +105,7 @@ $search-color: #4973a0;
 
         @media (min-width: 900px) {
             margin-left: 28%;
-            max-width: 725px;
+            max-width: 500px;
         }
     }
     &__header {
@@ -109,6 +117,7 @@ $search-color: #4973a0;
         @media (min-width: 641px) {
             margin-left: 17%;
             margin-top: initial;
+            max-width: 70%;
         }
 
         @media (min-width: 900px) {
@@ -123,6 +132,7 @@ $search-color: #4973a0;
 
     &__item {
         margin-bottom: 13%;
+        min-width: 45%;
 
         @media (min-width: 900px) {
             display: inherit !important;
