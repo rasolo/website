@@ -16,5 +16,9 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 		public string HomeTextColor { get; set; }
 
 		public int SearchResultsPerPage { get; set; }
+		[Ignore]
+		public string SearchPageUrl { get; set; }
+		[Ignore]
+		public bool CurrentPageIsStartPage { get; set; }
 	}
 }

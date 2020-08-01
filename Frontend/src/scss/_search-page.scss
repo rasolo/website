@@ -23,7 +23,7 @@ $search-color: #4973a0;
 
     /* PC */
     @media (min-width: 900px) {
-        width: 40%
+        width: 40%;
     }
 }
 
@@ -39,7 +39,10 @@ $search-color: #4973a0;
 }
 
 .search-submit-icon {
-    width: 20px;
+    color: #ffffff;
+    width: 16px;
+    height: 16px;
+    margin-bottom: 4px;
 }
 
 .search-wrapper {
@@ -148,7 +151,7 @@ $search-color: #4973a0;
     margin-bottom: 200px;
     margin-top: 100px;
 
-    @media (min-width: 641px) and (max-width: 900px)  {
+    @media (min-width: 641px) and (max-width: 900px) {
         margin-top: 20px;
     }
 }

@@ -1,24 +1,64 @@
-.site__header {
+$pc-size: 20px;
+
+.header {
   position: absolute;
   z-index: 999;
   margin: 1%;
   left: 5%;
   top: 4%;
-  & a {
-    color: #2b1e1f;
-    font-weight: bold;
-    font-size: 7vw;
-    text-decoration: underline;
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+
+  @media (min-width: 900px) {
+    font-size: $pc-size;
+  }
+
+  &__home {
+    text-decoration: none;
+
+    &:visited {
+      color: initial;
+    }
 
     &:hover {
-      cursor: pointer;
-      color: #ceafb1 !important;
+      text-decoration: underline;
     }
   }
-}
 
-@media screen and (min-width: 1080px) {
-  .site__header a {
-    font-size: 4vw;
+  &__search-url {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: initial;
+    }
+  }
+
+  &__search-svg {
+    width: 15px;
+    height: 15px;
+    margin-right: 2px;
+    @media (min-width: 900px) {
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  &__search-icon {
+    width: 18px;
+    margin-bottom: -1px;
+
+    @media (min-width: 900px) {
+      width: $pc-size;
+    }
+  }
+
+  &__search-text {
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
