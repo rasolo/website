@@ -66,6 +66,7 @@ namespace Rasolo.Core.Features.SearchPage
 			viewModel.ShowPreviousPagePaginationSymbol = viewModel.CurrentPaginationPageNumber > 1;
 			viewModel.NextPaginationPageUrl = $"{viewModel.PaginationSearchQuery}{viewModel.CurrentPaginationPageNumber + 1}";
 			viewModel.PreviousPaginationPageUrl = $"{viewModel.PaginationSearchQuery}{viewModel.CurrentPaginationPageNumber + -1}";
+			viewModel.ShowSearchResults = !string.IsNullOrEmpty(viewModel.Query);
 		}
 
 		public void Search(SearchPage viewModel)

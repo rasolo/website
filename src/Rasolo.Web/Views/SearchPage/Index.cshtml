@@ -21,7 +21,10 @@
 		</div>
 
 		<section class="search-result flex-align-center-direction">
-			<h2 class="search-result__title">Your search gave: @Model.TotalItems hits</h2>
+			@if (Model.ShowSearchResults)
+			{
+				<h2 class="search-result__title">Your search gave: @Model.TotalItems hits</h2>
+			}
 			@if (Model.Results != null)
 			{
 				<ul class="search-result__list flex-align-center-direction">
@@ -30,7 +33,10 @@
 						<a class="search-result__link">
 							<li class="search-result__item flex-align-center-direction">
 								<img class="search-result__image" src="@item.TeaserMediaUrl"
-									 @if (item.ShowTeaserMediaAltText) { <text> alt="@item.TeaserMediaAltText" </text>  } />
+								     @if (item.ShowTeaserMediaAltText)
+								     {
+									     <text> alt="@item.TeaserMediaAltText" </text>
+								     }/>
 								<h3 class="search-result__header">@item.Title</h3>
 
 								<p class="search-result__preamble">
