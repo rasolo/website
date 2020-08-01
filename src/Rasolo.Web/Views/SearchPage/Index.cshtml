@@ -27,7 +27,7 @@
 			}
 			@if (Model.Results != null)
 			{
-				<ul class="search-result__list flex-align-center-direction">
+				<ul class="search-result__list flex-align-center-direction @(!Model.ShowPagination ? "search-result__list--pagination-none" : null)">
 					@foreach (var item in Model.Results)
 					{
 						<a class="search-result__link">

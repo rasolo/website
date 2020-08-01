@@ -80,6 +80,10 @@ $search-color: #4973a0;
         list-style: none;
         padding: initial;
         min-width: 45%;
+
+        &--pagination-none {
+            margin-bottom: 150px;
+        }
     }
     &__image {
         width: 100%;
