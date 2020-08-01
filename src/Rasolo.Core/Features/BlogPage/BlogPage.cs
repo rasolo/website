@@ -15,6 +15,7 @@ namespace Rasolo.Core.Features.BlogPage
 		public ICollection<BlogPostPage.BlogPostPage> BlogPosts { get; set; }
 
 		public IEnumerable<ITeaserPage> Posts { get; set; }
+		public string PostsTitle { get; set; }
 		public bool ShowPosts { get; set; }
 		public string TeaserHeading { get; set; }
 		[PropertyMapping(SourceProperty = BlogPagePropertyAlias.TeaserMedia)]

@@ -10,5 +10,6 @@ namespace Rasolo.Core.Features.BlogsPage
 
 		public bool ShowPosts { get; set; }
 		public IEnumerable<ITeaserPage> Posts { get; set; }
+		public string PostsTitle { get; set; }
 	}
 }

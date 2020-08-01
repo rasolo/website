@@ -4,7 +4,8 @@ namespace Rasolo.Core.Features.Shared.DocumentTypeInterfaces
 {
 	public interface IBlogTeaser
 	{
-		 bool ShowPosts { get; }
+		bool ShowPosts { get; }
 		IEnumerable<ITeaserPage> Posts { get; }
+		string PostsTitle { get; set; }
 	}
 }

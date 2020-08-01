@@ -38,6 +38,7 @@ namespace Rasolo.Core.Features.BlogsPage
 				viewModel.Posts = viewModel.BlogPages;
 			}
 
+			viewModel.PostsTitle = viewModel.Title;
 		}
 	}
 }
