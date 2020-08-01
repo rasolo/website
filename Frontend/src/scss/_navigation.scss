@@ -16,10 +16,7 @@ $pc-size: 20px;
 
   &__home {
     text-decoration: none;
-
-    &:visited {
-      color: initial;
-    }
+    color: #000000;
 
     &:hover {
       text-decoration: underline;
@@ -28,12 +25,10 @@ $pc-size: 20px;
 
   &__search-url {
     text-decoration: none;
+    color: #000000;
+
     &:hover {
       text-decoration: underline;
-    }
-
-    &:visited {
-      color: initial;
     }
   }
 
