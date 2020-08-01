@@ -20,14 +20,14 @@
 			}
 		</div>
 
-		<section class="search-result flex-align-center-direction">
+		<section class="search-result flex-align-center-direction @(!Model.ShowPagination ? "search-result__list--pagination-none" : null)">
 			@if (Model.ShowSearchResults)
 			{
 				<h2 class="search-result__title">Your search gave: @Model.TotalItems hits</h2>
 			}
 			@if (Model.Results != null)
 			{
-				<ul class="search-result__list flex-align-center-direction @(!Model.ShowPagination ? "search-result__list--pagination-none" : null)">
+				<ul class="search-result__list flex-align-center-direction">
 					@foreach (var item in Model.Results)
 					{
 						<a class="search-result__link">
