@@ -1,4 +1,4 @@
-# rasolo.azurewebsites.net [![Build Status](https://dev.azure.com/rasmusolofssons/rasolo/_apis/build/status/rasolo%20-%201%20-%20CI?branchName=master)](https://dev.azure.com/rasmusolofssons/rasolo/_build/latest?definitionId=2&branchName=master)
+# rasolo.net [![Build Status](https://dev.azure.com/rasmusolofssons/rasolo/_apis/build/status/rasolo%20-%201%20-%20CI?branchName=master)](https://dev.azure.com/rasmusolofssons/rasolo/_build/latest?definitionId=2&branchName=master)
 
 ## About ##
 My personal website made in Umbraco 8+ hosted on Azure.
@@ -26,7 +26,6 @@ How to setup project on your own machine.
 ```
 NPM: https://www.npmjs.com/get-npm
 Visual Studio 2017+: https://visualstudio.microsoft.com/
-Browserify (If you want to build front-end): http://browserify.org/
 ```
 
 ### Installing
