@@ -2,7 +2,7 @@
 {
 	public class QueryStrings
 	{
-		public static string SearchQuery = "q";
-		public static string Pagination = "p";
+		public const string SearchQuery = "q";
+		public const string Pagination = "p";
 	}
 }

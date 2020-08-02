@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Web.UI.WebControls;
 using Examine;
-using Examine.Search;
 using Rasolo.Core.Features.SearchPage.Examine;
 using Rasolo.Core.Features.Shared.Abstractions;
 using Rasolo.Core.Features.Shared.Compositions;
@@ -11,7 +9,6 @@ using Rasolo.Core.Features.Shared.Constants.PropertyTypeAlias;
 using Rasolo.Core.Features.Shared.GlobalSettings;
 using Rasolo.Services.Abstractions.HttpRequest;
 using Rasolo.Services.Abstractions.UmbracoHelper;
-using Umbraco.Core;
 using Umbraco.Examine;
 using Umbraco.Web.Models;
 using Zone.UmbracoMapper.V8;
@@ -20,24 +17,26 @@ namespace Rasolo.Core.Features.SearchPage
 {
 	public class SearchPageViewModelFactory : BaseContentPageViewModelFactory<SearchPage>, ISearchPageViewModelFactory
 	{
-		private readonly IUmbracoMapper _umbracoMapper;
-		private readonly IUmbracoHelper _umbracoHelper;
-		private readonly IHttpUtility _httpUtility;
-		private readonly IHttpRequest _httpRequest;
-		private readonly IExamineManager _examineManager;
+		private readonly IExamineSearcher _examineSearcher;
 		private readonly GlobalSettingsPageViewModel _globalSettingsPageViewModel;
+		private readonly IHttpRequest _httpRequest;
+		private readonly IHttpUtility _httpUtility;
+		private readonly IUmbracoHelper _umbracoHelper;
+		private readonly IUmbracoMapper _umbracoMapper;
 
-		public SearchPageViewModelFactory(IUmbracoMapper umbracoMapper, IUmbracoHelper umbracoHelper, IHttpUtility httpUtility, IHttpRequest httpRequest,
-			IExamineManager examineManager, IGlobalSettingsPageViewModelFactory globalSettingsPageViewModelFactory)
-		 : base(umbracoMapper, umbracoHelper)
+		public SearchPageViewModelFactory
+		(
+			IUmbracoMapper umbracoMapper, IUmbracoHelper umbracoHelper, IHttpUtility httpUtility, IHttpRequest httpRequest, IGlobalSettingsPageViewModelFactory globalSettingsPageViewModelFactory, IExamineSearcher examineSearcher)
+			: base(umbracoMapper, umbracoHelper)
 		{
 			_umbracoMapper = umbracoMapper;
 			_umbracoHelper = umbracoHelper;
 			_httpUtility = httpUtility;
 			_httpRequest = httpRequest;
-			_examineManager = examineManager;
+			_examineSearcher = examineSearcher;
 			_globalSettingsPageViewModel = globalSettingsPageViewModelFactory.CreateModel(null);
 		}
+
 		public override SearchPage CreateModel(SearchPage viewModel, ContentModel contentModel)
 		{
 			viewModel = base.CreateModel(viewModel, contentModel);
@@ -49,9 +48,9 @@ namespace Rasolo.Core.Features.SearchPage
 		{
 			base.SetViewModelProperties(viewModel, contentModel);
 
-			viewModel.Query = this._httpUtility.UrlDecode(this._httpRequest.QueryString[QueryStrings.SearchQuery]);
-			viewModel.CurrentPaginationPageNumber = int.Parse(string.IsNullOrEmpty(this._httpRequest.QueryString[QueryStrings.Pagination]) ? "1" : this._httpRequest.QueryString[QueryStrings.Pagination]);
-			
+			viewModel.Query = _httpUtility.UrlDecode(_httpRequest.QueryString[QueryStrings.SearchQuery]);
+			viewModel.CurrentPaginationPageNumber = int.Parse(string.IsNullOrEmpty(_httpRequest.QueryString[QueryStrings.Pagination]) ? "1" : _httpRequest.QueryString[QueryStrings.Pagination]);
+
 
 			if (!string.IsNullOrEmpty(viewModel.Query))
 			{
@@ -59,7 +58,7 @@ namespace Rasolo.Core.Features.SearchPage
 			}
 
 
-			viewModel.NumberOfPages = (int)Math.Round(Convert.ToDecimal((double)viewModel.TotalItems / this._globalSettingsPageViewModel.SearchResultsPerPage), MidpointRounding.AwayFromZero);
+			viewModel.NumberOfPages = (int) Math.Round(Convert.ToDecimal((double) viewModel.TotalItems / _globalSettingsPageViewModel.SearchResultsPerPage), MidpointRounding.AwayFromZero);
 			viewModel.ShowPagination = viewModel.NumberOfPages >= 2;
 			viewModel.PaginationSearchQuery = $"{viewModel.Url}?{QueryStrings.SearchQuery}={viewModel.Query}&{QueryStrings.Pagination}=";
 			viewModel.ShowNextPagePaginationSymbol = viewModel.CurrentPaginationPageNumber < viewModel.NumberOfPages;
@@ -71,40 +70,35 @@ namespace Rasolo.Core.Features.SearchPage
 
 		public void Search(SearchPage viewModel)
 		{
-			if (!this._examineManager.TryGetIndex(Constants.UmbracoIndexes.ExternalIndexName, out IIndex index))
-			{
-				throw new InvalidOperationException($"No index found by name {Constants.UmbracoIndexes.ExternalIndexName}");
-			}
+			var nodeTypes = new[] {DocumentTypeAlias.BlogPostPage};
+			var properties = new[] {PropertyTypeAlias.Title, PropertyTypeAlias.Preamble};
 
-			var searcher = index.GetSearcher();
-			var query = searcher.CreateQuery(IndexTypes.Content);
-			var operation = query.GroupedOr(new[] { "__NodeTypeAlias" }, new []{DocumentTypeAlias.BlogPostPage});
-			var searchTerms = viewModel.Query.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
-			var exactSearchPhrase = new ExactPhraseExamineValue(viewModel.Query);
-			foreach (string searchTerm in searchTerms)
-			{
-				{
-					operation.And().GroupedOr(new[] { PropertyTypeAlias.Title, PropertyTypeAlias.Preamble }, new[] { searchTerm.Fuzzy(0.4f), exactSearchPhrase });
-				}
-			}
+			var searchResults = _examineSearcher.Search(viewModel.Query, 300, 0.4f,
+				IndexTypes.Content, nodeTypes,
+				properties);
+			var searchResultItems = searchResults.Select(MapViewModels).ToList();
 
-			var searchResults = operation.Execute();
-			var searchResultItems = searchResults.Select(MapViewModels);
-
-			viewModel.Results = searchResultItems.Skip((viewModel.CurrentPaginationPageNumber -1) * this._globalSettingsPageViewModel.SearchResultsPerPage).Take(this._globalSettingsPageViewModel.SearchResultsPerPage).ToList();
+			viewModel.Results = searchResultItems.Skip((viewModel.CurrentPaginationPageNumber - 1) * _globalSettingsPageViewModel.SearchResultsPerPage).Take(_globalSettingsPageViewModel.SearchResultsPerPage).ToList();
 			viewModel.TotalItems = searchResultItems.Count();
-
 		}
 
 		private SearchResultItem MapViewModels(ISearchResult result)
 		{
-			if (result == null) return null;
-			var content = this._umbracoHelper.Content(result.Id);
+			if (result == null)
+			{
+				return null;
+			}
 
-			if (content == null) return null;
+			var content = _umbracoHelper.Content(result.Id);
+
+			if (content == null)
+			{
+				return null;
+			}
+
 			var viewModel = new SearchResultItem();
 
-			this._umbracoMapper.Map(content, viewModel);
+			_umbracoMapper.Map(content, viewModel);
 
 			viewModel.ShowTeaserMediaAltText = !string.IsNullOrEmpty(viewModel.TeaserMediaAltText);
 

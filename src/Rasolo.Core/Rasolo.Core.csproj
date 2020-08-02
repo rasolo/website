@@ -293,6 +293,9 @@
     <Compile Include="Features\BlogsPage\IBlogsPageViewModelFactory.cs" />
     <Compile Include="Features\Comments\CommentsController.cs" />
     <Compile Include="Features\SearchPage\Examine\ExactPhraseExamineValue.cs" />
+    <Compile Include="Features\SearchPage\Examine\ExamineSearcher.cs" />
+    <Compile Include="Features\SearchPage\Examine\ExamineSearcherComposer.cs" />
+    <Compile Include="Features\SearchPage\Examine\IExamineSearcher.cs" />
     <Compile Include="Features\SearchPage\ISearchPageViewModelFactory.cs" />
     <Compile Include="Features\SearchPage\SearchPage.cs" />
     <Compile Include="Features\SearchPage\SearchPageComposer.cs" />
@@ -322,6 +325,7 @@
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\SiteMapPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\PropertyTypeAlias\StartPagePropertyAlias.cs" />
     <Compile Include="Features\Shared\Constants\QueryStrings.cs" />
+    <Compile Include="Features\Shared\Constants\SearchFields.cs" />
     <Compile Include="Features\Shared\DocumentTypeInterfaces\IBlogTeaser.cs" />
     <Compile Include="Features\Shared\DocumentTypeInterfaces\ITeaserPage.cs" />
     <Compile Include="Features\Shared\Handlers\BlogPageRouteHandler.cs" />
