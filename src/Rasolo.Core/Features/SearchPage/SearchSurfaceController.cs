@@ -19,6 +19,7 @@ namespace Rasolo.Core.Features.SearchPage
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[ValidateInput(false)]
 		public ActionResult Post(SearchParameters model)
 		{
 			var searchPageId = this._umbracoHelper?.SearchPage?.Id;
