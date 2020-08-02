@@ -23,6 +23,10 @@ $search-color: #4973a0;
 
     /* PC */
     @media (min-width: 900px) {
+        width: 60%;
+    }
+
+    @media (min-width: 1400px) {
         width: 40%;
     }
 }
@@ -67,13 +71,23 @@ $search-color: #4973a0;
 
     &__title {
         font-size: 1.2rem;
+        font-weight: inherit;
+            margin-bottom: 1%;
+            max-width: 80%;
+           
         @media (min-width: 641px) {
-            margin-bottom: 3%;
+            max-width: 60%;
         }
         @media (min-width: 900px) {
-            margin-right: 34%;
-            margin-bottom: 1%;
+            align-self: baseline;
+            padding: 2%;
+            margin-bottom: 5%;
         }
+    }
+
+    &__query {
+        font-size:1rem;
+        font-weight: bold;
     }
 
     &__list {

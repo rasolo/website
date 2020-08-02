@@ -1,57 +1,60 @@
 ﻿@using Rasolo.Core.Features.SearchPage
 @inherits UmbracoViewPage<Rasolo.Core.Features.SearchPage.SearchPage>
 
-	<div class="search-page">
-		<div class="search-container">
-			@{
-				using (Html.BeginUmbracoForm<SearchSurfaceController>(nameof(SearchSurfaceController.Post), FormMethod.Post, new Dictionary<string, object> { { "class", "search-form" } }))
-				{
-					@Html.AntiForgeryToken()
-					<div class="search-wrapper">
-						<input id="search-input" placeholder="Enter text" name="query" />
-						<button class="search-form__submit" type="submit">
-							<svg class="search-submit-icon">
-								<use xlink:href="~/assets/img/icons/icons.svg#search-symbol"></use>
-							</svg>
-							<span class="search-submit-text">Search</span>
-						</button>
-					</div>
-				}
+<div class="search-page">
+	<div class="search-container">
+		@{
+			using (Html.BeginUmbracoForm<SearchSurfaceController>(nameof(SearchSurfaceController.Post), FormMethod.Post, new Dictionary<string, object> {{"class", "search-form"}}))
+			{
+				@Html.AntiForgeryToken()
+				<div class="search-wrapper">
+					<input id="search-input" placeholder="Enter text" name="query"/>
+					<button class="search-form__submit" type="submit">
+						<svg class="search-submit-icon">
+							<use xlink:href="~/assets/img/icons/icons.svg#search-symbol"></use>
+						</svg>
+						<span class="search-submit-text">Search</span>
+					</button>
+				</div>
 			}
-		</div>
+		}
+	</div>
 
-		<section class="search-result flex-align-center-direction @(!Model.ShowPagination ? "search-result__list--pagination-none" : null)">
+	<section class="search-result flex-align-center-direction @(!Model.ShowPagination ? "search-result__list--pagination-none" : null)">
+
+
+		<ul class="search-result__list flex-align-center-direction">
 			@if (Model.ShowSearchResults)
 			{
-				<h2 class="search-result__title">Your search gave: @Model.TotalItems hits</h2>
+				<h2 class="search-result__title">Your search for <span class="search-result__query">@Model.Query</span> gave: @Model.TotalItems hits</h2>
 			}
 			@if (Model.Results != null)
 			{
-				<ul class="search-result__list flex-align-center-direction">
-					@foreach (var item in Model.Results)
-					{
-						<a class="search-result__link">
-							<li class="search-result__item flex-align-center-direction">
-								<img class="search-result__image" src="@item.TeaserMediaUrl"
-								     @if (item.ShowTeaserMediaAltText)
-								     {
-									     <text> alt="@item.TeaserMediaAltText" </text>
-								     }/>
-								<h3 class="search-result__header">@item.Title</h3>
+				foreach (var item in Model.Results)
+				{
+					<a class="search-result__link">
+						<li class="search-result__item flex-align-center-direction">
+							<img class="search-result__image" src="@item.TeaserMediaUrl"
+							     @if (item.ShowTeaserMediaAltText)
+							     {
+								     <text> alt="@item.TeaserMediaAltText" </text>
+							     }/>
+							<h3 class="search-result__header">@item.Title</h3>
 
-								<p class="search-result__preamble">
-									@item.Preamble
-								</p>
+							<p class="search-result__preamble">
+								@item.Preamble
+							</p>
 
-							</li>
-						</a>
-					}
-				</ul>
+						</li>
+					</a>
+				}
 			}
-		</section>
-		
-		@if (Model.ShowPagination)
-		{
-			@Html.Partial("Pagination", Model)
-		}
-	</div>
+
+		</ul>
+	</section>
+
+	@if (Model.ShowPagination)
+	{
+		@Html.Partial("Pagination", Model)
+	}
+</div>
