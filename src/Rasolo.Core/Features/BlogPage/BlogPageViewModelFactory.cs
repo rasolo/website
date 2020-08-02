@@ -25,6 +25,7 @@ namespace Rasolo.Core.Features.BlogPage
 			viewModel.Posts = viewModel.BlogPosts;
 			viewModel.ParentUrl = viewModel.Parent?.Url;
 			viewModel.ParentName = viewModel.Parent?.Name;
+			viewModel.PostsTitle = "Latest posts";
 		}
 
 	}

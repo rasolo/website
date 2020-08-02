@@ -22,9 +22,11 @@ namespace Rasolo.Core.Features.Shared.GlobalSettings
 			viewModel.CookiesAcceptText = !string.IsNullOrEmpty(viewModel.CookiesAcceptText) ? viewModel.CookiesAcceptText : string.Empty;
 			viewModel.CookiesLink = viewModel.CookiesLink ?? new Umbraco.Web.Models.Link() { Url = "/" };
 			viewModel.HomeText = !string.IsNullOrEmpty(viewModel.HomeText) ? viewModel.HomeText : string.Empty;
+			viewModel.SearchPageUrl = this._umbracoHelper.SearchPage?.Url;
 			var currentPage = new BaseContentPage();
 			this._mapper.Map(this._umbracoHelper.AssignedContentItem, currentPage);
 			viewModel.HomeTextColor = currentPage.HomeTextColor;
+			viewModel.CurrentPageIsStartPage = currentPage.Id == this._umbracoHelper.StartPage?.Id;
 		}
 
 

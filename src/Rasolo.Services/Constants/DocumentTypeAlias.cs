@@ -1,4 +1,5 @@
-﻿namespace Rasolo.Core.Features.Shared.Constants
+﻿
+namespace Rasolo.Core.Features.Shared.Constants
 {
 	public class DocumentTypeAlias
 	{
@@ -8,5 +9,6 @@
 		public const string BlogsPage = "blogsPage";
 		public const string BlogPostPage = "blogPostPage";
 		public const string StartPage = "startPage";
+		public const string SearchPage = "searchPage";
 	}
 }

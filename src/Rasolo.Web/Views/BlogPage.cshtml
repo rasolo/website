@@ -1,6 +1,8 @@
 ﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPage.BlogPage>
 
-@if (Model.ShowPosts)
-{
-	@Html.Partial("BlogTeaser", Model)
-}
+<div class="blog-page">
+	@if (Model.ShowPosts)
+	{
+		@Html.Partial("BlogTeaser", Model)
+	}
+</div>

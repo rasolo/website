@@ -30,12 +30,23 @@ body {
   }
 
   .posts-container {
-    h2 {
+    &__heading {
       text-align: center;
-      margin: 15%;
-      margin-top:40%;
+      margin-top: 150px;
+      margin-bottom: 20%;
       font-weight: normal;
+
+      @media (min-width: 641px) {
+        margin-top:200px;
+      }
+
+      @media (min-width: 900px) {
+        margin-bottom:8%;
+        margin-top:300px;
+        font-size: 35px;
     }
+    }
+
     .posts-container__posts {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -44,20 +55,19 @@ body {
       a {
         color: initial;
         text-decoration: none;
-     
       }
       a:first-of-type {
         &:hover {
           opacity: 0.5;
         }
         &:hover ~ .post__date {
-          color:rgb(207, 191, 191);
+          color: rgb(207, 191, 191);
         }
       }
 
       a:last-of-type {
         &:hover {
-          color:rgb(207, 191, 191);
+          color: rgb(207, 191, 191);
         }
       }
       .posts__post {
@@ -69,31 +79,26 @@ body {
         span {
           display: block;
         }
-    
 
         p {
           font-size: 14px;
         }
-
-      
       }
 
       img {
         width: 100%;
         height: auto;
         border-radius: 50%;
-
-        
       }
 
-      .post__category{
+      .post__category {
         text-align: center;
         display: inline-block;
         padding: 5px;
         font-style: italic;
         text-decoration: underline;
         font-weight: bold;
-      
+
         &:hover {
           font-style: initial;
           color: rgb(189, 173, 173);
@@ -116,14 +121,8 @@ body {
 
   body {
     .posts-container {
-      h2 {
-        margin: 13.5%;
-        margin-bottom: 4%;
-        font-size: 60px;
-      }
-
       .posts-container__posts {
-      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
         .posts__post {
           h4 {
             font-size: 20px;

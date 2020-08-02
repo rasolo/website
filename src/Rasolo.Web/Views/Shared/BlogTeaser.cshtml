@@ -3,7 +3,7 @@
 @if (Model.ShowPosts)
 {
 	<div class="posts-container">
-		<h2 class="posts__heading">Latest posts</h2>
+		<h2 class="posts-container__heading">@Model.PostsTitle</h2>
 		<div class="posts-container__posts">
 			@{
 				foreach (var postPage in Model.Posts)

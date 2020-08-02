@@ -35,5 +35,12 @@ namespace Rasolo.Services.Abstractions.UmbracoHelper
 		}
 
 		public IPublishedContent GlobalSettingsPage => ContentAtRoot().OfTypes(DocumentTypeAlias.GlobalSettingsPage).FirstOrDefault();
+		public IPublishedContent SearchPage => this.StartPage.ChildrenOfType(DocumentTypeAlias.SearchPage).FirstOrDefault();
+		public IPublishedContent StartPage => this.ContentAtRoot().OfTypes(DocumentTypeAlias.StartPage).FirstOrDefault();
+
+		public IPublishedContent Content(string id)
+		{
+			return _umbracoHelper.Content(id);
+		}
 	}
 }

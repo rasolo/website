@@ -1,6 +1,6 @@
 {
   "name": "rasolo.azurewebsites.net",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "author": "Rasmus Olofsson",
   "dependencies": {
     "jslint": "^0.12.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "watchify": "*"
   },
   "license": "ISC",
@@ -26,15 +26,15 @@
   },
   "homepage": "https://github.com/rasolo/website#readme",
   "devDependencies": {
-    "autoprefixer": "^9.7.0",
+    "autoprefixer": "^9.8.6",
     "babelify": "^10.0.0",
-    "browserify": "^16.5.0",
+    "browserify": "^16.5.1",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
-    "gulp-cli": "^2.2.0",
+    "gulp-cli": "^2.3.0",
     "gulp-postcss": "^8.0.0",
     "gulp-replace": "^1.0.0",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "vinyl-source-stream": "^2.0.0"

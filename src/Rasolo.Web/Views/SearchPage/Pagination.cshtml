@@ -1,0 +1,20 @@
+﻿@using Rasolo.Core.Features.SearchPage
+@inherits UmbracoViewPage<Rasolo.Core.Features.SearchPage.SearchPage>
+
+<div class="search-result-pagination">
+	<div class="pagination-links">
+		@if (Model.ShowPreviousPagePaginationSymbol)
+		{
+			<a class="pagination-links__arrow anchor-empty" href="@Model.PreviousPaginationPageUrl"><</a>
+		}
+		@for (int i = 1; i <= Model.NumberOfPages; i++)
+		{
+			<a class="pagination-links__link @(Model.CurrentPaginationPageNumber == i ? "pagination-links__link--active" : string.Empty)" href="@Model.PaginationSearchQuery@i">@i</a>
+		}
+
+		@if (Model.ShowNextPagePaginationSymbol)
+		{
+			<a class="pagination-links__arrow anchor-empty" href="@Model.NextPaginationPageUrl">></a>
+		}
+	</div>
+</div>
