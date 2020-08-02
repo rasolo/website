@@ -26,7 +26,7 @@
 		<ul class="search-result__list flex-align-center-direction">
 			@if (Model.ShowSearchResults)
 			{
-				<h2 class="search-result__title">Your search for <span class="search-result__query">@Model.Query</span> gave: @Model.TotalItems hits</h2>
+				<h2 class="search-result__title">Your search for <span class="search-result__query">@Model.Query</span> gave: @Model.TotalItems @Model.SearchResultWord</h2>
 			}
 			@if (Model.Results != null)
 			{

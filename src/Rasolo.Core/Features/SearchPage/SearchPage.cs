@@ -28,5 +28,7 @@ namespace Rasolo.Core.Features.SearchPage
 		public string PreviousPaginationPageUrl { get; set; }
 		[Ignore]
 		public bool ShowSearchResults { get; set; }
+
+		public string SearchResultWord { get; set; }
 	}
 }
