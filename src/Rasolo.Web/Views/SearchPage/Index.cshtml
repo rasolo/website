@@ -32,7 +32,7 @@
 			{
 				foreach (var item in Model.Results)
 				{
-					<a class="search-result__link">
+					<a class="search-result__link anchor-empty" href="@item.Url">
 						<li class="search-result__item flex-align-center-direction">
 							<img class="search-result__image" src="@item.TeaserMediaUrl"
 							     @if (item.ShowTeaserMediaAltText)
