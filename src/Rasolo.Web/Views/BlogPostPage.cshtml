@@ -1,6 +1,6 @@
 ﻿@inherits UmbracoViewPage<Rasolo.Core.Features.BlogPostPage.BlogPostPage>
 <div class="blogpost">
-	<div class="blogpost__content">
+	<div class="blogpost__top">
 		<p class="blogpost__breadcrumb">
 			@{
 				var breadCrumbs = Model.BreadCrumbs.ToList();
@@ -23,18 +23,17 @@
 			<a href="@Model.Parent.Url">@Model.Parent.Name</a>
 		</p>
 		<h1>@Model.Title</h1>
-
-		<div class="blogpost__main-body">
-			@Model.MainBody
-		</div>
-
-		@if (Model.Comments != null)
-		{
-			<div class="comments">
-				@Html.Partial("CommentsList", Model.Comments)
-				@Html.Partial("CommentsForm", Model.Id)
-			</div>
-		}
-
 	</div>
+	<div class="blogpost__content">
+		@Model.MainBody
+	</div>
+
+	@if (Model.Comments != null)
+	{
+		<div class="comments">
+			@Html.Partial("CommentsList", Model.Comments)
+			@Html.Partial("CommentsForm", Model.Id)
+		</div>
+	}
+
 </div>

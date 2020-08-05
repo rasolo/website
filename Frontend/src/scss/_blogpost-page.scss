@@ -1,13 +1,16 @@
 .blogpost {
   @extend .article;
 
-  h1 {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+  &__top {
+    margin: 5%;
   }
+  &__content {
+    @extend .article__content;
 
-  &__main-body {
-    margin-top: 5%;
+    p,
+    ul {
+      margin-bottom: 1rem;
+    }
   }
 }
 
@@ -44,14 +47,5 @@
     &:hover {
       color: rgb(126, 126, 121);
     }
-  }
-}
-
-.blogpost__content {
-  margin: 5%;
-  padding-top: 5%;
-
-  p:nth-of-type(3) {
-    margin-top: 25px;
   }
 }

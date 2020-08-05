@@ -1,11 +1,11 @@
 $search-color: #4973a0;
 .search-page {
     margin-top: 30%;
-    @media (min-width: 641px) {
+    @include for-tablet-portrait-up {
         margin-top: 20%;
     }
 
-    @media (min-width: 1360px) {
+    @include for-desktop-up {
         margin-top: 12%;
     }
 }
@@ -17,16 +17,16 @@ $search-color: #4973a0;
 #search-input {
     padding-left: 9px;
     width: 250px;
-    @media (min-width: 641px) {
+
+    @include for-tablet-portrait-up {
         width: 450px;
     }
 
-    /* PC */
-    @media (min-width: 900px) {
+    @include for-tablet-landscape-up {
         width: 60%;
     }
 
-    @media (min-width: 1400px) {
+    @include for-desktop-up {
         width: 40%;
     }
 }
@@ -72,13 +72,14 @@ $search-color: #4973a0;
     &__title {
         font-size: 1.2rem;
         font-weight: inherit;
-            margin-bottom: 1%;
-            max-width: 80%;
-           
-        @media (min-width: 641px) {
+        margin-bottom: 1%;
+        max-width: 80%;
+
+        @include for-tablet-portrait-up {
             max-width: 60%;
         }
-        @media (min-width: 900px) {
+
+        @include for-tablet-landscape-up {
             align-self: baseline;
             padding: 2%;
             margin-bottom: 5%;
@@ -86,7 +87,7 @@ $search-color: #4973a0;
     }
 
     &__query {
-        font-size:1rem;
+        font-size: 1rem;
         font-weight: bold;
     }
 
@@ -104,15 +105,18 @@ $search-color: #4973a0;
         margin-top: 10%;
         padding: 3%;
 
-        @media (min-width: 641px) {
+        @include for-tablet-portrait-up {
             margin-top: initial;
             width: 75%;
         }
 
-        /* PC */
-        @media (min-width: 900px) {
-            width: 30%;
+        @include for-tablet-landscape-up {
+            width: 35%;
             float: left;
+        }
+
+        @include for-desktop-up {
+            width: 30%;
         }
     }
 
@@ -138,12 +142,15 @@ $search-color: #4973a0;
         margin-top: 4%;
         @media (min-width: 641px) {
             margin-left: 17%;
-            margin-top: initial;
+            padding-top: 5%;
             max-width: 70%;
         }
 
-        @media (min-width: 900px) {
+        @include for-tablet-landscape-up {
             margin-left: 28%;
+        }
+
+        @include for-big-desktop-up {
             padding-top: 10%;
         }
 

@@ -14,6 +14,7 @@ namespace Rasolo.Core.Features.SearchPage
 			_viewModelFactory = viewModelFactory;
 		}
 
+		[ValidateInput(false)]
 		public override ActionResult Index(ContentModel contentModel)
 		{
 			var mappedModel = this.MapModel(contentModel.Content);
