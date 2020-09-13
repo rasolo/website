@@ -274,6 +274,7 @@
     <Compile Include="Authentication\AuthenticationService.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Constants\DocumentTypeAlias.cs" />
+    <Compile Include="Constants\Project.cs" />
     <Compile Include="Mail\MailComposer.cs" />
     <Compile Include="Mail\IMailService.cs" />
     <Compile Include="Mail\MailService.cs" />

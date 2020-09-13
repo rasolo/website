@@ -28,16 +28,16 @@ namespace Rasolo.Core.Features.BlogPage
 		{
 			var blogPage = this._viewModelFactory.CreateModel(null, model);
 			this._umbracoMapper.Map(model.Content, blogPage);
-			var blogUrl = "http://" + Request.Url.Host  + blogPage.Url + "";
+			var blogUrl = "https://" + Request.Url.Host  + blogPage.Url + "";
 
 			var syndicationItems = new List<SyndicationItem>();
 
-			var author = new SyndicationPerson("rasmusolofssons@gmail.com", "Rasmus Olofsson", "http://rasolo.azurewebsites.net");
+			var author = new SyndicationPerson(Rasolo.Services.Constants.Project.Email, "Rasmus Olofsson", "https://rasolo.net");
 
 			author.ElementExtensions.Add("title", string.Empty, "Web developer");
 
 
-			author.ElementExtensions.Add("image", string.Empty, "http://rasolo.azurewebsites.net/media/5a1pqhxs/rasolo.png");
+			author.ElementExtensions.Add("image", string.Empty, "https://rasolo.net/media/5a1pqhxs/rasolo.png");
             
 			SyndicationFeed feed = new SyndicationFeed(blogPage.Title, blogPage?.MainBody?.ToString().StripHtml(), new System.Uri(Request.Url.AbsoluteUri))
 			{
@@ -51,7 +51,7 @@ namespace Rasolo.Core.Features.BlogPage
 
 			foreach (var blogPostPage in blogPostPages)
 			{
-				var blogPostPageUrl = "http://" + Request.Url.Host + blogPostPage.Url + "";
+				var blogPostPageUrl = "https://" + Request.Url.Host + blogPostPage.Url + "";
 
 				var blogPostUri =
 					new Uri(blogPostPageUrl);
@@ -59,7 +59,7 @@ namespace Rasolo.Core.Features.BlogPage
 				var blogPostFeedItem = new SyndicationItem(blogPostPage.Title,
 					blogPostContent.ToString(),
 					blogPostUri);
-				blogPostFeedItem.ElementExtensions.Add("author", string.Empty, "rasmusolofssons@gmail.com");
+				blogPostFeedItem.ElementExtensions.Add("author", string.Empty, Rasolo.Services.Constants.Project.Email);
 				blogPostFeedItem.PublishDate = blogPostPage.CreateDate;
 				blogPostFeedItem.LastUpdatedTime = blogPostPage.UpdateDate.ToUniversalTime();
 

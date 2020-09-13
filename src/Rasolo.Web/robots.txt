@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://rasolo.azurewebsites.net/sitemap
+Sitemap: http://rasolo.net/sitemap
