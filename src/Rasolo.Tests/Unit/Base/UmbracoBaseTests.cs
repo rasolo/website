@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -52,7 +53,7 @@ namespace Rasolo.Tests.Unit.Base
 			var content = new Mock<IPublishedContent>();
 			content
 				.Setup(x => x.ContentType)
-				.Returns(new PublishedContentType(1234, contentTypeAlias, PublishedItemType.Content,
+				.Returns(new PublishedContentType(new Guid(), 1234, contentTypeAlias, PublishedItemType.Content,
 					Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing));
 			content.Setup(c => c.GetProperty(It.Is<string>(x => x == publishedProperty.Object.Alias)))
 				.Returns(publishedProperty.Object);
@@ -91,7 +92,7 @@ namespace Rasolo.Tests.Unit.Base
 			altTextPropertyMock.Setup(c => c.GetValue(It.IsAny<string>(), It.IsAny<string>()))
 				.Returns("Test image alt text");
 
-			var contentType = new PublishedContentType(1000, "Image", PublishedItemType.Media,
+			var contentType = new PublishedContentType(new Guid(), 1000, "Image", PublishedItemType.Media,
 				Enumerable.Empty<string>(), Enumerable.Empty<PublishedPropertyType>(), ContentVariation.Nothing);
 
 			var imageMock = new Mock<IPublishedContent>();
