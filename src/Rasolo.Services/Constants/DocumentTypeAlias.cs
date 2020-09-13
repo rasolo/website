@@ -1,5 +1,5 @@
 ﻿
-namespace Rasolo.Core.Features.Shared.Constants
+namespace Rasolo.Services.Constants
 {
 	public class DocumentTypeAlias
 	{

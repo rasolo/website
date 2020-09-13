@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Rasolo.Services.Constants;
+using System.Collections.Generic;
 using System.Linq;
-using Rasolo.Core.Features.Shared.Constants;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 

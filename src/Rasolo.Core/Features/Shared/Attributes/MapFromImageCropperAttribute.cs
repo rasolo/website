@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using Umbraco.Core.Composing;
 using Umbraco.Core.PropertyEditors.ValueConverters;
 using Zone.UmbracoMapper.V8;
 using Zone.UmbracoMapper.V8.Attributes;
@@ -19,7 +20,7 @@ namespace Rasolo.Core.Features.Shared.Attributes
 				return;
 			}
 
-			property.SetValue(model, imageCropperValue.Src + imageCropperValue.GetCropUrl(CropName));
+			property.SetValue(model, imageCropperValue.Src + imageCropperValue.GetCropUrl(CropName, Current.ImageUrlGenerator, useFocalPoint: true));
 		}
 	}
 }

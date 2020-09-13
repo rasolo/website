@@ -6,6 +6,4 @@ namespace Rasolo.Core.Features.Shared.Composers
 	public class BlogPostCommentsComposer : ComponentComposer<BlogPostCommentsComponent>
 	{
 	}
-
-	
 }

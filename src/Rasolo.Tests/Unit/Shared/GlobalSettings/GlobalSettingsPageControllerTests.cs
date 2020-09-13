@@ -9,6 +9,7 @@ using Shouldly;
 using System.Web.Mvc;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Zone.UmbracoMapper.V8;
+using Rasolo.Services.Constants;
 
 namespace Rasolo.Tests.Unit.Shared.GlobalSettings
 {
