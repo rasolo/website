@@ -15,7 +15,7 @@ namespace Rasolo.Services.Mail
 			{
 				var apiKey = ConfigurationManager.AppSettings["SendGrid.ApiKey"];
 				var client = new SendGridClient(apiKey);
-				var from = new EmailAddress(Constants.Project.Email, "Rasolo.net");
+				var from = new EmailAddress("rasmusolofssons@gmail.com", "Rasolo.net");
 				var subject = "A new comment has been submitted.";
 				var to = new EmailAddress(Constants.Project.Email, "Rasmus Olofsson");
 				var msg = MailHelper.CreateSingleEmail(from, to, subject, textContent, htmlContent);
