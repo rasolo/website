@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Rasolo.Infrastructure.Models;
 using Rasolo.Infrastructure.Repositories;
+using reCAPTCHA.MVC;
 using Umbraco.Web.Mvc;
 
 namespace Rasolo.Core.Features.Comments
@@ -18,9 +19,10 @@ namespace Rasolo.Core.Features.Comments
 		[HttpPost]
 		[ValidateInput(false)]
 		[ValidateAntiForgeryToken]
-		public ActionResult SubmitComment(CommentViewModel comment)
+		[CaptchaValidator]
+		public ActionResult SubmitComment(CommentViewModel comment,bool captchaValid)
 		{
-			if (ModelState.IsValid)
+			if (ModelState.IsValid && captchaValid)
 			{
 				this._commentsRepository.Add(comment);
 			}
