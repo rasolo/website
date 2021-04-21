@@ -12,12 +12,12 @@ using Zone.UmbracoMapper.V8;
 
 namespace Rasolo.Core.Features.Shared.Components
 {
-	public class RegisterBlogPagesFeedRouteComponent : IComponent
+	public class RegisterBlogPagesFeedRouteComponent:IComponent
 	{
 		private readonly IUmbracoContextFactory umbracoContextFactory;
 		private readonly IUmbracoMapper umbracoMapper;
 
-		public RegisterBlogPagesFeedRouteComponent(IUmbracoContextFactory umbracoContextFactory, IUmbracoMapper umbracoMapper)
+		public RegisterBlogPagesFeedRouteComponent(IUmbracoContextFactory umbracoContextFactory,IUmbracoMapper umbracoMapper)
 		{
 			this.umbracoContextFactory = umbracoContextFactory;
 			this.umbracoMapper = umbracoMapper;
@@ -27,31 +27,31 @@ namespace Rasolo.Core.Features.Shared.Components
 		public void Initialize()
 		{
 			var blogPages = new List<BlogPage.BlogPage>();
-			using (var umbracoContextReference = umbracoContextFactory.EnsureUmbracoContext())
+			using(var umbracoContextReference = umbracoContextFactory.EnsureUmbracoContext())
 			{
 				var contentCache = umbracoContextReference.UmbracoContext.Content;
 
 				var blogPagePublishedContentType = contentCache.GetContentType(DocumentTypeAlias.BlogPage);
 				var blogPagesAsPublishedContent = contentCache.GetByContentType(blogPagePublishedContentType);
 
-				if (blogPagesAsPublishedContent == null)
+				if(blogPagesAsPublishedContent == null)
 				{
 					return;
 				}
 
-				umbracoMapper.MapCollection(blogPagesAsPublishedContent, blogPages);
+				umbracoMapper.MapCollection(blogPagesAsPublishedContent,blogPages);
 			}
 
-			var blogPageControllerName = nameof(BlogPageController).Replace("Controller", string.Empty);
-			foreach (var blogPage in blogPages)
+			var blogPageControllerName = nameof(BlogPageController).Replace("Controller",string.Empty);
+			foreach(var blogPage in blogPages)
 			{
 				RouteTable.Routes.MapUmbracoRoute($"BlogPageRoute{blogPage.Name}",
-					$"blogs/{blogPage.Name.ToFirstLower()}/{nameof(BlogPageController.Feed)}/{{id}}", new
+					$"blogs/{blogPage.Name.ToFirstLower()}/{nameof(BlogPageController.Feed)}/{{id}}",new
 					{
 						controller = blogPageControllerName,
 						action = nameof(BlogPageController.Feed),
 						id = UrlParameter.Optional
-					}, new BlogPageRouteHandler(blogPage.Id));
+					},new BlogPageRouteHandler(blogPage.Id));
 			}
 		}
 

@@ -298,13 +298,13 @@
       <Version>4.11.1</Version>
     </PackageReference>
     <PackageReference Include="Umbraco.ModelsBuilder">
-      <Version>8.1.0</Version>
+      <Version>8.1.6</Version>
     </PackageReference>
     <PackageReference Include="UmbracoCms">
-      <Version>8.8.0</Version>
+      <Version>8.12.2</Version>
     </PackageReference>
     <PackageReference Include="uSync">
-      <Version>8.7.2</Version>
+      <Version>8.9.1</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>

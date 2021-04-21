@@ -3,7 +3,7 @@ using Umbraco.Core.Composing;
 
 namespace Rasolo.Core.Features.Shared.Composers
 {
-	public class RegisterCustomRouteComposer : ComponentComposer<RegisterBlogPagesFeedRouteComponent>
+	public class RegisterCustomRouteComposer:ComponentComposer<RegisterBlogPagesFeedRouteComponent>
 	{
 	}
 }
