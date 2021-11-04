@@ -6,8 +6,8 @@
 #Ignore static files
 src/Rasolo.Web/assets/js
 src/Rasolo.Web/assets/css
-#Ignore Umbraco media files 
-src/Rasolo.Web/Media
+
+
 
 # User-specific files
 *.rsuser
@@ -365,6 +365,13 @@ MigrationBackup/
 
 # Ignore Umbraco content cache
 **/App_Data/umbraco.config
+
+#Ignore Umbraco media files 
+src/Rasolo.Web/Media
+
+#Ignore Umbraco folder
+src/Rasolo.Web/umbraco/*
+src/Rasolo.Web/umbraco_client/*
 
 # Umbraco packages should not be ignored.
 # Ensure VisualStudio.gitignore is included before this
