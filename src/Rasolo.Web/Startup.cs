@@ -1,4 +1,5 @@
 using System;
+using Anaximapper.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +44,8 @@ namespace Rasolo.Web
                 .AddBackOffice()
                 .AddWebsite()
                 .AddComposers()
-                .Build();
+				.AddAnaximapper()
+				.Build();
 #pragma warning restore IDE0022 // Use expression body for methods
 
         }
