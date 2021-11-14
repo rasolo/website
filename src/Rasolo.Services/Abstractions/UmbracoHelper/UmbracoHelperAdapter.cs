@@ -2,15 +2,16 @@
 using System.Linq;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
+using Rasolo.Services.Constants;
 
 namespace Rasolo.Services.Abstractions.UmbracoHelper
 
 {
 	public class UmbracoHelperAdapter : IUmbracoHelper
 	{
-		private readonly Umbraco.Cms.Web.UmbracoHelper _umbracoHelper;
+		private readonly Umbraco.Cms.Web.Common.UmbracoHelper _umbracoHelper;
 
-		public UmbracoHelperAdapter(Umbraco.Web.UmbracoHelper umbracoHelper)
+		public UmbracoHelperAdapter(Umbraco.Cms.Web.Common.UmbracoHelper umbracoHelper)
 		{
 			_umbracoHelper = umbracoHelper;
 			umbracoHelper.Content(2).AncestorsOrSelf();
