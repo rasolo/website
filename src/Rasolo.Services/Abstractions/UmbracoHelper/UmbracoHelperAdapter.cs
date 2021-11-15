@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Rasolo.Services.Constants;
+using System.Collections.Generic;
 using System.Linq;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
-using Rasolo.Services.Constants;
 
 namespace Rasolo.Services.Abstractions.UmbracoHelper
 

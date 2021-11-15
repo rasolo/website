@@ -1,9 +1,13 @@
 ﻿using Anaximapper;
+using Microsoft.AspNetCore.Html;
+using Rasolo.Core.Features.Shared.Models;
+using Rasolo.Services.Abstractions.UmbracoHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Cms.Core.Models;
 
 namespace Rasolo.Core.Features.Shared.Compositions
 {
@@ -33,9 +37,9 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		{
 			if (contentModel != null)
 			{
-				this._umbracoMapper.Map(contentModel.Content, viewModel);
+				this._anaxiMapper.Map(contentModel.Content, viewModel);
 				var breadCrumbs = new List<BreadCrumb>();
-				this._umbracoMapper.MapCollection(this._umbracoHelper.AncestorsOrSelf(contentModel?.Content), breadCrumbs);
+				this._anaxiMapper.MapCollection(this._umbracoHelper.AncestorsOrSelf(contentModel?.Content), breadCrumbs);
 				breadCrumbs.Reverse();
 
 				viewModel.BreadCrumbs = breadCrumbs;

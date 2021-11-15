@@ -6,7 +6,14 @@
 
   <ItemGroup>
     <PackageReference Include="Anaximapper" Version="1.0.0" />
+    <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0" />
+    <PackageReference Include="Umbraco.Cms" Version="9.1.0-rc" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="9.1.0-rc" />
     <PackageReference Include="Umbraco.Cms.Web.Common" Version="9.1.0-rc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rasolo.Services\Rasolo.Services.csproj" />
   </ItemGroup>
 
 </Project>

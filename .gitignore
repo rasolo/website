@@ -372,6 +372,8 @@ src/Rasolo.Web/Media
 #Ignore Umbraco folder
 src/Rasolo.Web/umbraco/*
 src/Rasolo.Web/umbraco_client/*
+src/Rasolo.Core/wwwroot/umbraco/*
+src/Rasolo.Core/umbraco/*
 
 # Umbraco packages should not be ignored.
 # Ensure VisualStudio.gitignore is included before this

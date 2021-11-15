@@ -5,7 +5,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rasolo.Core.Features.BlogPostPage;
+using Rasolo.Core.Features.BlogsPage;
+using Rasolo.Core.Features.Shared.Abstractions;
+using Rasolo.Core.Features.Shared.Compositions;
+using Rasolo.Core.Features.Shared.Services;
+using Rasolo.Core.Features.StartPage;
+using Rasolo.Services.Abstractions.UmbracoHelper;
 using Umbraco.Cms.Core.DependencyInjection;
+using Umbraco.Cms.Web.Common;
 using Umbraco.Extensions;
 
 namespace Rasolo.Web
@@ -48,14 +56,22 @@ namespace Rasolo.Web
 				.Build();
 #pragma warning restore IDE0022 // Use expression body for methods
 
-        }
+			services.AddScoped<IUmbracoHelper>(sp => new UmbracoHelperAdapter(sp.GetRequiredService<UmbracoHelper>()));
+			services.AddSingleton<IBlogPostPageViewModelFactory, BlogPostPageViewModelFactory>();
+			services.AddSingleton<IBlogsPageViewModelFactory, BlogsPageViewModelFactory>();
+			services.AddSingleton<IHttpUtility, HttpUtilityAdapter>();
+			services.AddSingleton<IBlogPostService, BlogPostService>();
+			services.AddSingleton<IStartPageViewModelFactory, StartPageViewModelFactory>();
+			
 
-        /// <summary>
-        /// Configures the application.
-        /// </summary>
-        /// <param name="app">The application builder.</param>
-        /// <param name="env">The web hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		}
+
+		/// <summary>
+		/// Configures the application.
+		/// </summary>
+		/// <param name="app">The application builder.</param>
+		/// <param name="env">The web hosting environment.</param>
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

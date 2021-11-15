@@ -35,4 +35,3 @@ namespace Rasolo.Core.Features.Shared.Compositions
 		public IEnumerable<BreadCrumb> BreadCrumbs { get; set; }
 	}
 }
-}

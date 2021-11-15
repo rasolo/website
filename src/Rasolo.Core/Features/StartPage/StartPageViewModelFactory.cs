@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Anaximapper;
 using Rasolo.Core.Features.Shared.Compositions;
-using Rasolo.Core.Features.Shared.Constants;
 using Rasolo.Core.Features.Shared.Services;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Rasolo.Services.Constants;
-using Umbraco.Core;
-using Umbraco.Web.Models;
-using Zone.UmbracoMapper.V8;
+using Umbraco.Cms.Core.Mapping;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Extensions;
 
 namespace Rasolo.Core.Features.StartPage
 {
 	public class StartPageViewModelFactory : BaseContentPageViewModelFactory<StartPage>, IStartPageViewModelFactory
 	{
 		private readonly IBlogPostService _blogPostService;
-		private readonly IUmbracoMapper _umbracoMapper;
+		private readonly IPublishedContentMapper anaxiMapper;
 		private readonly IUmbracoService _umbracoService;
 
 
-		public StartPageViewModelFactory(IUmbracoMapper umbracoMapper, IUmbracoService umbracoService,
-			IBlogPostService blogPostService, IUmbracoHelper umbracoHelper) : base(umbracoMapper, umbracoHelper)
+		public StartPageViewModelFactory(IPublishedContentMapper anaxiMapper, IUmbracoService umbracoService,
+			IBlogPostService blogPostService, IUmbracoHelper umbracoHelper) : base(anaxiMapper, umbracoHelper)
 		{
-			_umbracoMapper = umbracoMapper;
+			this.anaxiMapper = anaxiMapper;
 			_umbracoService = umbracoService;
 			_blogPostService = blogPostService;
 		}
@@ -48,7 +48,7 @@ namespace Rasolo.Core.Features.StartPage
 			foreach (var blogPagePublishedContent in blogPagesAsPublishedContent)
 			{
 				var blogPage = new BlogPage.BlogPage();
-				_umbracoMapper.Map(blogPagePublishedContent, blogPage);
+				this.anaxiMapper.Map(blogPagePublishedContent, blogPage);
 
 				viewModel.BlogPages.Add(blogPage);
 			}
