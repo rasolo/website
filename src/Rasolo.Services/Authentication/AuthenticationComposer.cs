@@ -1,4 +1,4 @@
-﻿//using Rasolo.Core.Features.Shared.Services.Authentication;
+﻿//using Rasolo.Web.Features.Shared.Services.Authentication;
 //using Umbraco.Core;
 //using Umbraco.Core.Composing;
 

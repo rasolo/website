@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Rasolo.Core.Features.BlogPostPage;
-using Rasolo.Core.Features.BlogsPage;
-using Rasolo.Core.Features.Shared.Abstractions;
-using Rasolo.Core.Features.Shared.Compositions;
-using Rasolo.Core.Features.Shared.Services;
-using Rasolo.Core.Features.StartPage;
+using Rasolo.Web.Features.BlogPostPage;
+using Rasolo.Web.Features.BlogsPage;
+using Rasolo.Web.Features.Shared.Abstractions;
+using Rasolo.Web.Features.Shared.Compositions;
+using Rasolo.Web.Features.Shared.Services;
+using Rasolo.Web.Features.StartPage;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Web.Common;
@@ -56,11 +56,12 @@ namespace Rasolo.Web
 				.Build();
 #pragma warning restore IDE0022 // Use expression body for methods
 
-			services.AddScoped<IUmbracoHelper>(sp => new UmbracoHelperAdapter(sp.GetRequiredService<UmbracoHelper>()));
+			services.AddSingleton<IUmbracoHelper>(sp => new UmbracoHelperAdapter(sp.GetRequiredService<UmbracoHelper>()));
 			services.AddSingleton<IBlogPostPageViewModelFactory, BlogPostPageViewModelFactory>();
 			services.AddSingleton<IBlogsPageViewModelFactory, BlogsPageViewModelFactory>();
 			services.AddSingleton<IHttpUtility, HttpUtilityAdapter>();
 			services.AddSingleton<IBlogPostService, BlogPostService>();
+			services.AddSingleton<IUmbracoService, UmbracoService>();
 			services.AddSingleton<IStartPageViewModelFactory, StartPageViewModelFactory>();
 			
 

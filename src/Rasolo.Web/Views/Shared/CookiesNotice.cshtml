@@ -1,0 +1,10 @@
+﻿@model Rasolo.Web.Features.Shared.GlobalSettings.GlobalSettingsPageViewModel
+
+@if (Model.ShowCookiesNotice)
+{
+	<aside class="cookies-notice">
+		<p>@Model.CookiesNoticeText</p>
+		<a class="cookies_accept">@Model.CookiesAcceptText</a>
+		<a href="@Model.CookiesLink.Url" class="cookies_read-more">@Model.CookiesLink.Name</a>
+	</aside>
+}

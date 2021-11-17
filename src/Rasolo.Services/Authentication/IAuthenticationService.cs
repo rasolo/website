@@ -1,4 +1,4 @@
-﻿namespace Rasolo.Core.Features.Shared.Services.Authentication
+﻿namespace Rasolo.Web.Features.Shared.Services.Authentication
 {
 	public interface IAuthenticationService
 	{
