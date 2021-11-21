@@ -4,8 +4,11 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 #Ignore static files
-src/Rasolo.Web/assets/js
-src/Rasolo.Web/assets/css
+src/Rasolo.Web/wwwroot/assets/js
+src/Rasolo.Web/wwwroot/assets/css
+Frontend/gulpfile.js.bak
+Frontend/package-lock.json
+.gitignore.bak
 
 
 

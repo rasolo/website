@@ -26,7 +26,7 @@ function scssTask(){
         .pipe(sass()) // compile SCSS to CSS
         .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
         .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
-        .pipe(dest('../src/Rasolo.Web/assets/css')
+        .pipe(dest('../src/Rasolo.Web/wwwroot/assets/css')
     ); // put final CSS in dist folder
 }
 
@@ -40,7 +40,7 @@ function jsTask(){
                // Source the bundle
                .pipe(source("bundle.js"))
                // Then write the resulting files to a folder
-               .pipe(dest("../src/Rasolo.Web/assets/js"))
+               .pipe(dest("../src/Rasolo.Web/wwwroot/assets/js"))
     );
 }
 

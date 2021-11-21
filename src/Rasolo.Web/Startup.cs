@@ -56,13 +56,13 @@ namespace Rasolo.Web
 				.Build();
 #pragma warning restore IDE0022 // Use expression body for methods
 
-			services.AddSingleton<IUmbracoHelper>(sp => new UmbracoHelperAdapter(sp.GetRequiredService<UmbracoHelper>()));
-			services.AddSingleton<IBlogPostPageViewModelFactory, BlogPostPageViewModelFactory>();
-			services.AddSingleton<IBlogsPageViewModelFactory, BlogsPageViewModelFactory>();
-			services.AddSingleton<IHttpUtility, HttpUtilityAdapter>();
-			services.AddSingleton<IBlogPostService, BlogPostService>();
-			services.AddSingleton<IUmbracoService, UmbracoService>();
-			services.AddSingleton<IStartPageViewModelFactory, StartPageViewModelFactory>();
+			services.AddScoped<IUmbracoHelper>(sp => new UmbracoHelperAdapter(sp.GetRequiredService<UmbracoHelper>()));
+			services.AddScoped<IBlogPostPageViewModelFactory, BlogPostPageViewModelFactory>();
+			services.AddScoped<IBlogsPageViewModelFactory, BlogsPageViewModelFactory>();
+			services.AddScoped<IHttpUtility, HttpUtilityAdapter>();
+			services.AddScoped<IBlogPostService, BlogPostService>();
+			services.AddScoped<IUmbracoService, UmbracoService>();
+			services.AddScoped<IStartPageViewModelFactory, StartPageViewModelFactory>();
 			
 
 		}

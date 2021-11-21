@@ -9,23 +9,23 @@ using Umbraco.Cms.Web.Common.Controllers;
 
 namespace Rasolo.Web.Features.StartPage
 {
-	public class StartPageController : RenderController
+	public class StartPageController : BaseContentPageController<StartPage>
 	{
-		public StartPageController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
+		public StartPageController
+			(IPublishedContentMapper anaxiMapper, IStartPageViewModelFactory viewModelFactory, ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(anaxiMapper, viewModelFactory, logger, compositeViewEngine, umbracoContextAccessor)
 		{
+			ViewModelFactory = viewModelFactory;
 		}
 
-		
+		public IStartPageViewModelFactory ViewModelFactory { get; }
 
-		public IActionResult StartPage()
+		public IActionResult StartPage(ContentModel contentModel)
 		{
-			return View(new StartPage());
+			var mappedModel = this.MapModel(contentModel.Content);
+			var viewModel = this.ViewModelFactory.CreateModel(mappedModel, contentModel);
+
+			return View(viewModel);
+
 		}
-
-
-		//public StartPageController
-		//	(IPublishedContentMapper anaxiMapper, IStartPageViewModelFactory viewModelFactory, ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(anaxiMapper, viewModelFactory, logger, compositeViewEngine, umbracoContextAccessor)
-		//{
-		//}
 	}
 }

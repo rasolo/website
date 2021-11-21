@@ -16,9 +16,6 @@
     <ProjectReference Include="..\Rasolo.Services\Rasolo.Services.csproj" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\StartPage\" />
-  </ItemGroup>
 
 
 
