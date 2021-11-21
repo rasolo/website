@@ -1,11 +1,11 @@
-﻿@inherits UmbracoViewPage<Rasolo.Web.Features.BlogPostPage.BlogPostPage>
+﻿@model Rasolo.Web.Features.BlogPostPage.BlogPostPage
 	<!-- TODO: Refractor to use PostTeaser-->
 <article class="posts__post">
-	<a class="test" href="@Model.Url">
+	<a class="test" href="@Model.Parent.UrlSegment">
 		@{
 			if (string.IsNullOrEmpty(Model.TeaserUrl))
 			{
-				<img src="/assets/img/teaser/bear.jpeg" />
+				<img src="wwwroot/assets/img/teaser/bear.jpeg" />
 			}
 			else
 			{
@@ -13,7 +13,7 @@
 			}
 		}
 	</a>
-	<a class="post__category" href="@Model.Parent.Url">@Model.Parent.Name</a>
+	<a class="post__category" href="@Model.Parent.UrlSegment">@Model.Parent.Name</a>
 	<a class="post__date" href="@Model.Url">
 		<p >@Model.CreateDate.ToString("yyyy-MM-dd")</p>
 		<h4>@Model.TeaserHeading</h4>

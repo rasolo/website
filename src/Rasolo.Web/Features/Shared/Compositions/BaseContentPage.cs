@@ -21,6 +21,7 @@ namespace Rasolo.Web.Features.Shared.Compositions
 		public bool ShowHeroImage { get; set; }
 		public virtual IEnumerable<IPublishedContent> Children { get; set; }
 		public virtual string SiteTitle => "Rasolo";
+		public string UrlSegment { get; set; }
 		public string Url { get; set; }
 		public virtual string MetaTitle { get; set; }
 		public virtual string MetaDescription { get; set; }
