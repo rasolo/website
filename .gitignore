@@ -370,7 +370,7 @@ MigrationBackup/
 **/App_Data/umbraco.config
 
 #Ignore Umbraco media files 
-src/Rasolo.Web/Media
+src/Rasolo.Web/wwwroot/Media
 
 #Ignore Umbraco folder
 src/Rasolo.Web/umbraco/*

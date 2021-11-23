@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Anaximapper.Attributes;
+using Rasolo.Web.Features.Shared.Attributes;
 using Rasolo.Web.Features.Shared.Compositions;
 using Rasolo.Web.Features.Shared.Constants.MediaCropAliases;
 using Rasolo.Web.Features.Shared.Constants.PropertyTypeAlias;
@@ -11,7 +12,7 @@ namespace Rasolo.Web.Features.BlogPostPage
 	{
 		public string TeaserHeading { get; set; }
 		[PropertyMapping(SourceProperty = BlogPostPagePropertyAlias.TeaserMedia)]
-		//[MapFromImageCropper(CropName = MediaCropAlias.StartPage)]
+		[MapFromImageCropper(CropName = MediaCropAlias.StartPage)]
 		public string TeaserUrl { get; set; }
 
 		public string ParentUrl { get; set; }
