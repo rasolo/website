@@ -1,21 +1,30 @@
 ﻿using Anaximapper;
+using Microsoft.AspNetCore.Mvc;
 using Rasolo.Web.Features.Shared.Compositions;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.Extensions.Logging;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
+
 
 namespace Rasolo.Web.Features.BlogPage
 {
 	public class BlogPageController : BaseContentPageController<BlogPage>
 	{
-		private readonly IPublishedContentMapper anaxiMapper;
-		private readonly IBlogPageViewModelFactory _viewModelFactory;
 
 		public BlogPageController(IPublishedContentMapper anaxiMapper, IBlogPageViewModelFactory viewModelFactory, ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(anaxiMapper, viewModelFactory, logger, compositeViewEngine, umbracoContextAccessor)
 		{
-			this.anaxiMapper = anaxiMapper;
-			this._viewModelFactory = viewModelFactory;
+			ViewModelFactory = viewModelFactory;
+		}
+		public IBlogPageViewModelFactory ViewModelFactory { get; }
+
+		public IActionResult BlogPage(ContentModel contentModel)
+		{
+			var mappedModel = this.MapModel(contentModel.Content);
+			var viewModel = this.ViewModelFactory.CreateModel(mappedModel, contentModel);
+
+			return View(viewModel);
 		}
 
 		////TODO: Major refractor

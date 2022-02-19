@@ -12,6 +12,7 @@ using Rasolo.Web.Features.Shared.Compositions;
 using Rasolo.Web.Features.Shared.Services;
 using Rasolo.Web.Features.StartPage;
 using Rasolo.Services.Abstractions.UmbracoHelper;
+using Rasolo.Web.Features.BlogPage;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Web.Common;
 using Umbraco.Extensions;
@@ -59,6 +60,7 @@ namespace Rasolo.Web
 			services.AddScoped<IUmbracoHelper>(sp => new UmbracoHelperAdapter(sp.GetRequiredService<UmbracoHelper>()));
 			services.AddScoped<IBlogPostPageViewModelFactory, BlogPostPageViewModelFactory>();
 			services.AddScoped<IBlogsPageViewModelFactory, BlogsPageViewModelFactory>();
+			services.AddScoped<IBlogPageViewModelFactory, BlogPageViewModelFactory>();
 			services.AddScoped<IHttpUtility, HttpUtilityAdapter>();
 			services.AddScoped<IBlogPostService, BlogPostService>();
 			services.AddScoped<IUmbracoService, UmbracoService>();
