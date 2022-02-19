@@ -2,6 +2,7 @@ using System;
 using Anaximapper.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,8 @@ using Rasolo.Web.Features.Shared.Services;
 using Rasolo.Web.Features.StartPage;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Rasolo.Web.Features.BlogPage;
+using Rasolo.Web.Features.Shared;
+using Rasolo.Web.Features.Shared.GlobalSettings;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Web.Common;
 using Umbraco.Extensions;
@@ -64,6 +67,10 @@ namespace Rasolo.Web
 			services.AddScoped<IHttpUtility, HttpUtilityAdapter>();
 			services.AddScoped<IBlogPostService, BlogPostService>();
 			services.AddScoped<IUmbracoService, UmbracoService>();
+
+			services.AddScoped<IGlobalSettingsPageViewModelFactory, GlobalSettingsPagePageViewModelFactory>();
+
+			
 			services.AddScoped<IStartPageViewModelFactory, StartPageViewModelFactory>();
 			
 
