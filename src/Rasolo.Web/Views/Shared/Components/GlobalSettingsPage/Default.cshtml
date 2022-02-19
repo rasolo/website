@@ -1,4 +1,5 @@
-﻿@model Rasolo.Web.Features.Shared.GlobalSettings.GlobalSettingsPageViewModel
+﻿@using Microsoft.AspNetCore.Html
+@model Rasolo.Web.Features.Shared.GlobalSettings.GlobalSettingsPageViewModel
 
 <div>
 	<a class="header__home" href="/"
@@ -22,11 +23,11 @@
 
 
 @{
-    string StyleColor() 
+    IHtmlContent StyleColor() 
     {
 	    if (!string.IsNullOrEmpty(Model.HomeTextColor))
 	    {
-		    return "<text>style='color: #@Model.HomeTextColor' </text>";
+		    return @Html.Raw($"style='color:#{@Model.HomeTextColor}'");
 	    }
 
 	    return null;

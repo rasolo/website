@@ -20,7 +20,7 @@ namespace Rasolo.Web.Features.Shared
 			_httpContextAccessor = httpContextAccessor;
 		}
 
-		public void SetViewModelProperties(GlobalSettingsPageViewModel viewModel)
+		public void SetViewModelProperties(GlobalSettingsPageViewModel viewModel, string id)
 		{
 			viewModel.CookiesNoticeText = !string.IsNullOrEmpty(viewModel.CookiesNoticeText) ? viewModel.CookiesNoticeText : string.Empty;
 			viewModel.CookiesAcceptText = !string.IsNullOrEmpty(viewModel.CookiesAcceptText) ? viewModel.CookiesAcceptText : string.Empty;
@@ -28,13 +28,20 @@ namespace Rasolo.Web.Features.Shared
 			viewModel.HomeText = !string.IsNullOrEmpty(viewModel.HomeText) ? viewModel.HomeText : string.Empty;
 			viewModel.SearchPageUrl = this._umbracoHelper.SearchPage?.Url();
 			var currentPage = new BaseContentPage();
-			// this.anaxiMapper.Map(this._umbracoHelper.AssignedContentItem, currentPage);
-			// viewModel.HomeTextColor = currentPage.HomeTextColor;
-			// viewModel.CurrentPageIsStartPage = currentPage.Id == this._umbracoHelper.StartPage?.Id;
+			if (id == null)
+			{
+				this.anaxiMapper.Map(this._umbracoHelper.StartPage, currentPage);
+			}
+			else
+			{
+				this.anaxiMapper.Map(this._umbracoHelper.Content(id), currentPage);
+			}
+			viewModel.HomeTextColor = currentPage.HomeTextColor;
+			viewModel.CurrentPageIsStartPage = currentPage.Id == this._umbracoHelper.StartPage?.Id;
 		}
 
 
-		public GlobalSettingsPageViewModel CreateModel()
+		public GlobalSettingsPageViewModel CreateModel(string id)
 		{
 			var globalSettingsPage = this._umbracoHelper.GlobalSettingsPage;
 			var viewModel = new GlobalSettingsPageViewModel();
@@ -45,7 +52,7 @@ namespace Rasolo.Web.Features.Shared
 
 			this.anaxiMapper.Map(globalSettingsPage, viewModel);
 
-			SetViewModelProperties(viewModel);
+			SetViewModelProperties(viewModel, id);
 			viewModel.ShowCookiesNotice = this._httpContextAccessor.HttpContext.Request.Cookies?[Constants.CookiesNotice.CookiesNoticeCookieName] == null;
 
 

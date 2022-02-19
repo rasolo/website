@@ -13,9 +13,9 @@ namespace Rasolo.Web.Features.Shared.GlobalSettings
 			_globalSettingsPageViewModelFactory = globalSettingsPageViewModelFactory;
 		}
 
-		public IViewComponentResult Invoke()
+		public IViewComponentResult Invoke(int id)
 		{
-			var viewModel = this._globalSettingsPageViewModelFactory.CreateModel();
+			var viewModel = this._globalSettingsPageViewModelFactory.CreateModel(id.ToString());
 
 			return View(viewModel);
 		}

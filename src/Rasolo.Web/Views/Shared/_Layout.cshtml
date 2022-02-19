@@ -13,7 +13,7 @@
 
 	<body>
 		<header class="header">
-			@await Component.InvokeAsync("GlobalSettingsPage", null)
+			@await Component.InvokeAsync("GlobalSettingsPage",  Model.Id) 
 		</header>
 		<main class="main">
 			@RenderBody()

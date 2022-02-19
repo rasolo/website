@@ -3,6 +3,6 @@ namespace Rasolo.Web.Features.Shared.GlobalSettings
 {
 	public interface IGlobalSettingsPageViewModelFactory
 	{
-		GlobalSettingsPageViewModel CreateModel();
+		GlobalSettingsPageViewModel CreateModel(string id);
 	}
 }

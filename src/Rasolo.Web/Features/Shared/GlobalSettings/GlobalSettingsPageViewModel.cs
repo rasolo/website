@@ -20,5 +20,7 @@ namespace Rasolo.Web.Features.Shared.GlobalSettings
 		public string SearchPageUrl { get; set; }
 		[Ignore]
 		public bool CurrentPageIsStartPage { get; set; }
+		[Ignore]
+		public string Id{ get; set; }
 	}
 }
