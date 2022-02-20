@@ -6,14 +6,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rasolo.Core.Features.SearchPage;
 using Rasolo.Web.Features.BlogPostPage;
 using Rasolo.Web.Features.BlogsPage;
 using Rasolo.Web.Features.Shared.Abstractions;
-using Rasolo.Web.Features.Shared.Compositions;
 using Rasolo.Web.Features.Shared.Services;
 using Rasolo.Web.Features.StartPage;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Rasolo.Web.Features.BlogPage;
+using Rasolo.Web.Features.SearchPage;
+using Rasolo.Web.Features.SearchPage.Examine;
 using Rasolo.Web.Features.Shared;
 using Rasolo.Web.Features.Shared.GlobalSettings;
 using Umbraco.Cms.Core.DependencyInjection;
@@ -69,8 +71,10 @@ namespace Rasolo.Web
 			services.AddScoped<IUmbracoService, UmbracoService>();
 
 			services.AddScoped<IGlobalSettingsPageViewModelFactory, GlobalSettingsPagePageViewModelFactory>();
+			services.AddScoped<ISearchPageViewModelFactory, SearchPageViewModelFactory>();
+			services.AddSingleton<IExamineSearcher, ExamineSearcher>();
 
-			
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddScoped<IStartPageViewModelFactory, StartPageViewModelFactory>();
 			
 
