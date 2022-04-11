@@ -4,7 +4,7 @@ using Rasolo.Web.Features.Shared.Compositions;
 
 namespace Rasolo.Web.Features.SearchPage
 {
-	public class SearchPage : BaseContentPage
+	public class SearchPageViewModel : BaseContentPage
 	{
 		[Ignore]
 		public string Query { get; set; }

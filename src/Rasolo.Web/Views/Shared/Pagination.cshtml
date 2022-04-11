@@ -1,11 +1,11 @@
 ﻿@using Rasolo.Web.Features.SearchPage
-@model Rasolo.Web.Features.SearchPage.SearchPage
+@model Rasolo.Web.Features.SearchPage.SearchPageViewModel
 
 <div class="search-result-pagination">
 	<div class="pagination-links">
 		@if (Model.ShowPreviousPagePaginationSymbol)
 		{
-			<a class="pagination-links__arrow anchor-empty" href="@Model.PreviousPaginationPageUrl"><</a>
+			<a class="pagination-links__arrow anchor-empty" href="@Model.PreviousPaginationPageUrl"></a>
 		}
 		@for (int i = 1; i <= Model.NumberOfPages; i++)
 		{
@@ -14,7 +14,7 @@
 
 		@if (Model.ShowNextPagePaginationSymbol)
 		{
-			<a class="pagination-links__arrow anchor-empty" href="@Model.NextPaginationPageUrl">></a>
+			<a class="pagination-links__arrow anchor-empty" href="@Model.NextPaginationPageUrl"></a>
 		}
 	</div>
 </div>

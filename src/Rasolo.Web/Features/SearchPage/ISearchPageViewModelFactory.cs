@@ -2,7 +2,7 @@
 
 namespace Rasolo.Web.Features.SearchPage
 {
-	public interface ISearchPageViewModelFactory : IBaseContentPageViewModelFactory<SearchPage>
+	public interface ISearchPageViewModelFactory : IBaseContentPageViewModelFactory<SearchPageViewModel>
 	{
 	}
 }

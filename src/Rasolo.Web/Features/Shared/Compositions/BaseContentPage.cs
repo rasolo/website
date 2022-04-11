@@ -5,6 +5,7 @@ using Rasolo.Web.Features.Shared.DocumentTypeInterfaces;
 using Rasolo.Web.Features.Shared.Models;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Rasolo.Web.Features.Shared.Compositions
@@ -25,6 +26,7 @@ namespace Rasolo.Web.Features.Shared.Compositions
 		public string Url { get; set; }
 		public virtual string MetaTitle { get; set; }
 		public virtual string MetaDescription { get; set; }
+		[JsonIgnore]
 		public virtual IPublishedContent Parent { get; set; }
 		public DateTime UpdateDate { get; set; }
 		public DateTime CreateDate { get; set; }

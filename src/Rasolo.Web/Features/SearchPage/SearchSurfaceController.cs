@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Rasolo.Web.Features.Shared.Abstractions;
 using Rasolo.Web.Features.Shared.Constants;
@@ -16,44 +17,14 @@ namespace Rasolo.Web.Features.SearchPage
 {
 	public class SearchSurfaceController : SurfaceController
 	{
-		private readonly IUmbracoHelper _umbracoHelper;
-		private readonly IHttpUtility _httpUtility;
-
-		public SearchSurfaceController(IHttpUtility httpUtility, IUmbracoHelper umbracoHelper, IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory,
+		public SearchSurfaceController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory,
 			ServiceContext services, AppCaches appCaches,
-			IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
+			IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider){}
+		public RedirectToUmbracoPageResult Search(SearchPageViewModel model)
 		{
-			_umbracoHelper = umbracoHelper;
-			_httpUtility = httpUtility;
-		}
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public RedirectToUmbracoPageResult Post(SearchParameters model)
-		{
-			var searchPage = this._umbracoHelper?.SearchPage;
-			var querystring = new QueryString();
+			TempData.Add("SearchResults", JsonConvert.SerializeObject(model));
 
-			if (!string.IsNullOrEmpty(model?.Query))
-			{
-				querystring.Add(QueryStrings.SearchQuery, this._httpUtility.UrlEncode(model.Query));
-			}
-			
-			return RedirectToUmbracoPage(searchPage, querystring);
-		}
-
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public RedirectToUmbracoPageResult Post2(SearchParameters model)
-		{
-			var searchPage = this._umbracoHelper?.SearchPage;
-			var querystring = new QueryString();
-
-			if (!string.IsNullOrEmpty(model?.Query))
-			{
-				querystring.Add(QueryStrings.SearchQuery, this._httpUtility.UrlEncode(model.Query));
-			}
-			
-			return RedirectToUmbracoPage(searchPage, querystring);
+			return RedirectToCurrentUmbracoPage();
 		}
 	}
 }

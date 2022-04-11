@@ -18,7 +18,7 @@ using Umbraco.Cms.Infrastructure.Examine;
 
 namespace Rasolo.Core.Features.SearchPage
 {
-	public class SearchPageViewModelFactory : BaseContentPageViewModelFactory<Web.Features.SearchPage.SearchPage>, ISearchPageViewModelFactory
+	public class SearchPageViewModelFactory : BaseContentPageViewModelFactory<Web.Features.SearchPage.SearchPageViewModel>, ISearchPageViewModelFactory
 	{
 		private readonly IExamineSearcher _examineSearcher;
 		private readonly GlobalSettingsPageViewModel _globalSettingsPageViewModel;
@@ -40,20 +40,18 @@ namespace Rasolo.Core.Features.SearchPage
 			_globalSettingsPageViewModel = globalSettingsPageViewModelFactory.CreateModel(null);
 		}
 
-		public override Web.Features.SearchPage.SearchPage CreateModel(Web.Features.SearchPage.SearchPage viewModel, ContentModel contentModel)
+		public override Web.Features.SearchPage.SearchPageViewModel CreateModel(Web.Features.SearchPage.SearchPageViewModel viewModel, ContentModel contentModel)
 		{
 			viewModel = base.CreateModel(viewModel, contentModel);
 
 			return viewModel;
 		}
 
-		public override void SetViewModelProperties(Web.Features.SearchPage.SearchPage viewModel, ContentModel contentModel)
+		public override void SetViewModelProperties(Web.Features.SearchPage.SearchPageViewModel viewModel, ContentModel contentModel)
 		{
 			base.SetViewModelProperties(viewModel, contentModel);
-			viewModel.Query =
-				_httpUtility.UrlDecode(_httpContextAccessor.HttpContext.Request.Query[QueryStrings.SearchQuery]);
+			
 			viewModel.CurrentPaginationPageNumber = int.Parse(string.IsNullOrEmpty(_httpContextAccessor.HttpContext.Request.Query[QueryStrings.Pagination]) ? "1" : _httpContextAccessor.HttpContext.Request.Query[QueryStrings.Pagination]);
-
 
 			if (!string.IsNullOrEmpty(viewModel.Query))
 			{
@@ -72,7 +70,7 @@ namespace Rasolo.Core.Features.SearchPage
 			viewModel.SearchResultWord = viewModel.TotalItems == 1 ? "result" : "results";
 		}
 
-		public void Search(Web.Features.SearchPage.SearchPage viewModel)
+		public void Search(Web.Features.SearchPage.SearchPageViewModel viewModel)
 		{
 			var nodeTypes = new[] {DocumentTypeAlias.BlogPostPage};
 			var properties = new[] {PropertyTypeAlias.Title, PropertyTypeAlias.Preamble};
