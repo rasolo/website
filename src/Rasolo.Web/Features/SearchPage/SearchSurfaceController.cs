@@ -22,9 +22,16 @@ namespace Rasolo.Web.Features.SearchPage
 			IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider){}
 		public RedirectToUmbracoPageResult Search(SearchPageViewModel model)
 		{
-			TempData.Add("SearchResults", JsonConvert.SerializeObject(model));
+			if (!TempData.ContainsKey("SearchResults"))
+			{
+				TempData.Add("SearchResults", JsonConvert.SerializeObject(model));
+			}
+			else
+			{
+				TempData["SearchResults"] = JsonConvert.SerializeObject(model);
+			}
 
-			return RedirectToCurrentUmbracoPage();
+			return RedirectToCurrentUmbracoPage(new QueryString("?q=" +model.Query));
 		}
 	}
 }

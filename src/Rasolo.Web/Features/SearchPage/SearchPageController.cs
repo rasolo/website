@@ -23,15 +23,19 @@ namespace Rasolo.Web.Features.SearchPage
 			_viewModelFactory = viewModelFactory;
 		}
 
-		public IActionResult SearchPage(ContentModel contentModel)
+		public IActionResult SearchPage(ContentModel contentModel, [FromQuery(Name = "q")] string query)
 		{
 			var mappedModel = this.MapModel(contentModel.Content);
-			var searchResultsJson = TempData["SearchResults"] as string;
-			var searchViewModel = !string.IsNullOrEmpty(searchResultsJson) ? JsonConvert.DeserializeObject<SearchPageViewModel>(searchResultsJson) : null;
-			if (searchViewModel != null)
+			if (!string.IsNullOrEmpty(query))
 			{
-				mappedModel = searchViewModel;
+				var searchResultsJson = TempData.Peek("SearchResults") as string;
+				var searchViewModel = !string.IsNullOrEmpty(searchResultsJson) ? JsonConvert.DeserializeObject<SearchPageViewModel>(searchResultsJson) : null;
+				if (searchViewModel != null)
+				{
+					mappedModel = searchViewModel;
+				}
 			}
+	
 			var viewModel = this._viewModelFactory.CreateModel(mappedModel, contentModel);
 
 			return View(viewModel);
