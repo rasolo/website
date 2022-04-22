@@ -9,5 +9,6 @@ namespace Rasolo.Web.Features.Shared.DocumentTypeInterfaces
 		string ParentUrl { get; }
 		string ParentName { get; }
 		DateTime CreateDate { get; }
+		string Url { get; set; }
 	}
 }

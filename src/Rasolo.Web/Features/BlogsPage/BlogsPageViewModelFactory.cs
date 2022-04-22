@@ -5,6 +5,7 @@ using Rasolo.Web.Features.Shared.Compositions;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Rasolo.Services.Constants;
 using Umbraco.Cms.Core.Models;
+using Umbraco.Extensions;
 
 namespace Rasolo.Web.Features.BlogsPage
 {
@@ -30,6 +31,17 @@ namespace Rasolo.Web.Features.BlogsPage
 				var blogChildren = this._umbracoHelper.ChildrenOfType(contentModel.Content, DocumentTypeAlias.BlogPage);
 				this.anaxiMapper.MapCollection(blogChildren, blogPages);
 				viewModel.BlogPages = blogPages;
+				
+				foreach (var viewModelBlogPage in viewModel.BlogPages)
+				{
+					foreach (var blogChild in blogChildren)
+					{
+						if (blogChild.Id == viewModelBlogPage.Id)
+						{
+							viewModelBlogPage.Url = blogChild.Url();
+						}
+					}
+				}
 			}
 
 			if (viewModel.BlogPages?.Count() >= 1)

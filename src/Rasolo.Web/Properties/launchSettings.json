@@ -4,11 +4,10 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "https://testsite.local"
+      "applicationUrl": "http://rasolo.local"
     },
     "iisExpress": {
-      "applicationUrl": "http://localhost:38535",
-      "sslPort": 44383
+      "applicationUrl": "http://rasolo.local"
     }
   },
   "profiles": {
@@ -23,7 +22,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:44383;http://localhost:38535",
+      "applicationUrl": "http://rasolo.local",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }      
