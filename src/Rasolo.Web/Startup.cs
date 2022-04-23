@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Rasolo.Core.Features.SearchPage;
 using Rasolo.Web.Features.BlogPostPage;
 using Rasolo.Web.Features.BlogsPage;
 using Rasolo.Web.Features.Shared.Abstractions;
@@ -14,6 +13,7 @@ using Rasolo.Web.Features.Shared.Services;
 using Rasolo.Web.Features.StartPage;
 using Rasolo.Services.Abstractions.UmbracoHelper;
 using Rasolo.Web.Features.BlogPage;
+using Rasolo.Web.Features.Feed;
 using Rasolo.Web.Features.SearchPage;
 using Rasolo.Web.Features.SearchPage.Examine;
 using Rasolo.Web.Features.Shared;
@@ -69,6 +69,7 @@ namespace Rasolo.Web
 			services.AddScoped<IHttpUtility, HttpUtilityAdapter>();
 			services.AddScoped<IBlogPostService, BlogPostService>();
 			services.AddScoped<IUmbracoService, UmbracoService>();
+			services.AddScoped<IFeedPageViewModelFactory<FeedPage>, FeedPageViewModelFactory>();
 
 			services.AddScoped<IGlobalSettingsPageViewModelFactory, GlobalSettingsPagePageViewModelFactory>();
 			services.AddScoped<ISearchPageViewModelFactory, SearchPageViewModelFactory>();

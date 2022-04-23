@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NPoco;
 using Rasolo.Web.Features.Shared.Compositions;
+using Umbraco.Cms.Core;
 
 namespace Rasolo.Web.Features.SearchPage
 {
@@ -30,5 +31,9 @@ namespace Rasolo.Web.Features.SearchPage
 		public bool ShowSearchResults { get; set; }
 
 		public string SearchResultWord { get; set; }
+
+
+
+
 	}
 }
