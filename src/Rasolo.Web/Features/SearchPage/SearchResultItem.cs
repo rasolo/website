@@ -1,14 +1,13 @@
 ﻿using Anaximapper.Attributes;
 using Rasolo.Web.Features.Shared.Attributes;
+using Rasolo.Web.Features.Shared.Compositions;
 using Rasolo.Web.Features.Shared.Constants.MediaCropAliases;
 using Rasolo.Web.Features.Shared.Constants.PropertyTypeAlias;
 
 namespace Rasolo.Web.Features.SearchPage
 {
-	public class SearchResultItem
+	public class SearchResultItem : BaseContentPage
 	{
-		public string Title { get; set; }
-		public string Url { get; set; }
 		public string Preamble { get; set; }
 		[PropertyMapping(SourceProperty = BlogPostPagePropertyAlias.TeaserMedia)]
 		[MapFromImageCropper(CropName = MediaCropAlias.StartPage)]
