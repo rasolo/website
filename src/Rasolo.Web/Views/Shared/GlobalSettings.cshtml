@@ -1,0 +1,28 @@
+﻿@model Rasolo.Web.Features.Shared.GlobalSettings.GlobalSettingsPageViewModel
+
+<div>
+	<a class="header__home" href="/"
+	   @StyleColor()>
+		@Model.HomeText
+	</a>
+</div>
+
+
+<div>
+	<a class="header__search-url" href="@Model.SearchPageUrl" @(Model.CurrentPageIsStartPage ? StyleColor() : null)>
+		<svg class="header__search-svg">
+			<use xlink:href="/assets/img/icons/icons.svg#search-symbol"></use>
+		</svg>
+		<span class="header__search-text" @StyleColor()>
+			Search
+		</span>
+	</a>
+</div>
+
+@helper StyleColor()
+{
+	if (!string.IsNullOrEmpty(Model.HomeTextColor))
+	{
+		<text> style="color: #@Model.HomeTextColor" </text>
+	}
+}
