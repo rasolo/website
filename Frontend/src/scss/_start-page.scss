@@ -53,8 +53,8 @@ body {
       justify-items: center;
       grid-gap: 50px;
       a {
-        color: initial;
         text-decoration: none;
+        color:inherit;
       }
       a:first-of-type {
         &:hover {
