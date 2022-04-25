@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "628e6443-3414-425e-9c02-4cf41e8b6556": {
+      "ProjectGuid": "628e6443-3414-425e-9c02-4cf41e8b6556",
+      "DisplayName": "Rasolo.Web",
+      "ColorIndex": 0
+    },
+    "117e95a1-81a6-4b35-bdc7-bb85834faffd": {
+      "ProjectGuid": "117e95a1-81a6-4b35-bdc7-bb85834faffd",
+      "DisplayName": "Rasolo.Services",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}
