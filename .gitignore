@@ -398,3 +398,8 @@ Frontend/node_modules/*
 Frontend/node_modules
 Frontend/node_modules
 .vs/Rasolo/v17/.suo
+src/Rasolo.Tests/App_Plugins
+src/Rasolo.Tests/wwwroot
+src/Rasolo.Tests/umbraco
+.vs/Rasolo/v17
+.vs/Rasolo/DesignTimeBuild

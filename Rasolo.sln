@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rasolo.Web", "src\Rasolo.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rasolo.Services", "src\Rasolo.Services\Rasolo.Services.csproj", "{117E95A1-81A6-4B35-BDC7-BB85834FAFFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasolo.Tests", "src\Rasolo.Tests\Rasolo.Tests.csproj", "{B98B800E-0B46-4D9B-8307-01C15B64D6F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{117E95A1-81A6-4B35-BDC7-BB85834FAFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{117E95A1-81A6-4B35-BDC7-BB85834FAFFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{117E95A1-81A6-4B35-BDC7-BB85834FAFFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98B800E-0B46-4D9B-8307-01C15B64D6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98B800E-0B46-4D9B-8307-01C15B64D6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98B800E-0B46-4D9B-8307-01C15B64D6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98B800E-0B46-4D9B-8307-01C15B64D6F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
