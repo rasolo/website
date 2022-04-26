@@ -399,6 +399,8 @@ Frontend/node_modules
 Frontend/node_modules
 .vs/Rasolo/v17/.suo
 src/Rasolo.Tests/App_Plugins
-src/Rasolo.Tests/umbraco
+
 src/Rasolo.Tests/wwwroot
-.vs
+src/Rasolo.Tests/umbraco
+
+
