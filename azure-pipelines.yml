@@ -48,10 +48,10 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'src/Rasolo.Web/assets'
+    rootFolderOrFile: 'src/Rasolo.Web/wwwroot/assets'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/assets.zipd).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/assets.zip'
     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
