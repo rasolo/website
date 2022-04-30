@@ -1,15 +1,5 @@
 # ASP.NET Core (.NET Framework)
-- task: Npm@1
-  inputs:
-    command: 'install'
-    workingDir: 'Frontend'
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that - task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container' symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
 
 trigger:
 - master
@@ -23,32 +13,45 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: gulp@0
-  inputs:
-    gulpFile: 'Frontend/gulpfile.js'
-    targets: 'dist'
-    gulpjs: 'node_modules/gulp/bin/gulp.js'
-    enableCodeCoverage: false
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    msbuild- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: 'src/Rasolo.Web/assets'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/assets.zip'
-    replaceExistingArchive: truegs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
+    command: 'build'
+    projects: '**/*.csproj'
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: 'Frontend'
+    
+
+- task: gulp@0
+  inputs:
+    gulpFile: 'Frontend/gulpfile.js'
+    targets: 'dist'
+    gulpjs: 'node_modules/gulp/bin/gulp.js'
+    enableCodeCoverage: false
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'src/Rasolo.Web/assets'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/assets.zipd).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
