@@ -14,37 +14,37 @@ variables:
 
 steps:
 
-- task: NuGetToolInstaller@1
+# - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+# - task: NuGetCommand@2
+#   inputs:
+#     restoreSolution: '$(solution)'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+# - task: VSTest@2
+#   inputs:
+#     platform: '$(buildPlatform)'
+#     configuration: '$(buildConfiguration)'
 
-- task: NodeTool@0
-  inputs:
-    versionSpec: '14.17.6'
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '14.17.6'
 
-- task: Npm@1
-  inputs:
-    command: 'install'
-    workingDir: 'Frontend'
+# - task: Npm@1
+#   inputs:
+#     command: 'install'
+#     workingDir: 'Frontend'
     
 
-- task: gulp@0
-  inputs:
-    gulpFile: 'Frontend/gulpfile.js'
-    targets: 'dist'
-    gulpjs: 'node_modules/gulp/bin/gulp.js'
-    enableCodeCoverage: false
+# - task: gulp@0
+#   inputs:
+#     gulpFile: 'Frontend/gulpfile.js'
+#     targets: 'dist'
+#     gulpjs: 'node_modules/gulp/bin/gulp.js'
+#     enableCodeCoverage: false
 
 # - task: ArchiveFiles@2
 #   inputs:
@@ -66,7 +66,10 @@ steps:
 #     command: 'publish'
 #     publishWebProjects: true
 #     arguments: '--configuration $(buildConfiguration) --output - task: DotNetCoreCLI@2
-
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
