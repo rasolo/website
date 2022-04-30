@@ -29,12 +29,14 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.17.6'
+
 - task: Npm@1
   inputs:
     command: 'install'
     workingDir: 'Frontend'
-    customRegistry: 'useFeed'
-    customFeed: 'fa2f5c30-0913-41ab-80eb-7c17de6b7ba3'
     
 
 - task: gulp@0
