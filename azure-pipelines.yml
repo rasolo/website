@@ -33,6 +33,8 @@ steps:
   inputs:
     command: 'install'
     workingDir: 'Frontend'
+    customRegistry: 'useFeed'
+    customFeed: 'fa2f5c30-0913-41ab-80eb-7c17de6b7ba3'
     
 
 - task: gulp@0
