@@ -66,14 +66,12 @@ steps:
 #     command: 'publish'
 #     publishWebProjects: true
 #     arguments: '--configuration $(buildConfiguration) --output - task: DotNetCoreCLI@2
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
-    publishWebProjects: true
+    publishWebProjects: false
+    projects: '**/*Rasolo.Web.csproj'
 
 - task: PublishPipelineArtifact@1
   inputs:
