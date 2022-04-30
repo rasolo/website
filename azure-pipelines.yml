@@ -61,11 +61,17 @@ steps:
 #     archiveType: 'zip'
 #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
 #     replaceExistingArchive: true
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'publish'
+#     publishWebProjects: true
+#     arguments: '--configuration $(buildConfiguration) --output - task: DotNetCoreCLI@2
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
