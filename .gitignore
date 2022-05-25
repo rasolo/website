@@ -7,7 +7,6 @@
 src/Rasolo.Web/wwwroot/assets/js
 src/Rasolo.Web/wwwroot/assets/css
 Frontend/gulpfile.js.bak
-Frontend/package-lock.json
 .gitignore.bak
 
 

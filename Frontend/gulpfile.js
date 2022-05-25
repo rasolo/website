@@ -11,6 +11,7 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 var replace = require('gulp-replace');
 const source = require("vinyl-source-stream");
+const gulp = require('gulp');
 
 
 // File paths
@@ -19,19 +20,20 @@ const files = {
     jsPath: 'src/**/*.js'
 }
 
-// Sass task: compiles the style.scss file into style.css
-function scssTask(){    
+
+async function scssTask(){   
+ gulp.task('scssTask', async function() {
     return src(files.scssPath)
-        .pipe(sourcemaps.init()) // initialize sourcemaps first
-        .pipe(sass()) // compile SCSS to CSS
-        .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
-        .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
-        .pipe(dest('../src/Rasolo.Web/wwwroot/assets/css')
-    ); // put final CSS in dist folder
+    .pipe(sourcemaps.init()) // initialize sourcemaps first
+    .pipe(sass()) // compile SCSS to CSS
+    .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
+    .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
+    .pipe(dest('../src/Rasolo.Web/wwwroot/assets/css'))
+  });
 }
 
-// JS task: concatenates and uglifies JS files to script.js
-function jsTask(){
+async function jsTask() {
+gulp.task('jsTask', async function() {
     return  (browserify({
         entries: ["./src/components/app.js"]
     })
@@ -42,8 +44,8 @@ function jsTask(){
                // Then write the resulting files to a folder
                .pipe(dest("../src/Rasolo.Web/wwwroot/assets/js"))
     );
+  });
 }
-
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
 function watchTask(){
