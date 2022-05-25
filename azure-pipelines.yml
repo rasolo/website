@@ -14,11 +14,11 @@ variables:
 
 steps:
 
-- task: NuGetToolInstaller@1
+# - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+# - task: NuGetCommand@2
+#   inputs:
+#     restoreSolution: '$(solution)'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -28,6 +28,10 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.15.0'
 
 - task: Npm@1
   inputs:
@@ -44,14 +48,35 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'src/Rasolo.Web/assets'
+    rootFolderOrFile: 'src/Rasolo.Web/wwwroot/assets'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/assets.zipd).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/assets.zip'
     replaceExistingArchive: true
 
-- task: PublishBuildArtifacts@1
+# - task: ArchiveFiles@2
+#   inputs:
+#     rootFolderOrFile: '$(Build.BinariesDirectory)'
+#     includeRootFolder: true
+#     archiveType: 'zip'
+#     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+#     replaceExistingArchive: true
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'publish'
+#     publishWebProjects: true
+#     arguments: '--configuration $(buildConfiguration) --output - task: DotNetCoreCLI@2
+
+- task: DotNetCoreCLI@2
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/*Rasolo.Web.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
-    publishLocation: 'Container'
+    publishLocation: 'pipeline'
+
