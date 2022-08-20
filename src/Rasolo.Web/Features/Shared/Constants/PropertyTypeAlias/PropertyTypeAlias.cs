@@ -1,5 +1,4 @@
-﻿using Umbraco.Core;
-
+﻿
 namespace Rasolo.Web.Features.Shared.Constants.PropertyTypeAlias
 {
 	public class PropertyTypeAlias
