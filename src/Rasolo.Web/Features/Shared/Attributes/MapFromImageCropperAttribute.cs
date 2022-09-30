@@ -1,8 +1,8 @@
 ﻿using Anaximapper;
-using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
 using System.Reflection;
-using Umbraco.Cms.Core.Media;
+using System.Text;
 using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 namespace Rasolo.Web.Features.Shared.Attributes
@@ -19,9 +19,22 @@ namespace Rasolo.Web.Features.Shared.Attributes
 			{
 				return;
 			}
+			var crops = imageCropperValue.Crops.First();
+			var sb = new StringBuilder();
+			sb.Append(imageCropperValue.Src);
+			sb.Append("?width=");
+			sb.Append(crops.Width);
+			sb.Append("&height=");
+			sb.Append(crops.Height);
+			if(imageCropperValue.FocalPoint != null)
+			{
+                sb.Append("&rxy=");
+				sb.Append(imageCropperValue.FocalPoint.Top);
+				sb.Append("%2c");
+				sb.Append(imageCropperValue.FocalPoint.Left);
+            }
 
-			var imageUrlGenerator = context.HttpContext.RequestServices.GetRequiredService<IImageUrlGenerator>();
-			property.SetValue(model, imageCropperValue.Src + imageCropperValue.GetCropUrl(CropName, imageUrlGenerator));
+			property.SetValue(model, sb.ToString());
 		}
 	}
 }
