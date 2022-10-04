@@ -87,7 +87,9 @@ function bsWatchTask() {
 // Export the default Gulp task so it can be run
 // Runs the scss and js tasks simultaneously
 
-exports.default = series(parallel(scssTask, jsTask));
+exports.dist = series(parallel(scssTask, jsTask));
+
+exports.watch = series(parallel(scssTask, jsTask), watchTask);
 
 // Runs all of the above but also spins up a local Browsersync server
 // Run by typing in "gulp bs" on the command line
