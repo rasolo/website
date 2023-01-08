@@ -16,6 +16,7 @@
   },
   "author": "Rasmus Olofsson",
   "dependencies": {
+    "browserify": "^17.0.0",
     "jslint": "^0.12.1",
     "node-sass": "^7.0.1",
     "watchify": "^4.0.0"
@@ -26,7 +27,7 @@
   },
   "homepage": "https://github.com/rasolo/website#readme",
   "devDependencies": {
-	"autoprefixer": "^10.2.6",
+    "autoprefixer": "^10.2.6",
     "browser-sync": "^2.27.4",
     "cssnano": "^5.0.6",
     "gulp": "^4.0.2",
