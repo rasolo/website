@@ -59,6 +59,13 @@ function browserSyncReload(cb) {
 	cb();
 }
 
+function cacheBustTask(){
+	var cacheBustString = new Date().getTime();
+    return src(['../src/Rasolo.Web/Views/Shared/_Layout.cshtml'])
+        .pipe(replace(/\\?cb=[^"]*/g, 'cb=' + cacheBustString))
+        .pipe(dest('../src/Rasolo.Web/Views/Shared/'));
+}
+
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
 function watchTask() {
@@ -84,9 +91,10 @@ function bsWatchTask() {
 // Export the default Gulp task so it can be run
 // Runs the scss and js tasks simultaneously
 
-exports.dist = series(parallel(scssTask, jsTask));
+exports.dist = series(parallel(scssTask, jsTask), cacheBustTask);
 
 exports.watch = series(parallel(scssTask, jsTask), watchTask);
+
 
 // Runs all of the above but also spins up a local Browsersync server
 // Run by typing in "gulp bs" on the command line
