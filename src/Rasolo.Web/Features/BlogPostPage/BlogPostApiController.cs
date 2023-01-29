@@ -22,7 +22,7 @@ namespace Rasolo.Web.Features.BlogPostPage
         {
             var blogPosts  = _blogPostService
                 .GetMappedBlogPosts(_umbracoService
-                    .GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).Skip(4*p).Take(4).ToList();
+                    .GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).Skip(4*p).Take(5).ToList();
 
             if(blogPosts == null || blogPosts.Count == 0)
             {

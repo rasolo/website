@@ -11,8 +11,10 @@ module.exports = function () {
         })).then(async function (response) {
             // The API call was successful!
             var json = await response.json();
-            if(json.length === 0){
+            if(json.length < 5){ 
                 loadMore.style.display = 'none';
+            } else {
+                json.pop();
             }
             json.forEach((element) => {
                 var article = document.createElement('article');
