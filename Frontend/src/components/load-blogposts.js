@@ -11,6 +11,9 @@ module.exports = function () {
         })).then(async function (response) {
             // The API call was successful!
             var json = await response.json();
+            if(json.length === 0){
+                loadMore.style.display = 'none';
+            }
             json.forEach((element) => {
                 var article = document.createElement('article');
                 article.className = 'posts__post';
@@ -54,9 +57,4 @@ module.exports = function () {
             console.warn('Error in getting blog posts through ajax.', err);
         });
 };
-
-
-
-   
-    
 }
