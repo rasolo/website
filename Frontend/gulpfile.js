@@ -10,7 +10,8 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const replace = require('gulp-replace');
 const browsersync = require('browser-sync').create();
-
+const browserify = require('browserify');
+var source = require('vinyl-source-stream');
 // File paths
 const files = {
 	scssPath: 'src/scss/*.scss',
@@ -27,16 +28,12 @@ function scssTask() {
 
 // JS task: concatenates and uglifies JS files to script.js
 function jsTask() {
-	return src(
-		[
-			files.jsPath,
-			//,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
-		],
-		{ sourcemaps: true }
-	)
-		.pipe(concat('bundle.js'))
-		.pipe(terser())
-		.pipe(dest('../src/Rasolo.Web/wwwroot/assets/js', { sourcemaps: '.' }));
+	return browserify({entries: ['src/components/app.js']})
+    .bundle()
+    //Pass desired output filename to vinyl-source-stream
+    .pipe(source("bundle.js"))
+    // Start piping stream to tasks!
+    .pipe(dest('../src/Rasolo.Web/wwwroot/assets/js'));
 }
 
 

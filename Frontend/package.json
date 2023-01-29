@@ -19,6 +19,7 @@
     "browserify": "^17.0.0",
     "jslint": "^0.12.1",
     "node-sass": "^7.0.1",
+    "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0"
   },
   "license": "ISC",
