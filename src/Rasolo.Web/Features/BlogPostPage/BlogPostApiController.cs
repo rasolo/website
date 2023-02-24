@@ -1,6 +1,7 @@
 ﻿using J2N.Collections.Generic;
 using Newtonsoft.Json;
 using Rasolo.Services.Constants;
+using Rasolo.Web.Features.Shared.Extensions;
 using Rasolo.Web.Features.Shared.Services;
 using System.Linq;
 using Umbraco.Cms.Web.Common.Controllers;
@@ -24,7 +25,7 @@ namespace Rasolo.Web.Features.BlogPostPage
                 .GetMappedBlogPosts(_umbracoService
                     .GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).Skip(4*p).Take(5).ToList();
 
-            if(blogPosts == null || blogPosts.Count == 0)
+            if(blogPosts.IsNullOrEmpty())
             {
                 return JsonConvert.SerializeObject(new List<BlogPostJsonDto>());
             }
