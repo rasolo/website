@@ -29,22 +29,7 @@ namespace Rasolo.Web.Features.BlogPostPage
                 return JsonConvert.SerializeObject(new List<BlogPostJsonDto>());
             }
 
-            var blogPostsJsonDtoList = new List<BlogPostJsonDto>();
-            foreach (var blogPost in blogPosts)
-            {
-                var blogPostJsonDto = new BlogPostJsonDto();
-                blogPostJsonDto.ParentName= blogPost.Parent.Name;
-                blogPostJsonDto.ParentUrl = blogPost.Parent.Url();
-                blogPostJsonDto.Preamble = blogPost.Preamble;
-                blogPostJsonDto.ShowTeaserMediaAltText = blogPost.ShowTeaserMediaAltText;
-                blogPostJsonDto.TeaserHeading = blogPost.TeaserHeading;
-                blogPostJsonDto.TeaserUrl = blogPost.TeaserUrl;
-                blogPostJsonDto.BlogPostUrl = blogPost.Url;
-                blogPostsJsonDtoList.Add(blogPostJsonDto);
-                blogPostJsonDto.CreateDate = blogPost.CreateDate.ToString("yyyy-MM-dd");
-			}
-
-            return JsonConvert.SerializeObject(blogPostsJsonDtoList);
+            return JsonConvert.SerializeObject(blogPosts.Select(x => new BlogPostJsonDto(x)));
         }
     }
 }

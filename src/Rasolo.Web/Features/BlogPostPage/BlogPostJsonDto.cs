@@ -1,12 +1,20 @@
-﻿using Anaximapper.Attributes;
-using Rasolo.Web.Features.Shared.Attributes;
-using Rasolo.Web.Features.Shared.Constants.MediaCropAliases;
-using Rasolo.Web.Features.Shared.Constants.PropertyTypeAlias;
+﻿using Umbraco.Extensions;
 
 namespace Rasolo.Web.Features.BlogPostPage
 {
 	public class BlogPostJsonDto
 	{
+		public BlogPostJsonDto(BlogPostPage blogPost)
+		{
+            ParentName = blogPost.Parent.Name;
+            ParentUrl = blogPost.Parent.Url();
+            Preamble = blogPost.Preamble;
+            ShowTeaserMediaAltText = blogPost.ShowTeaserMediaAltText;
+            TeaserHeading = blogPost.TeaserHeading;
+            TeaserUrl = blogPost.TeaserUrl;
+            BlogPostUrl = blogPost.Url;
+            CreateDate = blogPost.CreateDate.ToString("yyyy-MM-dd");
+        }
 		public string TeaserHeading { get; set; }
 		
 		public string TeaserUrl { get; set; }
