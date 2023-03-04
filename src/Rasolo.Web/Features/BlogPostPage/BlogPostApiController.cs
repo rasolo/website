@@ -19,18 +19,21 @@ namespace Rasolo.Web.Features.BlogPostPage
             _blogPostService = blogPostService;
             _umbracoService = umbracoService;
         }
-        public string GetBlogPosts(int p = 1, bool all = false)
-        {
-            var blogPosts  = _blogPostService
-                .GetMappedBlogPosts(_umbracoService
-                    .GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).Skip(4*p).Take(all ? int.MaxValue : 5).ToList();
+		public string GetBlogPosts(int p = 1, bool all = false)
+		{
+			var blogPosts = _blogPostService
+				.GetMappedBlogPosts(_umbracoService.GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage))
+				.Skip(4 * p)
+				.Take(all ? int.MaxValue : 5)
+				.Select(x => new BlogPostJsonDto(x))
+				.ToList();
 
-            if(blogPosts.IsNullOrEmpty())
-            {
-                return JsonConvert.SerializeObject(new List<BlogPostJsonDto>());
-            }
+			if (!blogPosts.Any())
+			{
+				return JsonConvert.SerializeObject(new List<BlogPostJsonDto>());
+			}
 
-            return JsonConvert.SerializeObject(blogPosts.Select(x => new BlogPostJsonDto(x)));
-        }
-    }
+			return JsonConvert.SerializeObject(blogPosts);
+		}
+	}
 }
