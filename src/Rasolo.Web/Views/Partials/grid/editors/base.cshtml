@@ -1,5 +1,4 @@
 ﻿@model dynamic
-@using Umbraco.Web.Templates
 
 @functions {
     public static string EditorView(dynamic contentItem)
@@ -17,7 +16,7 @@
 @try
 {
     string editor = EditorView(Model);                                                       
-    <text>@Html.Partial(editor, (object)Model)</text>
+    <text>@Html.PartialAsync(editor, (object)Model)</text>
 }
 catch (Exception ex) { 
 <pre>@ex.ToString()</pre>

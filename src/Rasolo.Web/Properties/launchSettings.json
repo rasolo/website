@@ -4,10 +4,10 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://rasolo.local"
+      "applicationUrl": "http://rasolo.local:22963"
     },
     "iisExpress": {
-      "applicationUrl": "http://rasolo.local"
+      "applicationUrl": "http://rasolo.local:22963"
     }
   },
   "profiles": {
@@ -22,10 +22,10 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://rasolo.local",
+      "applicationUrl": "http://rasolo.local:22963",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }      
+      }
     }
   }
 }

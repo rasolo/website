@@ -7,7 +7,6 @@
 src/Rasolo.Web/wwwroot/assets/js
 src/Rasolo.Web/wwwroot/assets/css
 Frontend/gulpfile.js.bak
-Frontend/package-lock.json
 .gitignore.bak
 
 
@@ -404,3 +403,4 @@ src/Rasolo.Tests/wwwroot
 src/Rasolo.Tests/umbraco
 
 
+.idea

@@ -54,6 +54,7 @@ namespace Rasolo.Web.Features.Feed
 
 			var blogPostPages = new List<BlogPostPage.BlogPostPage>();
 			_anaxiMapper.MapCollection(blogPage.Children, blogPostPages);
+			blogPostPages.Remove(blogPostPages.FirstOrDefault(x => x.Name == "Feed"));
 
 			foreach (var blogPostPage in blogPostPages)
 			{
@@ -76,8 +77,7 @@ namespace Rasolo.Web.Features.Feed
 			feed.LastUpdatedTime = blogPostPages.OrderByDescending(x => x.UpdateDate)
 				.FirstOrDefault()!
 				.UpdateDate.ToUniversalTime();
-
-
+			
 			feed.Items = syndicationItems;
 			var link = new SyndicationLink(
 				new Uri(viewModel.AbsoluteUrl), "self", "type", "text/xml", 1000);

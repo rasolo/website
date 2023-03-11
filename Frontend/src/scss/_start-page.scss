@@ -47,6 +47,38 @@ body {
     }
     }
 
+    &__load-more-container {
+      margin-top: 5rem;
+      text-align: center;
+      &__item {
+        cursor: pointer;
+        display: inline-block;
+        & span {
+          background-color: #878787;
+          color: white;
+          padding: 1rem;
+          display: block;
+          min-width: 7rem;
+          &:hover {
+            background-color: #484448;
+            font-weight: bold;
+          }
+        }
+
+        &--all {
+          @media screen and (min-width: 600px) {
+            display: inline-block;
+            margin-left: 3rem;
+          }
+          display: block;
+          margin-top: 1.5rem;
+          & span {
+            display:inline-block;
+          }
+        }
+      }
+    }
+
     .posts-container__posts {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

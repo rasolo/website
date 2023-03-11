@@ -24,10 +24,10 @@ steps:
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-- task: VSTest@2
+
+- task: NodeTool@0
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    versionSpec: '16.15.0'
 
 - task: NodeTool@0
   inputs:

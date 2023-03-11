@@ -32,7 +32,7 @@ namespace Rasolo.Web.Features.StartPage
 			SetBlogPagesOnViewModel(viewModel);
 			viewModel.BlogPostPages = _blogPostService
 				.GetMappedBlogPosts(_umbracoService
-					.GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).ToList();
+					.GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).Take(4).ToList();
 
 			viewModel.Title = viewModel.Title.StripHtml().Replace("\n", "<br />");
 
