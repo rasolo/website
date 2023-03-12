@@ -1,7 +1,7 @@
 module.exports = () => {
     const loadMore = document.querySelector('.posts-container__load-more-container__item');
     const loadAll = document.querySelector('.posts-container__load-more-container__item--all');
-    const postsLists = document.querySelector('.posts-container__posts');
+    const postsLists = document.querySelector('#js-posts-container__posts');
     let pageIndex = 1;
   
     const appendPosts = (json) => {
@@ -13,6 +13,7 @@ module.exports = () => {
         blogPostAnchor.setAttribute('href', element.BlogPostUrl);
   
         const img = document.createElement('img');
+        img.className ="post__image";
         img.setAttribute('src', element.TeaserUrl);
         blogPostAnchor.append(img);
   
