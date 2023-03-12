@@ -1,7 +1,6 @@
 html main {
   margin-top: initial;
 }
-body {
   h1 {
     font-family: "lobster", cursive;
     font-size: 8vw;
@@ -102,30 +101,13 @@ body {
           color: rgb(207, 191, 191);
         }
       }
-      .posts__post {
-        width: 150px;
-        text-align: center;
-        h4 {
-          margin-top: 2%;
-        }
-        span {
-          display: block;
-        }
+    
 
-        p {
-          font-size: 14px;
-        }
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-        border-radius: 50%;
-      }
+     
 
       .post__category {
         text-align: center;
-        display: inline-block;
+        display: block;
         padding: 5px;
         font-style: italic;
         text-decoration: underline;
@@ -139,10 +121,28 @@ body {
     }
   }
 
+  .posts__post {
+    width: 150px;
+    text-align: center;
+    h4 {
+      margin-top: 2%;
+    }
+    span {
+      display: block;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    &--wide {
+      width:400px;
+    }
+  }
+
   .spacer {
     height: 50px;
   }
-}
 
 @media screen and (min-width: 600px) {
   body #hero_background-container {
@@ -175,3 +175,25 @@ body {
     }
   }
 }
+
+.post__image {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+
+    &--rectangle {
+      border-radius: initial;
+      object-fit: cover;
+      height: 300px;
+      width: 300px;
+
+      @media screen and (min-width: 600px) {
+        width: 400px;
+        height: 400px;
+    }
+  }
+
+    &--no-cover {
+      object-fit:initial;
+    }
+  }

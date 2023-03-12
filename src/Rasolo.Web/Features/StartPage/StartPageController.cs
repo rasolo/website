@@ -24,8 +24,7 @@ namespace Rasolo.Web.Features.StartPage
 			var mappedModel = this.MapModel(contentModel.Content);
 			var viewModel = this.ViewModelFactory.CreateModel(mappedModel, contentModel);
 
-			return View(viewModel);
-
+			return View("~/Views/StartPage/Index.cshtml", viewModel);
 		}
 	}
 }

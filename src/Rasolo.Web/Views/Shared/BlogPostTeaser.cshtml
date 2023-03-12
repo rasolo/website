@@ -6,18 +6,18 @@
 		@{
 			if (string.IsNullOrEmpty(Model.TeaserUrl))
 			{
-				<img src="/assets/img/teaser/bear.jpeg" />
+				<img class="post__image" src="/assets/img/teaser/bear.jpeg" />
 			}
 			else
 			{
-				<img src="@Model.TeaserUrl" @if(Model.ShowTeaserMediaAltText){<text>alt="@Model.TeaserMediaAltText"</text>} />
+				<img class="post__image"src="@Model.TeaserUrl" @if(Model.ShowTeaserMediaAltText){<text>alt="@Model.TeaserMediaAltText"</text>} />
 			}
 		}
 	</a>
 	<a class="post__category" href="@Model.Parent.Url()">@Model.Parent.Name</a>
 	<a class="post__date" href="@Model.Url">
 		<p >@Model.CreateDate.ToString("yyyy-MM-dd")</p>
-		<h4>@Model.TeaserHeading</h4>
+		<p>@Model.TeaserHeading</p>
 	</a>
 
 </article>
