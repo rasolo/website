@@ -1,0 +1,7 @@
+﻿@model Rasolo.Web.Features.StartPage.StartPage
+
+@await Html.PartialAsync("TopSection")
+
+@await Html.PartialAsync("GithubPostsTeaser")
+
+@await Html.PartialAsync("BlogPostsTeaser", Model.BlogPostPages)
