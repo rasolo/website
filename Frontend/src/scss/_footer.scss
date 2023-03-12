@@ -59,6 +59,10 @@
     margin-left: -2rem;
     margin-right: 3rem;
 
+    &:hover {
+      opacity:0.5;
+    }
+
     @media (min-width: 900px) {
       margin-right: 63%;
       margin-left: -36%;
@@ -70,7 +74,7 @@
     color: #ffffff;
 
     &:hover {
-      text-decoration: underline;
+      color: gray;
     }
   }
 
