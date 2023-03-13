@@ -1,14 +1,14 @@
-﻿<div class="home">
-	<section class="hero">
-		<div id="hero_background-container">
-			<div class="hero-header">
-				<h1>@Html.Raw(Model.Title)</h1>
-			</div>
-			@if (Model.ShowHeroImage)
-			{
-				<img src="@Model.HeroImage.DomainWithUrl" id="hero-img" data-hero-type="start-page" alt="@Model.HeroImage.AltText" />
-				<noscript><img src="@Model.HeroImage.DomainWithUrl"></noscript>
-			}
-		</div>
-	</section>
+﻿<div class="hero-container">
+    <div class="hero-container__welcome">
+        <h1>Welcome to Rasolo</h1>
+        <p>Take a look around and see if you can find anything you find useful. Have a nice day.</p>
+    </div>
+    <div class="hero-container__teasers">
+        <div id="projects-teaser" class="hero-container__teaser">
+            <h3>Projects</h3>
+        </div>
+        <div id="posts-teaser" class="hero-container__teaser">
+            <h3>Posts</h3>
+        </div>
+    </div>
 </div>
