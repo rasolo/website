@@ -215,8 +215,12 @@ html main {
     height: 80vw;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1700px) {
   height: 50vw;
+}
+
+&__items {
+  margin-top: -9rem;
 }
 
 &__welcome {
@@ -225,6 +229,7 @@ html main {
   & h1 {
       font-size: 8vw;
       text-align: center;
+      margin-top: -5rem;
 
       @media screen and (min-width: 600px) {
         font-size: 6vw;
@@ -234,19 +239,26 @@ html main {
       font-size: 6vw;
   }
 
-    @media screen and (min-width: 1500px) {
+  @media screen and (min-width: 1400px) {
+}
+
+    @media screen and (min-width: 1800px) {
       font-size: 4vw;
   }
     }
   & p {
     padding: 2%;
-    font-size: 4vw;
+    font-size: 3.3vw;
 
     @media screen and (min-width: 600px) {
-      font-size: 3vw;
+      font-size: 2.8vw;
   }
 
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: 900px) {
+    font-size: 2vw;
+}
+
+  @media screen and (min-width: 1800px) {
     font-size: 1vw;
 }
   }
@@ -254,29 +266,34 @@ html main {
 
 &__teasers {
   display:flex;
+  justify-content: center;
 }
 
     &__teaser {
       text-align: center;
       padding: 3.5vw;
       border-style: solid;
-      min-width: 10rem;
+      min-width: 7rem;
       margin: 4vw;
+      margin-left: 1.3vw;
+      margin-right: 1.3vw;
       background-color: #68d9ff;
       cursor: pointer;
       border-width: 1px;
 
       @media screen and (min-width: 600px) {
         padding: 2.5vw;
-
     }
 
       @media screen and (min-width: 900px) {
         padding: 2vw;
+        min-width: 10rem;
     }
 
     @media screen and (min-width: 1200px) {
       padding: 1.2vw;
+      min-width:11rem;
+      margin-top:1.3vw;
   }
 
   @media screen and (min-width: 1500px) {
