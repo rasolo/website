@@ -1,6 +1,6 @@
 ﻿@model Rasolo.Web.Features.StartPage.StartPage
 
-@await Html.PartialAsync("TopSection")
+@await Html.PartialAsync("TopSection", Model.HeroImage.Url)
 
 @await Html.PartialAsync("GithubPostsTeaser")
 

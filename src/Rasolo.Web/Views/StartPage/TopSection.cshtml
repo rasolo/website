@@ -1,4 +1,5 @@
-﻿<div class="hero-container">
+﻿@model string
+<div class="js-hero-container hero-container">
     <div class="hero-container__welcome">
         <div class="hero-container__items">
             <h1>Welcome to Rasolo</h1>
@@ -14,3 +15,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    (function () {
+    function setHeroImage(imageUrl) {
+        const heroContainer = document.querySelector('.js-hero-container');
+        heroContainer.style.backgroundImage = `url(${imageUrl})`;
+    }
+    setHeroImage('@Model');
+    })();
+</script>
