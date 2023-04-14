@@ -1,7 +1,12 @@
-﻿@model Rasolo.Web.Features.StartPage.StartPage
+﻿@using Rasolo.Web.Features.Shared.Models;
+@model Rasolo.Web.Features.StartPage.StartPage
 
-@await Html.PartialAsync("TopSection")
+@await Html.PartialAsync("TopSection", Model)
 
 @await Html.PartialAsync("GithubPostsTeaser")
 
 @await Html.PartialAsync("BlogPostsTeaser", Model.BlogPostPages)
+
+@await Html.PartialAsync("ButtonContainer", Model.BottomButton)
+
+<div class="spacer"></div>

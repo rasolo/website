@@ -1,16 +1,22 @@
-﻿<div class="hero-container">
+﻿@model Rasolo.Web.Features.StartPage.StartPage
+<div class="js-hero-container hero-container">
     <div class="hero-container__welcome">
         <div class="hero-container__items">
             <h1>Welcome to Rasolo</h1>
             <p>Find solutions to technical problems.</p>
         </div>
-        <div class="hero-container__teasers">
-            <div id="projects-teaser" class="hero-container__teaser">
-                <h3>Projects</h3>
-            </div>
-            <div id="posts-teaser" class="hero-container__teaser">
-                <h3>Posts</h3>
-            </div>
-        </div>
+
+        @await Html.PartialAsync("ButtonContainer",Model.TopButton)
+
     </div>
 </div>
+
+<script>
+    (function () {
+        function setHeroImage(imageUrl) {
+            const heroContainer = document.querySelector('.js-hero-container');
+            heroContainer.style.backgroundImage = `url(${imageUrl})`;
+        }
+        setHeroImage('@Model.HeroImage.Url');
+    })();
+</script>
