@@ -1,0 +1,11 @@
+﻿@using Rasolo.Web.Features.Shared.Models;
+@model ButtonViewModel
+
+<div class="button-container @(!string.IsNullOrEmpty(Model.ContainerModifierClass) ? Model.ContainerModifierClass : null)">
+    <div id="@Model.ButtonIdOne" class="button-container__button">
+        <h3>@Model.ButtonTextOne</h3>
+    </div>
+    <div id="@Model.ButtonIdTwo" class="button-container__button">
+        <h3>@Model.ButtonTextTwo</h3>
+    </div>
+</div>

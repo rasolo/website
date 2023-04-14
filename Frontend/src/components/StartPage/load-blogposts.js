@@ -1,6 +1,6 @@
 module.exports = () => {
-    const loadMore = document.querySelector('.posts-container__load-more-container__item');
-    const loadAll = document.querySelector('.posts-container__load-more-container__item--all');
+    const loadMore = document.querySelector('#js-load-more-posts');
+    const loadAll = document.querySelector('#js-load-all-posts');
     const postsLists = document.querySelector('#js-posts-container__posts');
     let pageIndex = 1;
   

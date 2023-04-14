@@ -263,54 +263,60 @@ html main {
   }
 }
 
-&__teasers {
-  display:flex;
-  justify-content: center;
-}
 
-    &__teaser {
-      text-align: center;
-      padding: 3.5vw;
-      border-style: solid;
-      min-width: 7rem;
-      margin: 4vw;
-      margin-left: 1.3vw;
-      margin-right: 1.3vw;
-      background-color: #68d9ff;
-      cursor: pointer;
-      border-width: 1px;
 
-      @media screen and (min-width: 600px) {
-        padding: 2.5vw;
-    }
-
-      @media screen and (min-width: 900px) {
-        padding: 2vw;
-        min-width: 10rem;
-    }
-
-    @media screen and (min-width: 1200px) {
-      padding: 1.2vw;
-      min-width:11rem;
-      margin-top:1.3vw;
+  
   }
 
-  @media screen and (min-width: 1500px) {
-    padding: 0.95vw;
-}
+  .button-container {
+    display:flex;
+    justify-content: center;
 
-      &:hover {
-        background-color: #68c4e4;
+    &--mt {
+      margin-top:3rem;
+    }
+
+    &__button {
+        text-align: center;
+        padding: 3.5vw;
+        border-style: solid;
+        min-width: 9rem;
+        margin: 4vw;
+        margin-left: 1.3vw;
+        margin-right: 1.3vw;
+        background-color: #68d9ff;
+        cursor: pointer;
+        border-width: 1px;
+  
+        @media screen and (min-width: 600px) {
+          padding: 2.5vw;
       }
-
-      &:nth-of-type(2) {
-        background-color: #ace5ac;
+  
+        @media screen and (min-width: 900px) {
+          padding: 2vw;
+          min-width: 10rem;
+      }
+  
+      @media screen and (min-width: 1200px) {
+        padding: 1.2vw;
+        min-width:11rem;
+        margin-top:1.3vw;
+    }
+  
+    @media screen and (min-width: 1500px) {
+      padding: 0.95vw;
+  }
   
         &:hover {
-          background-color: #65dc65;
+          background-color: #68c4e4;
+        }
+  
+        &:nth-of-type(2) {
+          background-color: #ace5ac;
+    
+          &:hover {
+            background-color: #65dc65;
+          }
         }
       }
     }
-
-  
-  }

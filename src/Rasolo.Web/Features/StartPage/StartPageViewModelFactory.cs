@@ -8,6 +8,7 @@ using Rasolo.Services.Constants;
 using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Extensions;
+using Rasolo.Web.Features.Shared.Models;
 
 namespace Rasolo.Web.Features.StartPage
 {
@@ -34,8 +35,31 @@ namespace Rasolo.Web.Features.StartPage
 				.GetMappedBlogPosts(_umbracoService
 					.GetAllPagesByDocumentTypeAtRootLevel(DocumentTypeAlias.BlogPostPage)).Take(4).ToList();
 
+			SetButtons(viewModel);
+
 			viewModel.Title = viewModel.Title.StripHtml().Replace("\n", "<br />");
 
+		}
+
+		private static void SetButtons(StartPage viewModel)
+		{
+			viewModel.TopButton = new ButtonViewModel
+			{
+				ContainerModifierClass = null,
+				ButtonIdOne = "projects-teaser",
+				ButtonTextOne = "Projects",
+				ButtonIdTwo = "posts-teaser",
+				ButtonTextTwo = "Posts"
+			};
+
+			viewModel.BottomButton = new ButtonViewModel
+			{
+				ContainerModifierClass = "button-container--mt",
+				ButtonIdOne = "js-load-more-posts",
+				ButtonTextOne = "Load more",
+				ButtonIdTwo = "js-load-all-posts",
+				ButtonTextTwo = "Load all"
+			};
 		}
 
 		private void SetBlogPagesOnViewModel(StartPage viewModel)
