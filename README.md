@@ -32,6 +32,7 @@ Visual Studio 2017+: https://visualstudio.microsoft.com/
 #### Back-end
 * Clone this project.
 * Build the project.
+* Create a binding for the site at C:\Windows\System32\drivers\etc\hosts.
 * Create a database:
 ___
 Open the file: src/Rasolo.Web/web.config.
