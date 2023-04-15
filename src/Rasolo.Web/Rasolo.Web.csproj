@@ -10,6 +10,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.2" />
         <PackageReference Include="System.ServiceModel.Syndication" Version="7.0.0" />
         <PackageReference Include="Umbraco.Cms" Version="11.3.0" />
+        <PackageReference Include="Umbraco.StorageProviders.AzureBlob" Version="11.0.0" />
         <PackageReference Include="uSync" Version="11.1.0" />
     </ItemGroup>
 
