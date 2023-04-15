@@ -404,3 +404,4 @@ src/Rasolo.Tests/umbraco
 
 
 .idea
+/src/Rasolo.Web/appsettings.Development.json

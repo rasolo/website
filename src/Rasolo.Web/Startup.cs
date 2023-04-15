@@ -59,6 +59,7 @@ namespace Rasolo.Web
                 .AddWebsite()
                 .AddComposers()
 				.AddAnaximapper()
+				.AddAzureBlobMediaFileSystem()
 				.Build();
 #pragma warning restore IDE0022 // Use expression body for methods
 
