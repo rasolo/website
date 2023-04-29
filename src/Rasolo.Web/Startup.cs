@@ -53,15 +53,25 @@ namespace Rasolo.Web
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
-#pragma warning disable IDE0022 // Use expression body for methods
-            services.AddUmbraco(_env, _config)
-                .AddBackOffice()
-                .AddWebsite()
-                .AddComposers()
-				.AddAnaximapper()
-				.AddAzureBlobMediaFileSystem()
-				.Build();
-#pragma warning restore IDE0022 // Use expression body for methods
+			if (!_env.IsDevelopment())
+			{
+				services.AddUmbraco(_env, _config)
+					.AddBackOffice()
+					.AddWebsite()
+					.AddComposers()
+					.AddAnaximapper()
+					.AddAzureBlobMediaFileSystem()
+					.Build();
+			}
+			else
+			{
+				services.AddUmbraco(_env, _config)
+					.AddBackOffice()
+					.AddWebsite()
+					.AddComposers()
+					.AddAnaximapper()
+					.Build();
+			}
 
 			services.AddScoped<IUmbracoHelper>(sp => new UmbracoHelperAdapter(sp.GetRequiredService<UmbracoHelper>()));
 			services.AddScoped<IBlogPostPageViewModelFactory, BlogPostPageViewModelFactory>();
