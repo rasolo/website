@@ -1,5 +1,6 @@
 ﻿using System;
 using Examine;
+using Examine.Search;
 using Rasolo.Web.Features.Shared.Constants;
 
 namespace Rasolo.Web.Features.SearchPage.Examine
@@ -19,18 +20,22 @@ namespace Rasolo.Web.Features.SearchPage.Examine
 			{
 				throw new InvalidOperationException($"No index found by name {"ExternalIndex"}");
 			}
-			//restrict the search to the Content section, create our search criteria object
-			var query = index.Searcher.CreateQuery(indexType);
-			var operation = query.GroupedOr(new[] {SearchFields.NodeTypeAlias}, nodeTypes);
-			var queryWords = searchQuery.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
-			var exactSearchPhrase = new ExactPhraseExamineValue(searchQuery);
 
-			foreach (var word in queryWords)
+			var query = index.Searcher.CreateQuery(indexType);
+			var operation = query.GroupedOr(new[] { SearchFields.NodeTypeAlias }, nodeTypes);
+			var queryWords = searchQuery.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+			operation.Or().GroupedOr(properties, searchQuery.Fuzzy(fuzzieness));
+			if (queryWords?.Length > 1)
 			{
-				operation.And().GroupedOr(properties, word.Fuzzy(fuzzieness), exactSearchPhrase);
+				var exactSearchPhrase = new ExactPhraseExamineValue(searchQuery);
+
+				foreach (var word in queryWords)
+				{
+					operation.And().GroupedOr(properties, word.Fuzzy(fuzzieness), exactSearchPhrase);
+				}
 			}
 
-			return operation.Execute();
+			return operation.Execute(new QueryOptions(0, maxResults));
 		}
 	}
 }

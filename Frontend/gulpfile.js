@@ -72,7 +72,7 @@ function watchTask() {
 	watch(
 		[files.scssPath, files.jsPath],
 		{ interval: 1000, usePolling: true }, //Makes docker work
-		series(parallel(scssTask, jsTask))
+		series(parallel(scssTask, jsTask), cacheBustTask)
 	);
 }
 

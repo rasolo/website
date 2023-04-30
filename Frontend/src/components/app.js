@@ -1,7 +1,9 @@
-// let cookiesNotice = require('./cookies-notice');
-// cookiesNotice();
 
-let loadBlogPosts = require('./StartPage/load-blogposts');
-let smoothScroll = require('./StartPage/smooth-scroll');
+
+const loadBlogPosts = require('./StartPage/load-blogposts');
+const smoothScroll = require('./StartPage/smooth-scroll');
+const autoSuggest = require('./auto-suggest');
+
 loadBlogPosts();
 smoothScroll();
+autoSuggest();

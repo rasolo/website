@@ -6,6 +6,7 @@
 #Ignore static files
 src/Rasolo.Web/wwwroot/assets/js
 src/Rasolo.Web/wwwroot/assets/css
+src/Rasolo.Web/Smidge/*
 Frontend/gulpfile.js.bak
 .gitignore.bak
 

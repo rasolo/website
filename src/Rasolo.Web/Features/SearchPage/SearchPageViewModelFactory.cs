@@ -83,11 +83,10 @@ namespace Rasolo.Web.Features.SearchPage
 
 		public void Search(SearchPageViewModel viewModel)
 		{
-			var nodeTypes = new[] { DocumentTypeAlias.BlogPostPage };
 			var properties = new[] { PropertyTypeAlias.Title, PropertyTypeAlias.Preamble };
 
 			var searchResults = _examineSearcher.Search(viewModel.Query, 300, 0.4f,
-				IndexTypes.Content, nodeTypes,
+				IndexTypes.Content, SearchableDocumentTypeAliases.Aliases,
 				properties);
 			var searchResultItems = searchResults.Select(MapViewModels).ToList();
 
