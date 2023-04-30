@@ -4,13 +4,16 @@
 @using (Html.BeginUmbracoForm<SearchSurfaceController>(nameof(SearchSurfaceController.Search), FormMethod.Post, new Dictionary<string, object> { { "class", "search-form" } }))
 {
 	<div class="search-wrapper">
-		<input id="search-input" placeholder="Enter text" name="query"/>
+		<input id="js-search-input" class="search-input" placeholder="Search" name="query" autocomplete="off" />
 		<button class="search-form__submit" type="submit">
 			<svg class="search-submit-icon">
 				<use xlink:href="/assets/img/icons/icons.svg#search-symbol"></use>
 			</svg>
 			<span class="search-submit-text">Search</span>
 		</button>
+		<div class="auto-suggest-container">
+			<ul id="js-auto-suggest-container__list" class="auto-suggest-container__list"></ul>
+		</div>
 	</div>
 }
 }

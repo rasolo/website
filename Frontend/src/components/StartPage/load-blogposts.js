@@ -2,6 +2,10 @@ module.exports = () => {
     const loadMore = document.querySelector('#js-load-more-posts');
     const loadAll = document.querySelector('#js-load-all-posts');
     const postsLists = document.querySelector('#js-posts-container__posts');
+
+    if(loadMore == null || loadAll == null || postsLists == null){
+      return;
+    }
     let pageIndex = 1;
   
     const appendPosts = (json) => {

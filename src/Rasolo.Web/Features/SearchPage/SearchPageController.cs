@@ -28,12 +28,7 @@ namespace Rasolo.Web.Features.SearchPage
 			var mappedModel = this.MapModel(contentModel.Content);
 			if (!string.IsNullOrEmpty(query))
 			{
-				var searchResultsJson = TempData.Peek("SearchResults") as string;
-				var searchViewModel = !string.IsNullOrEmpty(searchResultsJson) ? JsonConvert.DeserializeObject<SearchPageViewModel>(searchResultsJson) : null;
-				if (searchViewModel != null)
-				{
-					mappedModel = searchViewModel;
-				}
+				mappedModel.Query = query;
 			}
 	
 			var viewModel = this._viewModelFactory.CreateModel(mappedModel, contentModel);
