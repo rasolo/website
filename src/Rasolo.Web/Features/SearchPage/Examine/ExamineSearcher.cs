@@ -1,7 +1,9 @@
 ﻿using System;
 using Examine;
 using Examine.Search;
-using Rasolo.Web.Features.Shared.Constants;
+using Umbraco.Extensions;
+using Rasolo.Web.Features.Shared.Constants.PropertyTypeAlias;
+using System.Linq;
 
 namespace Rasolo.Web.Features.SearchPage.Examine
 {
@@ -21,19 +23,10 @@ namespace Rasolo.Web.Features.SearchPage.Examine
 				throw new InvalidOperationException($"No index found by name {"ExternalIndex"}");
 			}
 
-			var query = index.Searcher.CreateQuery(indexType);
-			var operation = query.GroupedOr(new[] { SearchFields.NodeTypeAlias }, nodeTypes);
-			var queryWords = searchQuery.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
-			operation.Or().GroupedOr(properties, searchQuery.Fuzzy(fuzzieness));
-			if (queryWords?.Length > 1)
-			{
-				var exactSearchPhrase = new ExactPhraseExamineValue(searchQuery);
+			var query = index.Searcher.CreateQuery(category: "content");
 
-				foreach (var word in queryWords)
-				{
-					operation.And().GroupedOr(properties, word.Fuzzy(fuzzieness), exactSearchPhrase);
-				}
-			}
+			var splitSearchQuery = searchQuery.Split(new[] { ' ', '-', '?', '&' }, StringSplitOptions.RemoveEmptyEntries);
+			var operation = query.GroupedAnd(new string[] { PropertyTypeAlias.Title }, splitSearchQuery.Select(x => x.MultipleCharacterWildcard()).ToArray());
 
 			return operation.Execute(new QueryOptions(0, maxResults));
 		}
