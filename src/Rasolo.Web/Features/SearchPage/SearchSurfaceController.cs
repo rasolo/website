@@ -38,11 +38,7 @@ namespace Rasolo.Web.Features.SearchPage
 			var suggestions = results
 				.SelectMany(x => x.Values)
 				.Where(y => y.Key == "title")
-				.Select(y => y.Value)
-				.Where(x => x.ToLower().Contains(term.ToLower()))
-				.OrderByDescending(x => x.ToLower().StartsWith(term.ToLower()))
-				.Take(15);
-
+				.Select(y => y.Value);
 			return Json(suggestions);
 		}
 	}
