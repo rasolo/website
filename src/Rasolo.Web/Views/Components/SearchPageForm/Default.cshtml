@@ -1,7 +1,8 @@
 ﻿@using Rasolo.Web.Features.SearchPage
 @using Umbraco.Extensions
 @model Rasolo.Web.Features.SearchPage.SearchPageViewModel
-@using (Html.BeginUmbracoForm<SearchSurfaceController>(nameof(SearchSurfaceController.Search), FormMethod.Post, new Dictionary<string, object> { { "class", "search-form" } }))
+@using (Html.BeginUmbracoForm<SearchSurfaceController>(nameof(SearchSurfaceController.Search), FormMethod.Post, new
+		Dictionary<string, object> { { "class", "search-form" } }))
 {
 	<div class="search-wrapper">
 		<input id="js-search-input" class="search-input" placeholder="Search" name="query" autocomplete="off" />

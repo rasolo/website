@@ -1,6 +1,6 @@
 ﻿@using Umbraco.Extensions
 @model Rasolo.Web.Features.BlogPostPage.BlogPostPage
-	<!-- TODO: Refractor to use PostTeaser-->
+<!-- TODO: Refractor to use PostTeaser-->
 <article class="posts__post">
 	<a href="@Model.Url">
 		@{
@@ -10,13 +10,16 @@
 			}
 			else
 			{
-				<img class="post__image"src="@Model.TeaserUrl" @if(Model.ShowTeaserMediaAltText){<text>alt="@Model.TeaserMediaAltText"</text>} />
+				<img class="post__image" src="@Model.TeaserUrl" @if (Model.ShowTeaserMediaAltText)
+				{
+					<text>alt="@Model.TeaserMediaAltText"</text>
+				} />
 			}
 		}
 	</a>
 	<a class="post__category" href="@Model.Parent.Url()">@Model.Parent.Name</a>
 	<a class="post__date" href="@Model.Url">
-		<p >@Model.CreateDate.ToString("yyyy-MM-dd")</p>
+		<p>@Model.CreateDate.ToString("yyyy-MM-dd")</p>
 		<p>@Model.TeaserHeading</p>
 	</a>
 

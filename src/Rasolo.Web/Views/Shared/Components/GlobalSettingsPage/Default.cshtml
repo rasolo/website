@@ -2,8 +2,7 @@
 @model Rasolo.Web.Features.Shared.GlobalSettings.GlobalSettingsPageViewModel
 
 <div>
-	<a class="header__home" href="/"
-	   @StyleColor()>
+	<a class="header__home" href="/" @StyleColor()>
 		@Model.HomeText
 	</a>
 </div>
@@ -14,7 +13,9 @@
 		<svg class="header__search-svg">
 			<use xlink:href="/assets/img/icons/icons.svg#search-symbol"></use>
 		</svg>
-		<span class="header__search-text" @{ StyleColor(); }>
+		<span class="header__search-text" @{
+			StyleColor();
+		}>
 			Search
 		</span>
 	</a>
@@ -23,13 +24,13 @@
 
 
 @{
-    IHtmlContent StyleColor() 
-    {
-	    if (!string.IsNullOrEmpty(Model.HomeTextColor))
-	    {
-		    return @Html.Raw($"style='color:#{@Model.HomeTextColor}'");
-	    }
+	IHtmlContent StyleColor()
+	{
+		if (!string.IsNullOrEmpty(Model.HomeTextColor))
+		{
+			return @Html.Raw($"style='color:#{@Model.HomeTextColor}'");
+		}
 
-	    return null;
-    }
+		return null;
+	}
 }

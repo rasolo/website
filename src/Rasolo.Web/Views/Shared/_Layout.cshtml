@@ -1,26 +1,27 @@
 @model Rasolo.Web.Features.Shared.Compositions.BaseContentPage
-	<!doctype html>
-	<html>
-	<head>
-		<title>@Model.PageAndSiteTitle</title>
-		@Html.Partial("MetaData", Model)
-		<link rel="stylesheet" href="/assets/css/main.css?cb=1678698855434"/>
-		<link rel="icon" href="~/assets/img/icons/favicon.ico" type="image/x-icon"/>
-		<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-		@Html.Partial("Matomo")
-	</head>
+<!doctype html>
+<html>
 
-	<body>
-		<header class="header">
-			@await Component.InvokeAsync("GlobalSettingsPage",  Model.Id) 
-		</header>
-		<main class="main">
-			@RenderBody()
-		</main>
-			@Html.Partial("Footer")
-		@*@Html.Action("Index", "CookiesNotice")*@
-		<script src="/assets/js/bundle.js?cb=1678698855434"></script>
-	</body>
+<head>
+    <title>@Model.PageAndSiteTitle</title>
+    @Html.Partial("MetaData", Model)
+    <link rel="stylesheet" href="/assets/css/main.css?cb=1678698855434" />
+    <link rel="icon" href="~/assets/img/icons/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    @Html.Partial("Matomo")
+</head>
+
+<body>
+    <header class="header">
+        @await Component.InvokeAsync("GlobalSettingsPage", Model.Id)
+    </header>
+    <main class="main">
+        @RenderBody()
+    </main>
+    @Html.Partial("Footer")
+    @*@Html.Action("Index", "CookiesNotice")*@
+    <script src="/assets/js/bundle.js?cb=1678698855434"></script>
+</body>
 
 </html>

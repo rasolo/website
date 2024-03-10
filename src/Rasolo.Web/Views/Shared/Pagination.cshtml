@@ -9,7 +9,8 @@
 		}
 		@for (int i = 1; i <= Model.NumberOfPages; i++)
 		{
-			<a class="pagination-links__link @(Model.CurrentPaginationPageNumber == i ? "pagination-links__link--active" : string.Empty)" href="@Model.PaginationSearchQuery@i">@i</a>
+			<a class="pagination-links__link @(Model.CurrentPaginationPageNumber == i ? "pagination-links__link--active" : string.Empty)"
+				href="@Model.PaginationSearchQuery@i">@i</a>
 		}
 
 		@if (Model.ShowNextPagePaginationSymbol)

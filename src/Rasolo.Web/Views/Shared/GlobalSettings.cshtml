@@ -1,8 +1,7 @@
 ﻿@model Rasolo.Web.Features.Shared.GlobalSettings.GlobalSettingsPageViewModel
 
 <div>
-	<a class="header__home" href="/"
-	   @StyleColor()>
+	<a class="header__home" href="/" @StyleColor()>
 		@Model.HomeText
 	</a>
 </div>
@@ -21,8 +20,8 @@
 
 @helper StyleColor()
 {
-	if (!string.IsNullOrEmpty(Model.HomeTextColor))
-	{
-		<text> style="color: #@Model.HomeTextColor" </text>
-	}
+if (!string.IsNullOrEmpty(Model.HomeTextColor))
+{
+<text> style="color: #@Model.HomeTextColor" </text>
+}
 }
